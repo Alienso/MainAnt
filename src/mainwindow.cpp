@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    Node* n = new Node(nullptr,3);
+    ui->StagingArea->setLayout(new QFormLayout());
+    ui->StagingArea->layout()->addWidget(n);
 }
 
 MainWindow::~MainWindow()

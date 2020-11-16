@@ -10,10 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     ./src/main.cpp \
-    ./src/mainwindow.cpp
+    ./src/mainwindow.cpp \
+    src/Input.cpp \
+    src/Node.cpp \
+    src/Output.cpp
 
 HEADERS += \
-    ./headers/mainwindow.h
+    ./headers/mainwindow.h \
+    headers/Input.h \
+    headers/Node.h \
+    headers/Output.h
 
 FORMS += \
     mainwindow.ui
