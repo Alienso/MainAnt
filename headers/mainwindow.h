@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QFormLayout>
+#include <QtGui>
 #include <./headers/Node.h>
 
 QT_BEGIN_NAMESPACE
@@ -17,7 +18,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+
+    void putNode(QListWidgetItem* item);
+
 private:
     Ui::MainWindow *ui;
+
+
 };
 #endif // MAINWINDOW_H

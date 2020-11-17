@@ -13,13 +13,15 @@ SOURCES += \
     ./src/mainwindow.cpp \
     src/Input.cpp \
     src/Node.cpp \
-    src/Output.cpp
+    src/Output.cpp \
+    src/BinaryFunction.cpp
 
 HEADERS += \
     ./headers/mainwindow.h \
     headers/Input.h \
     headers/Node.h \
-    headers/Output.h
+    headers/Output.h \
+    headers/BinaryFunction.h
 
 FORMS += \
     mainwindow.ui
