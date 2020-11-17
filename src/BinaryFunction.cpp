@@ -1,7 +1,2 @@
-#include "BinaryFunction.h"
-
-BinaryFunction::BinaryFunction()
-{
-
-}
+#include "./headers/BinaryFunction.h"
 
