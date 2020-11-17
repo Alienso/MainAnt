@@ -12,16 +12,20 @@ SOURCES += \
     ./src/main.cpp \
     ./src/mainwindow.cpp \
     src/Input.cpp \
+    src/InputNode.cpp \
     src/Node.cpp \
     src/Output.cpp \
-    src/BinaryFunction.cpp
+    src/BinaryFunction.cpp \
+    src/PrintNode.cpp
 
 HEADERS += \
     ./headers/mainwindow.h \
     headers/Input.h \
+    headers/InputNode.h \
     headers/Node.h \
     headers/Output.h \
-    headers/BinaryFunction.h
+    headers/BinaryFunction.h \
+    headers/PrintNode.h
 
 FORMS += \
     mainwindow.ui

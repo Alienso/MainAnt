@@ -1,6 +1,7 @@
 #ifndef BINARYFUNCTION
 #define BINARYFUNCTION
 
+
 template<typename T>
 class BinaryFunction{
 public:
@@ -8,14 +9,22 @@ public:
         :op1(op1), op2(op2)
     {}
 
-    T plus()
+    T plusFunc()
     {
         return this-> op1 + this->op2;
     }
 
-    T minus()
+    T minusFunc()
     {
         return this->op1 - this->op2;
+    }
+
+    T mulFunc(){
+        return this->op1 * this->op2;
+    }
+
+    T lessTHanFunc(){
+        return this->op1 < this->op2;
     }
 
 

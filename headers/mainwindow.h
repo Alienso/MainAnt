@@ -5,6 +5,8 @@
 #include <QFormLayout>
 #include <QtGui>
 #include <./headers/Node.h>
+#include "../headers/InputNode.h"
+#include "../headers/PrintNode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
