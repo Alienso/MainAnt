@@ -7,7 +7,7 @@
  * Sadrzi jedan ulaz.
 */
 
-PrintNode::PrintNode() : Node(nullptr, 1)
+PrintNode::PrintNode() : Node(nullptr,1,1)
 {
     setMinimumSize(100,100);
     setMaximumWidth(200);

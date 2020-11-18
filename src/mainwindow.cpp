@@ -51,16 +51,10 @@ void MainWindow::putNode(QListWidgetItem* item)
    }else if(ui->listWidget->item(4) == item){
        InputNode* n = new InputNode();
        ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
    }else if(ui->listWidget->item(5) == item){
        PrintNode* n = new PrintNode();
        ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
    }
-
-   /*for(auto item : p->getNodeNames()){
-       std::cout<< item.toUtf8().constData() <<std::endl;
-   }*/
 
 }
 //Evo nacina da prepoznate na sta ste kliknuli iz liste

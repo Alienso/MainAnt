@@ -20,10 +20,8 @@ class Output;
 class Node : public QFrame{
      Q_OBJECT
 public:
-    explicit Node(QWidget* parent=nullptr);
-    Node(QWidget* parent,int ninputs);
-    Node(QWidget* parent,int ninputs,int noutputs);
-    Node(QString name,QWidget* parent,int ninputs,int noutputs);
+    explicit Node(QWidget* parent = nullptr);
+    Node(QString name,int ninputs,int noutputs,QWidget* parent = nullptr);
     void addWidget(QWidget* w);
 protected:
     //void mousePressEvent(QMouseEvent *event);

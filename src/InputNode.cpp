@@ -8,7 +8,7 @@
 */
 
 
-InputNode::InputNode():Node(nullptr, 0)
+InputNode::InputNode():Node(nullptr,1, 0)
 {
     setMinimumSize(60,60);
     setMaximumWidth(200);
