@@ -6,6 +6,10 @@
 #include <QString>
 #include <iostream>
 
+#include <./headers/Node.h>
+
+class Input;
+
 class Output : public QListWidget
 {
    public:
@@ -13,6 +17,9 @@ class Output : public QListWidget
 
    protected:
       void startDrag(Qt::DropActions supportedActions) override;
+    private:
+      Input* next;
+      QString addrtos(QWidget* w);
 };
 
 #endif // OUTPUT_H

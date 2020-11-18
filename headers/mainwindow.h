@@ -27,6 +27,9 @@ public slots:
 private:
     Ui::MainWindow *ui;
 
+private slots:
+    //void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
+
 
 };
 #endif // MAINWINDOW_H

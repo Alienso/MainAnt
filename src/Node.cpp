@@ -1,16 +1,17 @@
 #include "./headers/Node.h"
 
-Node::Node(QWidget *parent) : QFrame(parent)
-{
+Node::Node(QWidget *parent) : QFrame(parent){
     setMinimumSize(150,150);
     setMaximumSize(150,150);
     setStyleSheet ("background-color: rgba(255, 255, 0, 1);");
+    this->name = "";
 }
 
 Node::Node(QWidget* parent,int ninputs) : Node(parent,ninputs,0){
     Output* o = new Output();
     o->addItem("");
     this->layout()->addWidget(o);
+    this->output = o;
 }
 
 Node::Node(QWidget* parent,int ninputs,int noutputs) : Node(parent){
@@ -19,8 +20,16 @@ Node::Node(QWidget* parent,int ninputs,int noutputs) : Node(parent){
         Input* tmp = new Input();
         tmp->move(QPoint(10*i,0));
         this->layout()->addWidget(tmp);
+        this->inputs.push_back(tmp);
     }
+}
 
+//Do not use
+Node::Node(QString _name,QWidget* parent,int ninputs,int noutputs) : Node(parent,ninputs,noutputs){
+    this->name = _name;
+    this->nameLbl = new QLabel(name);
+    this->nameLbl->move(100,0);
+    layout()->addWidget(nameLbl);
 }
 
 /*void node::mousePressEvent(QMouseEvent *event){
@@ -41,9 +50,6 @@ void Node::mouseMoveEvent(QMouseEvent *event){
     else {
         QFrame::mouseMoveEvent(event);
     }
-
-    std::cout<<event->x() << "," << event->y() << std::endl;
-    fflush(stdout);
 
 }
 

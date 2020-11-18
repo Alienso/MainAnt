@@ -1,10 +1,4 @@
 #include "./headers/Input.h"
-#include <QDropEvent>
-#include <QDragEnterEvent>
-#include <QDragLeaveEvent>
-#include <QLayout>
-#include <QMimeData>
-#include <QLabel>
 
 Input::Input (QWidget *parent) : QFrame (parent)
 {
@@ -12,15 +6,20 @@ Input::Input (QWidget *parent) : QFrame (parent)
    setMaximumSize(20,20);
    setAcceptDrops(true);
    setStyleSheet ("background-color: rgba(255, 0, 0, 1);");
+   setLayout(new QGridLayout());
 }
 
 void Input::dropEvent(QDropEvent *event)
 {
-   auto t = event->mimeData()->data("application/x-item");
+   auto t = event->mimeData()->data("node_ptr");
+   std::string s = t.toStdString();
+   uintptr_t x = stoaddr(s);
+   Output* ptr = reinterpret_cast<Output*>(x);
 
    if (!t.isEmpty ())
    {
-      auto label = new QLabel (t);
+      this->previous = ptr;
+      auto label = new QLabel ("");
       label->setStyleSheet ("border: 1px solid black; background-color: white; qproperty-alignment: AlignCenter");
       layout ()->addWidget(label);
 
@@ -28,6 +27,23 @@ void Input::dropEvent(QDropEvent *event)
    }
 
    event->accept ();
+}
+
+//String to address - stoaddr
+//Takes and String of ones and zeroes and returns
+//a memory adress to what the string pointst to
+uintptr_t Input::stoaddr(std::string s){
+
+    uintptr_t x = 0;
+    unsigned size = sizeof(void*) * 8;
+    unsigned mask;
+    int i = 0;
+    for (mask = 1 << (size - 1); mask != 0; mask >>= 1){
+      if (s[i] == '1')
+          x = x | mask;
+      i++;
+    }
+    return x;
 }
 
 void Input::dragEnterEvent(QDragEnterEvent *event)
