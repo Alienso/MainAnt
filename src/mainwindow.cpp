@@ -62,3 +62,51 @@ void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item){
     ui->StagingArea->layout()->addWidget(new Node(item->text(),nullptr,2,1));
 }
 */
+//*File->Open Ucitava se tekstualni fajl.
+void MainWindow::on_actionOpen_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    tr("Open MainAnt"), "",
+                                                    tr("MainAnt (*.txt);;All Files (*)"));
+
+    if (fileName.isEmpty())
+        return;
+    else {
+
+        QFile file(fileName);
+
+        if (!file.open(QIODevice::ReadOnly)) {
+            QMessageBox::information(this, tr("Unable to open file"),
+                                     file.errorString());
+            return;
+        }
+        //U in fajlu nam se nalazi sadrzaj ucitane datoteke
+        QDataStream in(&file);
+        in.setVersion(QDataStream::Qt_4_5);
+        /*ovde bi trebalo u osnovi da se izvrsi nesto ovako:
+        in>> staging area;
+        */
+    }
+}
+//*File->Save Cuva se tekstualni fajl.
+void MainWindow::on_actionSave_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+                                                    tr("Save MainAnt File"), "",
+                                                    tr("MainAnt (*.mant);;All Files (*)"));
+
+    if (fileName.isEmpty())
+        return;
+    else {
+        QFile file(fileName);
+        if (!file.open(QIODevice::WriteOnly)) {
+            QMessageBox::information(this, tr("Unable to open file"),
+                                     file.errorString());
+            return;
+        }
+        //Preko out-a pisemo u fajl koji ce biti sacuvan. Verovatno necete moci da procitate kada otvorite jer je QString upisan.
+        QDataStream out(&file);
+        out.setVersion(QDataStream::Qt_4_5);
+        out << QString("Projekat MainAnt");
+    }
+}
