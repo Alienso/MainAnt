@@ -3,6 +3,8 @@
 #include <QTextEdit>
 #include <QFont>
 #include <QString>
+#include <QRadioButton>
+#include <QButtonGroup>
 #include "Node.h"
 
 class InputNode : public Node

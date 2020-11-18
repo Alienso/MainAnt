@@ -10,8 +10,9 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <./headers/Node.h>
-#include "../headers/InputNode.h"
-#include "../headers/PrintNode.h"
+#include "./headers/Parser.h"
+#include "./headers/InputNode.h"
+#include "./headers/PrintNode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +32,7 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+    Parser *p;
 
 private slots:
     //void on_listWidget_itemDoubleClicked(QListWidgetItem *item);

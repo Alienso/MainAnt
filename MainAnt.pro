@@ -16,6 +16,7 @@ SOURCES += \
     src/Node.cpp \
     src/Output.cpp \
     src/BinaryFunction.cpp \
+    src/Parser.cpp \
     src/PrintNode.cpp
 
 HEADERS += \
@@ -25,6 +26,7 @@ HEADERS += \
     headers/Node.h \
     headers/Output.h \
     headers/BinaryFunction.h \
+    headers/Parser.h \
     headers/PrintNode.h
 
 FORMS += \

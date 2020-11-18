@@ -10,8 +10,8 @@
 
 #include <iostream>
 
-#include "./headers/Output.h"
-#include <./headers/Input.h>
+#include "Output.h"
+#include "Input.h"
 
 class Input;
 class Output;

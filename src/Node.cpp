@@ -22,6 +22,14 @@ Node::Node(QWidget* parent,int ninputs,int noutputs) : Node(parent){
         this->layout()->addWidget(tmp);
         this->inputs.push_back(tmp);
     }
+    //Vlado mislim da u ovom delu koda treba da kriras vise izlaz akao sto si gore nisam htela da ti menjam klasu s obzirom d ami ovo sluzi za sta mi treba
+    /*for(int i=0; i< noutputs; i++){
+        Output* tmp = new Output();
+        tmp->move(QPoint(10*i,0));
+        this->layout()->addWidget(tmp);
+        this->outputs.push_back(tmp);
+
+    }*/
 }
 
 //Do not use

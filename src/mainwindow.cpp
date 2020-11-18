@@ -4,6 +4,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    ,p(new Parser)
 {
     ui->setupUi(this);
 
@@ -28,32 +29,38 @@ MainWindow::~MainWindow()
 void MainWindow::putNode(QListWidgetItem* item)
 {
    if(ui->listWidget->item(0) == item){
-       std::cout<<"plus"<<std::endl;
-
-       Node* n3 = new Node(nullptr, 2);
-       ui->StagingArea->layout()->addWidget(n3);
+       //std::cout<<"plus"<<std::endl;
+       Node* n = new Node(nullptr, 2);
+       ui->StagingArea->layout()->addWidget(n);
+       p->addNode(n);
    }else if(ui->listWidget->item(1) == item){
-       std::cout<<"minus"<<std::endl;
-
-       Node* n3 = new Node(nullptr, 2);
-       ui->StagingArea->layout()->addWidget(n3);
+       //std::cout<<"minus"<<std::endl;
+       Node* n = new Node(nullptr, 2);
+       ui->StagingArea->layout()->addWidget(n);
+       p->addNode(n);
    }else if(ui->listWidget->item(2) == item){
-       std::cout<<"puta"<<std::endl;
-
-       Node* n3 = new Node(nullptr, 2);
-       ui->StagingArea->layout()->addWidget(n3);
+       //std::cout<<"puta"<<std::endl;
+       Node* n = new Node(nullptr, 2);
+       ui->StagingArea->layout()->addWidget(n);
+       p->addNode(n);
    }else if(ui->listWidget->item(3) == item){
-       std::cout<<"manje"<<std::endl;
-
-       Node* n3 = new Node(nullptr, 2);
-       ui->StagingArea->layout()->addWidget(n3);
+       //std::cout<<"manje"<<std::endl;
+       Node* n = new Node(nullptr, 2);
+       ui->StagingArea->layout()->addWidget(n);
+       p->addNode(n);
    }else if(ui->listWidget->item(4) == item){
        InputNode* n = new InputNode();
        ui->StagingArea->layout()->addWidget(n);
+       p->addNode(n);
    }else if(ui->listWidget->item(5) == item){
        PrintNode* n = new PrintNode();
        ui->StagingArea->layout()->addWidget(n);
+       p->addNode(n);
    }
+
+   /*for(auto item : p->getNodeNames()){
+       std::cout<< item.toUtf8().constData() <<std::endl;
+   }*/
 
 }
 //Evo nacina da prepoznate na sta ste kliknuli iz liste
