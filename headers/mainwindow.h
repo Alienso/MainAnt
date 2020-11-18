@@ -14,6 +14,7 @@
 #include "./headers/Parser.h"
 #include "./headers/InputNode.h"
 #include "./headers/PrintNode.h"
+#include "./headers/ReturNode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,7 +29,6 @@ public:
     ~MainWindow();
 
 public slots:
-
     void putNode(QListWidgetItem* item);
 
 private:

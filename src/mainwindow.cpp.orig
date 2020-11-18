@@ -14,7 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
     QListWidgetItem* less =new QListWidgetItem(tr("+LessThan"), ui->listWidget);
     QListWidgetItem* input =new QListWidgetItem(tr("+Input"), ui->listWidget);
     QListWidgetItem* print =new QListWidgetItem(tr("+Print"), ui->listWidget);
-    QListWidgetItem* ret =new QListWidgetItem(tr("+Reteurn"), ui->listWidget);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
 
@@ -30,25 +29,47 @@ MainWindow::~MainWindow()
 void MainWindow::putNode(QListWidgetItem* item)
 {
    if(ui->listWidget->item(0) == item){
+<<<<<<< HEAD
        //std::cout<<"plus"<<std::endl;
-       Node* n = new Node("plus", 2, 1, nullptr);
+       Node* n = new Node(nullptr, 2);
        ui->StagingArea->layout()->addWidget(n);
        p->addNode(n);
    }else if(ui->listWidget->item(1) == item){
        //std::cout<<"minus"<<std::endl;
-       Node* n = new Node("minus", 2, 1, nullptr);
+       Node* n = new Node(nullptr, 2);
        ui->StagingArea->layout()->addWidget(n);
        p->addNode(n);
    }else if(ui->listWidget->item(2) == item){
        //std::cout<<"puta"<<std::endl;
-       Node* n = new Node("puta", 2, 1, nullptr);
+       Node* n = new Node(nullptr, 2);
        ui->StagingArea->layout()->addWidget(n);
        p->addNode(n);
    }else if(ui->listWidget->item(3) == item){
        //std::cout<<"manje"<<std::endl;
-       Node* n = new Node("manje", 2, 1, nullptr);
+       Node* n = new Node(nullptr, 2);
        ui->StagingArea->layout()->addWidget(n);
        p->addNode(n);
+=======
+       std::cout<<"plus"<<std::endl;
+
+       Node* n3 = new Node("-",4,1);
+       ui->StagingArea->layout()->addWidget(n3);
+   }else if(ui->listWidget->item(1) == item){
+       std::cout<<"minus"<<std::endl;
+
+       Node* n3 = new Node("*",2,1);
+       ui->StagingArea->layout()->addWidget(n3);
+   }else if(ui->listWidget->item(2) == item){
+       std::cout<<"puta"<<std::endl;
+
+       Node* n3 = new Node("<",2, 1);
+       ui->StagingArea->layout()->addWidget(n3);
+   }else if(ui->listWidget->item(3) == item){
+       std::cout<<"manje"<<std::endl;
+
+       Node* n3 = new Node("Nesto",2,1);
+       ui->StagingArea->layout()->addWidget(n3);
+>>>>>>> e945ae60d313b6a09b3d1bbf1daf94bb81e95602
    }else if(ui->listWidget->item(4) == item){
        InputNode* n = new InputNode();
        ui->StagingArea->layout()->addWidget(n);
@@ -57,21 +78,17 @@ void MainWindow::putNode(QListWidgetItem* item)
        PrintNode* n = new PrintNode();
        ui->StagingArea->layout()->addWidget(n);
        p->addNode(n);
-   }else if(ui->listWidget->item(6) == item){
-       ReturnNode* n = new ReturnNode();
-       ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
    }
 
    /*for(auto item : p->getNodeNames()){
-        std::cout<< item.toUtf8().constData() <<std::endl;
-    }*/
+       std::cout<< item.toUtf8().constData() <<std::endl;
+   }*/
 
 }
 //Evo nacina da prepoznate na sta ste kliknuli iz liste
 /*
 void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item){
-    ui->StagingArea->layout()->addWidget(new Node(item->text(),2,1, nullptr));
+    ui->StagingArea->layout()->addWidget(new Node(item->text(),nullptr,2,1));
 }
 */
 //*File->Open Ucitava se tekstualni fajl.

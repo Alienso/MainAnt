@@ -12,7 +12,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent
     layout->setHorizontalSpacing(100);
     this->name = _name;
     this->nameLbl = new QLabel(name);
-    this->nameLbl->setMaximumSize(75,10);
+    this->nameLbl->setMaximumSize(75,15);
     layout->insertRow(0,nameLbl);
 
     Output* o = new Output();

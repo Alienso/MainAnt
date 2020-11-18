@@ -17,7 +17,8 @@ SOURCES += \
     src/Output.cpp \
     src/BinaryFunction.cpp \
     src/Parser.cpp \
-    src/PrintNode.cpp
+    src/PrintNode.cpp \
+    src/ReturnNode.cpp
 
 HEADERS += \
     ./headers/mainwindow.h \
@@ -27,7 +28,8 @@ HEADERS += \
     headers/Output.h \
     headers/BinaryFunction.h \
     headers/Parser.h \
-    headers/PrintNode.h
+    headers/PrintNode.h \
+    headers/ReturNode.h
 
 FORMS += \
     mainwindow.ui

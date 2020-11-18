@@ -8,7 +8,7 @@
 */
 
 
-InputNode::InputNode():Node(nullptr,1, 0)
+InputNode::InputNode():Node("input", 0, 1, nullptr)
 {
     setMinimumSize(60,60);
     setMaximumWidth(200);
@@ -20,8 +20,9 @@ InputNode::InputNode():Node(nullptr,1, 0)
     QButtonGroup *choice = new QButtonGroup(nullptr);
     choice->addButton(fileInputRadioButton, 1);
     choice->addButton(manualInputRadioButton, 2 );
-    this->layout()->addWidget(fileInputRadioButton);
-    this->layout()->addWidget(manualInputRadioButton);
+    QFormLayout* layout = static_cast<QFormLayout*>(this->layout());
+    layout->insertRow(2, fileInputRadioButton);
+    layout->insertRow(3, manualInputRadioButton);
 
 /*
     //Kreiranje text edita

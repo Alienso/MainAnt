@@ -7,7 +7,7 @@
  * Sadrzi jedan ulaz.
 */
 
-PrintNode::PrintNode() : Node(nullptr,1,1)
+PrintNode::PrintNode() : Node("print", 1, 1, nullptr)
 {
     setMinimumSize(100,100);
     setMaximumWidth(200);
@@ -21,5 +21,6 @@ PrintNode::PrintNode() : Node(nullptr,1,1)
     edit->setReadOnly(true);
     //edit->setText("Danas je lep dan");
 
-    this->layout()->addWidget(edit);
+    QFormLayout* layout = static_cast<QFormLayout*>(this->layout());
+    layout->insertRow(2,edit);
 }
