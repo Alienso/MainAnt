@@ -13,6 +13,8 @@ class Output : public QListWidget
 
    protected:
       void startDrag(Qt::DropActions supportedActions) override;
+    private:
+      QString addrtos(QWidget* w);
 };
 
 #endif // OUTPUT_H
