@@ -2,13 +2,16 @@
 #define NODE_H
 
 #include <QFrame>
+#include <QVector>
 #include <QMouseEvent>
 #include <QWidget>
 #include <QLayout>
 #include <QFormLayout>
+
+#include <iostream>
+
 #include "./headers/Output.h"
 #include <./headers/Input.h>
-#include <iostream>
 
 
 class Node : public QFrame{
@@ -25,6 +28,9 @@ protected:
     void mousePressEvent(QMouseEvent *event);
 private:
     QPoint offset;
+    QVector<Input*> inputs;
+    Output* output;
+    Node* next;
 };
 
 #endif // NODE_H

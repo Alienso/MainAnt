@@ -22,6 +22,8 @@ void Output::startDrag(Qt::DropActions supportedActions)
    drag->exec(Qt::MoveAction);
 }
 
+//Address to String - addrtos
+//Takes the address and returns a string of ones and zeroes
 QString Output::addrtos(QWidget* w){
   uintptr_t x = (uintptr_t)w;
   unsigned size = sizeof(void*) * 8;

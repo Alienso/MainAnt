@@ -18,6 +18,7 @@ void Input::dropEvent(QDropEvent *event)
 
    if (!t.isEmpty ())
    {
+      this->previous = ptr;
       auto label = new QLabel ("");
       label->setStyleSheet ("border: 1px solid black; background-color: white; qproperty-alignment: AlignCenter");
       layout ()->addWidget(label);
@@ -28,6 +29,9 @@ void Input::dropEvent(QDropEvent *event)
    event->accept ();
 }
 
+//String to address - stoaddr
+//Takes and String of ones and zeroes and returns
+//a memory adress to what the string pointst to
 uintptr_t Input::stoaddr(std::string s){
 
     uintptr_t x = 0;

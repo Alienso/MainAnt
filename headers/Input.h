@@ -1,7 +1,6 @@
 #ifndef INPUT_H
 #define INPUT_H
-
-#include <./headers/Node.h>
+#include "./headers/Output.h"
 
 #include <QFrame>
 #include <QDropEvent>
@@ -29,6 +28,7 @@ class Input : public QFrame
       void dragLeaveEvent (QDragLeaveEvent *event) override;
 
    private:
+      Output* previous;
       uintptr_t stoaddr(std::string s);
 };
 

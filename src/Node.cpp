@@ -11,6 +11,7 @@ Node::Node(QWidget* parent,int ninputs) : Node(parent,ninputs,0){
     Output* o = new Output();
     o->addItem("");
     this->layout()->addWidget(o);
+    this->output = o;
 }
 
 Node::Node(QWidget* parent,int ninputs,int noutputs) : Node(parent){
@@ -19,8 +20,8 @@ Node::Node(QWidget* parent,int ninputs,int noutputs) : Node(parent){
         Input* tmp = new Input();
         tmp->move(QPoint(10*i,0));
         this->layout()->addWidget(tmp);
+        this->inputs.push_back(tmp);
     }
-
 }
 
 /*void node::mousePressEvent(QMouseEvent *event){
