@@ -8,6 +8,8 @@
 
 #include <./headers/Node.h>
 
+class Input;
+
 class Output : public QListWidget
 {
    public:

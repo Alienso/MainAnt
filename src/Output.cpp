@@ -15,7 +15,7 @@ void Output::startDrag(Qt::DropActions supportedActions)
    Q_UNUSED (supportedActions)
 
    auto mimeData = new QMimeData ();
-   mimeData->setData("node_ptr", addrtos(parentWidget()).toUtf8 ());
+   mimeData->setData("node_ptr", addrtos(this).toUtf8 ());
 
    auto drag = new QDrag(this);
    drag->setMimeData (mimeData);

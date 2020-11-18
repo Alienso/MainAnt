@@ -14,7 +14,7 @@ void Input::dropEvent(QDropEvent *event)
    auto t = event->mimeData()->data("node_ptr");
    std::string s = t.toStdString();
    uintptr_t x = stoaddr(s);
-   Node* ptr = reinterpret_cast<Node*>(x);
+   Output* ptr = reinterpret_cast<Output*>(x);
 
    if (!t.isEmpty ())
    {

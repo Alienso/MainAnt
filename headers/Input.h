@@ -1,6 +1,5 @@
 #ifndef INPUT_H
 #define INPUT_H
-#include "./headers/Output.h"
 
 #include <QFrame>
 #include <QDropEvent>
@@ -12,7 +11,9 @@
 
 #include <iostream>
 
+#include "./headers/Output.h"
 
+class Output;
 class QDropEvent;
 class QDragEnterEvent;
 class QDragLeaveEvent;

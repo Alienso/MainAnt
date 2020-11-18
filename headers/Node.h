@@ -13,6 +13,9 @@
 #include "./headers/Output.h"
 #include <./headers/Input.h>
 
+class Input;
+class Output;
+
 
 class Node : public QFrame{
      Q_OBJECT
@@ -27,10 +30,12 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
 private:
+    QString name;
     QPoint offset;
     QVector<Input*> inputs;
     Output* output;
     Node* next;
+    QLabel* nameLbl;
 };
 
 #endif // NODE_H

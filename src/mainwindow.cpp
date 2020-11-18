@@ -56,5 +56,9 @@ void MainWindow::putNode(QListWidgetItem* item)
    }
 
 }
-
-
+//Evo nacina da prepoznate na sta ste kliknuli iz liste
+/*
+void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item){
+    ui->StagingArea->layout()->addWidget(new Node(item->text(),nullptr,2,1));
+}
+*/
