@@ -30,22 +30,22 @@ void MainWindow::putNode(QListWidgetItem* item)
    if(ui->listWidget->item(0) == item){
        std::cout<<"plus"<<std::endl;
 
-       Node* n3 = new Node(nullptr, 2);
+       Node* n3 = new Node("-",4,1);
        ui->StagingArea->layout()->addWidget(n3);
    }else if(ui->listWidget->item(1) == item){
        std::cout<<"minus"<<std::endl;
 
-       Node* n3 = new Node(nullptr, 2);
+       Node* n3 = new Node("*",2,1);
        ui->StagingArea->layout()->addWidget(n3);
    }else if(ui->listWidget->item(2) == item){
        std::cout<<"puta"<<std::endl;
 
-       Node* n3 = new Node(nullptr, 2);
+       Node* n3 = new Node("<",2, 1);
        ui->StagingArea->layout()->addWidget(n3);
    }else if(ui->listWidget->item(3) == item){
        std::cout<<"manje"<<std::endl;
 
-       Node* n3 = new Node(nullptr, 2);
+       Node* n3 = new Node("Nesto",2,1);
        ui->StagingArea->layout()->addWidget(n3);
    }else if(ui->listWidget->item(4) == item){
        InputNode* n = new InputNode();

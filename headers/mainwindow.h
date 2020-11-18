@@ -9,6 +9,7 @@
 #include <QDir>
 #include <QSettings>
 #include <QMessageBox>
+
 #include <./headers/Node.h>
 #include "../headers/InputNode.h"
 #include "../headers/PrintNode.h"
