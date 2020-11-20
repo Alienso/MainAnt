@@ -9,6 +9,7 @@
 #include <QDir>
 #include <QSettings>
 #include <QMessageBox>
+#include <QPoint>
 
 #include <./headers/Node.h>
 #include "./headers/Parser.h"
@@ -37,8 +38,6 @@ private:
 
 private slots:
     //void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
-
-
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
 };

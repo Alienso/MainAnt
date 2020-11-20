@@ -11,7 +11,8 @@ PrintNode::PrintNode() : Node("print", 1, 1, nullptr)
 {
     setMinimumSize(100,100);
     setMaximumWidth(200);
-    setStyleSheet ("background-color: rgba(233, 82, 233, 1);");
+    setStyleSheet ("background-color: rgba(105, 50, 129, 1);"
+                   "border: 1px solid rgba(194, 145, 211, 1);");
     QTextEdit* edit = new QTextEdit();
 
     const QString* font = new QString("Courier New");

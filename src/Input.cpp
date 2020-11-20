@@ -5,7 +5,7 @@ Input::Input (QWidget *parent) : QFrame (parent)
    setMinimumSize(20,20);
    setMaximumSize(20,20);
    setAcceptDrops(true);
-   setStyleSheet ("background-color: rgba(255, 0, 0, 1);");
+   setStyleSheet ("background-color: rgba(205, 221, 63, 1);");
    setLayout(new QGridLayout());
 }
 

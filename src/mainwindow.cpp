@@ -14,10 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     QListWidgetItem* less =new QListWidgetItem(tr("+LessThan"), ui->listWidget);
     QListWidgetItem* input =new QListWidgetItem(tr("+Input"), ui->listWidget);
     QListWidgetItem* print =new QListWidgetItem(tr("+Print"), ui->listWidget);
-    QListWidgetItem* ret =new QListWidgetItem(tr("+Reteurn"), ui->listWidget);
+    QListWidgetItem* ret =new QListWidgetItem(tr("+Return"), ui->listWidget);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
-
     ui->StagingArea->setLayout(new QFormLayout());
 
 }
@@ -29,6 +28,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::putNode(QListWidgetItem* item)
 {
+
    if(ui->listWidget->item(0) == item){
        //std::cout<<"plus"<<std::endl;
        Node* n = new Node("plus", 2, 1, nullptr);
@@ -62,6 +62,7 @@ void MainWindow::putNode(QListWidgetItem* item)
        ui->StagingArea->layout()->addWidget(n);
        p->addNode(n);
    }
+
 
    /*for(auto item : p->getNodeNames()){
         std::cout<< item.toUtf8().constData() <<std::endl;

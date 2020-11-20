@@ -10,9 +10,10 @@
 
 InputNode::InputNode():Node("input", 0, 1, nullptr)
 {
-    setMinimumSize(60,60);
+    setMinimumSize(80,80);
     setMaximumWidth(200);
-    setStyleSheet ("background-color: rgba(233, 82, 233, 1);");
+    setStyleSheet ("background-color: rgba(98, 9, 77, 1);"
+                   "border: 1px solid rgba(237, 48, 194, 1);");
 
     QRadioButton* fileInputRadioButton = new QRadioButton("Input from file",nullptr);
     QRadioButton *manualInputRadioButton = new QRadioButton("Manula input",nullptr);

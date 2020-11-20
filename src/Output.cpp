@@ -6,7 +6,7 @@ Output::Output (QWidget *parent) : QListWidget(parent)
 {
     setMinimumSize(20,20);
     setMaximumSize(20,20);
-    setStyleSheet ("background-color: rgba(255, 0, 255, 1);");
+    setStyleSheet ("background-color: rgba(218, 129, 25, 1);");
     setDragEnabled(true);
 }
 

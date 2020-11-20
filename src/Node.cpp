@@ -2,7 +2,9 @@
 
 Node::Node(QWidget *parent) : QFrame(parent){
     setMaximumSize(150,150);
-    setStyleSheet ("background-color: rgba(255, 255, 0, 1);");
+    setStyleSheet ("background-color: rgba(24, 135, 127, 1);"
+                   "border: 1px solid rgba(205, 221, 63, 1);"
+                   );
     this->setLayout(new QFormLayout());
 }
 
@@ -12,7 +14,9 @@ Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent
     layout->setHorizontalSpacing(100);
     this->name = _name;
     this->nameLbl = new QLabel(name);
-    this->nameLbl->setMaximumSize(75,15);
+
+    this->nameLbl->setMaximumSize(80,20);
+    //this->nameLbl->setStyleSheet("border: 0px solid white;");
     layout->insertRow(0,nameLbl);
 
     Output* o = new Output();
@@ -54,7 +58,6 @@ void Node::mouseMoveEvent(QMouseEvent *event){
     else {
         QFrame::mouseMoveEvent(event);
     }
-
 }
 
 void Node::mousePressEvent(QMouseEvent *event)

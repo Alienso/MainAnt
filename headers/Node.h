@@ -7,6 +7,7 @@
 #include <QWidget>
 #include <QLayout>
 #include <QFormLayout>
+#include <QDebug>
 
 #include <iostream>
 
