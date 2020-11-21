@@ -297,7 +297,7 @@ color: rgb(220, 234, 251);</string>
   <customwidget>
    <class>CustomGraphicsView</class>
    <extends>QGraphicsView</extends>
-   <header>CustomGraphicsView.h</header>
+   <header>./headers/CustomGraphicsView.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

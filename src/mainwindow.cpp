@@ -17,8 +17,19 @@ MainWindow::MainWindow(QWidget *parent)
     QListWidgetItem* ret =new QListWidgetItem(tr("+Return"), ui->listWidget);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
+    connect(ui->AddFunction,&QPushButton::clicked, this, &MainWindow::test);
     ui->StagingArea->setLayout(new QFormLayout());
 
+}
+
+std::string toStr(QPoint p){
+    return std::to_string(p.x()) + " " + std::to_string(p.y());
+}
+
+void MainWindow::test(){
+    for (Node* n:*ui->StagingArea->getNodes())
+        std::cout<<toStr(n->pos())<<" | "<<toStr(*n->oldPos())<<std::endl;
+    fflush(stdout);
 }
 
 MainWindow::~MainWindow()

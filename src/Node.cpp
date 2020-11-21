@@ -59,6 +59,7 @@ void Node::mouseMoveEvent(QMouseEvent *event){
     else {
         QFrame::mouseMoveEvent(event);
     }
+    this->oldPos_ = this->pos();
 }
 
 void Node::mousePressEvent(QMouseEvent *event)
@@ -72,8 +73,4 @@ QPoint* Node::oldPos(){
 
 QVector<Input*>* Node::getInputs(){
     return &(this->inputs);
-}
-
-void Node::mouseReleaseEvent(QMouseEvent *event){
-    this->oldPos_ = this->pos();
 }

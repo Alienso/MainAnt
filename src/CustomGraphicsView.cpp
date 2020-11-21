@@ -14,7 +14,7 @@ void CustomGraphicsView::paintEvent(QPaintEvent* e){
     repositionNodes();
 
     //Povezivanje Node-ova TODO
-    QPoint a,b;
+    /*QPoint a,b;
     for (Node* n : *nodes){
         for (Input* i : *(n->getInputs())){
             if (i->getPrevious() != nullptr){
@@ -25,7 +25,7 @@ void CustomGraphicsView::paintEvent(QPaintEvent* e){
                 painter.drawLine(a,b);
             }
         }
-    }
+    }*/
 
 }
 
@@ -34,7 +34,7 @@ void CustomGraphicsView::paintEvent(QPaintEvent* e){
 void CustomGraphicsView::repositionNodes(){
 
     for (Node* n : *nodes){
-        if (n->pos() == *(n->oldPos()))
+        if (n->pos() != *(n->oldPos()))
             n->move(n->oldPos()->x(),n->oldPos()->y());
     }
 }
