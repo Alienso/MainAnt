@@ -22,9 +22,11 @@ Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent
 
     Output* o = new Output();
     o->addItem(""); //Must be used to be able to drag
-    this->output = o;
+
     Input* tmp = new Input();
     layout->insertRow(1,tmp,o);
+    this->inputs.push_back(tmp);
+    this->output = o;
 
     for (int i=1;i<ninputs;i++){
         tmp = new Input();
@@ -49,6 +51,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent
     fflush(stdout);
 
 }*/
+
 
 void Node::mouseMoveEvent(QMouseEvent *event){
 

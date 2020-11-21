@@ -14,18 +14,17 @@ void CustomGraphicsView::paintEvent(QPaintEvent* e){
     repositionNodes();
 
     //Povezivanje Node-ova TODO
-    /*QPoint a,b;
+    QPoint a,b;
     for (Node* n : *nodes){
         for (Input* i : *(n->getInputs())){
             if (i->getPrevious() != nullptr){
-                std::cout<<"Spojeni su cvorovi"<<std::endl;
-                fflush(stdout);
-                a = i->mapToGlobal(i->pos());
-                b = i->mapToGlobal(i->getPrevious()->pos());
+                a = n->mapToParent(i->pos());
+                b = (i->getPrevious()->parentWidget())->mapToParent(i->getPrevious()->pos());
                 painter.drawLine(a,b);
             }
         }
-    }*/
+    }
+    update();
 
 }
 
