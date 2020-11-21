@@ -6,6 +6,7 @@ Node::Node(QWidget *parent) : QFrame(parent){
                    "border: 1px solid rgba(205, 221, 63, 1);"
                    );
     this->setLayout(new QFormLayout());
+    *(this->oldPos()) = this->pos();
 }
 
 Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent){
@@ -21,9 +22,11 @@ Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent
 
     Output* o = new Output();
     o->addItem(""); //Must be used to be able to drag
-    this->output = o;
+
     Input* tmp = new Input();
     layout->insertRow(1,tmp,o);
+    this->inputs.push_back(tmp);
+    this->output = o;
 
     for (int i=1;i<ninputs;i++){
         tmp = new Input();
@@ -49,6 +52,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent
 
 }*/
 
+
 void Node::mouseMoveEvent(QMouseEvent *event){
 
 
@@ -58,9 +62,18 @@ void Node::mouseMoveEvent(QMouseEvent *event){
     else {
         QFrame::mouseMoveEvent(event);
     }
+    this->oldPos_ = this->pos();
 }
 
 void Node::mousePressEvent(QMouseEvent *event)
 {
     offset = event->pos();
+}
+
+QPoint* Node::oldPos(){
+    return &oldPos_;
+}
+
+QVector<Input*>* Node::getInputs(){
+    return &(this->inputs);
 }

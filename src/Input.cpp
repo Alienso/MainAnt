@@ -7,6 +7,7 @@ Input::Input (QWidget *parent) : QFrame (parent)
    setAcceptDrops(true);
    setStyleSheet ("background-color: rgba(205, 221, 63, 1);");
    setLayout(new QGridLayout());
+   previous = nullptr;
 }
 
 void Input::dropEvent(QDropEvent *event)

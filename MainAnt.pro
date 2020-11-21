@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     ./src/main.cpp \
     ./src/mainwindow.cpp \
+    src/CustomGraphicsView.cpp \
     src/Input.cpp \
     src/InputNode.cpp \
     src/Node.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 
 HEADERS += \
     ./headers/mainwindow.h \
+    headers/CustomGraphicsView.h \
     headers/Input.h \
     headers/InputNode.h \
     headers/Node.h \

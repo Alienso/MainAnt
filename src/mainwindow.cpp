@@ -33,6 +33,7 @@ void MainWindow::putNode(QListWidgetItem* item)
        //std::cout<<"plus"<<std::endl;
        Node* n = new Node("plus", 2, 1, nullptr);
        ui->StagingArea->layout()->addWidget(n);
+       ui->StagingArea->getNodes()->push_back(n);
        p->addNode(n);
    }else if(ui->listWidget->item(1) == item){
        //std::cout<<"minus"<<std::endl;

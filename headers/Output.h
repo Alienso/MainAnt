@@ -6,7 +6,7 @@
 #include <QString>
 #include <iostream>
 
-#include <./headers/Node.h>
+#include "./headers/Node.h"
 
 class Input;
 
