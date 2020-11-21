@@ -22,6 +22,7 @@ class Input : public QFrame
 {
    public:
       explicit Input(QWidget *parent = nullptr);
+      Output* getPrevious();
 
    protected:
       void dropEvent(QDropEvent *event) override;

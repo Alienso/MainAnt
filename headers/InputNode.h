@@ -5,7 +5,7 @@
 #include <QString>
 #include <QRadioButton>
 #include <QButtonGroup>
-#include "Node.h"
+#include "./headers/Node.h"
 
 class InputNode : public Node
 {

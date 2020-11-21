@@ -8,6 +8,7 @@ Output::Output (QWidget *parent) : QListWidget(parent)
     setMaximumSize(20,20);
     setStyleSheet ("background-color: rgba(218, 129, 25, 1);");
     setDragEnabled(true);
+    next = nullptr;
 }
 
 void Output::startDrag(Qt::DropActions supportedActions)
@@ -36,4 +37,8 @@ QString Output::addrtos(QWidget* w){
   }
   addr[i] = '\0';
   return QString(addr);
+}
+
+Output* Input::getPrevious(){
+    return this->previous;
 }

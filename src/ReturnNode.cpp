@@ -1,4 +1,4 @@
-#include "../headers/ReturNode.h"
+#include "./headers/ReturNode.h"
 
 ReturnNode::ReturnNode():Node("return", 1, 0, nullptr)
 {

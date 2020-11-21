@@ -11,8 +11,8 @@
 
 #include <iostream>
 
-#include "Output.h"
-#include "Input.h"
+#include "./headers/Output.h"
+#include "./headers/Input.h"
 
 class Input;
 class Output;
@@ -24,13 +24,17 @@ public:
     explicit Node(QWidget* parent = nullptr);
     Node(QString name,int ninputs,int noutputs,QWidget* parent = nullptr);
     void addWidget(QWidget* w);
+    QPoint* oldPos();
+    QVector<Input*>* getInputs();
 protected:
     //void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 private:
     QString name;
     QPoint offset;
+    QPoint oldPos_;
     QVector<Input*> inputs;
     Output* output;
     Node* next;

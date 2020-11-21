@@ -4,7 +4,7 @@
 #include <QVector>
 #include <QString>
 #include <string>
-#include "../headers/Node.h"
+#include "./headers/Node.h"
 
 class Parser
 {

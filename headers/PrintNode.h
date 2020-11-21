@@ -3,7 +3,7 @@
 #include <QString>
 #include <QTextEdit>
 #include <QFont>
-#include "Node.h"
+#include "./headers/Node.h"
 
 class PrintNode : public Node
 {

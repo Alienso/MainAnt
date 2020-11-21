@@ -1,4 +1,4 @@
-#include "../headers/InputNode.h"
+#include "./headers/InputNode.h"
 
 /*
  * Cvor koji omogucava input. Zapravo je samo text editor.

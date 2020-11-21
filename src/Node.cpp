@@ -6,6 +6,7 @@ Node::Node(QWidget *parent) : QFrame(parent){
                    "border: 1px solid rgba(205, 221, 63, 1);"
                    );
     this->setLayout(new QFormLayout());
+    *(this->oldPos()) = this->pos();
 }
 
 Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent){
@@ -63,4 +64,16 @@ void Node::mouseMoveEvent(QMouseEvent *event){
 void Node::mousePressEvent(QMouseEvent *event)
 {
     offset = event->pos();
+}
+
+QPoint* Node::oldPos(){
+    return &oldPos_;
+}
+
+QVector<Input*>* Node::getInputs(){
+    return &(this->inputs);
+}
+
+void Node::mouseReleaseEvent(QMouseEvent *event){
+    this->oldPos_ = this->pos();
 }
