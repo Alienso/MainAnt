@@ -25,3 +25,9 @@ QVector<QString> Parser::getNodeNames()
 {
     return this->nodeNames;
 }
+
+QVector<Node *> Parser::getGraph()
+{
+    return this->graph;
+}
+

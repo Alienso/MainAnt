@@ -10,6 +10,7 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QPoint>
+#include <QDebug>
 
 #include "./headers/Node.h"
 #include "./headers/Parser.h"
@@ -42,5 +43,6 @@ private slots:
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
 
+    void on_actionQuit_triggered();
 };
 #endif // MAINWINDOW_H

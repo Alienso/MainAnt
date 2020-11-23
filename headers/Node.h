@@ -13,6 +13,7 @@
 
 #include "./headers/Output.h"
 #include "./headers/Input.h"
+#include <QMenu>
 
 class Input;
 class Output;
@@ -26,6 +27,7 @@ public:
     void addWidget(QWidget* w);
     QPoint* oldPos();
     QVector<Input*>* getInputs();
+
 protected:
     //void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);

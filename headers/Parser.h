@@ -13,6 +13,7 @@ public:
     void addNode(Node* node);
 
     QVector<QString> getNodeNames();
+    QVector<Node*> getGraph();
 
 private:
     //Vekror koji cuva cvorove grafa scene

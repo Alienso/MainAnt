@@ -28,13 +28,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::putNode(QListWidgetItem* item)
 {
-
    if(ui->listWidget->item(0) == item){
        //std::cout<<"plus"<<std::endl;
        Node* n = new Node("plus", 2, 1, nullptr);
        ui->StagingArea->layout()->addWidget(n);
        ui->StagingArea->getNodes()->push_back(n);
        p->addNode(n);
+
    }else if(ui->listWidget->item(1) == item){
        //std::cout<<"minus"<<std::endl;
        Node* n = new Node("minus", 2, 1, nullptr);
@@ -63,13 +63,17 @@ void MainWindow::putNode(QListWidgetItem* item)
        ui->StagingArea->layout()->addWidget(n);
        p->addNode(n);
    }
-
+    //postavlja policy za meni koji se otvara desnim klikom
+    for(Node *object : p->getGraph()){
+        object->setContextMenuPolicy(contextMenuPolicy());
+    }
 
    /*for(auto item : p->getNodeNames()){
         std::cout<< item.toUtf8().constData() <<std::endl;
     }*/
 
 }
+
 //Evo nacina da prepoznate na sta ste kliknuli iz liste
 /*
 void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item){
@@ -124,3 +128,9 @@ void MainWindow::on_actionSave_triggered()
         out << QString("Projekat MainAnt");
     }
 }
+
+void MainWindow::on_actionQuit_triggered()
+{
+    QApplication::quit();
+}
+

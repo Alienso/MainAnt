@@ -68,6 +68,18 @@ void Node::mouseMoveEvent(QMouseEvent *event){
 void Node::mousePressEvent(QMouseEvent *event)
 {
     offset = event->pos();
+    if(event->button()==Qt::RightButton){
+        QPoint globalPos=this->mapToGlobal(event->pos());
+        QMenu myMenu;
+        myMenu.addAction("Delete");
+
+        QAction *selectedItem=myMenu.exec(globalPos);
+        if(selectedItem->toolTip()=="Delete"){
+            qDebug()<<"Delete";
+        }
+        else{
+        }
+    }
 }
 
 QPoint* Node::oldPos(){
@@ -77,3 +89,4 @@ QPoint* Node::oldPos(){
 QVector<Input*>* Node::getInputs(){
     return &(this->inputs);
 }
+

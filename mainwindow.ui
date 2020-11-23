@@ -236,7 +236,7 @@ color: rgb(21, 45, 73);</string>
      <x>0</x>
      <y>0</y>
      <width>1156</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -250,6 +250,7 @@ color: rgb(220, 234, 251);</string>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_as"/>
+    <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuBuild">
     <property name="title">
@@ -290,6 +291,11 @@ color: rgb(220, 234, 251);</string>
   <action name="actionHelp">
    <property name="text">
     <string>Help</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
    </property>
   </action>
  </widget>
