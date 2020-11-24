@@ -13,8 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
     QListWidgetItem* mul =new QListWidgetItem(tr("+BinaryMUltiply"), ui->listWidget);
     QListWidgetItem* less =new QListWidgetItem(tr("+LessThan"), ui->listWidget);
     QListWidgetItem* input =new QListWidgetItem(tr("+Input"), ui->listWidget);
+    QListWidgetItem* inputFromFile =new QListWidgetItem(tr("+InputFromFile"), ui->listWidget);
     QListWidgetItem* print =new QListWidgetItem(tr("+Print"), ui->listWidget);
     QListWidgetItem* ret =new QListWidgetItem(tr("+Return"), ui->listWidget);
+    QListWidgetItem* start =new QListWidgetItem(tr("+Start"), ui->listWidget);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
     ui->StagingArea->setLayout(new QFormLayout());
@@ -33,44 +35,53 @@ void MainWindow::putNode(QListWidgetItem* item)
        Node* n = new Node("plus", 2, 1, nullptr);
        ui->StagingArea->layout()->addWidget(n);
        ui->StagingArea->getNodes()->push_back(n);
-       p->addNode(n);
-
+       p->addNode(n, new QString("PlusNode"));
    }else if(ui->listWidget->item(1) == item){
        //std::cout<<"minus"<<std::endl;
        Node* n = new Node("minus", 2, 1, nullptr);
        ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
+       p->addNode(n, new QString("MinusNode"));
    }else if(ui->listWidget->item(2) == item){
        //std::cout<<"puta"<<std::endl;
        Node* n = new Node("puta", 2, 1, nullptr);
        ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
+       p->addNode(n, new QString("MulNode"));
    }else if(ui->listWidget->item(3) == item){
        //std::cout<<"manje"<<std::endl;
        Node* n = new Node("manje", 2, 1, nullptr);
        ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
+       p->addNode(n, new QString("LTNODE"));
    }else if(ui->listWidget->item(4) == item){
        InputNode* n = new InputNode();
        ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
+       p->addNode(n, new QString("InputNode"));
    }else if(ui->listWidget->item(5) == item){
+       InputfromFile* n = new InputfromFile();
+       ui->StagingArea->layout()->addWidget(n);
+       p->addNode(n, new QString("InputformFile"));
+   }else if(ui->listWidget->item(6) == item){
        PrintNode* n = new PrintNode();
        ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
-   }else if(ui->listWidget->item(6) == item){
+       p->addNode(n, new QString("PrintNode"));
+   }else if(ui->listWidget->item(7) == item){
        ReturnNode* n = new ReturnNode();
        ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
+       p->addNode(n, new QString("ReturnNode"));
+   }else if(ui->listWidget->item(8) == item){
+       StartNode* n = new StartNode();
+       ui->StagingArea->layout()->addWidget(n);
+       p->addNode(n, new QString("StartNode"));
    }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraph()){
         object->setContextMenuPolicy(contextMenuPolicy());
     }
 
-   /*for(auto item : p->getNodeNames()){
-        std::cout<< item.toUtf8().constData() <<std::endl;
-    }*/
+   QMap<QString, Node*> graf = p->getGraphScene();
+   QList<QString> kljuc = graf.keys();
+   for(auto item : kljuc){
+        std::cout<<item.toUtf8().constData()<<std::endl;
+    }
 
 }
 

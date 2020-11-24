@@ -3,6 +3,7 @@
 
 #include <QVector>
 #include <QString>
+#include <QMap>
 #include <string>
 #include "./headers/Node.h"
 
@@ -10,10 +11,11 @@ class Parser
 {
 public:
     explicit Parser();
-    void addNode(Node* node);
+    void addNode(Node* node, QString *type);
 
     QVector<QString> getNodeNames();
     QVector<Node*> getGraph();
+    QMap<QString, Node*> getGraphScene();
 
 private:
     //Vekror koji cuva cvorove grafa scene
@@ -21,6 +23,9 @@ private:
 
     //Vektor koji cuva imena svih cvorova grafa scene i prati red dodavanja u gornji vektor
     QVector<QString> nodeNames;
+
+    //Zelimo mapa prvi el je ime cvora drugi pokazivac na cvor
+    QMap<QString, Node*> graphScene;
 
     //Promenljiva se koristi kao id cvora u listi, i sluzi pri formiranju imena cvorova scene
     //radi lakseg pristupanja metodama klase datog cvora i slicno

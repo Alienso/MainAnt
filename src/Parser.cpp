@@ -5,10 +5,11 @@ Parser::Parser():id(0)
 
 }
 
-void Parser::addNode(Node *node)
+void Parser::addNode(Node* node, QString *type)
 {
     std::string idString = std::to_string(this->id);
-    std::string tmp = "node" + idString;
+    std::string NodeType = type->toUtf8().constData();
+    std::string tmp = NodeType + "_node" + idString;
     int len = tmp.size();
 
     char charArray[len];
@@ -17,6 +18,7 @@ void Parser::addNode(Node *node)
 
     this->nodeNames.push_back(*name);
     this->graph.push_back(node);
+    this->graphScene.insert(*name, node);
     this->id +=1;
 
 }
@@ -29,5 +31,10 @@ QVector<QString> Parser::getNodeNames()
 QVector<Node *> Parser::getGraph()
 {
     return this->graph;
+}
+
+QMap<QString, Node *> Parser::getGraphScene()
+{
+    return this->graphScene;
 }
 

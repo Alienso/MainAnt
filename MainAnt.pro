@@ -13,25 +13,29 @@ SOURCES += \
     ./src/mainwindow.cpp \
     src/CustomGraphicsView.cpp \
     src/Input.cpp \
+    src/InputFromFile.cpp \
     src/InputNode.cpp \
     src/Node.cpp \
     src/Output.cpp \
     src/BinaryFunction.cpp \
     src/Parser.cpp \
     src/PrintNode.cpp \
-    src/ReturnNode.cpp
+    src/ReturnNode.cpp \
+    src/StartNode.cpp
 
 HEADERS += \
     ./headers/mainwindow.h \
     headers/CustomGraphicsView.h \
     headers/Input.h \
+    headers/InputFromFile.h \
     headers/InputNode.h \
     headers/Node.h \
     headers/Output.h \
     headers/BinaryFunction.h \
     headers/Parser.h \
     headers/PrintNode.h \
-    headers/ReturNode.h
+    headers/ReturNode.h \
+    headers/StartNode.h
 
 FORMS += \
     mainwindow.ui
