@@ -8,10 +8,11 @@
 */
 
 
-InputNode::InputNode():Node("input", 0, 1, nullptr)
+InputNode::InputNode():Node("input", 0, 1, nullptr), manualInput(false), fileInput(false), input(nullptr)
 {
     setMinimumSize(80,80);
-    setMaximumWidth(200);
+    setMaximumSize(300, 200);
+    //setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(98, 9, 77, 1);"
                    "border: 1px solid rgba(237, 48, 194, 1);");
 
@@ -27,18 +28,48 @@ InputNode::InputNode():Node("input", 0, 1, nullptr)
 
     connect(choice, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked),
         [=](){
+
+        if(this->fileInput || this->manualInput){
+           if(this->input != nullptr){
+               this->input->deleteLater();
+               this->input = nullptr;
+           }
+           this->fileInput = false;
+           this->manualInput = false;
+         }
+
         int choosen = choice->checkedId();
         if(choosen == 1){
-            QLineEdit* lineEdit = new QLineEdit();
-            const QString* placeHolder = new QString("Enter file name here...");
+            QTextEdit* fileEdit = new QTextEdit();
+            const QString* font = new QString("Courier New");
+            const QString* placeHolder = new QString("Enter file location here...");
+            fileEdit->setFontFamily(*font);
+            fileEdit->setPlaceholderText(*placeHolder);
             //QString input = lineEdit->text();
             //this->fileName = new QString(input);
-            lineEdit->setPlaceholderText(*placeHolder);
-            this->layout()->addWidget(lineEdit);
+            Node* parent = static_cast<Node*>(choice->parent());
+            QFormLayout* layout = static_cast<QFormLayout*>(parent->layout());
+            layout->insertRow(4, fileEdit);
+            this->fileInput = true;
+            this->input = fileEdit;
         }
     });
     connect(choice, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked),
         [=](){
+
+        if(this->manualInput){
+          if(this->input != nullptr){
+              this->input->deleteLater();
+              this->input = nullptr;
+              this->manualInput = false;
+          }
+          if(this->fileInput){
+              this->input->deleteLater();
+              this->input = nullptr;
+              this->fileInput = false;
+          }
+        }
+
         int choosen = choice->checkedId();
         if(choosen == 2){
             QTextEdit* edit = new QTextEdit();
@@ -46,10 +77,29 @@ InputNode::InputNode():Node("input", 0, 1, nullptr)
             const QString* placeHolder = new QString("Enter text here...");
             edit->setFontFamily(*font);
             edit->setPlaceholderText(*placeHolder);
-            this->layout()->addWidget(edit);
+            Node* parent = static_cast<Node*>(choice->parent());
+            QFormLayout* layout = static_cast<QFormLayout*>(parent->layout());
+            layout->insertRow(4, edit);
+            this->manualInput = true;
+            this->input = edit;
         }
     });
     layout->insertRow(2, fileInputRadioButton);
     layout->insertRow(3, manualInputRadioButton);
 
+}
+
+void InputNode::resetInput(){
+    if(this->manualInput){
+      if(this->input != nullptr){
+          this->input->deleteLater();
+          this->input = nullptr;
+          this->manualInput = false;
+      }
+      if(this->fileInput){
+          this->input->deleteLater();
+          this->input = nullptr;
+          this->fileInput = false;
+      }
+    }
 }

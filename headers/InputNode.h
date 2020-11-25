@@ -14,9 +14,13 @@ class InputNode : public Node
 {
 public:
     InputNode();
+    void resetInput();
 private:
     QString* text = nullptr;
     QString* fileName = nullptr;
+    bool manualInput;
+    bool fileInput;
+    QTextEdit* input;
 };
 
 #endif // OUTPUTNODE_H
