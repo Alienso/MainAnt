@@ -13,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
     QListWidgetItem* mul =new QListWidgetItem(tr("+BinaryMUltiply"), ui->listWidget);
     QListWidgetItem* less =new QListWidgetItem(tr("+LessThan"), ui->listWidget);
     QListWidgetItem* input =new QListWidgetItem(tr("+Input"), ui->listWidget);
-    QListWidgetItem* inputFromFile =new QListWidgetItem(tr("+InputFromFile"), ui->listWidget);
     QListWidgetItem* print =new QListWidgetItem(tr("+Print"), ui->listWidget);
     QListWidgetItem* ret =new QListWidgetItem(tr("+Return"), ui->listWidget);
     QListWidgetItem* start =new QListWidgetItem(tr("+Start"), ui->listWidget);
@@ -55,18 +54,14 @@ void MainWindow::putNode(QListWidgetItem* item)
        ui->StagingArea->addWidget(n);
        p->addNode(n, new QString("InputNode"));
    }else if(ui->listWidget->item(5) == item){
-       InputfromFile* n = new InputfromFile();
-       ui->StagingArea->addWidget(n);
-       p->addNode(n, new QString("InputformFile"));
-   }else if(ui->listWidget->item(6) == item){
        PrintNode* n = new PrintNode();
        ui->StagingArea->addWidget(n);
        p->addNode(n, new QString("PrintNode"));
-   }else if(ui->listWidget->item(7) == item){
+   }else if(ui->listWidget->item(6) == item){
        ReturnNode* n = new ReturnNode();
        ui->StagingArea->addWidget(n);
        p->addNode(n, new QString("ReturnNode"));
-   }else if(ui->listWidget->item(8) == item){
+   }else if(ui->listWidget->item(7) == item){
        StartNode* n = new StartNode();
        ui->StagingArea->addWidget(n);
        p->addNode(n, new QString("StartNode"));
