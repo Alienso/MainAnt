@@ -11,6 +11,7 @@ class CustomGraphicsView : public QGraphicsView{
 public:
    explicit CustomGraphicsView (QWidget *parent = nullptr);
    QVector<Node*>* getNodes();
+   void addWidget(Node* w);
 protected:
     void paintEvent(QPaintEvent*);
     void repositionNodes();

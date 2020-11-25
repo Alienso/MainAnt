@@ -4,6 +4,13 @@ CustomGraphicsView::CustomGraphicsView(QWidget* parent){
     nodes = new QVector<Node*>();
 }
 
+void CustomGraphicsView::addWidget(Node* w){
+
+   this->layout()->addWidget(w);
+   getNodes()->push_back(w);
+
+}
+
 void CustomGraphicsView::paintEvent(QPaintEvent* e){
 
     QPainter painter(viewport());
