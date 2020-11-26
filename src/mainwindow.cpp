@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     QListWidgetItem* start =new QListWidgetItem(tr("+Start"), ui->listWidget);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
+
     ui->StagingArea->setLayout(new QFormLayout());
 
 }

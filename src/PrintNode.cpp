@@ -25,3 +25,11 @@ PrintNode::PrintNode() : Node("print", 1, 1, nullptr)
     QFormLayout* layout = static_cast<QFormLayout*>(this->layout());
     layout->insertRow(2,edit);
 }
+
+/*F-ja koja vraca code za dati cvor
+*TODO
+*/
+QString PrintNode::getCodeForNode()
+{
+    return "";
+}

@@ -28,10 +28,15 @@ public:
     QPoint* oldPos();
     QVector<Input*>* getInputs();
 
+    virtual QString getCodeForNode();
+
+    void setNodeId(QString nodeId);
+    QString getNodeId();
+
 protected:
-    //void mousePressEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+
 private:
     QString name;
     QPoint offset;
@@ -40,6 +45,8 @@ private:
     Output* output;
     Node* next;
     QLabel* nameLbl;
+    QString formatText;
+    QString nodeId;
 };
 
 #endif // NODE_H

@@ -11,6 +11,8 @@ public:
     PrintNode();
     void setOutText(QString inText);
 
+    QString getCodeForNode() override;
+
 };
 
 #endif // PRINTNODE_H

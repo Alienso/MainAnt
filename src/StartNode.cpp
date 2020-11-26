@@ -7,3 +7,11 @@ StartNode::StartNode():Node("StartNode", 0, 1, nullptr)
     setStyleSheet ("background-color: rgba(0, 111, 113, 1);"
                    "border: 1px solid rgba(80, 196, 198, 1);");
 }
+
+QString StartNode::getCodeForNode()
+{
+    QString text = "#include<isotream>\n#include<string>\n\nint main(){";
+
+    return text;
+}
+

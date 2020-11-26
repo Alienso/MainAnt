@@ -16,6 +16,7 @@ public:
     QVector<QString> getNodeNames();
     QVector<Node*> getGraph();
     QMap<QString, Node*> getGraphScene();
+    void removeNode(Node* node, QString* type);
 
 private:
     //Vekror koji cuva cvorove grafa scene

@@ -6,6 +6,7 @@ class StartNode:public Node
 {
 public:
     StartNode();
+    virtual QString getCodeForNode() override;
 };
 
 #endif // STARTNODE_H

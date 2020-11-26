@@ -72,13 +72,14 @@ void Node::mousePressEvent(QMouseEvent *event)
         QPoint globalPos=this->mapToGlobal(event->pos());
         QMenu myMenu;
         myMenu.addAction("Delete");
-
         QAction *selectedItem=myMenu.exec(globalPos);
+
         if(selectedItem->toolTip()=="Delete"){
             qDebug()<<"Delete";
         }
         else{
         }
+        //this->deleteLater();
     }
 }
 
@@ -89,4 +90,19 @@ QPoint* Node::oldPos(){
 QVector<Input*>* Node::getInputs(){
     return &(this->inputs);
 }
+
+QString Node::getCodeForNode()
+{
+}
+
+void Node::setNodeId(QString nodeId)
+{
+    this->nodeId = nodeId;
+}
+
+QString Node::getNodeId()
+{
+    return this->nodeId;
+}
+
 
