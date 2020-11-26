@@ -12,7 +12,7 @@ Input::Input (QWidget *parent) : QFrame (parent)
 
 void Input::dropEvent(QDropEvent *event)
 {
-   auto t = event->mimeData()->data("node_ptr");
+   QByteArray t = event->mimeData()->data("node_ptr");
    std::string s = t.toStdString();
    uintptr_t x = stoaddr(s);
    Output* ptr = reinterpret_cast<Output*>(x);
@@ -21,9 +21,9 @@ void Input::dropEvent(QDropEvent *event)
    {
       this->previous = ptr;
       auto label = new QLabel ("");
+      this->previous->parentWidget()->layout()->addWidget(new Input());
       label->setStyleSheet ("border: 1px solid black; background-color: white; qproperty-alignment: AlignCenter");
       layout ()->addWidget(label);
-
       setStyleSheet ("background-color: rgba(255, 0, 0, 1);");
    }
 
@@ -36,12 +36,13 @@ void Input::dropEvent(QDropEvent *event)
 uintptr_t Input::stoaddr(std::string s){
 
     uintptr_t x = 0;
-    unsigned size = sizeof(void*) * 8;
-    unsigned mask;
-    int i = 0;
-    for (mask = 1 << (size - 1); mask != 0; mask >>= 1){
-      if (s[i] == '1')
+    unsigned  size = sizeof(void*) * 8;
+    unsigned long mask;
+    unsigned  i = 0;
+    for (mask = 1ul << (size-1); mask != 0; mask >>= 1){
+      if (s[i] == '1'){
           x = x | mask;
+      }
       i++;
     }
     return x;
@@ -59,4 +60,8 @@ void Input::dragLeaveEvent(QDragLeaveEvent *event)
    event->accept ();
 
    setStyleSheet ("background-color: rgba(255, 0, 0, 1);");
+}
+
+Output* Input::getPrevious(){
+    return this->previous;
 }

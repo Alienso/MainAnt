@@ -13,7 +13,6 @@ SOURCES += \
     ./src/mainwindow.cpp \
     src/CustomGraphicsView.cpp \
     src/Input.cpp \
-    src/InputFromFile.cpp \
     src/InputNode.cpp \
     src/Node.cpp \
     src/Output.cpp \
@@ -27,7 +26,6 @@ HEADERS += \
     ./headers/mainwindow.h \
     headers/CustomGraphicsView.h \
     headers/Input.h \
-    headers/InputFromFile.h \
     headers/InputNode.h \
     headers/Node.h \
     headers/Output.h \

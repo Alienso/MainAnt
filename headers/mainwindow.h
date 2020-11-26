@@ -19,7 +19,6 @@
 #include "./headers/PrintNode.h"
 #include "./headers/ReturNode.h"
 #include "./headers/StartNode.h"
-#include "../headers/InputFromFile.h"
 #include "./headers/CustomGraphicsView.h"
 
 QT_BEGIN_NAMESPACE

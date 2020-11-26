@@ -6,6 +6,10 @@
 #include <QString>
 #include <iostream>
 
+#include <QMimeData>
+#include <QDrag>
+#include <sstream>
+
 #include "./headers/Node.h"
 
 class Input;
