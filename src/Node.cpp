@@ -1,16 +1,17 @@
 #include "./headers/Node.h"
 
-Node::Node(QWidget *parent) : QFrame(parent){
+Node::Node(QWidget *parent) : QFrame(parent)
+{
     setMaximumSize(150,150);
     setStyleSheet ("background-color: rgba(24, 135, 127, 1);"
                    "border: 1px solid rgba(205, 221, 63, 1);"
                    );
     this->setLayout(new QFormLayout());
-    *(this->oldPos()) = this->pos();
+    *(this->getOldPos()) = this->pos();
 }
 
-Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent){
-
+Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent)
+{
     QFormLayout* layout = static_cast<QFormLayout*>(this->layout());
     layout->setHorizontalSpacing(100);
     this->name = _name;
@@ -53,9 +54,8 @@ Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent
 }*/
 
 
-void Node::mouseMoveEvent(QMouseEvent *event){
-
-
+void Node::mouseMoveEvent(QMouseEvent *event)
+{
     if (childAt(event->pos())==nullptr){
         this->move(mapToParent(event->pos() - offset));
     }
@@ -82,8 +82,12 @@ void Node::mousePressEvent(QMouseEvent *event)
         //this->deleteLater();
     }
 }
+void Node::setNodeId(QString nodeId)
+{
+    this->nodeId = nodeId;
+}
 
-QPoint* Node::oldPos(){
+QPoint* Node::getOldPos(){
     return &oldPos_;
 }
 
@@ -93,11 +97,6 @@ QVector<Input*>* Node::getInputs(){
 
 QString Node::getCodeForNode()
 {
-}
-
-void Node::setNodeId(QString nodeId)
-{
-    this->nodeId = nodeId;
 }
 
 QString Node::getNodeId()

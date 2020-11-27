@@ -8,7 +8,6 @@
 #include <QLayout>
 #include <QFormLayout>
 #include <QDebug>
-
 #include <iostream>
 
 #include "./headers/Output.h"
@@ -20,23 +19,7 @@ class Output;
 
 
 class Node : public QFrame{
-     Q_OBJECT
-public:
-    explicit Node(QWidget* parent = nullptr);
-    Node(QString name,int ninputs,int noutputs,QWidget* parent = nullptr);
-    void addWidget(QWidget* w);
-    QPoint* oldPos();
-    QVector<Input*>* getInputs();
-
-    virtual QString getCodeForNode();
-
-    void setNodeId(QString nodeId);
-    QString getNodeId();
-
-protected:
-    void mousePressEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
-
+    Q_OBJECT
 private:
     QString name;
     QPoint offset;
@@ -47,6 +30,22 @@ private:
     QLabel* nameLbl;
     QString formatText;
     QString nodeId;
+
+public:
+    explicit Node(QWidget* parent = nullptr);
+    Node(QString name,int ninputs,int noutputs,QWidget* parent = nullptr);
+    void addWidget(QWidget* w);
+
+    void setNodeId(QString nodeId);
+
+    QPoint* getOldPos();
+    QVector<Input*>* getInputs();
+    virtual QString getCodeForNode();
+    QString getNodeId();
+
+protected:
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 };
 
 #endif // NODE_H

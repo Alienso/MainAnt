@@ -2,7 +2,6 @@
 
 Parser::Parser():id(0)
 {
-
 }
 
 void Parser::addNode(Node* node, QString *type)
@@ -22,13 +21,6 @@ void Parser::addNode(Node* node, QString *type)
     this->graph.push_back(node);
     this->graphScene.insert(*name, node);
     this->id +=1;
-
-}
-
-void Parser::removeNode(Node* node, QString* type)
-{
-    auto it = this->graphScene.find(node->getNodeId());
-    this->graphScene.erase(it);
 }
 
 QVector<QString> Parser::getNodeNames()
@@ -44,4 +36,10 @@ QVector<Node *> Parser::getGraph()
 QMap<QString, Node *> Parser::getGraphScene()
 {
     return this->graphScene;
+}
+
+void Parser::removeNode(Node* node, QString* type)
+{
+    auto it = this->graphScene.find(node->getNodeId());
+    this->graphScene.erase(it);
 }

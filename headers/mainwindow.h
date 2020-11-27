@@ -28,7 +28,9 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
+private:
+    Ui::MainWindow *ui;
+    Parser *p;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -36,15 +38,10 @@ public:
 public slots:
     void putNode(QListWidgetItem* item);
 
-private:
-    Ui::MainWindow *ui;
-    Parser *p;
-
 private slots:
     //void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
-
     void on_actionQuit_triggered();
 };
 #endif // MAINWINDOW_H

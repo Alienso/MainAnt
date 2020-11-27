@@ -27,16 +27,16 @@ InputNode::InputNode():Node("input", 0, 1, nullptr), manualInput(false), fileInp
     choice->addButton(manualInputRadioButton, 2 );
 
     connect(choice, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked),
-        [=](){
+            [=](){
 
         if(this->fileInput || this->manualInput){
-           if(this->input != nullptr){
-               this->input->deleteLater();
-               this->input = nullptr;
-           }
-           this->fileInput = false;
-           this->manualInput = false;
-         }
+            if(this->input != nullptr){
+                this->input->deleteLater();
+                this->input = nullptr;
+            }
+            this->fileInput = false;
+            this->manualInput = false;
+        }
 
         int choosen = choice->checkedId();
         if(choosen == 1){
@@ -55,19 +55,19 @@ InputNode::InputNode():Node("input", 0, 1, nullptr), manualInput(false), fileInp
         }
     });
     connect(choice, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked),
-        [=](){
+            [=](){
 
         if(this->manualInput){
-          if(this->input != nullptr){
-              this->input->deleteLater();
-              this->input = nullptr;
-              this->manualInput = false;
-          }
-          if(this->fileInput){
-              this->input->deleteLater();
-              this->input = nullptr;
-              this->fileInput = false;
-          }
+            if(this->input != nullptr){
+                this->input->deleteLater();
+                this->input = nullptr;
+                this->manualInput = false;
+            }
+            if(this->fileInput){
+                this->input->deleteLater();
+                this->input = nullptr;
+                this->fileInput = false;
+            }
         }
 
         int choosen = choice->checkedId();
@@ -89,17 +89,18 @@ InputNode::InputNode():Node("input", 0, 1, nullptr), manualInput(false), fileInp
 
 }
 
-void InputNode::resetInput(){
+void InputNode::resetInput()
+{
     if(this->manualInput){
-      if(this->input != nullptr){
-          this->input->deleteLater();
-          this->input = nullptr;
-          this->manualInput = false;
-      }
-      if(this->fileInput){
-          this->input->deleteLater();
-          this->input = nullptr;
-          this->fileInput = false;
-      }
+        if(this->input != nullptr){
+            this->input->deleteLater();
+            this->input = nullptr;
+            this->manualInput = false;
+        }
+        if(this->fileInput){
+            this->input->deleteLater();
+            this->input = nullptr;
+            this->fileInput = false;
+        }
     }
 }

@@ -5,7 +5,6 @@
 #include <QMouseEvent>
 #include <QString>
 #include <iostream>
-
 #include <QMimeData>
 #include <QDrag>
 #include <sstream>
@@ -16,14 +15,15 @@ class Input;
 
 class Output : public QListWidget
 {
-   public:
-      explicit Output (QWidget *parent = nullptr);
+private:
+    Input* next;
+    QString addrtos(QWidget* w);
 
-   protected:
-      void startDrag(Qt::DropActions supportedActions) override;
-    private:
-      Input* next;
-      QString addrtos(QWidget* w);
+public:
+    explicit Output (QWidget *parent = nullptr);
+
+protected:
+    void startDrag(Qt::DropActions supportedActions) override;
 };
 
 #endif // OUTPUT_H

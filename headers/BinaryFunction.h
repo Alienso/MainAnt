@@ -1,9 +1,11 @@
 #ifndef BINARYFUNCTION
 #define BINARYFUNCTION
 
-
 template<typename T>
 class BinaryFunction{
+private:
+    T op1;
+    T op2;
 public:
     BinaryFunction(T op1, T op2)
         :op1(op1), op2(op2)
@@ -26,13 +28,6 @@ public:
     T lessTHanFunc(){
         return this->op1 < this->op2;
     }
-
-
-
-private:
-    T op1;
-    T op2;
-
 };
 
 

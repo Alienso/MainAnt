@@ -1,5 +1,6 @@
 #ifndef OUTPUTNODE_H
 #define OUTPUTNODE_H
+
 #include <QTextEdit>
 #include <QFont>
 #include <QString>
@@ -12,15 +13,16 @@
 
 class InputNode : public Node
 {
-public:
-    InputNode();
-    void resetInput();
 private:
     QString* text = nullptr;
     QString* fileName = nullptr;
     bool manualInput;
     bool fileInput;
     QTextEdit* input;
+
+public:
+    InputNode();
+    void resetInput();
 };
 
 #endif // OUTPUTNODE_H

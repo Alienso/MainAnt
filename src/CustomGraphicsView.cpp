@@ -1,18 +1,19 @@
 #include "./headers/CustomGraphicsView.h"
 
-CustomGraphicsView::CustomGraphicsView(QWidget* parent){
+CustomGraphicsView::CustomGraphicsView(QWidget* parent)
+{
     nodes = new QVector<Node*>();
 }
 
-void CustomGraphicsView::addWidget(Node* w){
-
-   this->layout()->addWidget(w);
-   getNodes()->push_back(w);
+void CustomGraphicsView::addWidget(Node* w)
+{
+    this->layout()->addWidget(w);
+    getNodes()->push_back(w);
 
 }
 
-void CustomGraphicsView::paintEvent(QPaintEvent* e){
-
+void CustomGraphicsView::paintEvent(QPaintEvent* e)
+{
     QPainter painter(viewport());
     QPen pen(Qt::red);
     pen.setWidth(10);
@@ -32,19 +33,19 @@ void CustomGraphicsView::paintEvent(QPaintEvent* e){
         }
     }
     update();
-
 }
-
 //Vraca nodeove nazad na svoje mesto nakon dodavanja novog node-a
 //TODO
-void CustomGraphicsView::repositionNodes(){
+void CustomGraphicsView::repositionNodes()
+{
 
     for (Node* n : *nodes){
-        if (n->pos() != *(n->oldPos()))
-            n->move(n->oldPos()->x(),n->oldPos()->y());
+        if (n->pos() != *(n->getOldPos()))
+            n->move(n->getOldPos()->x(),n->getOldPos()->y());
     }
 }
 
-QVector<Node*>* CustomGraphicsView::getNodes(){
+QVector<Node*>* CustomGraphicsView::getNodes()
+{
     return nodes;
 }

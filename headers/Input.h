@@ -8,7 +8,6 @@
 #include <QLayout>
 #include <QMimeData>
 #include <QLabel>
-
 #include <iostream>
 
 #include "./headers/Output.h"
@@ -20,18 +19,19 @@ class QDragLeaveEvent;
 
 class Input : public QFrame
 {
-   public:
-      explicit Input(QWidget *parent = nullptr);
-      Output* getPrevious();
+private:
+    Output* previous;
+    uintptr_t stoaddr(std::string s);
 
-   protected:
-      void dropEvent(QDropEvent *event) override;
-      void dragEnterEvent(QDragEnterEvent *event) override;
-      void dragLeaveEvent (QDragLeaveEvent *event) override;
+public:
+    explicit Input(QWidget *parent = nullptr);
 
-   private:
-      Output* previous;
-      uintptr_t stoaddr(std::string s);
+    Output* getPrevious();
+
+protected:
+    void dropEvent(QDropEvent *event) override;
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dragLeaveEvent (QDragLeaveEvent *event) override;
 };
 
 #endif // INPUT_H

@@ -5,19 +5,11 @@
 #include <QString>
 #include <QMap>
 #include <string>
+
 #include "./headers/Node.h"
 
 class Parser
 {
-public:
-    explicit Parser();
-    void addNode(Node* node, QString *type);
-
-    QVector<QString> getNodeNames();
-    QVector<Node*> getGraph();
-    QMap<QString, Node*> getGraphScene();
-    void removeNode(Node* node, QString* type);
-
 private:
     //Vekror koji cuva cvorove grafa scene
     QVector<Node*> graph;
@@ -32,6 +24,15 @@ private:
     //radi lakseg pristupanja metodama klase datog cvora i slicno
     int id;
 
+public:
+    explicit Parser();
+    void addNode(Node* node, QString *type);
+
+    QVector<QString> getNodeNames();
+    QVector<Node*> getGraph();
+    QMap<QString, Node*> getGraphScene();
+
+    void removeNode(Node* node, QString* type);
 };
 
 #endif // PRASER_H
