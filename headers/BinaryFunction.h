@@ -1,9 +1,14 @@
 #ifndef BINARYFUNCTION
 #define BINARYFUNCTION
 
+#include "./headers/Node.h"
+
+
 template<typename T>
-class BinaryFunction{
+class BinaryFunction : public Node
+{
 private:
+
     T op1;
     T op2;
 public:
@@ -28,6 +33,7 @@ public:
     T lessTHanFunc(){
         return this->op1 < this->op2;
     }
+    QString getCodeForNode() override;
 };
 
 

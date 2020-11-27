@@ -19,6 +19,7 @@ public:
 
 protected:
     void paintEvent(QPaintEvent*);
+
     void repositionNodes();
 };
 

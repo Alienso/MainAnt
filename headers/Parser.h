@@ -13,7 +13,8 @@ class Parser
 private:
     //Vekror koji cuva cvorove grafa scene
     QVector<Node*> graph;
-
+    //Svaki put kad se doda start node on se doda i u ovaj graf
+    QVector<Node*> startNodes;
     //Vektor koji cuva imena svih cvorova grafa scene i prati red dodavanja u gornji vektor
     QVector<QString> nodeNames;
 
@@ -24,15 +25,22 @@ private:
     //radi lakseg pristupanja metodama klase datog cvora i slicno
     int id;
 
+
 public:
     explicit Parser();
     void addNode(Node* node, QString *type);
+    void addNewStart(Node* node);
 
     QVector<QString> getNodeNames();
     QVector<Node*> getGraph();
+    //Ova funkcija je samo za tesstiranje NEMA smisla da neko ima pristup ovom vektoru
+    QVector<Node*> getStartNodes();
     QMap<QString, Node*> getGraphScene();
 
     void removeNode(Node* node, QString* type);
+
+    //Funkcija koja ce da obilazi graph i da generise kod
+    QString traverseGraph();
 };
 
 #endif // PRASER_H

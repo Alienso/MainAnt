@@ -4,7 +4,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    ,p(new Parser)
+    , p(new Parser)
 {
     ui->setupUi(this);
 
@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     QListWidgetItem* start =new QListWidgetItem(tr("+Start"), ui->listWidget);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
-
+    //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new QFormLayout());
 
 }
@@ -66,17 +66,23 @@ void MainWindow::putNode(QListWidgetItem* item)
         StartNode* n = new StartNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("StartNode"));
+        p->addNewStart(n);
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraph()){
         object->setContextMenuPolicy(contextMenuPolicy());
     }
 
-    QMap<QString, Node*> graf = p->getGraphScene();
+    /*QMap<QString, Node*> graf = p->getGraphScene();
     QList<QString> kljuc = graf.keys();
     for(auto item : kljuc){
         std::cout<<item.toUtf8().constData()<<std::endl;
+    }*/
+
+    for(auto start : p->getStartNodes()){
+        std::cout<<"OK"<<std::endl;
     }
+    std::cout<<"---------"<<std::endl;
 
 }
 
@@ -138,5 +144,16 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::on_actionQuit_triggered()
 {
     QApplication::quit();
+}
+
+void MainWindow::on_actionRun_triggered()
+{
+    QString p1 = p->traverseGraph();
+    if(p1 == QString::fromStdString("Fali")){
+        qDebug() << "Fail";
+    }
+    else
+        qDebug() << p1;
+
 }
 

@@ -23,6 +23,7 @@ private:
 public:
     InputNode();
     void resetInput();
+    QString getCodeForNode() override;
 };
 
 #endif // OUTPUTNODE_H

@@ -23,6 +23,11 @@ void Parser::addNode(Node* node, QString *type)
     this->id +=1;
 }
 
+void Parser::addNewStart(Node *node)
+{
+    this->startNodes.push_back(node);
+}
+
 QVector<QString> Parser::getNodeNames()
 {
     return this->nodeNames;
@@ -31,6 +36,11 @@ QVector<QString> Parser::getNodeNames()
 QVector<Node *> Parser::getGraph()
 {
     return this->graph;
+}
+
+QVector<Node *> Parser::getStartNodes()
+{
+    return this->startNodes;
 }
 
 QMap<QString, Node *> Parser::getGraphScene()
@@ -42,4 +52,35 @@ void Parser::removeNode(Node* node, QString* type)
 {
     auto it = this->graphScene.find(node->getNodeId());
     this->graphScene.erase(it);
+}
+
+QString  Parser::traverseGraph()
+{
+    std::cout<<"Pozvan"<<std::endl;
+    Node* start = this->startNodes[0];
+    //verovatno treba pop
+
+    if (start == nullptr){
+        std::cout<<"Nema vise start nodova"<<std::endl;
+    }
+
+    QMap<QString, Node*> nodes = this->getGraphScene();
+
+    /*Node* returnNode = nodes["ReturnNode_node0"];
+    if(returnNode == nullptr)
+    {
+        return QString::fromStdString("Fail");
+    }
+
+    QString code = returnNode->getCodeForNode();
+    std::cout << code.toUtf8().constData() << std::endl;
+    QVector<Input*>* inputs = returnNode->getInputs();
+
+
+    Output* out = (*inputs)[0]->getPrevious();
+
+    Node* parent = static_cast<Node*>(out->parent());
+
+    std::cout << parent->getCodeForNode().toUtf8().constData();
+    */
 }

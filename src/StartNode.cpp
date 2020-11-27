@@ -10,8 +10,16 @@ StartNode::StartNode():Node("StartNode", 0, 1, nullptr)
 
 QString StartNode::getCodeForNode()
 {
-    QString text = "#include<isotream>\n#include<string>\n\nint main(){";
+    QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
 
     return text;
 }
+
+void StartNode::run() const
+{
+    //Ovo je specijalan tip noda koji samo oznacava pocetakprograma
+    return;
+}
+
+
 

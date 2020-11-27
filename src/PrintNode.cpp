@@ -31,5 +31,7 @@ PrintNode::PrintNode() : Node("print", 1, 1, nullptr)
 */
 QString PrintNode::getCodeForNode()
 {
-    return "";
+    QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
+
+    return text;
 }

@@ -7,6 +7,7 @@ class ReturnNode : public Node
 {
 public:
     ReturnNode();
+    virtual QString getCodeForNode() override;
 };
 
 #endif // RETURNNODE_H

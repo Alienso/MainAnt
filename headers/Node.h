@@ -42,6 +42,8 @@ public:
     QVector<Input*>* getInputs();
     virtual QString getCodeForNode();
     QString getNodeId();
+    //TODO:Svaka klasa kkoaj nasledjuje node mora da implementira run metod. Run metod implemntira logiku cvora i poziva se od strane parsera
+    //virtual void run() const = 0;
 
 protected:
     void mousePressEvent(QMouseEvent *event);

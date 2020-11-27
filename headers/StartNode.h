@@ -8,7 +8,9 @@ class StartNode:public Node
 public:
     StartNode();
 
-    virtual QString getCodeForNode() override;
+    QString getCodeForNode() override;
+    //Za potrebe testa za razvoj parsera ovo nije virtuelni metod ali ubuduce ce morati da bude:
+    void run() const;
 };
 
 #endif // STARTNODE_H

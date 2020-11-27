@@ -77,8 +77,20 @@ void Node::mousePressEvent(QMouseEvent *event)
         if(selectedItem->toolTip()=="Delete"){
             qDebug()<<"Delete";
         }
-        else{
-        }
+
+        /*CustomGraphicsView* stagingArea = static_cast<CustomGraphicsView*>(this->parent());
+        QVector<Node*>* nodesVector = stagingArea->getNodes();
+
+        for(int i=0; i< nodesVector->length(); i++)
+        {
+            if((*nodesVector)[i]->getCodeForNode() == this->getCodeForNode())
+            {
+             QDebug() << this->getCodeForNode();
+             (*nodesVector).erase(i);
+            }
+       }
+       */
+
         //this->deleteLater();
     }
 }
@@ -97,6 +109,7 @@ QVector<Input*>* Node::getInputs(){
 
 QString Node::getCodeForNode()
 {
+
 }
 
 QString Node::getNodeId()
