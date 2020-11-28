@@ -10,49 +10,72 @@ Node::Node(QWidget *parent) : QFrame(parent)
     *(this->getOldPos()) = this->pos();
 }
 
-Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent)
+Node::Node(QString _name,int ninputs,int noutputs, QString _code,bool _hasFlowControl,QWidget* parent) : Node(parent)
 {
     QFormLayout* layout = static_cast<QFormLayout*>(this->layout());
     layout->setHorizontalSpacing(100);
     this->name = _name;
     this->nameLbl = new QLabel(name);
+    this->hasFlowControl = _hasFlowControl;
+    this->code = _code;
 
     this->nameLbl->setMaximumSize(80,20);
     //this->nameLbl->setStyleSheet("border: 0px solid white;");
-    layout->insertRow(0,nameLbl);
-
     int n = 0;
+    int wasInLoop = 0;
+
+    //Ukoliko su nam potrebni cvorovi za obilazenje grafa (nrp ako naidjemo na if)
+    if (hasFlowControl){
+        Output* o = new Output();
+        Input* tmp = new Input();
+        o->addItem(""); //Must be used to be able to drag
+        layout->insertRow(0,tmp,o);
+        this->inputs.push_back(tmp);
+        this->outputs.push_back(o);
+        n = 1;
+    }
+
+    //Label imena
+    layout->insertRow(n,nameLbl);
+
+    //Pravljenje inputa i outputa
     for (int i=0;i < std::min(ninputs,noutputs);i++){
 
         Output* o = new Output();
         Input* tmp = new Input();
         o->addItem(""); //Must be used to be able to drag
-        layout->insertRow(i+1,tmp,o);
+        layout->insertRow(i+1+hasFlowControl,tmp,o);
         this->inputs.push_back(tmp);
         this->outputs.push_back(o);
         n = i;
+        wasInLoop = 1;
     }
+    if (wasInLoop)
+        n++;
 
     for (int i=n;i<std::max(ninputs,noutputs);i++){
         if (ninputs == noutputs){
             Input* tmp = new Input();
             Output* o = new Output();
             o->addItem("");
-            layout->insertRow(i+1,tmp,o);
+            layout->insertRow(i+1+hasFlowControl,tmp,o);
             this->inputs.push_back(tmp);
             this->outputs.push_back(o);
+            continue;
         }
 
         if (noutputs>ninputs){
             Output* tmp = new Output();
             tmp->addItem("");
-            layout->insertRow(i+1,nullptr,tmp);
+            layout->insertRow(i+1+hasFlowControl,nullptr,tmp);
             this->outputs.push_back(tmp);
+            continue;
         }
         if (ninputs>noutputs){
             Input* tmp = new Input();
-            layout->insertRow(i+1,tmp);
+            layout->insertRow(i+1+hasFlowControl,tmp);
             this->inputs.push_back(tmp);
+            continue;
         }
     }
     //Vlado mislim da u ovom delu koda treba da kriras vise izlaz akao sto si gore nisam htela da ti menjam klasu s obzirom d ami ovo sluzi za sta mi treba

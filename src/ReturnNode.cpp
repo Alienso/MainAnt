@@ -1,6 +1,6 @@
 #include "./headers/ReturNode.h"
 
-ReturnNode::ReturnNode():Node("return", 1, 0, nullptr)
+ReturnNode::ReturnNode():Node("return", 1, 0)
 {
     setMinimumSize(60,60);
     setMaximumWidth(200);

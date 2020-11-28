@@ -7,8 +7,7 @@
  * Sadrzi jedan ulaz.
 */
 
-PrintNode::PrintNode() : Node("print", 1, 1, nullptr)
-{
+PrintNode::PrintNode() : Node("print", 1, 1){
     setMinimumSize(100,100);
     setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(105, 50, 129, 1);"

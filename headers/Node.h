@@ -30,10 +30,12 @@ public:
     QLabel* nameLbl;
     QString formatText;
     QString nodeId;
+    QString code;
+    bool hasFlowControl;
 
 public:
     explicit Node(QWidget* parent = nullptr);
-    Node(QString name,int ninputs,int noutputs,QWidget* parent = nullptr);
+    Node(QString name,int ninputs,int noutputs, QString code = "",bool hasFlowControl = false, QWidget* parent = nullptr);
     void addWidget(QWidget* w);
 
     void setNodeId(QString nodeId);

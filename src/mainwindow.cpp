@@ -32,22 +32,22 @@ void MainWindow::putNode(QListWidgetItem* item)
 {
     if(ui->listWidget->item(0) == item){
         //std::cout<<"plus"<<std::endl;
-        Node* n = new Node("plus", 1, 0, nullptr);
+        Node* n = new Node("plus", 2,1);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("PlusNode"));
     }else if(ui->listWidget->item(1) == item){
         //std::cout<<"minus"<<std::endl;
-        Node* n = new Node("minus", 2, 1, nullptr);
+        Node* n = new Node("minus", 2,1);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("MinusNode"));
     }else if(ui->listWidget->item(2) == item){
         //std::cout<<"puta"<<std::endl;
-        Node* n = new Node("puta", 2, 1, nullptr);
+        Node* n = new Node("puta",2,1);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("MulNode"));
     }else if(ui->listWidget->item(3) == item){
         //std::cout<<"manje"<<std::endl;
-        Node* n = new Node("manje", 2, 1, nullptr);
+        Node* n = new Node("manje", 2, 1);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("LTNODE"));
     }else if(ui->listWidget->item(4) == item){

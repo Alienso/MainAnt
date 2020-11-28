@@ -1,6 +1,6 @@
 #include "../headers/StartNode.h"
 
-StartNode::StartNode():Node("StartNode", 0, 1, nullptr)
+StartNode::StartNode():Node("StartNode", 0, 1)
 {
     setMinimumSize(60,60);
     setMaximumWidth(200);
