@@ -54,18 +54,24 @@ void Parser::removeNode(Node* node, QString* type)
     this->graphScene.erase(it);
 }
 
-QString  Parser::traverseGraph()
+
+QString  Parser::traverseGraph()//treba promeniti ime nije intuitivno
 {
-    std::cout<<"Pozvan"<<std::endl;
-    Node* start = this->startNodes[0];
-    //verovatno treba pop
+    qDebug()<<"Pozvan\n";
+    if(this->startNodes.empty())
+    {
+        qDebug()<<"Nema startnih cvorova\n";
+    }else
+    {
+        Node* start = this->startNodes[0];
+        //verovatno treba pop
 
-    if (start == nullptr){
-        std::cout<<"Nema vise start nodova"<<std::endl;
+        if (start == nullptr){
+            std::cout<<"Nema vise start nodova"<<std::endl;
+        }
+
+        QMap<QString, Node*> nodes = this->getGraphScene();
     }
-
-    QMap<QString, Node*> nodes = this->getGraphScene();
-
     /*Node* returnNode = nodes["ReturnNode_node0"];
     if(returnNode == nullptr)
     {
