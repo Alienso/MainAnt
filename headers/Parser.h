@@ -41,6 +41,8 @@ public:
 
     //Funkcija koja ce da obilazi graph i da generise kod
     QString traverseGraph();
+    //Funkcija koja obilazi Nodove
+    void visitNode(Node* node);
 };
 
 #endif // PRASER_H

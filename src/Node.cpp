@@ -28,6 +28,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent
     layout->insertRow(1,tmp,o);
     this->inputs.push_back(tmp);
     this->output = o;
+    this->visited = false;
 
     for (int i=1;i<ninputs;i++){
         tmp = new Input();
@@ -96,6 +97,7 @@ void Node::mousePressEvent(QMouseEvent *event)
         //this->deleteLater();
     }
 }
+
 void Node::setNodeId(QString nodeId)
 {
     this->nodeId = nodeId;
@@ -109,6 +111,16 @@ void Node::addParents(Node *parent)
 void Node::addChildren(Node *child)
 {
     this->childNodes.push_back(child);
+}
+
+QVector<Node*> Node::getChildren() const
+{
+    return this->childNodes;
+}
+
+QVector<Node *> Node::getParents() const
+{
+    return this->parentNodes;
 }
 
 QPoint* Node::getOldPos(){
@@ -128,5 +140,21 @@ QString Node::getNodeId()
 {
     return this->nodeId;
 }
+
+void Node::setVisited(bool flag)
+{
+    this->visited = flag;
+}
+
+bool Node::getVisited()
+{
+    return this->visited;
+}
+
+QString Node::getName()
+{
+    return this->name;
+}
+
 
 

@@ -33,21 +33,26 @@ private:
 
     QVector<Node*> parentNodes;// inputi ovog cvora !!OVO MENJA SAMO! input klasa
     QVector<Node*> childNodes;// outputi ovog cvora !!OVO MENJA SAMO! input klasa
-
+    bool visited;
 
 public:
     explicit Node(QWidget* parent = nullptr);
+    virtual QString getCodeForNode();
     Node(QString name,int ninputs,int noutputs,QWidget* parent = nullptr);
     void addWidget(QWidget* w);
 
     void setNodeId(QString nodeId);
     void addParents(Node* parent);
     void addChildren(Node* child);
+    QVector<Node*> getChildren() const;
+    QVector<Node*> getParents() const;
 
     QPoint* getOldPos();
     QVector<Input*>* getInputs();
-    virtual QString getCodeForNode();
     QString getNodeId();
+    void setVisited(bool flag);
+    bool getVisited();
+    QString getName();
     //TODO:Svaka klasa kkoaj nasledjuje node mora da implementira run metod. Run metod implemntira logiku cvora i poziva se od strane parsera
     //virtual void run() const = 0;
 

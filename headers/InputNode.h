@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QAbstractButton>
 #include <QLineEdit>
+#include <iostream>
 #include "./headers/Node.h"
 
 class InputNode : public Node

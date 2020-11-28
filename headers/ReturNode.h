@@ -1,6 +1,7 @@
 #ifndef RETURNNODE_H
 #define RETURNNODE_H
 
+#include <iostream>
 #include "./headers/Node.h"
 
 class ReturnNode : public Node

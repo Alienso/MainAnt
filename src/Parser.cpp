@@ -61,17 +61,19 @@ QString  Parser::traverseGraph()//treba promeniti ime nije intuitivno
     if(this->startNodes.empty())
     {
         qDebug()<<"Nema startnih cvorova\n";
+        return QString("");
     }else
     {
-        Node* start = this->startNodes[0];
-        //verovatno treba pop
+        for(Node* startNode : this->startNodes){
+            QVector<Node*> children = startNode->getChildren();
+            for(auto child : children){
+                visitNode(child);
+            }
 
-        if (start == nullptr){
-            std::cout<<"Nema vise start nodova"<<std::endl;
         }
-
-        QMap<QString, Node*> nodes = this->getGraphScene();
     }
+    qDebug()<< "Kraj";
+    return QString::fromStdString("Zavrsio sam");
     /*Node* returnNode = nodes["ReturnNode_node0"];
     if(returnNode == nullptr)
     {
@@ -89,4 +91,38 @@ QString  Parser::traverseGraph()//treba promeniti ime nije intuitivno
 
     std::cout << parent->getCodeForNode().toUtf8().constData();
     */
+}
+
+void Parser::visitNode(Node* node)
+{
+    qDebug()<<"Vist";
+    node->setVisited(true);
+   QVector<Node*> parents = node->getParents();
+    if(!parents.empty())
+    {
+        qDebug()<<"if roditelj";
+        for(Node* parent : parents){
+            if(strcmp(parent->getName().toUtf8().constData(),("StartNode")) == 0)
+            {
+                continue;
+            }
+            else
+            {
+                visitNode(parent);
+            }
+        }
+    }
+        qDebug()<<"else";
+        //node->run ovaj metod mora da ima svaki cvor da se izvrsi
+        qDebug() << node->getCodeForNode();
+        QVector<Node*> children = node->getChildren();
+        if(children.empty()){
+            return;
+        }else{
+            qDebug()<<"Dete";
+            for(Node* child : children)
+                if(!child->getVisited())
+                    visitNode(child);
+        }
+
 }
