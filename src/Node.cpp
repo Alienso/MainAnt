@@ -101,6 +101,16 @@ void Node::setNodeId(QString nodeId)
     this->nodeId = nodeId;
 }
 
+void Node::addParents(Node *parent)
+{
+    this->parentNodes.push_back(parent);
+}
+
+void Node::addChildren(Node *child)
+{
+    this->childNodes.push_back(child);
+}
+
 QPoint* Node::getOldPos(){
     return &oldPos_;
 }

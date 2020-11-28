@@ -20,6 +20,14 @@ void Input::dropEvent(QDropEvent *event)
     if (!t.isEmpty ())
     {
         this->previous = ptr;
+        //Pokazivac na covr ciji output povezujemo na ovaj input
+        Node* parent = static_cast<Node*>(ptr->parent());
+        //POkazivac na cvor ciji je ovo Input
+        Node* node = static_cast<Node*>(this->parent());
+
+        parent->addChildren(node);
+        node->addParents(parent);
+
         auto label = new QLabel ("");
         this->previous->parentWidget()->layout()->addWidget(new Input());
         label->setStyleSheet ("border: 1px solid black; background-color: white; qproperty-alignment: AlignCenter");

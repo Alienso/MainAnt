@@ -26,10 +26,14 @@ private:
     QPoint oldPos_;
     QVector<Input*> inputs;
     Output* output;
-    Node* next;
+    Node* next;//Ovo polje nam verovatno ne treba
     QLabel* nameLbl;
     QString formatText;
     QString nodeId;
+
+    QVector<Node*> parentNodes;// inputi ovog cvora !!OVO MENJA SAMO! input klasa
+    QVector<Node*> childNodes;// outputi ovog cvora !!OVO MENJA SAMO! input klasa
+
 
 public:
     explicit Node(QWidget* parent = nullptr);
@@ -37,6 +41,8 @@ public:
     void addWidget(QWidget* w);
 
     void setNodeId(QString nodeId);
+    void addParents(Node* parent);
+    void addChildren(Node* child);
 
     QPoint* getOldPos();
     QVector<Input*>* getInputs();

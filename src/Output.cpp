@@ -39,6 +39,7 @@ void Output::startDrag(Qt::DropActions supportedActions)
     auto n = addrtos(this);
     mimeData->setData("node_ptr", n.toUtf8());
 
+
     auto drag = new QDrag(this);
     drag->setMimeData (mimeData);
     drag->exec(Qt::MoveAction);
