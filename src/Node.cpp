@@ -74,8 +74,10 @@ void Node::mousePressEvent(QMouseEvent *event)
         myMenu.addAction("Delete");
         QAction *selectedItem=myMenu.exec(globalPos);
 
-        if(selectedItem->toolTip()=="Delete"){
-            qDebug()<<"Delete";
+        if(selectedItem){
+            if(selectedItem->toolTip()=="Delete"){
+                qDebug()<<"Delete";
+            }
         }
 
         /*CustomGraphicsView* stagingArea = static_cast<CustomGraphicsView*>(this->parent());
