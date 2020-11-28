@@ -20,12 +20,12 @@ class Output;
 
 class Node : public QFrame{
     Q_OBJECT
-private:
+public:
     QString name;
     QPoint offset;
     QPoint oldPos_;
     QVector<Input*> inputs;
-    Output* output;
+    QVector<Output*> outputs;
     Node* next;
     QLabel* nameLbl;
     QString formatText;
