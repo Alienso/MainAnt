@@ -18,8 +18,12 @@ MainWindow::MainWindow(QWidget *parent)
     QListWidgetItem* start =new QListWidgetItem(tr("+Start"), ui->listWidget);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
+    connect(ui->actionCompile,SIGNAL(itemClicked(QPushButton*)),this,SLOT(on_actionCompile_triggered())); // TODO OVO SE buni nzm zasto
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new QFormLayout());
+
+    this->tmp = new Node("RETURN",1,0,"return _");
+    ui->StagingArea->addWidget(tmp);
 
 }
 
@@ -32,12 +36,12 @@ void MainWindow::putNode(QListWidgetItem* item)
 {
     if(ui->listWidget->item(0) == item){
         //std::cout<<"plus"<<std::endl;
-        Node* n = new Node("plus", 2,1);
+        Node* n = new Node("plus", 2,1,"_ + _");
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("PlusNode"));
     }else if(ui->listWidget->item(1) == item){
         //std::cout<<"minus"<<std::endl;
-        Node* n = new Node("minus", 2,1);
+        Node* n = new Node("minus", 2,1, "_ - _");
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("MinusNode"));
     }else if(ui->listWidget->item(2) == item){
@@ -155,5 +159,16 @@ void MainWindow::on_actionRun_triggered()
     else
         qDebug() << p1;
 
+}
+
+void MainWindow::on_actionCompile_triggered(){
+
+    std::cout << "Pocet obilazak\n";
+    fflush(stdout);
+    QString s = p->traverse(this->tmp);
+    std::cout << "Kraj:\n";
+    fflush(stdout);
+    std::cout << s.toUtf8().constData();
+    fflush(stdout);
 }
 

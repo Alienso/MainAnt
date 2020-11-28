@@ -84,3 +84,27 @@ QString  Parser::traverseGraph()
     std::cout << parent->getCodeForNode().toUtf8().constData();
     */
 }
+
+QString Parser::traverse(Node* curr){
+
+    if (curr->visited)
+        return "";
+    curr->visited = true;
+
+    QString s = curr->code; // Tipa _ + _ ili f(_,_,_);
+    QString res = "";
+    int i=0;
+    for (auto c : s){
+        if (c == '_'){
+            if ((curr->inputs[i]->getPrevious() == nullptr)){
+                res.append("Cao");
+                continue;
+            }
+            QString rez = traverse(static_cast<Node*>(curr->inputs[i]->getPrevious()->parent()));
+            res.append(rez); //TODO NIJE APPEND NEGO na i-tu poz _ dodati rez
+            i++;
+        }
+        else res.append(c);
+    }
+    return res;
+}

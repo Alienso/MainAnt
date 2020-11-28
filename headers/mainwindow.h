@@ -31,6 +31,7 @@ class MainWindow : public QMainWindow
 private:
     Ui::MainWindow *ui;
     Parser *p;
+    Node* tmp;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -44,5 +45,6 @@ private slots:
     void on_actionSave_triggered();
     void on_actionQuit_triggered();
     void on_actionRun_triggered();
+    void on_actionCompile_triggered();
 };
 #endif // MAINWINDOW_H

@@ -31,6 +31,7 @@ public:
     QString formatText;
     QString nodeId;
     QString code;
+    bool visited;
     bool hasFlowControl;
 
 public:

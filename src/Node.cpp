@@ -16,6 +16,7 @@ Node::Node(QString _name,int ninputs,int noutputs, QString _code,bool _hasFlowCo
     layout->setHorizontalSpacing(100);
     this->name = _name;
     this->nameLbl = new QLabel(name);
+    this->visited = false;
     this->hasFlowControl = _hasFlowControl;
     this->code = _code;
 
