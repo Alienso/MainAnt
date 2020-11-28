@@ -65,42 +65,29 @@ QString  Parser::traverseGraph()//treba promeniti ime nije intuitivno
     }else
     {
         for(Node* startNode : this->startNodes){
+            startNode->setVisited(true);
             QVector<Node*> children = startNode->getChildren();
             for(auto child : children){
-                visitNode(child);
+                if(!child->getVisited()){
+                    visitNode(child);
+                }
             }
 
         }
     }
     qDebug()<< "Kraj";
     return QString::fromStdString("Zavrsio sam");
-    /*Node* returnNode = nodes["ReturnNode_node0"];
-    if(returnNode == nullptr)
-    {
-        return QString::fromStdString("Fail");
-    }
 
-    QString code = returnNode->getCodeForNode();
-    std::cout << code.toUtf8().constData() << std::endl;
-    QVector<Input*>* inputs = returnNode->getInputs();
-
-
-    Output* out = (*inputs)[0]->getPrevious();
-
-    Node* parent = static_cast<Node*>(out->parent());
-
-    std::cout << parent->getCodeForNode().toUtf8().constData();
-    */
 }
 
 void Parser::visitNode(Node* node)
 {
-    qDebug()<<"Vist";
+    //qDebug()<<"Vist";
     node->setVisited(true);
    QVector<Node*> parents = node->getParents();
     if(!parents.empty())
     {
-        qDebug()<<"if roditelj";
+        //qDebug()<<"if roditelj";
         for(Node* parent : parents){
             if(strcmp(parent->getName().toUtf8().constData(),("StartNode")) == 0)
             {
@@ -108,18 +95,20 @@ void Parser::visitNode(Node* node)
             }
             else
             {
-                visitNode(parent);
+                if(!parent->getVisited()){
+                    visitNode(parent);
+                }
             }
         }
     }
-        qDebug()<<"else";
+        //qDebug()<<"else";
         //node->run ovaj metod mora da ima svaki cvor da se izvrsi
         qDebug() << node->getCodeForNode();
         QVector<Node*> children = node->getChildren();
         if(children.empty()){
             return;
         }else{
-            qDebug()<<"Dete";
+            //qDebug()<<"Dete";
             for(Node* child : children)
                 if(!child->getVisited())
                     visitNode(child);
