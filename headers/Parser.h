@@ -16,7 +16,6 @@ private:
     QVector<Node*> graph;
     //Svaki put kad se doda start node on se doda i u ovaj graf
     QVector<Node*> startNodes;
-
     //Vektor koji cuva end node-ove
     QVector<Node*> endNodes;
     //Vektor koji cuva imena svih cvorova grafa scene i prati red dodavanja u gornji vektor
@@ -24,6 +23,9 @@ private:
 
     //Zelimo mapa prvi el je ime cvora drugi pokazivac na cvor
     QMap<QString, Node*> graphScene;
+
+    QMap<QString,QString> ifMap;
+    QString fieldToWriteTo;
 
     //Promenljiva se koristi kao id cvora u listi, i sluzi pri formiranju imena cvorova scene
     //radi lakseg pristupanja metodama klase datog cvora i slicno
@@ -48,7 +50,7 @@ public:
     //Funkcija koja ce da obilazi graph i da generise kod
     QString traverseGraph();
 
-    QString traverse(Node* curr);
+    QString traverse(Output* curr);
 };
 
 #endif // PRASER_H

@@ -72,53 +72,97 @@ void Parser::removeNode(Node* node)
 
 QString  Parser::traverseGraph()
 {
-    std::cout<<"Pozvan"<<std::endl;
-    Node* start = this->startNodes[0];
-    //verovatno treba pop
-
-    if (start == nullptr){
-        std::cout<<"Nema vise start nodova"<<std::endl;
+    QString s = "";
+    for(int i=0;i<getEndNodes().length();i++){
+        if (getEndNodes()[i]->name.compare("if") == 0){
+            QString tmp = "if(" + traverse(getEndNodes()[i]->inputs[1]->getPrevious()) + "){" + ifMap[getEndNodes()[i]->getNodeId() + "_true"] + "}else{" + ifMap[getEndNodes()[i]->getNodeId() + "_false"] + "}" + ifMap[getEndNodes()[i]->getNodeId() + "_finaly"];
+            s.push_front(tmp);
+            std::cout<< tmp.toUtf8().constData() << "\n";
+            fflush(stdout);
+            QString res = traverse(getEndNodes()[i]->inputs[0]->getPrevious());
+            s.push_back(res);
+            continue;
+        }
+        QString res = traverse(getEndNodes()[i]->outputs[0]);
+        if (fieldToWriteTo.compare(""))
+            ifMap[fieldToWriteTo] = res;
+        fieldToWriteTo = "";
+        s.push_back(res);
     }
-
-    QMap<QString, Node*> nodes = this->getGraphScene();
-
-    /*Node* returnNode = nodes["ReturnNode_node0"];
-    if(returnNode == nullptr)
-    {
-        return QString::fromStdString("Fail");
-    }
-
-    QString code = returnNode->getCodeForNode();
-    std::cout << code.toUtf8().constData() << std::endl;
-    QVector<Input*>* inputs = returnNode->getInputs();
-
-
-    Output* out = (*inputs)[0]->getPrevious();
-
-    Node* parent = static_cast<Node*>(out->parent());
-
-    std::cout << parent->getCodeForNode().toUtf8().constData();
-    */
+    return s;
 }
 
-QString Parser::traverse(Node* curr){
+/*QString Parser::traverse(Output* o){
 
+    if (o == nullptr){
+        return "Cao";
+    }
+    Node* curr = static_cast<Node*>(o->parentWidget());
     if (curr->visited)
         return "";
     curr->visited = true;
 
-    if (curr->name == "if"){
-        /*if (this == ouput[0])
-         *  s = "if(_){@}else{@}*"
-         *if (this == output[1])
-         *  s = "if(_){*}else{@}@"
-         *else
-         *  s = "if(_){@}else{*}@"
-         * */
-    }
     QString s = curr->code;
     QString res = "";
     int i=0;
+    for (Input* in: curr->inputs){
+        QString rez = traverse(in->getPrevious());
+        for (;i<s.length();i++){
+            if (s[i] == '_'){
+                res.append(rez);
+                i++;
+                break;
+            }
+            if (s[i] == "@"){
+                res.append("#" + curr->nodeId + "#");
+            }
+            else res.append(s[i]);
+        }
+    }
+    for (;i<s.length();i++){
+        if (s[i] == "@"){
+            res.append("#" + curr->nodeId + "#");
+        }
+        else res.append(s[i]);
+    }
+    return res;
+}*/
+
+QString Parser::traverse(Output* o){
+
+    if (o == nullptr){
+        return "Cao2";
+    }
+    Node* curr = static_cast<Node*>(o->parentWidget());
+    if (curr->visited)
+        return "";
+    curr->visited = true;
+
+    QString s = curr->code;
+    QString res = "";
+    int i = 0;
+    if (curr->hasFlowControl)
+        i = 1;
+
+    if (curr->name.compare("if") == 0){
+        endNodes.push_back(curr);
+        if (o == curr->outputs[0]){
+           s = "if(_){@}else{@}*";
+           fieldToWriteTo = curr->getNodeId() + "_finaly";
+           return "";
+        }
+        if (o == curr->outputs[1]){
+           fieldToWriteTo = curr->getNodeId() + "_true";
+           return "";
+           s = "if(_){*}else{@}@";
+         }
+        if (o == curr->outputs[2]){
+           fieldToWriteTo = curr->getNodeId() + "_false";
+           return "";
+           s = "if(_){@}else{*}@";
+         }
+    }
+
     for (auto c : s){
         if (c == '_'){
             if ((curr->inputs[i]->getPrevious() == nullptr)){
@@ -126,7 +170,7 @@ QString Parser::traverse(Node* curr){
                 i++;
                 continue;
             }
-            QString rez = traverse(static_cast<Node*>(curr->inputs[i]->getPrevious()->parent()));
+            QString rez = traverse(curr->inputs[i]->getPrevious());
             res.append(rez);
             i++;
             continue;
