@@ -48,7 +48,7 @@ QMap<QString, Node *> Parser::getGraphScene()
     return this->graphScene;
 }
 
-void Parser::removeNode(Node* node, QString* type)
+void Parser::removeNode(Node* node)
 {
     auto it = this->graphScene.find(node->getNodeId());
     this->graphScene.erase(it);

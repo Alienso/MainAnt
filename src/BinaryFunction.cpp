@@ -1,9 +1,11 @@
 #include "./headers/BinaryFunction.h"
 
-QString getCodeForNode(){
+QString getCodeForNode()
+{
+   return " ";
+}
 
-    //Ovo ce naknadno biti definisano
+void BinaryFunction::setParameters(InputNode *op1_, InputNode *op2_)
+{
 
-    QString text = "hello";
-    return text;
 }

@@ -24,6 +24,7 @@ public:
     InputNode();
     void resetInput();
     QString getCodeForNode() override;
+    QString* getText();
 };
 
 #endif // OUTPUTNODE_H

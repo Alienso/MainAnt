@@ -111,3 +111,8 @@ QString InputNode::getCodeForNode()
 
     return text;
 }
+
+QString *InputNode::getText()
+{
+    return text;
+}

@@ -1,37 +1,39 @@
 #ifndef BINARYFUNCTION
 #define BINARYFUNCTION
 
+#include <QString>
+#include <QWidget>
+
 #include "./headers/Node.h"
+#include "./headers/InputNode.h"
 
+class InputNode;
+class Parser;
 
-template<typename T>
 class BinaryFunction : public Node
 {
 private:
-
-    T op1;
-    T op2;
+    QString op1;
+    QString op2;
 public:
-    BinaryFunction(T op1, T op2)
-        :op1(op1), op2(op2)
-    {}
-
-    T plusFunc()
+    BinaryFunction(QString _name,int ninputs,int noutputs, Parser * p_,QWidget* parent);
+    void setParameters(InputNode *op1_, InputNode *op2_);
+    QString plusFunc()
     {
-        return this-> op1 + this->op2;
+        return this->op1 + " + "+ this->op2 + ";\n";
     }
 
-    T minusFunc()
+    QString minusFunc()
     {
-        return this->op1 - this->op2;
+        return this->op1 + " - "+ this->op2 + ";\n";
     }
 
-    T mulFunc(){
-        return this->op1 * this->op2;
+    QString mulFunc(){
+        return this->op1 + " * "+ this->op2 + ";\n";
     }
 
-    T lessTHanFunc(){
-        return this->op1 < this->op2;
+    QString lessTHanFunc(){
+        return this->op1 + " < "+ this->op2 + ";\n";
     }
     QString getCodeForNode() override;
 };

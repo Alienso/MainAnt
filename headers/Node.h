@@ -9,14 +9,15 @@
 #include <QFormLayout>
 #include <QDebug>
 #include <iostream>
+#include <QMenu>
 
 #include "./headers/Output.h"
 #include "./headers/Input.h"
-#include <QMenu>
+#include "./headers/Parser.h"
 
 class Input;
 class Output;
-
+class Parser;
 
 class Node : public QFrame{
     Q_OBJECT
@@ -33,11 +34,12 @@ private:
 
     QVector<Node*> parentNodes;// inputi ovog cvora !!OVO MENJA SAMO! input klasa
     QVector<Node*> childNodes;// outputi ovog cvora !!OVO MENJA SAMO! input klasa
-
+public:
+    Parser * p;
 
 public:
     explicit Node(QWidget* parent = nullptr);
-    Node(QString name,int ninputs,int noutputs,QWidget* parent = nullptr);
+    Node(QString name,int ninputs,int noutputs,Parser *p_=nullptr, QWidget* parent = nullptr);
     void addWidget(QWidget* w);
 
     void setNodeId(QString nodeId);

@@ -10,7 +10,7 @@ Node::Node(QWidget *parent) : QFrame(parent)
     *(this->getOldPos()) = this->pos();
 }
 
-Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent)
+Node::Node(QString _name,int ninputs,int noutputs, Parser *p_,QWidget* parent) : Node(parent)
 {
     QFormLayout* layout = static_cast<QFormLayout*>(this->layout());
     layout->setHorizontalSpacing(100);
@@ -34,6 +34,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QWidget* parent) : Node(parent
         layout->insertRow(i+1,tmp);
         this->inputs.push_back(tmp);
     }
+    this->p=p_;
     //Vlado mislim da u ovom delu koda treba da kriras vise izlaz akao sto si gore nisam htela da ti menjam klasu s obzirom d ami ovo sluzi za sta mi treba
     /*for(int i=0; i< noutputs; i++){
         Output* tmp = new Output();
@@ -77,6 +78,8 @@ void Node::mousePressEvent(QMouseEvent *event)
         if(selectedItem){
             if(selectedItem->toolTip()=="Delete"){
                 qDebug()<<"Delete";
+                this->close();
+                this->p->removeNode(this);
             }
         }
 

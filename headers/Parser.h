@@ -8,6 +8,8 @@
 
 #include "./headers/Node.h"
 
+class Node;
+
 class Parser
 {
 private:
@@ -37,7 +39,7 @@ public:
     QVector<Node*> getStartNodes();
     QMap<QString, Node*> getGraphScene();
 
-    void removeNode(Node* node, QString* type);
+    void removeNode(Node* node);
 
     //Funkcija koja ce da obilazi graph i da generise kod
     QString traverseGraph();
