@@ -20,6 +20,8 @@ void Input::dropEvent(QDropEvent *event)
     if (!t.isEmpty ())
     {
         this->previous = ptr;
+        static_cast<Node*>(ptr->parentWidget())->p->removeNode(static_cast<Node *>(ptr->parentWidget())); // Remove Node from parser
+        (static_cast<CustomGraphicsView*>(static_cast<Node*>(this->parentWidget())->parentWidget())->parentWidget());
         auto label = new QLabel ("");
         label->setStyleSheet ("border: 1px solid black; background-color: white; qproperty-alignment: AlignCenter");
         layout ()->addWidget(label);

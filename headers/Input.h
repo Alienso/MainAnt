@@ -11,8 +11,10 @@
 #include <iostream>
 
 #include "./headers/Output.h"
+#include "./headers/CustomGraphicsView.h"
 
 class Output;
+class CustomGraphicsView;
 class QDropEvent;
 class QDragEnterEvent;
 class QDragLeaveEvent;

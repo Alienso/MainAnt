@@ -17,10 +17,14 @@ void Parser::addNode(Node* node, QString *type)
     strcpy(charArray, tmp.c_str());
     QString *name = new  QString(charArray);
 
+    this->endNodes.push_back(node);
     this->nodeNames.push_back(*name);
     this->graph.push_back(node);
     this->graphScene.insert(*name, node);
     this->id +=1;
+
+    //std::cout<< "Dodat Node: " << node->name.toUtf8().constData() << "\n";
+    //fflush(stdout);
 }
 
 void Parser::addNewStart(Node *node)
@@ -43,15 +47,27 @@ QVector<Node *> Parser::getStartNodes()
     return this->startNodes;
 }
 
+QVector<Node*> Parser::getEndNodes(){
+    return this->endNodes;
+}
+
 QMap<QString, Node *> Parser::getGraphScene()
 {
     return this->graphScene;
 }
 
-void Parser::removeNode(Node* node, QString* type)
+void Parser::removeNode(Node* node)
 {
-    auto it = this->graphScene.find(node->getNodeId());
-    this->graphScene.erase(it);
+    //auto it = this->graphScene.find(node->getNodeId());
+    //this->graphScene.erase(it);
+    int i=0;
+    for (i=0;i<endNodes.length();i++)
+        if (endNodes[i] == node){
+            endNodes.remove(i);
+            //std::cout << "Uklonjen Node: " << node->name.toUtf8().constData() << "\n";
+            //fflush(stdout);
+        }
+    return;
 }
 
 QString  Parser::traverseGraph()
@@ -91,18 +107,32 @@ QString Parser::traverse(Node* curr){
         return "";
     curr->visited = true;
 
-    QString s = curr->code; // Tipa _ + _ ili f(_,_,_);
+    if (curr->name == "if"){
+        /*if (this == ouput[0])
+         *  s = "if(_){@}else{@}*"
+         *if (this == output[1])
+         *  s = "if(_){*}else{@}@"
+         *else
+         *  s = "if(_){@}else{*}@"
+         * */
+    }
+    QString s = curr->code;
     QString res = "";
     int i=0;
     for (auto c : s){
         if (c == '_'){
             if ((curr->inputs[i]->getPrevious() == nullptr)){
                 res.append("Cao");
+                i++;
                 continue;
             }
             QString rez = traverse(static_cast<Node*>(curr->inputs[i]->getPrevious()->parent()));
-            res.append(rez); //TODO NIJE APPEND NEGO na i-tu poz _ dodati rez
+            res.append(rez);
             i++;
+            continue;
+        }
+        if (c == "@"){
+            res.append("#" + curr->nodeId + "#");
         }
         else res.append(c);
     }

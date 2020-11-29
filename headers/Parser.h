@@ -8,6 +8,7 @@
 
 #include "./headers/Node.h"
 
+class Node;
 class Parser
 {
 private:
@@ -15,6 +16,9 @@ private:
     QVector<Node*> graph;
     //Svaki put kad se doda start node on se doda i u ovaj graf
     QVector<Node*> startNodes;
+
+    //Vektor koji cuva end node-ove
+    QVector<Node*> endNodes;
     //Vektor koji cuva imena svih cvorova grafa scene i prati red dodavanja u gornji vektor
     QVector<QString> nodeNames;
 
@@ -25,6 +29,7 @@ private:
     //radi lakseg pristupanja metodama klase datog cvora i slicno
     int id;
 
+    void insert(QString s,QString sp,int i);
 
 public:
     explicit Parser();
@@ -35,9 +40,10 @@ public:
     QVector<Node*> getGraph();
     //Ova funkcija je samo za tesstiranje NEMA smisla da neko ima pristup ovom vektoru
     QVector<Node*> getStartNodes();
+    QVector<Node*> getEndNodes();
     QMap<QString, Node*> getGraphScene();
 
-    void removeNode(Node* node, QString* type);
+    void removeNode(Node* node);
 
     //Funkcija koja ce da obilazi graph i da generise kod
     QString traverseGraph();

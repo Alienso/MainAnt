@@ -4,6 +4,9 @@
 #include <QGraphicsView>
 #include <QGridLayout>
 
+class Input;
+class Node;
+
 #include <./headers/Node.h>
 #include <./headers/Input.h>
 

@@ -16,14 +16,16 @@ MainWindow::MainWindow(QWidget *parent)
     QListWidgetItem* print =new QListWidgetItem(tr("+Print"), ui->listWidget);
     QListWidgetItem* ret =new QListWidgetItem(tr("+Return"), ui->listWidget);
     QListWidgetItem* start =new QListWidgetItem(tr("+Start"), ui->listWidget);
+    QListWidgetItem* ifnode =new QListWidgetItem(tr("+If"), ui->listWidget);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
     connect(ui->actionCompile,SIGNAL(itemClicked(QPushButton*)),this,SLOT(on_actionCompile_triggered())); // TODO OVO SE buni nzm zasto
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new QFormLayout());
 
-    this->tmp = new Node("RETURN",1,0,"return _");
+    this->tmp = new Node("RETURN",1,0,"return _",p);
     ui->StagingArea->addWidget(tmp);
+    p->addNode(tmp, new QString("return"));
 
 }
 
@@ -36,22 +38,22 @@ void MainWindow::putNode(QListWidgetItem* item)
 {
     if(ui->listWidget->item(0) == item){
         //std::cout<<"plus"<<std::endl;
-        Node* n = new Node("plus", 2,1,"_ + _");
+        Node* n = new Node("plus", 2,1,"(_ + _)",p);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("PlusNode"));
     }else if(ui->listWidget->item(1) == item){
         //std::cout<<"minus"<<std::endl;
-        Node* n = new Node("minus", 2,1, "_ - _");
+        Node* n = new Node("minus", 2,1, "(_ - _)",p);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("MinusNode"));
     }else if(ui->listWidget->item(2) == item){
         //std::cout<<"puta"<<std::endl;
-        Node* n = new Node("puta",2,1);
+        Node* n = new Node("puta",2,1,"(_ * _)",p);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("MulNode"));
     }else if(ui->listWidget->item(3) == item){
         //std::cout<<"manje"<<std::endl;
-        Node* n = new Node("manje", 2, 1);
+        Node* n = new Node("manje", 2, 1,"(_ < _)",p);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("LTNODE"));
     }else if(ui->listWidget->item(4) == item){
@@ -71,6 +73,10 @@ void MainWindow::putNode(QListWidgetItem* item)
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("StartNode"));
         p->addNewStart(n);
+    }else if(ui->listWidget->item(8) == item){
+        Node* n = new Node("if", 2,3,"if(_){@}else{@}",p);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("if"));
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraph()){
@@ -163,6 +169,9 @@ void MainWindow::on_actionRun_triggered()
 
 void MainWindow::on_actionCompile_triggered(){
 
+    for (int i=0;i<p->getEndNodes().length();i++)
+        std::cout<<p->getEndNodes()[i]->name.toUtf8().constData() << ", ";
+    std::cout << p->getEndNodes().length() << std::endl;
     std::cout << "Pocet obilazak\n";
     fflush(stdout);
     QString s = p->traverse(this->tmp);

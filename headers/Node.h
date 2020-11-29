@@ -12,8 +12,10 @@
 
 #include "./headers/Output.h"
 #include "./headers/Input.h"
+#include "./headers/Parser.h"
 #include <QMenu>
 
+class Parser;
 class Input;
 class Output;
 
@@ -33,10 +35,11 @@ public:
     QString code;
     bool visited;
     bool hasFlowControl;
+    Parser* p;
 
 public:
     explicit Node(QWidget* parent = nullptr);
-    Node(QString name,int ninputs,int noutputs, QString code = "",bool hasFlowControl = false, QWidget* parent = nullptr);
+    Node(QString name,int ninputs,int noutputs, QString code = "",Parser* p = nullptr,bool hasFlowControl = false, QWidget* parent = nullptr);
     void addWidget(QWidget* w);
 
     void setNodeId(QString nodeId);

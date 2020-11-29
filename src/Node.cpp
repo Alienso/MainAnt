@@ -10,8 +10,9 @@ Node::Node(QWidget *parent) : QFrame(parent)
     *(this->getOldPos()) = this->pos();
 }
 
-Node::Node(QString _name,int ninputs,int noutputs, QString _code,bool _hasFlowControl,QWidget* parent) : Node(parent)
+Node::Node(QString _name,int ninputs,int noutputs, QString _code,Parser* p_,bool _hasFlowControl,QWidget* parent) : Node(parent)
 {
+    this->p = p_;
     QFormLayout* layout = static_cast<QFormLayout*>(this->layout());
     layout->setHorizontalSpacing(100);
     this->name = _name;
