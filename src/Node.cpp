@@ -132,4 +132,14 @@ QString Node::getNodeId()
     return this->nodeId;
 }
 
+QString Node::getName()
+{
+    return this->name;
+}
+
+QVector<Node *> Node::getParentNodes()
+{
+    return parentNodes;
+}
+
 

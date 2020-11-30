@@ -86,7 +86,6 @@ InputNode::InputNode():Node("input", 0, 1, nullptr), manualInput(false), fileInp
     });
     layout->insertRow(2, fileInputRadioButton);
     layout->insertRow(3, manualInputRadioButton);
-
 }
 
 void InputNode::resetInput()
@@ -112,7 +111,7 @@ QString InputNode::getCodeForNode()
     return text;
 }
 
-QString *InputNode::getText()
+QString* InputNode::getText()
 {
     return text;
 }

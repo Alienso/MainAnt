@@ -18,24 +18,12 @@ private:
 public:
     BinaryFunction(QString _name,int ninputs,int noutputs, Parser * p_,QWidget* parent);
     void setParameters(InputNode *op1_, InputNode *op2_);
-    QString plusFunc()
-    {
-        return this->op1 + " + "+ this->op2 + ";\n";
-    }
 
-    QString minusFunc()
-    {
-        return this->op1 + " - "+ this->op2 + ";\n";
-    }
-
-    QString mulFunc(){
-        return this->op1 + " * "+ this->op2 + ";\n";
-    }
-
-    QString lessTHanFunc(){
-        return this->op1 + " < "+ this->op2 + ";\n";
-    }
     QString getCodeForNode() override;
+//ovo ce biti obrisano, sluzi za proveru
+/*protected:
+    void mousePressEvent(QMouseEvent *event);
+    */
 };
 
 

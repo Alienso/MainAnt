@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QList>
 
+#include "./headers/BinaryFunction.h"
 #include "./headers/Node.h"
 #include "./headers/Parser.h"
 #include "./headers/InputNode.h"
