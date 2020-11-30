@@ -11,7 +11,11 @@ CONFIG += c++11
 SOURCES += \
     ./src/main.cpp \
     ./src/mainwindow.cpp \
+    src/BodyNode.cpp \
+    src/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
+    src/ElseNode.cpp \
+    src/IfNode.cpp \
     src/Input.cpp \
     src/InputNode.cpp \
     src/Node.cpp \
@@ -24,7 +28,11 @@ SOURCES += \
 
 HEADERS += \
     ./headers/mainwindow.h \
+    headers/BodyNode.h \
+    headers/ConditionNode.h \
     headers/CustomGraphicsView.h \
+    headers/ElseNode.h \
+    headers/IfNode.h \
     headers/Input.h \
     headers/InputNode.h \
     headers/Node.h \
@@ -33,7 +41,7 @@ HEADERS += \
     headers/Parser.h \
     headers/PrintNode.h \
     headers/ReturNode.h \
-    headers/StartNode.h
+    headers/StartNode.h \
 
 FORMS += \
     mainwindow.ui

@@ -20,6 +20,10 @@
 #include "./headers/ReturNode.h"
 #include "./headers/StartNode.h"
 #include "./headers/CustomGraphicsView.h"
+#include "./headers/IfNode.h"
+#include "./headers/ConditionNode.h"
+#include "./headers/ElseNode.h"
+#include "./headers/BodyNode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
