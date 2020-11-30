@@ -74,7 +74,7 @@ void MainWindow::putNode(QListWidgetItem* item)
         p->addNode(n, new QString("StartNode"));
         p->addNewStart(n);
     }else if(ui->listWidget->item(8) == item){
-        Node* n = new Node("if", 2,3,"if(_){@}else{@}",p);
+        Node* n = new Node("if",1,2,"if(_){@}else{@}",p,true);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("if"));
     }
@@ -169,15 +169,7 @@ void MainWindow::on_actionRun_triggered()
 
 void MainWindow::on_actionCompile_triggered(){
 
-    for (int i=0;i<p->getEndNodes().length();i++)
-        std::cout<<p->getEndNodes()[i]->name.toUtf8().constData() << ", ";
-    std::cout << p->getEndNodes().length() << std::endl;
-    std::cout << "Pocet obilazak\n";
-    fflush(stdout);
-    //QString s = p->traverse(this->tmp->outputs[0]);
     QString s = p->traverseGraph();
-    std::cout << "Kraj:\n";
-    fflush(stdout);
     std::cout << s.toUtf8().constData();
     fflush(stdout);
 }

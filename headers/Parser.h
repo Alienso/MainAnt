@@ -6,8 +6,10 @@
 #include <QMap>
 #include <string>
 
+#include "./headers/Output.h"
 #include "./headers/Node.h"
 
+class Output;
 class Node;
 class Parser
 {

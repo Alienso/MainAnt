@@ -75,12 +75,11 @@ QString  Parser::traverseGraph()
     QString s = "";
     for(int i=0;i<getEndNodes().length();i++){
         if (getEndNodes()[i]->name.compare("if") == 0){
-            QString tmp = "if(" + traverse(getEndNodes()[i]->inputs[1]->getPrevious()) + "){" + ifMap[getEndNodes()[i]->getNodeId() + "_true"] + "}else{" + ifMap[getEndNodes()[i]->getNodeId() + "_false"] + "}" + ifMap[getEndNodes()[i]->getNodeId() + "_finaly"];
-            s.push_front(tmp);
-            std::cout<< tmp.toUtf8().constData() << "\n";
-            fflush(stdout);
-            QString res = traverse(getEndNodes()[i]->inputs[0]->getPrevious());
+            s = "";
+            QString res = traverse(getEndNodes()[i]->inputs[0]->getPrevious()); //Obidji ulaz if
             s.push_back(res);
+            QString tmp = "if(" + traverse(getEndNodes()[i]->inputs[1]->getPrevious()) + "){" + ifMap[getEndNodes()[i]->getNodeId() + "_true"] + "}else{" + ifMap[getEndNodes()[i]->getNodeId() + "_false"] + "}" + ifMap[getEndNodes()[i]->getNodeId() + "_finaly"];
+            s.push_back(tmp);
             continue;
         }
         QString res = traverse(getEndNodes()[i]->outputs[0]);
@@ -131,12 +130,9 @@ QString  Parser::traverseGraph()
 QString Parser::traverse(Output* o){
 
     if (o == nullptr){
-        return "Cao2";
+        return "";
     }
     Node* curr = static_cast<Node*>(o->parentWidget());
-    if (curr->visited)
-        return "";
-    curr->visited = true;
 
     QString s = curr->code;
     QString res = "";
@@ -145,23 +141,28 @@ QString Parser::traverse(Output* o){
         i = 1;
 
     if (curr->name.compare("if") == 0){
-        endNodes.push_back(curr);
+        if (!curr->visited)
+            endNodes.push_back(curr);
+        curr->visited = true;
         if (o == curr->outputs[0]){
-           s = "if(_){@}else{@}*";
            fieldToWriteTo = curr->getNodeId() + "_finaly";
            return "";
         }
         if (o == curr->outputs[1]){
            fieldToWriteTo = curr->getNodeId() + "_true";
            return "";
-           s = "if(_){*}else{@}@";
          }
         if (o == curr->outputs[2]){
            fieldToWriteTo = curr->getNodeId() + "_false";
            return "";
-           s = "if(_){@}else{*}@";
          }
     }
+
+    //MORA ovde zbog provere da li je if pre posecen
+
+    if (curr->visited)
+        return "";
+    curr->visited = true;
 
     for (auto c : s){
         if (c == '_'){
@@ -179,6 +180,10 @@ QString Parser::traverse(Output* o){
             res.append("#" + curr->nodeId + "#");
         }
         else res.append(c);
+    }
+    if (curr->hasFlowControl){
+        QString rez = traverse(curr->inputs[0]->getPrevious());
+        res.append(rez);
     }
     return res;
 }
