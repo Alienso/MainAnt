@@ -15,7 +15,10 @@ SOURCES += \
     src/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
     src/ElseNode.cpp \
+    src/ForInicializeNode.cpp \
+    src/ForNode.cpp \
     src/IfNode.cpp \
+    src/IncrementNode.cpp \
     src/Input.cpp \
     src/InputNode.cpp \
     src/Node.cpp \
@@ -32,7 +35,10 @@ HEADERS += \
     headers/ConditionNode.h \
     headers/CustomGraphicsView.h \
     headers/ElseNode.h \
+    headers/ForInicializeNode.h \
+    headers/ForNode.h \
     headers/IfNode.h \
+    headers/IncrementNode.h \
     headers/Input.h \
     headers/InputNode.h \
     headers/Node.h \

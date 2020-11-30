@@ -24,6 +24,9 @@
 #include "./headers/ConditionNode.h"
 #include "./headers/ElseNode.h"
 #include "./headers/BodyNode.h"
+#include "./headers/ForNode.h"
+#include "./headers/IncrementNode.h"
+#include "./headers/ForInicializeNode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

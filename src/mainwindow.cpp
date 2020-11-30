@@ -20,9 +20,12 @@ MainWindow::MainWindow(QWidget *parent)
     QListWidgetItem* cond =new QListWidgetItem(tr("+Condition"), ui->listWidget);
     QListWidgetItem* elseNode =new QListWidgetItem(tr("+Else"), ui->listWidget);
     QListWidgetItem* BodyNode =new QListWidgetItem(tr("+BodyNode"), ui->listWidget);
+    QListWidgetItem* ForNode = new QListWidgetItem(tr("+ForNoode"), ui->listWidget);
+    QListWidgetItem* IncrementNode = new QListWidgetItem(tr("+IncrementNode"), ui->listWidget);
+    QListWidgetItem* ForInicializeNode = new QListWidgetItem(tr("+ForInicializeNode"), ui->listWidget);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
-    //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
+
     ui->StagingArea->setLayout(new QFormLayout());
 
 }
@@ -87,7 +90,19 @@ void MainWindow::putNode(QListWidgetItem* item)
         BodyNode* n = new BodyNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("BodyNode"));
-     }
+     }else if(ui->listWidget->item(12) == item){
+        ForNode* n = new ForNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ForNode"));
+    }else if(ui->listWidget->item(13) == item){
+        IncrementNode* n = new IncrementNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("IncrementNode"));
+    }else if(ui->listWidget->item(14) == item){
+        ForInicializeNode* n = new ForInicializeNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ForInicializeNode"));
+    }
 
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraph()){
