@@ -8,22 +8,23 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QListWidgetItem* plus = new QListWidgetItem(tr("+BinarySum"), ui->listWidget);
-    QListWidgetItem* minus =new QListWidgetItem(tr("+BinaryMInus"), ui->listWidget);
-    QListWidgetItem* mul =new QListWidgetItem(tr("+BinaryMUltiply"), ui->listWidget);
-    QListWidgetItem* less =new QListWidgetItem(tr("+LessThan"), ui->listWidget);
-    QListWidgetItem* input =new QListWidgetItem(tr("+Input"), ui->listWidget);
-    QListWidgetItem* print =new QListWidgetItem(tr("+Print"), ui->listWidget);
-    QListWidgetItem* ret =new QListWidgetItem(tr("+Return"), ui->listWidget);
-    QListWidgetItem* start =new QListWidgetItem(tr("+Start"), ui->listWidget);
-    QListWidgetItem* ifNode =new QListWidgetItem(tr("+If"), ui->listWidget);
-    QListWidgetItem* cond =new QListWidgetItem(tr("+Condition"), ui->listWidget);
-    QListWidgetItem* elseNode =new QListWidgetItem(tr("+Else"), ui->listWidget);
-    QListWidgetItem* BodyNode =new QListWidgetItem(tr("+BodyNode"), ui->listWidget);
-    QListWidgetItem* ForNode = new QListWidgetItem(tr("+ForNoode"), ui->listWidget);
-    QListWidgetItem* IncrementNode = new QListWidgetItem(tr("+IncrementNode"), ui->listWidget);
-    QListWidgetItem* ForInicializeNode = new QListWidgetItem(tr("+ForInicializeNode"), ui->listWidget);
-    QListWidgetItem* WhileNode =new QListWidgetItem(tr("+While"), ui->listWidget);
+    new QListWidgetItem(tr("+BinarySum"), ui->listWidget);
+    new QListWidgetItem(tr("+BinaryMInus"), ui->listWidget);
+    new QListWidgetItem(tr("+BinaryMUltiply"), ui->listWidget);
+    new QListWidgetItem(tr("+LessThan"), ui->listWidget);
+    new QListWidgetItem(tr("+Input"), ui->listWidget);
+    new QListWidgetItem(tr("+Print"), ui->listWidget);
+    new QListWidgetItem(tr("+Return"), ui->listWidget);
+    new QListWidgetItem(tr("+Start"), ui->listWidget);
+    new QListWidgetItem(tr("+If"), ui->listWidget);
+    new QListWidgetItem(tr("+Condition"), ui->listWidget);
+    new QListWidgetItem(tr("+Else"), ui->listWidget);
+    new QListWidgetItem(tr("+BodyNode"), ui->listWidget);
+    new QListWidgetItem(tr("+ForNoode"), ui->listWidget);
+    new QListWidgetItem(tr("+IncrementNode"), ui->listWidget);
+    new QListWidgetItem(tr("+ForInicializeNode"), ui->listWidget);
+    new QListWidgetItem(tr("+While"), ui->listWidget);
+
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
 
     ui->StagingArea->setLayout(new QFormLayout());
@@ -158,6 +159,7 @@ void MainWindow::on_actionOpen_triggered()
         */
     }
 }
+
 //*File->Save Cuva se tekstualni fajl.
 void MainWindow::on_actionSave_triggered()
 {
@@ -194,6 +196,5 @@ void MainWindow::on_actionRun_triggered()
     }
     else
         qDebug() << p1;
-
 }
 
