@@ -6,32 +6,45 @@ Node::Node(QWidget *parent) : QFrame(parent)
     setStyleSheet ("background-color: rgba(24, 135, 127, 1);"
                    "border: 1px solid rgba(205, 221, 63, 1);"
                    );
-    this->setLayout(new QFormLayout());
+    this->setLayout(new QGridLayout());
     *(this->getOldPos()) = this->pos();
 }
 
-Node::Node(QString _name,int ninputs,int noutputs, Parser *p_,QWidget* parent) : Node(parent)
+Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser *p_,QWidget* parent) : Node(parent)
 {
-    QFormLayout* layout = static_cast<QFormLayout*>(this->layout());
-    layout->setHorizontalSpacing(100);
+    QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->setHorizontalSpacing(2);
+    layout->setVerticalSpacing(2);
     this->name = _name;
     this->nameLbl = new QLabel(name);
+    if (args.length() == 0){
+        args.resize(ninputs);
+        for (int i=0;i<ninputs;i++)
+            args[i] = "";
+    }
 
     this->nameLbl->setMaximumSize(80,20);
     //this->nameLbl->setStyleSheet("border: 0px solid white;");
-    layout->insertRow(0,nameLbl);
+    layout->addWidget(nameLbl,0,0,1,3);
 
     Output* o = new Output();
     o->addItem(""); //Must be used to be able to drag
 
     Input* tmp = new Input();
-    layout->insertRow(1,tmp,o);
+    QLabel* lbl = new QLabel(args[0]);
+    lbl->setFixedSize(40,20);
+    QTextEdit* txt = new QTextEdit();
+    txt->setFixedSize(40,20);
+    layout->addWidget(tmp,1,0);
+    layout->addWidget(lbl,1,1,1,1);
+    layout->addWidget(txt,1,2,1,1);
+    layout->addWidget(o,1,3);
     this->inputs.push_back(tmp);
     this->output = o;
 
     for (int i=1;i<ninputs;i++){
         tmp = new Input();
-        layout->insertRow(i+1,tmp);
+        layout->addWidget(tmp,i+1,0);
         this->inputs.push_back(tmp);
     }
     this->p=p_;

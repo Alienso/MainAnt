@@ -29,7 +29,6 @@ void Input::dropEvent(QDropEvent *event)
         node->addParents(parent);
 
         auto label = new QLabel ("");
-        this->previous->parentWidget()->layout()->addWidget(new Input());
         label->setStyleSheet ("border: 1px solid black; background-color: white; qproperty-alignment: AlignCenter");
         layout ()->addWidget(label);
         setStyleSheet ("background-color: rgba(255, 0, 0, 1);");

@@ -4,6 +4,7 @@
 #include <QString>
 #include <QTextEdit>
 #include <QFont>
+#include <QFormLayout>
 
 #include "./headers/Node.h"
 

@@ -6,10 +6,11 @@
 #include <QMouseEvent>
 #include <QWidget>
 #include <QLayout>
-#include <QFormLayout>
+#include <QGridLayout>
 #include <QDebug>
 #include <iostream>
 #include <QMenu>
+#include <QTextEdit>
 
 #include "./headers/Output.h"
 #include "./headers/Input.h"
@@ -39,7 +40,7 @@ public:
 
 public:
     explicit Node(QWidget* parent = nullptr);
-    Node(QString name,int ninputs,int noutputs,Parser *p_=nullptr, QWidget* parent = nullptr);
+    Node(QString name,int ninputs,int noutputs,QVector<QString> args = {},Parser *p_=nullptr, QWidget* parent = nullptr);
     void addWidget(QWidget* w);
 
     void setNodeId(QString nodeId);

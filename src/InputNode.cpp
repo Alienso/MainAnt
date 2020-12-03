@@ -8,7 +8,7 @@
 */
 
 
-InputNode::InputNode():Node("input", 0, 1, nullptr), manualInput(false), fileInput(false), input(nullptr)
+InputNode::InputNode():Node("input", 0, 1), manualInput(false), fileInput(false), input(nullptr)
 {
     setMinimumSize(80,80);
     setMaximumSize(300, 200);

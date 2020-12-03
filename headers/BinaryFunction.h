@@ -16,7 +16,7 @@ private:
     QString op1;
     QString op2;
 public:
-    BinaryFunction(QString _name,int ninputs,int noutputs, Parser * p_,QWidget* parent);
+    BinaryFunction(QString _name,int ninputs,int noutputs, QVector<QString> args = {}, Parser * p_ = nullptr,QWidget* parent = nullptr);
     void setParameters(InputNode *op1_, InputNode *op2_);
 
     QString getCodeForNode() override;

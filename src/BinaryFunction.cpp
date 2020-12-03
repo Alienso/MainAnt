@@ -1,7 +1,7 @@
 #include "./headers/BinaryFunction.h"
 
-BinaryFunction::BinaryFunction(QString _name, int ninputs, int noutputs, Parser *p_, QWidget *parent)
-    :Node(_name, ninputs, noutputs, p, parent){
+BinaryFunction::BinaryFunction(QString _name, int ninputs, int noutputs,QVector<QString> args, Parser *p_, QWidget *parent)
+    :Node(_name, ninputs, noutputs, args, p, parent){
 }
 
 QString BinaryFunction::getCodeForNode()
