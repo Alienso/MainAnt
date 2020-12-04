@@ -17,7 +17,7 @@ InputNode::InputNode():Node("input", 0, 1), manualInput(false), fileInput(false)
                    "border: 1px solid rgba(237, 48, 194, 1);");
 
 
-    QFormLayout* layout = static_cast<QFormLayout*>(this->layout());
+    QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
 
     QRadioButton* fileInputRadioButton = new QRadioButton("Input from file",this);
     QRadioButton *manualInputRadioButton = new QRadioButton("Manula input",this);
@@ -48,8 +48,8 @@ InputNode::InputNode():Node("input", 0, 1), manualInput(false), fileInput(false)
             //QString input = lineEdit->text();
             //this->fileName = new QString(input);
             Node* parent = static_cast<Node*>(choice->parent());
-            QFormLayout* layout = static_cast<QFormLayout*>(parent->layout());
-            layout->insertRow(4, fileEdit);
+            QGridLayout* layout = static_cast<QGridLayout*>(parent->layout());
+            layout->addWidget(fileEdit,4,0);
             this->fileInput = true;
             this->input = fileEdit;
         }
@@ -78,14 +78,14 @@ InputNode::InputNode():Node("input", 0, 1), manualInput(false), fileInput(false)
             edit->setFontFamily(*font);
             edit->setPlaceholderText(*placeHolder);
             Node* parent = static_cast<Node*>(choice->parent());
-            QFormLayout* layout = static_cast<QFormLayout*>(parent->layout());
-            layout->insertRow(4, edit);
+            QGridLayout* layout = static_cast<QGridLayout*>(parent->layout());
+            layout->addWidget(edit,4,0);
             this->manualInput = true;
             this->input = edit;
         }
     });
-    layout->insertRow(2, fileInputRadioButton);
-    layout->insertRow(3, manualInputRadioButton);
+    layout->addWidget(fileInputRadioButton,2,0);
+    layout->addWidget(manualInputRadioButton,3,0);
 }
 
 void InputNode::resetInput()

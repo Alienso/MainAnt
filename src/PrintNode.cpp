@@ -22,8 +22,8 @@ PrintNode::PrintNode() : Node("print", 1, 1)
     edit->setReadOnly(true);
     //edit->setText("Danas je lep dan");
 
-    QFormLayout* layout = static_cast<QFormLayout*>(this->layout());
-    layout->insertRow(2,edit);
+    QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->addWidget(edit,2,0);
 }
 
 /*F-ja koja vraca code za dati cvor

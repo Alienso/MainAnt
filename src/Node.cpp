@@ -23,6 +23,11 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
             args[i] = "";
     }
 
+    if (args.length() == 0){ //TMP RESENJE
+        args.resize(1);
+        args[0] = "";
+    }
+
     this->nameLbl->setMaximumSize(80,20);
     //this->nameLbl->setStyleSheet("border: 0px solid white;");
     layout->addWidget(nameLbl,0,0,1,3);
