@@ -1,5 +1,15 @@
 #include "../headers/Parser.h"
 
+bool Parser::checkType(std::string name, std::string expectedName)
+{
+    int cmp = name.compare(expectedName);
+    if(cmp == 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 Parser::Parser():id(0)
 {
 }
@@ -57,7 +67,6 @@ void Parser::removeNode(Node* node, QString* type)
 
 QString  Parser::traverseGraph()//treba promeniti ime nije intuitivno
 {
-    qDebug()<<"Pozvan\n";
     if(this->startNodes.empty())
     {
         qDebug()<<"Nema startnih cvorova\n";
@@ -66,6 +75,7 @@ QString  Parser::traverseGraph()//treba promeniti ime nije intuitivno
     {
         for(Node* startNode : this->startNodes){
             startNode->setVisited(true);
+            qDebug()<<startNode->getCodeForNode();
             QVector<Node*> children = startNode->getChildren();
             for(auto child : children){
                 if(!child->getVisited()){
@@ -75,16 +85,27 @@ QString  Parser::traverseGraph()//treba promeniti ime nije intuitivno
 
         }
     }
-    qDebug()<< "Kraj";
     return QString::fromStdString("Zavrsio sam");
 
 }
 
 void Parser::visitNode(Node* node)
 {
-    //qDebug()<<"Vist";
     node->setVisited(true);
-   QVector<Node*> parents = node->getParents();
+    QVector<Node*> parents = node->getParents();
+
+    QString name = node->getName();
+    std::string nodeName = name.toUtf8().constData();
+    bool isIf = checkType(nodeName, "If");
+    bool isWhile = checkType(nodeName, "While");
+    bool isFor = checkType(nodeName, "For");
+
+    if(isIf || isWhile || isFor){
+        qDebug()<<name<<"(";
+    }
+
+
+
     if(!parents.empty())
     {
         //qDebug()<<"if roditelj";
@@ -101,17 +122,20 @@ void Parser::visitNode(Node* node)
             }
         }
     }
-        //qDebug()<<"else";
-        //node->run ovaj metod mora da ima svaki cvor da se izvrsi
-        qDebug() << node->getCodeForNode();
-        QVector<Node*> children = node->getChildren();
-        if(children.empty()){
-            return;
-        }else{
-            //qDebug()<<"Dete";
-            for(Node* child : children)
-                if(!child->getVisited())
-                    visitNode(child);
-        }
+    if(isIf || isWhile || isFor){
+       qDebug()<<"uslov)";
+    }
+    qDebug() << node->getCodeForNode();
+    QVector<Node*> children = node->getChildren();
+    if(children.empty()){
+       return;
+    }else{
+       //qDebug()<<"Dete";
+       for(Node* child : children){
+           if(!child->getVisited()){
+              visitNode(child);
+           }
+       }
+    }
 
 }

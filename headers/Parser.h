@@ -5,6 +5,8 @@
 #include <QString>
 #include <QMap>
 #include <string>
+#include <iostream>
+#include <cstring>
 
 #include "./headers/Node.h"
 
@@ -24,6 +26,9 @@ private:
     //Promenljiva se koristi kao id cvora u listi, i sluzi pri formiranju imena cvorova scene
     //radi lakseg pristupanja metodama klase datog cvora i slicno
     int id;
+
+   //funkcija za proveru tipa noda
+    bool checkType(std::string name, std::string expectedName);
 
 
 public:

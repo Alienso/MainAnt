@@ -13,8 +13,7 @@ IfNode::IfNode() : Node("If", 2, 1, nullptr)
 
 QString IfNode::getCodeForNode(){
 
-    QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
-    qDebug()<<"If";
+    QString text = "";
     return text;
 
 }
