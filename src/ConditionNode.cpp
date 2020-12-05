@@ -10,8 +10,7 @@ ConditionNode::ConditionNode() : Node("Condition", 1, 1, nullptr)
 
 QString ConditionNode::getCodeForNode()
 {
-    QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
-    qDebug()<<"Condition";
+    QString text = "condition";
     return text;
 }
 

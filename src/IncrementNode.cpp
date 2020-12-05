@@ -1,6 +1,6 @@
 #include "../headers/IncrementNode.h"
 
-IncrementNode::IncrementNode() : Node("IncrementNode", 1, 1, nullptr)
+IncrementNode::IncrementNode() : Node("Increment", 1, 1, nullptr)
 {
     setMinimumSize(80,80);
     setMaximumSize(180, 100);
@@ -11,7 +11,6 @@ IncrementNode::IncrementNode() : Node("IncrementNode", 1, 1, nullptr)
 QString IncrementNode::getCodeForNode()
 {
     //TODO mora da se napise kode koji ce da vraca cvor Increment node
-    QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
-    qDebug()<<"IncremnetNode";
+    QString text = "increment";
     return text;
 }

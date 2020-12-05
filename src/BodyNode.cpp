@@ -9,7 +9,6 @@ BodyNode::BodyNode():Node("Body", 1, 1, nullptr)
 }
 
 QString BodyNode::getCodeForNode(){
-    QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
-    qDebug()<<"Body";
+    QString text = "Body";
     return text;
 }

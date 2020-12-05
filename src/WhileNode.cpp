@@ -2,7 +2,7 @@
 
 
 WhileNode::WhileNode():
-    Node("While",2,1, nullptr)
+    Node("while",2,1, nullptr)
 {
     setMinimumSize(100,100);
     setMaximumWidth(200);

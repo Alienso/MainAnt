@@ -1,6 +1,6 @@
 #include "../headers/IfNode.h"
 
-IfNode::IfNode() : Node("If", 2, 1, nullptr)
+IfNode::IfNode() : Node("if", 2, 1, nullptr)
 {
     setMinimumSize(80,80);
     setMaximumSize(180, 100);

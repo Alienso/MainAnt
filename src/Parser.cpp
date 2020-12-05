@@ -67,15 +67,17 @@ void Parser::removeNode(Node* node, QString* type)
 
 QString  Parser::traverseGraph()//treba promeniti ime nije intuitivno
 {
+    file.open("../mainAntCode.cpp", std::ios::out|std::ios::trunc);
     if(this->startNodes.empty())
     {
-        qDebug()<<"Nema startnih cvorova\n";
+        file<<"Nema startnih cvorova\n";
         return QString("");
     }else
     {
+        file<<"#include <iostream>\n#include <string>\n";
         for(Node* startNode : this->startNodes){
             startNode->setVisited(true);
-            qDebug()<<startNode->getCodeForNode();
+            file<<startNode->getCodeForNode().toUtf8().constData();
             QVector<Node*> children = startNode->getChildren();
             for(auto child : children){
                 if(!child->getVisited()){
@@ -85,6 +87,7 @@ QString  Parser::traverseGraph()//treba promeniti ime nije intuitivno
 
         }
     }
+    file.close();
     return QString::fromStdString("Zavrsio sam");
 
 }
@@ -96,19 +99,18 @@ void Parser::visitNode(Node* node)
 
     QString name = node->getName();
     std::string nodeName = name.toUtf8().constData();
-    bool isIf = checkType(nodeName, "If");
-    bool isWhile = checkType(nodeName, "While");
-    bool isFor = checkType(nodeName, "For");
+    bool isIf = checkType(nodeName, "if");
+    bool isWhile = checkType(nodeName, "while");
+    bool isFor = checkType(nodeName, "for");
 
     if(isIf || isWhile || isFor){
-        qDebug()<<name<<"(";
+        file<<nodeName<<"(";
     }
 
 
 
     if(!parents.empty())
     {
-        //qDebug()<<"if roditelj";
         for(Node* parent : parents){
             if(strcmp(parent->getName().toUtf8().constData(),("StartNode")) == 0)
             {
@@ -118,24 +120,34 @@ void Parser::visitNode(Node* node)
             {
                 if(!parent->getVisited()){
                     visitNode(parent);
+                    if(isFor){
+                        std::string parentName = parent->getName().toUtf8().constData();
+                        bool isIncrement = checkType(parentName, "Increment");
+                        if(!isIncrement){
+                            file<<";";
+                        }
+                    }
                 }
             }
         }
     }
     if(isIf || isWhile || isFor){
-       qDebug()<<"uslov)";
+       file<<"){\n";
     }
-    qDebug() << node->getCodeForNode();
+    file<< node->getCodeForNode().toUtf8().constData();
     QVector<Node*> children = node->getChildren();
     if(children.empty()){
        return;
     }else{
-       //qDebug()<<"Dete";
        for(Node* child : children){
            if(!child->getVisited()){
+              std::string childName = child->getName().toUtf8().constData();
+              bool isBody = checkType(childName, "Body");
               visitNode(child);
+              if(isBody){
+                  file<<"\n}\n";
+              }
            }
        }
     }
-
 }

@@ -10,7 +10,7 @@ StartNode::StartNode():Node("StartNode", 0, 1, nullptr)
 
 QString StartNode::getCodeForNode()
 {
-    QString text = "main(){\n";
+    QString text = "int main(){\n";
 
     return text;
 }

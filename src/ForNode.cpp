@@ -1,6 +1,6 @@
 #include "../headers/ForNode.h"
 
-ForNode::ForNode() : Node("For", 4, 1, nullptr)
+ForNode::ForNode() : Node("for", 4, 1, nullptr)
 {
     setMinimumSize(80,80);
     setMaximumSize(180, 120);
@@ -11,7 +11,6 @@ ForNode::ForNode() : Node("For", 4, 1, nullptr)
 QString ForNode::getCodeForNode()
 {
     //TODO mora da se napise kode koji ce da vraca for node
-    QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
-    qDebug()<<"For";
+    QString text = "";
     return text;
 }

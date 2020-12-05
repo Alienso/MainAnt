@@ -11,8 +11,7 @@ ForInicializeNode::ForInicializeNode() : Node("ForInicializeNode", 1, 1, nullptr
 QString ForInicializeNode::getCodeForNode()
 {
     //TODO mora da se napise kode koji ce da vraca inicilaze for node
-    QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
-    qDebug()<<"InicializeForNode";
+    QString text = "initisallize";
     return text;
 }
 
