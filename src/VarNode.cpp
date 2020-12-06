@@ -39,7 +39,7 @@ QString VarNode::getCodeForNode()
         text+= QString::fromStdString("int ");
         text+= this->varName->text();
         text+= QString::fromStdString(" = ");
-        text+= this->value->text().toInt();
+        text+= this->value->text();
         text+= QString::fromStdString(";\n");
     }
     else if(this->combo->currentText() == QString::fromStdString("Float"))
@@ -47,7 +47,7 @@ QString VarNode::getCodeForNode()
         text+= QString::fromStdString("float ");
         text+= this->varName->text();
         text+= QString::fromStdString(" = ");
-        text+= this->value->text().toFloat();
+        text+= this->value->text();
         text+= QString::fromStdString(";\n");
     }
     else if(this->combo->currentText() == QString::fromStdString("Double"))
@@ -55,7 +55,7 @@ QString VarNode::getCodeForNode()
         text+= QString::fromStdString("double ");
         text+= this->varName->text();
         text+= QString::fromStdString(" = ");
-        text+= this->value->text().toDouble();
+        text+= this->value->text();
         text+= QString::fromStdString(";\n");
     }
     else if(this->combo->currentText() == QString::fromStdString("Bool"))
@@ -63,7 +63,7 @@ QString VarNode::getCodeForNode()
         text+= QString::fromStdString("bool ");
         text+= this->varName->text();
         text+= QString::fromStdString(" = ");
-        text+= QString::fromStdString("true");
+        text+= this->value->text().toLower();
         text+= QString::fromStdString(";\n");
     }
     else if(this->combo->currentText() == QString::fromStdString("Char"))
