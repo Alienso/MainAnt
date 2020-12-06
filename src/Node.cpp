@@ -38,30 +38,37 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
         Output* o = new Output();
         o->addItem(""); //Must be used to be able to drag
         Input* tmp = new Input();
-        QLabel* lbl = new QLabel(args[0]);
-        lbl->setFixedSize(40,20);
-        QTextEdit* txt = new QTextEdit();
-        txt->setFixedSize(40,20);
         layout->addWidget(tmp,i+1,0);
-        layout->addWidget(lbl,i+1,1,1,1);
-        layout->addWidget(txt,i+1,2,1,1);
         layout->addWidget(o,i+1,3);
         this->inputs.push_back(tmp);
+
+        if (args[i].compare("") != 0){
+            QLabel* lbl = new QLabel(args[i]);
+            lbl->setFixedSize(40,20);
+            QTextEdit* txt = new QTextEdit();
+            txt->setFixedSize(40,20);
+            layout->addWidget(lbl,i+1,1,1,1);
+            layout->addWidget(txt,i+1,2,1,1);
+        }
+
       }
       for (int i=0;i<std::max(ninputs,noutputs);i++){
           if (ninputs == noutputs){
               Output* o = new Output();
-              o->addItem("");
+              o->addItem(""); //Must be used to be able to drag
               Input* tmp = new Input();
-              QLabel* lbl = new QLabel(args[0]);
-              lbl->setFixedSize(40,20);
-              QTextEdit* txt = new QTextEdit();
-              txt->setFixedSize(40,20);
               layout->addWidget(tmp,i+1,0);
-              layout->addWidget(lbl,i+1,1,1,1);
-              layout->addWidget(txt,i+1,2,1,1);
               layout->addWidget(o,i+1,3);
               this->inputs.push_back(tmp);
+
+              if (args[i].compare("") != 0){
+                  QLabel* lbl = new QLabel(args[i]);
+                  lbl->setFixedSize(40,20);
+                  QTextEdit* txt = new QTextEdit();
+                  txt->setFixedSize(40,20);
+                  layout->addWidget(lbl,i+1,1,1,1);
+                  layout->addWidget(txt,i+1,2,1,1);
+              }
               continue;
           }
 
@@ -72,16 +79,21 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
               continue;
           }
           if (ninputs>noutputs){
+              Output* o = new Output();
+              o->addItem(""); //Must be used to be able to drag
               Input* tmp = new Input();
-              QLabel* lbl = new QLabel(args[0]);
-              lbl->setFixedSize(40,20);
-              QTextEdit* txt = new QTextEdit();
-              txt->setFixedSize(40,20);
               layout->addWidget(tmp,i+1,0);
-              layout->addWidget(lbl,i+1,1,1,1);
-              layout->addWidget(txt,i+1,2,1,1);
+              layout->addWidget(o,i+1,3);
               this->inputs.push_back(tmp);
-              continue;
+
+              if (args[i].compare("") != 0){
+                  QLabel* lbl = new QLabel(args[i]);
+                  lbl->setFixedSize(40,20);
+                  QTextEdit* txt = new QTextEdit();
+                  txt->setFixedSize(40,20);
+                  layout->addWidget(lbl,i+1,1,1,1);
+                  layout->addWidget(txt,i+1,2,1,1);
+              }
           }
     }
 }
