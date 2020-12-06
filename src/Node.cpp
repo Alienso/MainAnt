@@ -10,11 +10,13 @@ Node::Node(QWidget *parent) : QFrame(parent)
     *(this->getOldPos()) = this->pos();
 }
 
+//TODO QT resetuje velicinu fonta u textEditu kada se sve izbrise
 Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser *p_,QWidget* parent) : Node(parent)
 {
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->setHorizontalSpacing(2);
-    layout->setVerticalSpacing(2);
+    layout->setVerticalSpacing(5);
+    this->setMaximumSize(150, ninputs>noutputs ? 27*(ninputs+1) : 27*(noutputs+1));
     this->p=p_;
     this->name = _name;
     this->nameLbl = new QLabel(name);
@@ -47,8 +49,15 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
             lbl->setFixedSize(40,20);
             QTextEdit* txt = new QTextEdit();
             txt->setFixedSize(40,20);
+            txt->setFontPointSize(6);
             layout->addWidget(lbl,i+1,1,1,1);
             layout->addWidget(txt,i+1,2,1,1);
+        }
+        else {
+            QTextEdit* txt = new QTextEdit();
+            txt->setFixedSize(40,20);
+            txt->setFontPointSize(6);
+            layout->addWidget(txt,i+1,1);
         }
 
       }
@@ -65,9 +74,16 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
                   QLabel* lbl = new QLabel(args[i]);
                   lbl->setFixedSize(40,20);
                   QTextEdit* txt = new QTextEdit();
+                  txt->setFontPointSize(6);
                   txt->setFixedSize(40,20);
                   layout->addWidget(lbl,i+1,1,1,1);
                   layout->addWidget(txt,i+1,2,1,1);
+              }
+              else {
+                  QTextEdit* txt = new QTextEdit();
+                  txt->setFixedSize(40,20);
+                  txt->setFontPointSize(6);
+                  layout->addWidget(txt,i+1,1);
               }
               continue;
           }
@@ -91,8 +107,15 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
                   lbl->setFixedSize(40,20);
                   QTextEdit* txt = new QTextEdit();
                   txt->setFixedSize(40,20);
+                  txt->setFontPointSize(6);
                   layout->addWidget(lbl,i+1,1,1,1);
                   layout->addWidget(txt,i+1,2,1,1);
+              }
+              else {
+                  QTextEdit* txt = new QTextEdit();
+                  txt->setFixedSize(40,20);
+                  txt->setFontPointSize(6);
+                  layout->addWidget(txt,i+1,1);
               }
           }
     }

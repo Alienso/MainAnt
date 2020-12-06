@@ -32,7 +32,7 @@ void MainWindow::putNode(QListWidgetItem* item)
 {
     if(ui->listWidget->item(0) == item){
         //std::cout<<"plus"<<std::endl;
-        BinaryFunction* n = new BinaryFunction("plus", 2, 1,{"arg1","arg2"}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("plus", 2, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("PlusNode"));
     }else if(ui->listWidget->item(1) == item){
