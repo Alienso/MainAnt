@@ -28,6 +28,7 @@
 #include "./headers/IncrementNode.h"
 #include "./headers/ForInicializeNode.h"
 #include "./headers/WhileNode.h"
+#include "./headers/VarNode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -28,7 +28,9 @@ SOURCES += \
     src/PrintNode.cpp \
     src/ReturnNode.cpp \
     src/StartNode.cpp \
-    src/WhileNode.cpp
+    src/VarNode.cpp \
+    src/WhileNode.cpp \
+
 
 HEADERS += \
     ./headers/mainwindow.h \
@@ -49,7 +51,8 @@ HEADERS += \
     headers/PrintNode.h \
     headers/ReturNode.h \
     headers/StartNode.h \
-    headers/WhileNode.h
+    headers/VarNode.h \
+    headers/WhileNode.h \
 
 FORMS += \
     mainwindow.ui

@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     new QListWidgetItem(tr("+IncrementNode"), ui->listWidget);
     new QListWidgetItem(tr("+ForInicializeNode"), ui->listWidget);
     new QListWidgetItem(tr("+While"), ui->listWidget);
+    new QListWidgetItem(tr("+VarNode"), ui->listWidget);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
 
@@ -107,6 +108,10 @@ void MainWindow::putNode(QListWidgetItem* item)
         WhileNode* n = new WhileNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("WhileNode"));
+    }else if(ui->listWidget->item(16) == item){
+        VarNode* n = new VarNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("VarNode"));
     }
 
     //postavlja policy za meni koji se otvara desnim klikom
