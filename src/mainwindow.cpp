@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
-    ui->StagingArea->setLayout(new QFormLayout());
+    ui->StagingArea->setLayout(new CustomLayout(1));
 
 }
 

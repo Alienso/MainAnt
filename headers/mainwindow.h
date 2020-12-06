@@ -21,6 +21,7 @@
 #include "./headers/ReturNode.h"
 #include "./headers/StartNode.h"
 #include "./headers/CustomGraphicsView.h"
+#include "./headers/CustomLayout.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
