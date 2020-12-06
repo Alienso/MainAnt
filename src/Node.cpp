@@ -15,6 +15,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->setHorizontalSpacing(2);
     layout->setVerticalSpacing(2);
+    this->p=p_;
     this->name = _name;
     this->nameLbl = new QLabel(name);
     if (args.length() == 0){
@@ -32,35 +33,57 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
     //this->nameLbl->setStyleSheet("border: 0px solid white;");
     layout->addWidget(nameLbl,0,0,1,3);
 
-    Output* o = new Output();
-    o->addItem(""); //Must be used to be able to drag
+    for (int i=0;i < std::min(ninputs,noutputs);i++){
 
-    Input* tmp = new Input();
-    QLabel* lbl = new QLabel(args[0]);
-    lbl->setFixedSize(40,20);
-    QTextEdit* txt = new QTextEdit();
-    txt->setFixedSize(40,20);
-    layout->addWidget(tmp,1,0);
-    layout->addWidget(lbl,1,1,1,1);
-    layout->addWidget(txt,1,2,1,1);
-    layout->addWidget(o,1,3);
-    this->inputs.push_back(tmp);
-    this->output = o;
-
-    for (int i=1;i<ninputs;i++){
-        tmp = new Input();
+        Output* o = new Output();
+        o->addItem(""); //Must be used to be able to drag
+        Input* tmp = new Input();
+        QLabel* lbl = new QLabel(args[0]);
+        lbl->setFixedSize(40,20);
+        QTextEdit* txt = new QTextEdit();
+        txt->setFixedSize(40,20);
         layout->addWidget(tmp,i+1,0);
+        layout->addWidget(lbl,i+1,1,1,1);
+        layout->addWidget(txt,i+1,2,1,1);
+        layout->addWidget(o,i+1,3);
         this->inputs.push_back(tmp);
-    }
-    this->p=p_;
-    //Vlado mislim da u ovom delu koda treba da kriras vise izlaz akao sto si gore nisam htela da ti menjam klasu s obzirom d ami ovo sluzi za sta mi treba
-    /*for(int i=0; i< noutputs; i++){
-        Output* tmp = new Output();
-        tmp->move(QPoint(10*i,0));
-        this->layout()->addWidget(tmp);
-        this->outputs.push_back(tmp);
+      }
+      for (int i=0;i<std::max(ninputs,noutputs);i++){
+          if (ninputs == noutputs){
+              Output* o = new Output();
+              o->addItem("");
+              Input* tmp = new Input();
+              QLabel* lbl = new QLabel(args[0]);
+              lbl->setFixedSize(40,20);
+              QTextEdit* txt = new QTextEdit();
+              txt->setFixedSize(40,20);
+              layout->addWidget(tmp,i+1,0);
+              layout->addWidget(lbl,i+1,1,1,1);
+              layout->addWidget(txt,i+1,2,1,1);
+              layout->addWidget(o,i+1,3);
+              this->inputs.push_back(tmp);
+              continue;
+          }
 
-    }*/
+          if (noutputs>ninputs){
+              Output* tmp = new Output();
+              tmp->addItem("");
+              layout->addWidget(tmp,i+1,3);
+              continue;
+          }
+          if (ninputs>noutputs){
+              Input* tmp = new Input();
+              QLabel* lbl = new QLabel(args[0]);
+              lbl->setFixedSize(40,20);
+              QTextEdit* txt = new QTextEdit();
+              txt->setFixedSize(40,20);
+              layout->addWidget(tmp,i+1,0);
+              layout->addWidget(lbl,i+1,1,1,1);
+              layout->addWidget(txt,i+1,2,1,1);
+              this->inputs.push_back(tmp);
+              continue;
+          }
+    }
 }
 
 /*void node::mousePressEvent(QMouseEvent *event){
