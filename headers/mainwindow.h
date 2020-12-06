@@ -22,6 +22,7 @@
 #include "./headers/StartNode.h"
 #include "./headers/CustomGraphicsView.h"
 #include "./headers/CustomLayout.h"
+#include "./headers/SearchBar.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,7 +34,10 @@ class MainWindow : public QMainWindow
 private:
     Ui::MainWindow *ui;
     Parser *p;
+
+    void functionsListInit();
 public:
+    QVector<QListWidgetItem> _functionList;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -46,5 +50,6 @@ private slots:
     void on_actionSave_triggered();
     void on_actionQuit_triggered();
     void on_actionRun_triggered();
+    void filterFunctions();
 };
 #endif // MAINWINDOW_H

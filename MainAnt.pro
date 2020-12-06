@@ -21,6 +21,7 @@ SOURCES += \
     src/Parser.cpp \
     src/PrintNode.cpp \
     src/ReturnNode.cpp \
+    src/SearchBar.cpp \
     src/StartNode.cpp
 
 HEADERS += \
@@ -35,6 +36,7 @@ HEADERS += \
     headers/Parser.h \
     headers/PrintNode.h \
     headers/ReturNode.h \
+    headers/SearchBar.h \
     headers/StartNode.h
 
 FORMS += \

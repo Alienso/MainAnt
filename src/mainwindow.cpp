@@ -8,16 +8,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QListWidgetItem* plus = new QListWidgetItem(tr("+BinarySum"), ui->listWidget);
-    QListWidgetItem* minus =new QListWidgetItem(tr("+BinaryMInus"), ui->listWidget);
-    QListWidgetItem* mul =new QListWidgetItem(tr("+BinaryMUltiply"), ui->listWidget);
-    QListWidgetItem* less =new QListWidgetItem(tr("+LessThan"), ui->listWidget);
-    QListWidgetItem* input =new QListWidgetItem(tr("+Input"), ui->listWidget);
-    QListWidgetItem* print =new QListWidgetItem(tr("+Print"), ui->listWidget);
-    QListWidgetItem* ret =new QListWidgetItem(tr("+Return"), ui->listWidget);
-    QListWidgetItem* start =new QListWidgetItem(tr("+Start"), ui->listWidget);
+    functionsListInit();
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
+    connect(ui->searchBar,&QLineEdit::textChanged,this,&MainWindow::filterFunctions);
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
 
@@ -92,6 +86,28 @@ void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item){
     ui->StagingArea->layout()->addWidget(new Node(item->text(),2,1, nullptr));
 }
 */
+
+void MainWindow::functionsListInit(){
+    QListWidgetItem* plus = new QListWidgetItem(tr("+BinarySum"), ui->listWidget);
+    QListWidgetItem* minus =new QListWidgetItem(tr("+BinaryMInus"), ui->listWidget);
+    QListWidgetItem* mul =new QListWidgetItem(tr("+BinaryMUltiply"), ui->listWidget);
+    QListWidgetItem* less =new QListWidgetItem(tr("+LessThan"), ui->listWidget);
+    QListWidgetItem* input =new QListWidgetItem(tr("+Input"), ui->listWidget);
+    QListWidgetItem* print =new QListWidgetItem(tr("+Print"), ui->listWidget);
+    QListWidgetItem* ret =new QListWidgetItem(tr("+Return"), ui->listWidget);
+    QListWidgetItem* start =new QListWidgetItem(tr("+Start"), ui->listWidget);
+
+    this->_functionList.append(*plus);
+    this->_functionList.append(*minus);
+    this->_functionList.append(*mul);
+    this->_functionList.append(*less);
+    this->_functionList.append(*input);
+    this->_functionList.append(*print);
+    this->_functionList.append(*ret);
+    this->_functionList.append(*start);
+
+}
+
 //*File->Open Ucitava se tekstualni fajl.
 void MainWindow::on_actionOpen_triggered()
 {
@@ -155,5 +171,13 @@ void MainWindow::on_actionRun_triggered()
     else
         qDebug() << p1;
 
+}
+
+void MainWindow::filterFunctions(){
+
+    ui->listWidget->clear();
+    for (int i=0;i<_functionList.length();i++)
+        if (this->_functionList[i].text().contains(ui->searchBar->text()))
+            ui->listWidget->addItem(_functionList[i].text());
 }
 
