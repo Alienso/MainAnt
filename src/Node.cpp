@@ -73,11 +73,71 @@ void Node::mousePressEvent(QMouseEvent *event)
         QPoint globalPos=this->mapToGlobal(event->pos());
         QMenu myMenu;
         myMenu.addAction("Delete");
+        myMenu.addAction("Hide");
+        myMenu.addAction("Show");
         QAction *selectedItem=myMenu.exec(globalPos);
 
         if(selectedItem){
             if(selectedItem->toolTip()=="Delete"){
                 qDebug()<<"Delete";
+                this->close();
+            }
+            else if(selectedItem->toolTip()=="Hide"){
+                qDebug()<< "Hide";
+
+                Node *node=this;
+                std::stack<Node *> stek;
+                bool begining=true;
+
+                while(!node->childNodes.empty() || !stek.empty() || begining==true){
+                    begining=false;
+                    int childNum=node->childNodes.size();
+                    int i=0;
+                    for(i; i<childNum; i++){
+
+                        if(node->childNodes[i]->getVisitedHide()==false){
+                            node->childNodes[i]->setVisitedHide(true);
+                            node->childNodes[i]->hide();
+                            stek.push(node->childNodes[i]);
+                        }
+                    }
+                    node=stek.top();
+                    stek.pop();
+                    node->setVisitedHide(false);
+                    node->setVisible(false);
+                }
+            } else if(selectedItem->toolTip()=="Show"){
+                //isti je kod kao i za hide, samo sto umesto hide() kaze show() kada obilazi cvor, ali ne radi. Mozda ima veze sa layoutom?
+                qDebug()<< "Show (ne radi jos uvek)";
+                /*Node *node=this;
+                std::stack<Node *> stek;
+                bool begining=true;
+
+                while(!node->childNodes.empty() || !stek.empty() || begining==true){
+                    begining=false;
+                    qDebug()<<"U whilu sam";
+                    int childNum=node->childNodes.size();
+                    qDebug()<<childNum;
+                    int i=0;
+                    for(i; i<childNum; i++){
+
+                        if(node->childNodes[i]->getVisitedHide()==false){
+                            node->childNodes[i]->setVisitedHide(true);
+                            node->childNodes[i]->show();
+
+                            stek.push(node->childNodes[i]);
+                            qDebug()<<"iz for";
+                            qDebug()<<node->childNodes[i]->getName();
+                        }
+                    }
+                    node=stek.top();
+                    stek.pop();
+                    node->setVisitedHide(false);
+                    qDebug()<<node->getName();
+                    qDebug()<<node->childNodes.empty();
+                    node->setVisible(false);
+                }
+                qDebug()<<"zavrsio sam2";*/
             }
         }
 
@@ -101,6 +161,11 @@ void Node::mousePressEvent(QMouseEvent *event)
 void Node::setNodeId(QString nodeId)
 {
     this->nodeId = nodeId;
+}
+
+void Node::setVisitedHide(bool flag)
+{
+    this->visitedHide=flag;
 }
 
 void Node::addParents(Node *parent)
@@ -149,6 +214,11 @@ void Node::setVisited(bool flag)
 bool Node::getVisited()
 {
     return this->visited;
+}
+
+bool Node::getVisitedHide()
+{
+    return this->visitedHide;
 }
 
 QString Node::getName()

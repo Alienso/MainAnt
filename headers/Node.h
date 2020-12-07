@@ -9,6 +9,7 @@
 #include <QFormLayout>
 #include <QDebug>
 #include <iostream>
+#include <bits/stdc++.h>
 
 #include "./headers/Output.h"
 #include "./headers/Input.h"
@@ -34,6 +35,7 @@ private:
     QVector<Node*> parentNodes;// inputi ovog cvora !!OVO MENJA SAMO! input klasa
     QVector<Node*> childNodes;// outputi ovog cvora !!OVO MENJA SAMO! input klasa
     bool visited;
+    bool  visitedHide=false;
 
 public:
     explicit Node(QWidget* parent = nullptr);
@@ -42,6 +44,7 @@ public:
     void addWidget(QWidget* w);
 
     void setNodeId(QString nodeId);
+    void setVisitedHide(bool);
     void addParents(Node* parent);
     void addChildren(Node* child);
     QVector<Node*> getChildren() const;
@@ -52,6 +55,7 @@ public:
     QString getNodeId();
     void setVisited(bool flag);
     bool getVisited();
+    bool getVisitedHide();
     QString getName();
     //TODO:Svaka klasa kkoaj nasledjuje node mora da implementira run metod. Run metod implemntira logiku cvora i poziva se od strane parsera
     //virtual void run() const = 0;
