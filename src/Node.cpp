@@ -104,20 +104,17 @@ void Node::mousePressEvent(QMouseEvent *event)
                     node=stek.top();
                     stek.pop();
                     node->setVisitedHide(false);
-                    node->setVisible(false);
+                    node->hide();
                 }
             } else if(selectedItem->toolTip()=="Show"){
-                //isti je kod kao i za hide, samo sto umesto hide() kaze show() kada obilazi cvor, ali ne radi. Mozda ima veze sa layoutom?
-                qDebug()<< "Show (ne radi jos uvek)";
-                /*Node *node=this;
+                qDebug()<< "Show";
+                Node *node=this;
                 std::stack<Node *> stek;
                 bool begining=true;
 
                 while(!node->childNodes.empty() || !stek.empty() || begining==true){
                     begining=false;
-                    qDebug()<<"U whilu sam";
                     int childNum=node->childNodes.size();
-                    qDebug()<<childNum;
                     int i=0;
                     for(i; i<childNum; i++){
 
@@ -126,18 +123,13 @@ void Node::mousePressEvent(QMouseEvent *event)
                             node->childNodes[i]->show();
 
                             stek.push(node->childNodes[i]);
-                            qDebug()<<"iz for";
-                            qDebug()<<node->childNodes[i]->getName();
                         }
                     }
                     node=stek.top();
                     stek.pop();
                     node->setVisitedHide(false);
-                    qDebug()<<node->getName();
-                    qDebug()<<node->childNodes.empty();
-                    node->setVisible(false);
+                    node->show();
                 }
-                qDebug()<<"zavrsio sam2";*/
             }
         }
 
