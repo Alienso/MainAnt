@@ -2,12 +2,12 @@
 
 VarNode::VarNode() : Node("var", 1, 1)
 {
-    setMinimumSize(100,100);
+    setMinimumSize(150,150);
     setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(78, 105, 104, 1);"
                    "border: 1px solid rgba(255, 150, 132, 1);");
 
-    QFormLayout* layout = static_cast<QFormLayout*>(this->layout());
+    QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
 
     this->value = new QLineEdit();
     const QString* placeHolderValue = new QString("Enter var value...");
@@ -25,9 +25,9 @@ VarNode::VarNode() : Node("var", 1, 1)
     this->combo->addItem("Char");
     this->combo->addItem("String");
 
-    layout->insertRow(3, this->combo);
-    layout->insertRow(4, this->varName);
-    layout->insertRow(5, this->value);
+    layout->addWidget(this->combo, 3, 0);
+    layout->addWidget(this->varName, 4, 0);
+    layout->addWidget(this->value, 5, 0);
 }
 
 QString VarNode::getCodeForNode()

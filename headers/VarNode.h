@@ -4,7 +4,7 @@
 #include <QLineEdit>
 #include <QComboBox>
 #include <QComboBox>
-#include <QFormLayout>
+#include <QGridLayout>
 
 #include "./headers/Node.h"
 
