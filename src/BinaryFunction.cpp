@@ -60,6 +60,6 @@ void BinaryFunction::mousePressEvent(QMouseEvent *event)
 }*/
 void BinaryFunction::setParameters(InputNode *op1_, InputNode *op2_)
 {
-    this->op1=*op1_->getText();
-    this->op2=*op1_->getText();
+    this->op1=op1_->getText();
+    this->op2=op1_->getText();
 }

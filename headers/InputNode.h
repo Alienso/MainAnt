@@ -4,10 +4,6 @@
 #include <QTextEdit>
 #include <QFont>
 #include <QString>
-#include <QRadioButton>
-#include <QButtonGroup>
-#include <QPushButton>
-#include <QAbstractButton>
 #include <QLineEdit>
 #include <QApplication>
 #include <QClipboard>
@@ -18,17 +14,13 @@
 class InputNode : public Node
 {
 private:
-    QString* text = nullptr;
-    QString* fileName = nullptr;
-    bool manualInput;
-    bool fileInput;
-    QTextEdit* input;
+    QString text = nullptr;
+    QLineEdit* input;
 
 public:
     InputNode();
-    void resetInput();
     QString getCodeForNode() override;
-    QString* getText();
+    QString getText() const;
 };
 
 #endif // OUTPUTNODE_H
