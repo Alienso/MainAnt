@@ -10,7 +10,7 @@ StartNode::StartNode():Node("StartNode", 0, 1)
 
 QString StartNode::getCodeForNode()
 {
-    QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
+    QString text = "int main(){\n";
 
     return text;
 }

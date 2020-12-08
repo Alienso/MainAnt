@@ -107,7 +107,7 @@ void InputNode::resetInput()
 QString InputNode::getCodeForNode()
 {
     QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
-
+    qDebug()<<"Input";
     return text;
 }
 

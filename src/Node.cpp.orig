@@ -35,7 +35,15 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
     //this->nameLbl->setStyleSheet("border: 0px solid white;");
     layout->addWidget(nameLbl,0,0,1,3);
 
+<<<<<<< HEAD
     for (int i=0;i < std::min(ninputs,noutputs);i++){
+=======
+    Input* tmp = new Input();
+    layout->insertRow(1,tmp,o);
+    this->inputs.push_back(tmp);
+    this->output = o;
+    this->visited = false;
+>>>>>>> feature/parser1
 
         Output* o = new Output();
         o->addItem(""); //Must be used to be able to drag
@@ -119,14 +127,6 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
               }
           }
     }
-    //Vlado mislim da u ovom delu koda treba da kriras vise izlaz akao sto si gore nisam htela da ti menjam klasu s obzirom d ami ovo sluzi za sta mi treba
-    /*for(int i=0; i< noutputs; i++){
-        Output* tmp = new Output();
-        tmp->move(QPoint(10*i,0));
-        this->layout()->addWidget(tmp);
-        this->outputs.push_back(tmp);
-
-    }*/
 }
 
 /*void node::mousePressEvent(QMouseEvent *event){
@@ -167,7 +167,9 @@ void Node::mousePressEvent(QMouseEvent *event)
             if(selectedItem->toolTip()=="Delete"){
                 qDebug()<<"Delete";
                 this->close();
+<<<<<<< HEAD
                 this->p->removeNode(this);
+=======
             }
             else if(selectedItem->toolTip()=="Hide"){
                 qDebug()<< "Hide";
@@ -220,6 +222,7 @@ void Node::mousePressEvent(QMouseEvent *event)
                     node->setVisitedHide(false);
                     node->show();
                 }
+>>>>>>> feature/parser1
             }
         }
 
@@ -278,13 +281,28 @@ QVector<Input*>* Node::getInputs(){
     return &(this->inputs);
 }
 
-QString Node::getCodeForNode(){}
+QString Node::getCodeForNode()
+{
+
+}
 
 QString Node::getNodeId()
 {
     return this->nodeId;
 }
 
+<<<<<<< HEAD
+QString Node::getName()
+{
+    return this->name;
+}
+
+QVector<Node *> Node::getParentNodes()
+{
+    return parentNodes;
+}
+
+=======
 void Node::setVisited(bool flag)
 {
     this->visited = flag;
@@ -305,9 +323,6 @@ QString Node::getName()
     return this->name;
 }
 
-QVector<Node *> Node::getParentNodes()
-{
-    return parentNodes;
-}
 
+>>>>>>> feature/parser1
 

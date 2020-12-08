@@ -32,6 +32,7 @@ PrintNode::PrintNode() : Node("print", 1, 1)
 QString PrintNode::getCodeForNode()
 {
     QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
+    qDebug()<<"Print";
 
     return text;
 }

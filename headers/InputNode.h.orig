@@ -9,10 +9,13 @@
 #include <QPushButton>
 #include <QAbstractButton>
 #include <QLineEdit>
+<<<<<<< HEAD
 #include <QApplication>
 #include <QClipboard>
 #include <QFormLayout>
+=======
 #include <iostream>
+>>>>>>> feature/parser1
 #include "./headers/Node.h"
 
 class InputNode : public Node

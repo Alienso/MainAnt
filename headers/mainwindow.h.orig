@@ -21,8 +21,10 @@
 #include "./headers/ReturNode.h"
 #include "./headers/StartNode.h"
 #include "./headers/CustomGraphicsView.h"
+<<<<<<< HEAD
 #include "./headers/CustomLayout.h"
 #include "./headers/SearchBar.h"
+=======
 #include "./headers/IfNode.h"
 #include "./headers/ConditionNode.h"
 #include "./headers/ElseNode.h"
@@ -32,6 +34,7 @@
 #include "./headers/ForInicializeNode.h"
 #include "./headers/WhileNode.h"
 #include "./headers/VarNode.h"
+>>>>>>> feature/parser1
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

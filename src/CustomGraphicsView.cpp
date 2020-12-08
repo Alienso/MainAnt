@@ -25,7 +25,7 @@ void CustomGraphicsView::paintEvent(QPaintEvent* e)
     QPoint a,b;
     for (Node* n : *nodes){
         for (Input* i : *(n->getInputs())){
-            if (i->getPrevious() != nullptr){
+            if (i->getPrevious() != nullptr && !qobject_cast<Node *>(i->getPrevious()->parentWidget())->isHidden){
                 a = n->mapToParent(i->pos());
                 b = (i->getPrevious()->parentWidget())->mapToParent(i->getPrevious()->pos());
                 painter.drawLine(a,b);

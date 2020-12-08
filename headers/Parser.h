@@ -5,6 +5,9 @@
 #include <QString>
 #include <QMap>
 #include <string>
+#include <iostream>
+#include <cstring>
+#include <fstream>
 
 #include "./headers/Node.h"
 
@@ -27,6 +30,12 @@ private:
     //radi lakseg pristupanja metodama klase datog cvora i slicno
     int id;
 
+    //stremi za fal u koji cemo pisati kod
+    std::ofstream file;
+
+   //funkcija za proveru tipa noda
+    bool checkType(std::string name, std::string expectedName);
+
 
 public:
     explicit Parser();
@@ -43,6 +52,8 @@ public:
 
     //Funkcija koja ce da obilazi graph i da generise kod
     QString traverseGraph();
+    //Funkcija koja obilazi Nodove
+    void visitNode(Node* node);
 };
 
 #endif // PRASER_H

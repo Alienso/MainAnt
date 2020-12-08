@@ -1,5 +1,15 @@
 #include "../headers/Parser.h"
 
+bool Parser::checkType(std::string name, std::string expectedName)
+{
+    int cmp = name.compare(expectedName);
+    if(cmp == 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 Parser::Parser():id(0)
 {
 }
@@ -57,36 +67,87 @@ void Parser::removeNode(Node* node)
 
 QString  Parser::traverseGraph()//treba promeniti ime nije intuitivno
 {
-    qDebug()<<"Pozvan\n";
+    file.open("../mainAntCode.cpp", std::ios::out|std::ios::trunc);
     if(this->startNodes.empty())
     {
-        qDebug()<<"Nema startnih cvorova\n";
+        file<<"Nema startnih cvorova\n";
+        return QString("");
     }else
     {
-        Node* start = this->startNodes[0];
-        //verovatno treba pop
+        file<<"#include <iostream>\n#include <string>\n";
+        for(Node* startNode : this->startNodes){
+            startNode->setVisited(true);
+            file<<startNode->getCodeForNode().toUtf8().constData();
+            QVector<Node*> children = startNode->getChildren();
+            for(auto child : children){
+                if(!child->getVisited()){
+                    visitNode(child);
+                }
+            }
 
-        if (start == nullptr){
-            std::cout<<"Nema vise start nodova"<<std::endl;
         }
-
-        QMap<QString, Node*> nodes = this->getGraphScene();
     }
-    /*Node* returnNode = nodes["ReturnNode_node0"];
-    if(returnNode == nullptr)
+    file.close();
+    return QString::fromStdString("Zavrsio sam");
+
+}
+
+void Parser::visitNode(Node* node)
+{
+    node->setVisited(true);
+    QVector<Node*> parents = node->getParents();
+
+    QString name = node->getName();
+    std::string nodeName = name.toUtf8().constData();
+    bool isIf = checkType(nodeName, "if");
+    bool isWhile = checkType(nodeName, "while");
+    bool isFor = checkType(nodeName, "for");
+
+    if(isIf || isWhile || isFor){
+        file<<nodeName<<"(";
+    }
+
+
+
+    if(!parents.empty())
     {
-        return QString::fromStdString("Fail");
+        for(Node* parent : parents){
+            if(strcmp(parent->getName().toUtf8().constData(),("StartNode")) == 0)
+            {
+                continue;
+            }
+            else
+            {
+                if(!parent->getVisited()){
+                    visitNode(parent);
+                    if(isFor){
+                        std::string parentName = parent->getName().toUtf8().constData();
+                        bool isIncrement = checkType(parentName, "Increment");
+                        if(!isIncrement){
+                            file<<";";
+                        }
+                    }
+                }
+            }
+        }
     }
-
-    QString code = returnNode->getCodeForNode();
-    std::cout << code.toUtf8().constData() << std::endl;
-    QVector<Input*>* inputs = returnNode->getInputs();
-
-
-    Output* out = (*inputs)[0]->getPrevious();
-
-    Node* parent = static_cast<Node*>(out->parent());
-
-    std::cout << parent->getCodeForNode().toUtf8().constData();
-    */
+    if(isIf || isWhile || isFor){
+       file<<"){\n";
+    }
+    file<< node->getCodeForNode().toUtf8().constData();
+    QVector<Node*> children = node->getChildren();
+    if(children.empty()){
+       return;
+    }else{
+       for(Node* child : children){
+           if(!child->getVisited()){
+              std::string childName = child->getName().toUtf8().constData();
+              bool isBody = checkType(childName, "Body");
+              visitNode(child);
+              if(isBody){
+                  file<<"\n}\n";
+              }
+           }
+       }
+    }
 }

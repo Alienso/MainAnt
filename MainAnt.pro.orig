@@ -14,11 +14,15 @@ SOURCES += \
     src/BodyNode.cpp \
     src/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
+<<<<<<< HEAD
+    src/CustomLayout.cpp \
+=======
     src/ElseNode.cpp \
     src/ForInicializeNode.cpp \
     src/ForNode.cpp \
     src/IfNode.cpp \
     src/IncrementNode.cpp \
+>>>>>>> feature/parser1
     src/Input.cpp \
     src/InputNode.cpp \
     src/Node.cpp \
@@ -27,23 +31,30 @@ SOURCES += \
     src/Parser.cpp \
     src/PrintNode.cpp \
     src/ReturnNode.cpp \
+<<<<<<< HEAD
+    src/SearchBar.cpp \
+    src/StartNode.cpp
+=======
+    src/StartNode.cpp \
     src/VarNode.cpp \
     src/WhileNode.cpp \
-    src/SearchBar.cpp \
-    src/StartNode.cpp\
-    src/CustomLayout.cpp
-    
+
+>>>>>>> feature/parser1
 
 HEADERS += \
     ./headers/mainwindow.h \
     headers/BodyNode.h \
     headers/ConditionNode.h \
     headers/CustomGraphicsView.h \
+<<<<<<< HEAD
+    headers/CustomLayout.h \
+=======
     headers/ElseNode.h \
     headers/ForInicializeNode.h \
     headers/ForNode.h \
     headers/IfNode.h \
     headers/IncrementNode.h \
+>>>>>>> feature/parser1
     headers/Input.h \
     headers/InputNode.h \
     headers/Node.h \
@@ -52,10 +63,14 @@ HEADERS += \
     headers/Parser.h \
     headers/PrintNode.h \
     headers/ReturNode.h \
-    headers/CustomLayout.h\
+<<<<<<< HEAD
+    headers/SearchBar.h \
+    headers/StartNode.h
+=======
+    headers/StartNode.h \
     headers/VarNode.h \
     headers/WhileNode.h \
-    headers/SearchBar.h \
+>>>>>>> feature/parser1
 
 FORMS += \
     mainwindow.ui

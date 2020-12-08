@@ -9,13 +9,15 @@
 #include <QGridLayout>
 #include <QDebug>
 #include <iostream>
+<<<<<<< HEAD
 #include <QMenu>
 #include <QTextEdit>
+=======
 #include <bits/stdc++.h>
+>>>>>>> feature/parser1
 
 #include "./headers/Output.h"
 #include "./headers/Input.h"
-#include <QMenu>
 #include "./headers/Parser.h"
 
 class Input;
@@ -37,19 +39,25 @@ private:
 
     QVector<Node*> parentNodes;// inputi ovog cvora !!OVO MENJA SAMO! input klasa
     QVector<Node*> childNodes;// outputi ovog cvora !!OVO MENJA SAMO! input klasa
+<<<<<<< HEAD
+public:
+    Parser * p;
+
+public:
+    explicit Node(QWidget* parent = nullptr);
+    Node(QString name,int ninputs,int noutputs,QVector<QString> args = {},Parser *p_=nullptr, QWidget* parent = nullptr);
+=======
     bool visited;
     //ova dva flaga sluze za opcije show i hide
     bool  visitedHide=false;
     bool hiddingSomething=false;
 public:
-    Parser * p;
-
     bool isHidden=false;
 public:
     explicit Node(QWidget* parent = nullptr);
-    Node(QString name,int ninputs,int noutputs,QVector<QString> args = {},Parser *p_=nullptr, QWidget* parent = nullptr);
     virtual QString getCodeForNode();
-    
+    Node(QString name,int ninputs,int noutputs,QWidget* parent = nullptr);
+>>>>>>> feature/parser1
     void addWidget(QWidget* w);
 
     void setNodeId(QString nodeId);
@@ -62,11 +70,15 @@ public:
     QPoint* getOldPos();
     QVector<Input*>* getInputs();
     QString getNodeId();
+<<<<<<< HEAD
+    QString getName();
+    QVector<Node *> getParentNodes();
+=======
     void setVisited(bool flag);
     bool getVisited();
     bool getVisitedHide();
     QString getName();
-    QVector<Node *> getParentNodes();
+>>>>>>> feature/parser1
     //TODO:Svaka klasa kkoaj nasledjuje node mora da implementira run metod. Run metod implemntira logiku cvora i poziva se od strane parsera
     //virtual void run() const = 0;
 

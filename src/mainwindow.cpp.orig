@@ -4,20 +4,40 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    ,p(new Parser)
+    , p(new Parser)
 {
     ui->setupUi(this);
 
-    QListWidgetItem* plus = new QListWidgetItem(tr("+BinarySum"), ui->listWidget);
-    QListWidgetItem* minus =new QListWidgetItem(tr("+BinaryMInus"), ui->listWidget);
-    QListWidgetItem* mul =new QListWidgetItem(tr("+BinaryMUltiply"), ui->listWidget);
-    QListWidgetItem* less =new QListWidgetItem(tr("+LessThan"), ui->listWidget);
-    QListWidgetItem* input =new QListWidgetItem(tr("+Input"), ui->listWidget);
-    QListWidgetItem* print =new QListWidgetItem(tr("+Print"), ui->listWidget);
+<<<<<<< HEAD
+    functionsListInit();
+
+    connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
+    connect(ui->searchBar,&QLineEdit::textChanged,this,&MainWindow::filterFunctions);
+    //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
+    ui->StagingArea->setLayout(new CustomLayout(1));
+=======
+    new QListWidgetItem(tr("+BinarySum"), ui->listWidget);
+    new QListWidgetItem(tr("+BinaryMInus"), ui->listWidget);
+    new QListWidgetItem(tr("+BinaryMUltiply"), ui->listWidget);
+    new QListWidgetItem(tr("+LessThan"), ui->listWidget);
+    new QListWidgetItem(tr("+Input"), ui->listWidget);
+    new QListWidgetItem(tr("+Print"), ui->listWidget);
+    new QListWidgetItem(tr("+Return"), ui->listWidget);
+    new QListWidgetItem(tr("+Start"), ui->listWidget);
+    new QListWidgetItem(tr("+If"), ui->listWidget);
+    new QListWidgetItem(tr("+Condition"), ui->listWidget);
+    new QListWidgetItem(tr("+Else"), ui->listWidget);
+    new QListWidgetItem(tr("+BodyNode"), ui->listWidget);
+    new QListWidgetItem(tr("+ForNoode"), ui->listWidget);
+    new QListWidgetItem(tr("+IncrementNode"), ui->listWidget);
+    new QListWidgetItem(tr("+ForInicializeNode"), ui->listWidget);
+    new QListWidgetItem(tr("+While"), ui->listWidget);
+    new QListWidgetItem(tr("+VarNode"), ui->listWidget);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
 
     ui->StagingArea->setLayout(new QFormLayout());
+>>>>>>> feature/parser1
 
 }
 
@@ -28,69 +48,127 @@ MainWindow::~MainWindow()
 
 void MainWindow::putNode(QListWidgetItem* item)
 {
-   if(ui->listWidget->item(0) == item){
-<<<<<<< HEAD
-       //std::cout<<"plus"<<std::endl;
-       Node* n = new Node(nullptr, 2);
-       ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
-   }else if(ui->listWidget->item(1) == item){
-       //std::cout<<"minus"<<std::endl;
-       Node* n = new Node(nullptr, 2);
-       ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
-   }else if(ui->listWidget->item(2) == item){
-       //std::cout<<"puta"<<std::endl;
-       Node* n = new Node(nullptr, 2);
-       ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
-   }else if(ui->listWidget->item(3) == item){
-       //std::cout<<"manje"<<std::endl;
-       Node* n = new Node(nullptr, 2);
-       ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
-=======
-       std::cout<<"plus"<<std::endl;
+    if(ui->listWidget->item(0) == item){
+        //std::cout<<"plus"<<std::endl;
+        BinaryFunction* n = new BinaryFunction("plus", 2, 1,{}, p, ui->StagingArea);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("PlusNode"));
+    }else if(ui->listWidget->item(1) == item){
+        //std::cout<<"minus"<<std::endl;
+        BinaryFunction* n = new BinaryFunction("minus", 2, 1,{}, p, ui->StagingArea);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("MinusNode"));
+    }else if(ui->listWidget->item(2) == item){
+        //std::cout<<"puta"<<std::endl;
+        BinaryFunction* n = new BinaryFunction("puta", 2, 1,{},p,ui->StagingArea);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("MulNode"));
+    }else if(ui->listWidget->item(3) == item){
+        //std::cout<<"manje"<<std::endl;
+        BinaryFunction* n = new BinaryFunction("manje", 2, 1,{}, p, ui->StagingArea);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("LTNODE"));
+    }else if(ui->listWidget->item(4) == item){
+        InputNode* n = new InputNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("InputNode"));
+    }else if(ui->listWidget->item(5) == item){
+        PrintNode* n = new PrintNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("PrintNode"));
+    }else if(ui->listWidget->item(6) == item){
+        ReturnNode* n = new ReturnNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ReturnNode"));
+    }else if(ui->listWidget->item(7) == item){
+        StartNode* n = new StartNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("StartNode"));
+        p->addNewStart(n);
+    }else if(ui->listWidget->item(8) == item){
+        IfNode* n = new IfNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("IfNode"));
+    }else if(ui->listWidget->item(9) == item){
+       ConditionNode* n = new ConditionNode();
+       ui->StagingArea->addWidget(n);
+       p->addNode(n, new QString("ConditionNode"));
+    }else if(ui->listWidget->item(10) == item){
+        ElseNode* n = new ElseNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ElseNode"));
+     }else if(ui->listWidget->item(11) == item){
+        BodyNode* n = new BodyNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("BodyNode"));
+     }else if(ui->listWidget->item(12) == item){
+        ForNode* n = new ForNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ForNode"));
+    }else if(ui->listWidget->item(13) == item){
+        IncrementNode* n = new IncrementNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("IncrementNode"));
+    }else if(ui->listWidget->item(14) == item){
+        ForInicializeNode* n = new ForInicializeNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ForInicializeNode"));
+    }else if(ui->listWidget->item(15) == item){
+        WhileNode* n = new WhileNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("WhileNode"));
+    }else if(ui->listWidget->item(16) == item){
+        VarNode* n = new VarNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("VarNode"));
+    }
 
-       Node* n3 = new Node("-",4,1);
-       ui->StagingArea->layout()->addWidget(n3);
-   }else if(ui->listWidget->item(1) == item){
-       std::cout<<"minus"<<std::endl;
+    //postavlja policy za meni koji se otvara desnim klikom
+    for(Node *object : p->getGraphScene() ){
+        object->setContextMenuPolicy(contextMenuPolicy());
+    }
 
-       Node* n3 = new Node("*",2,1);
-       ui->StagingArea->layout()->addWidget(n3);
-   }else if(ui->listWidget->item(2) == item){
-       std::cout<<"puta"<<std::endl;
+    /*QMap<QString, Node*> graf = p->getGraphScene();
+    QList<QString> kljuc = graf.keys();
+    for(auto item : kljuc){
+        std::cout<<item.toUtf8().constData()<<std::endl;
+    }*/
 
-       Node* n3 = new Node("<",2, 1);
-       ui->StagingArea->layout()->addWidget(n3);
-   }else if(ui->listWidget->item(3) == item){
-       std::cout<<"manje"<<std::endl;
-
-       Node* n3 = new Node("Nesto",2,1);
-       ui->StagingArea->layout()->addWidget(n3);
->>>>>>> e945ae60d313b6a09b3d1bbf1daf94bb81e95602
-   }else if(ui->listWidget->item(4) == item){
-       InputNode* n = new InputNode();
-       ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
-   }else if(ui->listWidget->item(5) == item){
-       PrintNode* n = new PrintNode();
-       ui->StagingArea->layout()->addWidget(n);
-       p->addNode(n);
-   }
-
-   /*for(auto item : p->getNodeNames()){
-       std::cout<< item.toUtf8().constData() <<std::endl;
-   }*/
+    for(auto start : p->getStartNodes()){
+        std::cout<<"OK"<<std::endl;
+    }
+    std::cout<<"---------"<<std::endl;
 
 }
+
 //Evo nacina da prepoznate na sta ste kliknuli iz liste
 /*
 void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item){
-    ui->StagingArea->layout()->addWidget(new Node(item->text(),nullptr,2,1));
+    ui->StagingArea->layout()->addWidget(new Node(item->text(),2,1, nullptr));
 }
 */
+
+void MainWindow::functionsListInit(){
+    QListWidgetItem* plus = new QListWidgetItem(tr("+BinarySum"), ui->listWidget);
+    QListWidgetItem* minus =new QListWidgetItem(tr("+BinaryMInus"), ui->listWidget);
+    QListWidgetItem* mul =new QListWidgetItem(tr("+BinaryMUltiply"), ui->listWidget);
+    QListWidgetItem* less =new QListWidgetItem(tr("+LessThan"), ui->listWidget);
+    QListWidgetItem* input =new QListWidgetItem(tr("+Input"), ui->listWidget);
+    QListWidgetItem* print =new QListWidgetItem(tr("+Print"), ui->listWidget);
+    QListWidgetItem* ret =new QListWidgetItem(tr("+Return"), ui->listWidget);
+    QListWidgetItem* start =new QListWidgetItem(tr("+Start"), ui->listWidget);
+
+    this->_functionList.append(*plus);
+    this->_functionList.append(*minus);
+    this->_functionList.append(*mul);
+    this->_functionList.append(*less);
+    this->_functionList.append(*input);
+    this->_functionList.append(*print);
+    this->_functionList.append(*ret);
+    this->_functionList.append(*start);
+
+}
+
 //*File->Open Ucitava se tekstualni fajl.
 void MainWindow::on_actionOpen_triggered()
 {
@@ -117,6 +195,7 @@ void MainWindow::on_actionOpen_triggered()
         */
     }
 }
+
 //*File->Save Cuva se tekstualni fajl.
 void MainWindow::on_actionSave_triggered()
 {
@@ -139,3 +218,27 @@ void MainWindow::on_actionSave_triggered()
         out << QString("Projekat MainAnt");
     }
 }
+
+void MainWindow::on_actionQuit_triggered()
+{
+    QApplication::quit();
+}
+
+void MainWindow::on_actionRun_triggered()
+{
+    QString p1 = p->traverseGraph();
+    if(p1 == QString::fromStdString("Fali")){
+        qDebug() << "Fail";
+    }
+    else
+        qDebug() << p1;
+}
+
+void MainWindow::filterFunctions(){
+
+    ui->listWidget->clear();
+    for (int i=0;i<_functionList.length();i++)
+        if (this->_functionList[i].text().contains(ui->searchBar->text()))
+            ui->listWidget->addItem(_functionList[i].text());
+}
+

@@ -61,6 +61,42 @@ void MainWindow::putNode(QListWidgetItem* item)
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("StartNode"));
         p->addNewStart(n);
+    }else if(ui->listWidget->item(8) == item){
+        IfNode* n = new IfNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("IfNode"));
+    }else if(ui->listWidget->item(9) == item){
+       ConditionNode* n = new ConditionNode();
+       ui->StagingArea->addWidget(n);
+       p->addNode(n, new QString("ConditionNode"));
+    }else if(ui->listWidget->item(10) == item){
+        ElseNode* n = new ElseNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ElseNode"));
+     }else if(ui->listWidget->item(11) == item){
+        BodyNode* n = new BodyNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("BodyNode"));
+     }else if(ui->listWidget->item(12) == item){
+        ForNode* n = new ForNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ForNode"));
+    }else if(ui->listWidget->item(13) == item){
+        IncrementNode* n = new IncrementNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("IncrementNode"));
+    }else if(ui->listWidget->item(14) == item){
+        ForInicializeNode* n = new ForInicializeNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ForInicializeNode"));
+    }else if(ui->listWidget->item(15) == item){
+        WhileNode* n = new WhileNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("WhileNode"));
+    }else if(ui->listWidget->item(16) == item){
+        VarNode* n = new VarNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("VarNode"));
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraphScene() ){
@@ -96,6 +132,15 @@ void MainWindow::functionsListInit(){
     QListWidgetItem* print =new QListWidgetItem(tr("+Print"), ui->listWidget);
     QListWidgetItem* ret =new QListWidgetItem(tr("+Return"), ui->listWidget);
     QListWidgetItem* start =new QListWidgetItem(tr("+Start"), ui->listWidget);
+    QListWidgetItem* ifNode = new QListWidgetItem(tr("+If"), ui->listWidget);
+    QListWidgetItem* cond =new QListWidgetItem(tr("+Condition"), ui->listWidget);
+    QListWidgetItem* elseNode =new QListWidgetItem(tr("+Else"), ui->listWidget);
+    QListWidgetItem* body =new QListWidgetItem(tr("+BodyNode"), ui->listWidget);
+    QListWidgetItem* forNode =new QListWidgetItem(tr("+ForNoode"), ui->listWidget);
+    QListWidgetItem* inc =new QListWidgetItem(tr("+IncrementNode"), ui->listWidget);
+    QListWidgetItem* init =new QListWidgetItem(tr("+ForInicializeNode"), ui->listWidget);
+    QListWidgetItem* whileNode =new QListWidgetItem(tr("+While"), ui->listWidget);
+    QListWidgetItem* varNode =new QListWidgetItem(tr("+VarNode"), ui->listWidget);
 
     this->_functionList.append(*plus);
     this->_functionList.append(*minus);
@@ -105,6 +150,15 @@ void MainWindow::functionsListInit(){
     this->_functionList.append(*print);
     this->_functionList.append(*ret);
     this->_functionList.append(*start);
+    this->_functionList.append(*ifNode);
+    this->_functionList.append(*cond);
+    this->_functionList.append(*elseNode);
+    this->_functionList.append(*body);
+    this->_functionList.append(*forNode);
+    this->_functionList.append(*inc);
+    this->_functionList.append(*init);
+    this->_functionList.append(*whileNode);
+    this->_functionList.append(*varNode);
 
 }
 
@@ -134,6 +188,7 @@ void MainWindow::on_actionOpen_triggered()
         */
     }
 }
+
 //*File->Save Cuva se tekstualni fajl.
 void MainWindow::on_actionSave_triggered()
 {
