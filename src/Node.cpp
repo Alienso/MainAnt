@@ -73,8 +73,10 @@ void Node::mousePressEvent(QMouseEvent *event)
         QPoint globalPos=this->mapToGlobal(event->pos());
         QMenu myMenu;
         myMenu.addAction("Delete");
-        myMenu.addAction("Hide");
-        myMenu.addAction("Show");
+        if(!this->hiddingSomething){
+            myMenu.addAction("Hide");}
+        if(this->hiddingSomething){
+            myMenu.addAction("Show");}
         QAction *selectedItem=myMenu.exec(globalPos);
 
         if(selectedItem){
@@ -84,21 +86,22 @@ void Node::mousePressEvent(QMouseEvent *event)
             }
             else if(selectedItem->toolTip()=="Hide"){
                 qDebug()<< "Hide";
-
+                this->hiddingSomething=true;
                 Node *node=this;
                 std::stack<Node *> stek;
                 bool begining=true;
 
-                while(!node->childNodes.empty() || !stek.empty() || begining==true){
+                while(!node->parentNodes.empty() || !stek.empty() || begining==true){
                     begining=false;
-                    int childNum=node->childNodes.size();
+                    int childNum=node->parentNodes.size();
                     int i=0;
                     for(i; i<childNum; i++){
 
-                        if(node->childNodes[i]->getVisitedHide()==false){
-                            node->childNodes[i]->setVisitedHide(true);
-                            node->childNodes[i]->hide();
-                            stek.push(node->childNodes[i]);
+                        if(node->parentNodes[i]->getVisitedHide()==false){
+                            node->parentNodes[i]->setVisitedHide(true);
+                            node->parentNodes[i]->isHidden=true;
+                            node->parentNodes[i]->hide();
+                            stek.push(node->parentNodes[i]);
                         }
                     }
                     node=stek.top();
@@ -108,21 +111,23 @@ void Node::mousePressEvent(QMouseEvent *event)
                 }
             } else if(selectedItem->toolTip()=="Show"){
                 qDebug()<< "Show";
+                this->hiddingSomething=false;
                 Node *node=this;
                 std::stack<Node *> stek;
                 bool begining=true;
 
-                while(!node->childNodes.empty() || !stek.empty() || begining==true){
+                while(!node->parentNodes.empty() || !stek.empty() || begining==true){
                     begining=false;
-                    int childNum=node->childNodes.size();
+                    int childNum=node->parentNodes.size();
                     int i=0;
                     for(i; i<childNum; i++){
 
-                        if(node->childNodes[i]->getVisitedHide()==false){
-                            node->childNodes[i]->setVisitedHide(true);
-                            node->childNodes[i]->show();
+                        if(node->parentNodes[i]->getVisitedHide()==false){
+                            node->parentNodes[i]->setVisitedHide(true);
+                            node->parentNodes[i]->isHidden=false;
+                            node->parentNodes[i]->show();
 
-                            stek.push(node->childNodes[i]);
+                            stek.push(node->parentNodes[i]);
                         }
                     }
                     node=stek.top();

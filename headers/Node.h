@@ -35,8 +35,11 @@ private:
     QVector<Node*> parentNodes;// inputi ovog cvora !!OVO MENJA SAMO! input klasa
     QVector<Node*> childNodes;// outputi ovog cvora !!OVO MENJA SAMO! input klasa
     bool visited;
+    //ova dva flaga sluze za opcije show i hide
     bool  visitedHide=false;
-
+    bool hiddingSomething=false;
+public:
+    bool isHidden=false;
 public:
     explicit Node(QWidget* parent = nullptr);
     virtual QString getCodeForNode();
