@@ -311,7 +311,7 @@ color: rgb(220, 234, 251);</string>
   <customwidget>
    <class>SearchBar</class>
    <extends>QLineEdit</extends>
-   <header>searchBar.h</header>
+   <header>./headers/SearchBar.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
