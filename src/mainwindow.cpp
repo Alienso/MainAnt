@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
     , p(new Parser)
 {
     ui->setupUi(this);
+    setWindowTitle(":)");
+    setWindowIcon(QIcon("./icon.icon")); //TODO program se izvrsava iz foldera buildmainant...
 
     functionsListInit();
 

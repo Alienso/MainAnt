@@ -3,6 +3,8 @@
 CustomGraphicsView::CustomGraphicsView(QWidget* parent)
 {
     nodes = new QVector<Node*>();
+    setRenderHint(QPainter::Antialiasing);
+
 }
 
 void CustomGraphicsView::addWidget(Node* w)
