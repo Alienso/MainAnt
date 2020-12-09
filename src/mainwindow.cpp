@@ -99,27 +99,27 @@ void MainWindow::putNode(QListWidgetItem* item)
         ui->StagingArea->addWidget(n);
         variable = new QListWidgetItem(tr("V"), ui->listVars);
         p->addNode(n, new QString("VarNode"));
-    }else if(ui->listWidget->item(17) == item){
+    }else if(item->text().compare("+GreaterThan") == 0){
         BinaryFunction* n = new BinaryFunction("vece", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("VeceNode"));
-    }else if(ui->listWidget->item(18) == item){
+    }else if(item->text().compare("+BinaryAnd") == 0){
         BinaryFunction* n = new BinaryFunction("i", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("INode"));
-     }else if(ui->listWidget->item(19) == item){
+     }else if(item->text().compare("+BinaryOr") == 0){
         BinaryFunction* n = new BinaryFunction("ili", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("IliNode"));
-    }else if(ui->listWidget->item(20) == item){
+    }else if(item->text().compare("+BinaryEqual") == 0){
         BinaryFunction* n = new BinaryFunction("jednako", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("JednakoNode"));
-    }else if(ui->listWidget->item(21) == item){
+    }else if(item->text().compare("+BinaryLessEq") == 0){
         BinaryFunction* n = new BinaryFunction("manje jednako", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("MJNode"));
-    }else if(ui->listWidget->item(22) == item){
+    }else if(item->text().compare("+BinaryGreaterEq") == 0){
         BinaryFunction* n = new BinaryFunction("vece jednako", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("VJNode"));
@@ -192,6 +192,7 @@ void MainWindow::functionsListInit(){
     this->_functionList.append(*init);
     this->_functionList.append(*whileNode);
     this->_functionList.append(*varNode);
+    this->_functionList.append(*vece);
     this->_functionList.append(*i);
     this->_functionList.append(*ili);
     this->_functionList.append(*jednako);
