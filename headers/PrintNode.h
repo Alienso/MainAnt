@@ -21,8 +21,6 @@ private:
 public:
     PrintNode();
 
-    void setOutText(QString inText);
-
     QString getCodeForNode() override;
 };
 

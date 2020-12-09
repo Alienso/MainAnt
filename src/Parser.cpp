@@ -10,6 +10,14 @@ bool Parser::checkType(std::string name, std::string expectedName)
     }
 }
 
+void Parser::resetVisted()
+{
+    auto scene = this->getGraphScene();
+    for(auto node : scene){
+        node->setVisited(false);
+    }
+}
+
 Parser::Parser():id(0)
 {
 }
@@ -67,6 +75,8 @@ void Parser::removeNode(Node* node)
 
 QString  Parser::traverseGraph()//treba promeniti ime nije intuitivno
 {
+    this->resetVisted();
+
     file.open("../mainAntCode.cpp", std::ios::out|std::ios::trunc);
     if(this->startNodes.empty())
     {

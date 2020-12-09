@@ -35,6 +35,8 @@ private:
 
    //funkcija za proveru tipa noda
     bool checkType(std::string name, std::string expectedName);
+    //Funkcija koja se pozoiva pre svakog obilasna grafa da resetuje flag visited za svaki cvor
+    void resetVisted();
 
 
 public:
