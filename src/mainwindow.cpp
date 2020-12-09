@@ -27,22 +27,22 @@ void MainWindow::putNode(QListWidgetItem* item)
     QListWidgetItem* variable;
     if(item->text().compare("+BinarySum") == 0){
         //std::cout<<"plus"<<std::endl;
-        BinaryFunction* n = new BinaryFunction("plus", 2, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("plus", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("plus"));
     }else if(item->text().compare("+BinaryMInus") == 0){
         //std::cout<<"minus"<<std::endl;
-        BinaryFunction* n = new BinaryFunction("minus", 2, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("minus", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("minus"));
     }else if(item->text().compare("+BinaryMUltiply") == 0){
         //std::cout<<"puta"<<std::endl;
-        BinaryFunction* n = new BinaryFunction("puta", 2, 1,{},p,ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("puta", 3, 1,{},p,ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("MulNode"));
     }else if(item->text().compare("+LessThan") == 0){
         //std::cout<<"manje"<<std::endl;
-        BinaryFunction* n = new BinaryFunction("manje", 2, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("manje", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("LTNODE"));
     }else if(item->text().compare("+Input") == 0){
@@ -99,6 +99,30 @@ void MainWindow::putNode(QListWidgetItem* item)
         ui->StagingArea->addWidget(n);
         variable = new QListWidgetItem(tr("V"), ui->listVars);
         p->addNode(n, new QString("VarNode"));
+    }else if(ui->listWidget->item(17) == item){
+        BinaryFunction* n = new BinaryFunction("vece", 3, 1,{}, p, ui->StagingArea);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("VeceNode"));
+    }else if(ui->listWidget->item(18) == item){
+        BinaryFunction* n = new BinaryFunction("i", 3, 1,{}, p, ui->StagingArea);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("INode"));
+     }else if(ui->listWidget->item(19) == item){
+        BinaryFunction* n = new BinaryFunction("ili", 3, 1,{}, p, ui->StagingArea);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("IliNode"));
+    }else if(ui->listWidget->item(20) == item){
+        BinaryFunction* n = new BinaryFunction("jednako", 3, 1,{}, p, ui->StagingArea);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("JednakoNode"));
+    }else if(ui->listWidget->item(21) == item){
+        BinaryFunction* n = new BinaryFunction("manje jednako", 3, 1,{}, p, ui->StagingArea);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("MJNode"));
+    }else if(ui->listWidget->item(22) == item){
+        BinaryFunction* n = new BinaryFunction("vece jednako", 3, 1,{}, p, ui->StagingArea);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("VJNode"));
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraphScene() ){
@@ -144,6 +168,12 @@ void MainWindow::functionsListInit(){
     QListWidgetItem* init =new QListWidgetItem(tr("+ForInicializeNode"), ui->listWidget);
     QListWidgetItem* whileNode =new QListWidgetItem(tr("+While"), ui->listWidget);
     QListWidgetItem* varNode =new QListWidgetItem(tr("+VarNode"), ui->listWidget);
+    QListWidgetItem* vece = new QListWidgetItem(tr("+GreaterThan"), ui->listWidget);
+    QListWidgetItem* i = new QListWidgetItem(tr("+BinaryAnd"), ui->listWidget);
+    QListWidgetItem* ili = new QListWidgetItem(tr("+BinaryOr"), ui->listWidget);
+    QListWidgetItem* jednako = new QListWidgetItem(tr("+BinaryEqual"), ui->listWidget);
+    QListWidgetItem* lessEq = new QListWidgetItem(tr("+BinaryLessEq"), ui->listWidget);
+    QListWidgetItem* greaterEq = new QListWidgetItem(tr("+BinaryGreaterEq"), ui->listWidget);
 
     this->_functionList.append(*plus);
     this->_functionList.append(*minus);
@@ -162,6 +192,11 @@ void MainWindow::functionsListInit(){
     this->_functionList.append(*init);
     this->_functionList.append(*whileNode);
     this->_functionList.append(*varNode);
+    this->_functionList.append(*i);
+    this->_functionList.append(*ili);
+    this->_functionList.append(*jednako);
+    this->_functionList.append(*lessEq);
+    this->_functionList.append(*greaterEq);
 
 }
 
