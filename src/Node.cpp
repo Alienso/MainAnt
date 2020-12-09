@@ -34,6 +34,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
     this->nameLbl->setMaximumSize(80,20);
     //this->nameLbl->setStyleSheet("border: 0px solid white;");
     layout->addWidget(nameLbl,0,0,1,3);
+    QFont f( "Arial", 6);
 
     for (int i=0;i < std::min(ninputs,noutputs);i++){
 
@@ -47,6 +48,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
         if (args[i].compare("") != 0){
             QLabel* lbl = new QLabel(args[i]);
             lbl->setFixedSize(40,20);
+            lbl->setFont(f);
             QTextEdit* txt = new QTextEdit();
             txt->setFixedSize(40,20);
             txt->setFontPointSize(6);
@@ -60,73 +62,64 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
             layout->addWidget(txt,i+1,1);
         }
 
+   }
+   for (int i=0;i<std::max(ninputs,noutputs);i++){
+      if (ninputs == noutputs){
+          Output* o = new Output();
+          o->addItem(""); //Must be used to be able to drag
+          Input* tmp = new Input();
+          layout->addWidget(tmp,i+1,0);
+          layout->addWidget(o,i+1,3);
+          this->inputs.push_back(tmp);
+
+          if (args[i].compare("") != 0){
+              QLabel* lbl = new QLabel(args[i]);
+              lbl->setFixedSize(40,20);
+              lbl->setFont(f);
+              QTextEdit* txt = new QTextEdit();
+              txt->setFontPointSize(6);
+              txt->setFixedSize(40,20);
+              layout->addWidget(lbl,i+1,1,1,1);
+              layout->addWidget(txt,i+1,2,1,1);
+          }
+          else {
+              QTextEdit* txt = new QTextEdit();
+              txt->setFixedSize(40,20);
+              txt->setFontPointSize(6);
+              layout->addWidget(txt,i+1,1);
+          }
+          continue;
       }
-      for (int i=0;i<std::max(ninputs,noutputs);i++){
-          if (ninputs == noutputs){
-              Output* o = new Output();
-              o->addItem(""); //Must be used to be able to drag
-              Input* tmp = new Input();
-              layout->addWidget(tmp,i+1,0);
-              layout->addWidget(o,i+1,3);
-              this->inputs.push_back(tmp);
 
-              if (args[i].compare("") != 0){
-                  QLabel* lbl = new QLabel(args[i]);
-                  lbl->setFixedSize(40,20);
-                  QTextEdit* txt = new QTextEdit();
-                  txt->setFontPointSize(6);
-                  txt->setFixedSize(40,20);
-                  layout->addWidget(lbl,i+1,1,1,1);
-                  layout->addWidget(txt,i+1,2,1,1);
-              }
-              else {
-                  QTextEdit* txt = new QTextEdit();
-                  txt->setFixedSize(40,20);
-                  txt->setFontPointSize(6);
-                  layout->addWidget(txt,i+1,1);
-              }
-              continue;
+      if (noutputs>ninputs){
+          Output* tmp = new Output();
+          tmp->addItem("");
+          layout->addWidget(tmp,i+1,3);
+          continue;
+      }
+      if (ninputs>noutputs){
+          Input* tmp = new Input();
+          layout->addWidget(tmp,i+1,0);
+          this->inputs.push_back(tmp);
+
+          if (args[i].compare("") != 0){
+              QLabel* lbl = new QLabel(args[i]);
+              lbl->setFixedSize(40,20);
+              lbl->setFont(f);
+              QTextEdit* txt = new QTextEdit();
+              txt->setFixedSize(40,20);
+              txt->setFontPointSize(6);
+              layout->addWidget(lbl,i+1,1,1,1);
+              layout->addWidget(txt,i+1,2,1,1);
           }
-
-          if (noutputs>ninputs){
-              Output* tmp = new Output();
-              tmp->addItem("");
-              layout->addWidget(tmp,i+1,3);
-              continue;
+          else {
+              QTextEdit* txt = new QTextEdit();
+              txt->setFixedSize(40,20);
+              txt->setFontPointSize(6);
+              layout->addWidget(txt,i+1,1);
           }
-          if (ninputs>noutputs){
-              Output* o = new Output();
-              o->addItem(""); //Must be used to be able to drag
-              Input* tmp = new Input();
-              layout->addWidget(tmp,i+1,0);
-              layout->addWidget(o,i+1,3);
-              this->inputs.push_back(tmp);
-
-              if (args[i].compare("") != 0){
-                  QLabel* lbl = new QLabel(args[i]);
-                  lbl->setFixedSize(40,20);
-                  QTextEdit* txt = new QTextEdit();
-                  txt->setFixedSize(40,20);
-                  txt->setFontPointSize(6);
-                  layout->addWidget(lbl,i+1,1,1,1);
-                  layout->addWidget(txt,i+1,2,1,1);
-              }
-              else {
-                  QTextEdit* txt = new QTextEdit();
-                  txt->setFixedSize(40,20);
-                  txt->setFontPointSize(6);
-                  layout->addWidget(txt,i+1,1);
-              }
-          }
-    }
-    //Vlado mislim da u ovom delu koda treba da kriras vise izlaz akao sto si gore nisam htela da ti menjam klasu s obzirom d ami ovo sluzi za sta mi treba
-    /*for(int i=0; i< noutputs; i++){
-        Output* tmp = new Output();
-        tmp->move(QPoint(10*i,0));
-        this->layout()->addWidget(tmp);
-        this->outputs.push_back(tmp);
-
-    }*/
+      }
+  }
 }
 
 /*void node::mousePressEvent(QMouseEvent *event){
