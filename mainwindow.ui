@@ -199,7 +199,7 @@ color: rgb(21, 45, 73);</string>
      <widget class="CustomGraphicsView" name="StagingArea"/>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,2,0">
+     <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,2,0,0,0">
       <property name="leftMargin">
        <number>10</number>
       </property>
@@ -210,11 +210,28 @@ color: rgb(21, 45, 73);</string>
        <widget class="SearchBar" name="searchBar"/>
       </item>
       <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Functions</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QListWidget" name="listWidget">
         <property name="styleSheet">
          <string notr="true">color: rgb(189, 221, 235)</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Variables</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="listVars"/>
       </item>
       <item>
        <spacer name="verticalSpacer">
@@ -239,7 +256,7 @@ color: rgb(21, 45, 73);</string>
      <x>0</x>
      <y>0</y>
      <width>1156</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="styleSheet">

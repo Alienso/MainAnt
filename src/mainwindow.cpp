@@ -24,6 +24,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::putNode(QListWidgetItem* item)
 {
+    QListWidgetItem* variable;
     if(ui->listWidget->item(0) == item){
         //std::cout<<"plus"<<std::endl;
         BinaryFunction* n = new BinaryFunction("plus", 2, 1,{}, p, ui->StagingArea);
@@ -96,6 +97,7 @@ void MainWindow::putNode(QListWidgetItem* item)
     }else if(ui->listWidget->item(16) == item){
         VarNode* n = new VarNode();
         ui->StagingArea->addWidget(n);
+        variable = new QListWidgetItem(tr("V"), ui->listVars);
         p->addNode(n, new QString("VarNode"));
     }
     //postavlja policy za meni koji se otvara desnim klikom
