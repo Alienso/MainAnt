@@ -211,6 +211,9 @@ color: rgb(21, 45, 73);</string>
       </item>
       <item>
        <widget class="QLabel" name="label">
+        <property name="styleSheet">
+         <string notr="true">color : rgb(189, 221, 235)</string>
+        </property>
         <property name="text">
          <string>Functions</string>
         </property>
@@ -225,13 +228,20 @@ color: rgb(21, 45, 73);</string>
       </item>
       <item>
        <widget class="QLabel" name="label_2">
+        <property name="styleSheet">
+         <string notr="true">color : rgb(189, 221, 235)</string>
+        </property>
         <property name="text">
          <string>Variables</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QListWidget" name="listVars"/>
+       <widget class="QListWidget" name="listVars">
+        <property name="styleSheet">
+         <string notr="true">color : rgb(189, 221, 235)</string>
+        </property>
+       </widget>
       </item>
       <item>
        <spacer name="verticalSpacer">

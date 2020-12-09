@@ -17,10 +17,23 @@ void CustomGraphicsView::addWidget(Node* w)
 void CustomGraphicsView::paintEvent(QPaintEvent* e)
 {
     QPainter painter(viewport());
-    QPen pen(Qt::red);
-    pen.setWidth(10);
+    QLinearGradient grad1(25,75,125,175);
 
-    painter.setPen(pen);
+    grad1.setStart(QPointF(0, 1));
+    grad1.setFinalStop(QPointF(1, 0));
+    grad1.setColorAt(0.0, QRgb(0xfbcd18));
+    grad1.setColorAt(0.2, QRgb(0xeb7295));
+    grad1.setColorAt(0.4, QRgb(0x7bd2e3));
+
+    grad1.setColorAt(0.6, QRgb(0xfbcd18));
+    grad1.setColorAt(0.8, QRgb(0xeb7295));
+    grad1.setColorAt(1, QRgb(0x7bd2e3));
+    grad1.setCoordinateMode(QGradient::StretchToDeviceMode);
+
+    //QPen pen(Qt::red);
+    //pen.setWidth(8);
+
+    painter.setPen(QPen(QBrush(grad1),7));
     repositionNodes();
 
     //Povezivanje Node-ova TODO

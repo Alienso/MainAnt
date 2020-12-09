@@ -62,64 +62,64 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
             layout->addWidget(txt,i+1,1);
         }
 
-   }
-   for (int i=0;i<std::max(ninputs,noutputs);i++){
-      if (ninputs == noutputs){
-          Output* o = new Output();
-          o->addItem(""); //Must be used to be able to drag
-          Input* tmp = new Input();
-          layout->addWidget(tmp,i+1,0);
-          layout->addWidget(o,i+1,3);
-          this->inputs.push_back(tmp);
+    }
+    for (int i=0;i<std::max(ninputs,noutputs);i++){
+        if (ninputs == noutputs){
+            Output* o = new Output();
+            o->addItem(""); //Must be used to be able to drag
+            Input* tmp = new Input();
+            layout->addWidget(tmp,i+1,0);
+            layout->addWidget(o,i+1,3);
+            this->inputs.push_back(tmp);
 
-          if (args[i].compare("") != 0){
-              QLabel* lbl = new QLabel(args[i]);
-              lbl->setFixedSize(40,20);
-              lbl->setFont(f);
-              QTextEdit* txt = new QTextEdit();
-              txt->setFontPointSize(6);
-              txt->setFixedSize(40,20);
-              layout->addWidget(lbl,i+1,1,1,1);
-              layout->addWidget(txt,i+1,2,1,1);
-          }
-          else {
-              QTextEdit* txt = new QTextEdit();
-              txt->setFixedSize(40,20);
-              txt->setFontPointSize(6);
-              layout->addWidget(txt,i+1,1);
-          }
-          continue;
-      }
+            if (args[i].compare("") != 0){
+                QLabel* lbl = new QLabel(args[i]);
+                lbl->setFixedSize(40,20);
+                lbl->setFont(f);
+                QTextEdit* txt = new QTextEdit();
+                txt->setFontPointSize(6);
+                txt->setFixedSize(40,20);
+                layout->addWidget(lbl,i+1,1,1,1);
+                layout->addWidget(txt,i+1,2,1,1);
+            }
+            else {
+                QTextEdit* txt = new QTextEdit();
+                txt->setFixedSize(40,20);
+                txt->setFontPointSize(6);
+                layout->addWidget(txt,i+1,1);
+            }
+            continue;
+        }
 
-      if (noutputs>ninputs){
-          Output* tmp = new Output();
-          tmp->addItem("");
-          layout->addWidget(tmp,i+1,3);
-          continue;
-      }
-      if (ninputs>noutputs){
-          Input* tmp = new Input();
-          layout->addWidget(tmp,i+1,0);
-          this->inputs.push_back(tmp);
+        if (noutputs>ninputs){
+            Output* tmp = new Output();
+            tmp->addItem("");
+            layout->addWidget(tmp,i+1,3);
+            continue;
+        }
+        if (ninputs>noutputs){
+            Input* tmp = new Input();
+            layout->addWidget(tmp,i+1,0);
+            this->inputs.push_back(tmp);
 
-          if (args[i].compare("") != 0){
-              QLabel* lbl = new QLabel(args[i]);
-              lbl->setFixedSize(40,20);
-              lbl->setFont(f);
-              QTextEdit* txt = new QTextEdit();
-              txt->setFixedSize(40,20);
-              txt->setFontPointSize(6);
-              layout->addWidget(lbl,i+1,1,1,1);
-              layout->addWidget(txt,i+1,2,1,1);
-          }
-          else {
-              QTextEdit* txt = new QTextEdit();
-              txt->setFixedSize(40,20);
-              txt->setFontPointSize(6);
-              layout->addWidget(txt,i+1,1);
-          }
-      }
-  }
+            if (args[i].compare("") != 0){
+                QLabel* lbl = new QLabel(args[i]);
+                lbl->setFixedSize(40,20);
+                lbl->setFont(f);
+                QTextEdit* txt = new QTextEdit();
+                txt->setFixedSize(40,20);
+                txt->setFontPointSize(6);
+                layout->addWidget(lbl,i+1,1,1,1);
+                layout->addWidget(txt,i+1,2,1,1);
+            }
+            else {
+                QTextEdit* txt = new QTextEdit();
+                txt->setFixedSize(40,20);
+                txt->setFontPointSize(6);
+                layout->addWidget(txt,i+1,1);
+            }
+        }
+    }
 }
 
 /*void node::mousePressEvent(QMouseEvent *event){
@@ -164,54 +164,56 @@ void Node::mousePressEvent(QMouseEvent *event)
             }
             else if(selectedItem->toolTip()=="Hide"){
                 qDebug()<< "Hide";
-                this->hiddingSomething=true;
-                Node *node=this;
-                std::stack<Node *> stek;
-                bool begining=true;
+                if(!this->parentNodes.empty()){
+                    this->hiddingSomething=true;
+                    Node *node=this;
+                    std::stack<Node *> stek;
+                    bool begining=true;
+                    while(!node->parentNodes.empty() || !stek.empty() || begining==true){
+                        begining=false;
+                        int childNum=node->parentNodes.size();
+                        int i=0;
+                        for(i; i<childNum; i++){
 
-                while(!node->parentNodes.empty() || !stek.empty() || begining==true){
-                    begining=false;
-                    int childNum=node->parentNodes.size();
-                    int i=0;
-                    for(i; i<childNum; i++){
-
-                        if(node->parentNodes[i]->getVisitedHide()==false){
-                            node->parentNodes[i]->setVisitedHide(true);
-                            node->parentNodes[i]->isHidden=true;
-                            node->parentNodes[i]->hide();
-                            stek.push(node->parentNodes[i]);
+                            if(node->parentNodes[i]->getVisitedHide()==false){
+                                node->parentNodes[i]->setVisitedHide(true);
+                                node->parentNodes[i]->isHidden=true;
+                                node->parentNodes[i]->hide();
+                                stek.push(node->parentNodes[i]);
+                            }
                         }
+                        node=stek.top();
+                        stek.pop();
+                        node->setVisitedHide(false);
+                        node->hide();
                     }
-                    node=stek.top();
-                    stek.pop();
-                    node->setVisitedHide(false);
-                    node->hide();
                 }
             } else if(selectedItem->toolTip()=="Show"){
                 qDebug()<< "Show";
-                this->hiddingSomething=false;
-                Node *node=this;
-                std::stack<Node *> stek;
-                bool begining=true;
+                if(!this->parentNodes.empty()){
+                    this->hiddingSomething=false;
+                    Node *node=this;
+                    std::stack<Node *> stek;
+                    bool begining=true;
+                    while(!node->parentNodes.empty() || !stek.empty() || begining==true){
+                        begining=false;
+                        int childNum=node->parentNodes.size();
+                        int i=0;
+                        for(i; i<childNum; i++){
 
-                while(!node->parentNodes.empty() || !stek.empty() || begining==true){
-                    begining=false;
-                    int childNum=node->parentNodes.size();
-                    int i=0;
-                    for(i; i<childNum; i++){
+                            if(node->parentNodes[i]->getVisitedHide()==false){
+                                node->parentNodes[i]->setVisitedHide(true);
+                                node->parentNodes[i]->isHidden=false;
+                                node->parentNodes[i]->show();
 
-                        if(node->parentNodes[i]->getVisitedHide()==false){
-                            node->parentNodes[i]->setVisitedHide(true);
-                            node->parentNodes[i]->isHidden=false;
-                            node->parentNodes[i]->show();
-
-                            stek.push(node->parentNodes[i]);
+                                stek.push(node->parentNodes[i]);
+                            }
                         }
+                        node=stek.top();
+                        stek.pop();
+                        node->setVisitedHide(false);
+                        node->show();
                     }
-                    node=stek.top();
-                    stek.pop();
-                    node->setVisitedHide(false);
-                    node->show();
                 }
             }
         }

@@ -1,7 +1,7 @@
 #include "./headers/SearchBar.h"
 
 SearchBar::SearchBar(QWidget *parent) : QLineEdit(parent){
-    setStyleSheet("color : red;");
+    setStyleSheet("color : rgb(189, 221, 235);");
 }
 
 QVector<char>& SearchBar::storedText(){
