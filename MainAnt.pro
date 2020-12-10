@@ -28,6 +28,7 @@ SOURCES += \
     src/PrintNode.cpp \
     src/ReturnNode.cpp \
     src/VarNode.cpp \
+    src/VariableReferenceNode.cpp \
     src/VectorNode.cpp \
     src/VectorOperations.cpp \
     src/WhileNode.cpp \
@@ -56,6 +57,7 @@ HEADERS += \
     headers/ReturNode.h \
     headers/CustomLayout.h\
     headers/VarNode.h \
+    headers/VariableReferenceNode.h \
     headers/VectorNode.h \
     headers/VectorOperations.h \
     headers/WhileNode.h \

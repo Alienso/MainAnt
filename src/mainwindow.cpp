@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     functionsListInit();
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
+    connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&MainWindow::filterFunctions);
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
@@ -100,6 +101,7 @@ void MainWindow::putNode(QListWidgetItem* item)
         VarNode* n = new VarNode();
         ui->StagingArea->addWidget(n);
         variable = new QListWidgetItem(tr("V"), ui->listVars);
+        _inicializedVars.append(variable);
         p->addNode(n, new QString("VarNode"));
     }else if(item->text().compare("+GreaterThan") == 0){
         BinaryFunction* n = new BinaryFunction("Binary_vece", 3, 1,{}, p, ui->StagingArea);
@@ -151,6 +153,18 @@ void MainWindow::putNode(QListWidgetItem* item)
     std::cout<<"---------"<<std::endl;
     std::cout<<item->text().toUtf8().constData()<<'\n';
 
+}
+
+void MainWindow::putVar(QListWidgetItem *item)
+{
+    for(int i =0; i<_inicializedVars.size(); i++)
+    {
+        if(_inicializedVars[i] == item){
+            VariableReferenceNode* n = new VariableReferenceNode(QString::fromStdString("var"));
+            ui->StagingArea->addWidget(n);
+            p->addNode(n, new QString("VariableReferenceNode"));
+        }
+    }
 }
 
 //Evo nacina da prepoznate na sta ste kliknuli iz liste

@@ -34,6 +34,7 @@
 #include "./headers/VarNode.h"
 #include "./headers/VectorNode.h"
 #include "./headers/VectorOperations.h"
+#include "./headers/VariableReferenceNode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -49,11 +50,13 @@ private:
     void functionsListInit();
 public:
     QVector<QListWidgetItem> _functionList;
+    QVector<QListWidgetItem*> _inicializedVars;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 public slots:
     void putNode(QListWidgetItem* item);
+    void putVar(QListWidgetItem* item);
 
 private slots:
     //void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
