@@ -37,6 +37,7 @@ private:
 
     QVector<Node*> parentNodes;// inputi ovog cvora !!OVO MENJA SAMO! input klasa
     QVector<Node*> childNodes;// outputi ovog cvora !!OVO MENJA SAMO! input klasa
+    //flag za obilazak grafa
     bool visited;
     //ova dva flaga sluze za opcije show i hide
     bool  visitedHide=false;
@@ -56,8 +57,8 @@ public:
     void setVisitedHide(bool);
     void addParents(Node* parent);
     void addChildren(Node* child);
-    QVector<Node*> getChildren() const;
-    QVector<Node*> getParents() const;
+    QVector<Node*>& getChildren();
+    QVector<Node*>& getParents();
 
     QPoint* getOldPos();
     QVector<Input*>* getInputs();

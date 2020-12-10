@@ -18,6 +18,55 @@ void Parser::resetVisted()
     }
 }
 
+void Parser::visitForNode(Node *forNode, QVector<Node*> parents, QVector<Node*> children)
+{
+    forNode->setVisited(true);
+    //Zelimo da obidjemo sve roditelje cvora For jer oni uticu na njegovo izracunavanje
+    file<<"for"<<"(";
+    if(!parents.empty())
+    {
+        for(Node* parent : parents){
+            if(strcmp(parent->getName().toUtf8().constData(),("StartNode")) == 0)
+            {
+                continue;
+            }
+            else
+            {
+                if(!parent->getVisited()){
+                    visitNode(parent);
+
+                    std::string parentName = parent->getName().toUtf8().constData();
+                    bool isIncrement = checkType(parentName, "Increment");
+                    if(!isIncrement){
+                        file<<";";
+                    }
+                 }
+             }
+         }
+      }
+    file<<"){\n";
+    //Zelimo da obidjemo sve osim poslednjeg deteta cvora for, jer su oni sastavni deo ovog cvora, a poslednji je samo sledeca celina koda
+    if(children.empty()){
+       return;
+    }else{
+
+       int len = children.length();
+       //ne zelimo da obidjemo poslednje dete
+       len = len-1;
+       for(int i=0; i<len; i++){
+           Node* child = children[i];
+           if(!child->getVisited()){
+              std::string childName = child->getName().toUtf8().constData();
+              bool isBody = checkType(childName, "Body");
+              visitNode(child);
+              if(isBody){
+                  file<<"\n}\n";
+              }
+           }
+       }
+    }
+}
+
 Parser::Parser():id(0)
 {
 }
@@ -106,6 +155,7 @@ void Parser::visitNode(Node* node)
 {
     node->setVisited(true);
     QVector<Node*> parents = node->getParents();
+    QVector<Node*> children = node->getChildren();
 
     QString name = node->getName();
     std::string nodeName = name.toUtf8().constData();
@@ -113,11 +163,15 @@ void Parser::visitNode(Node* node)
     bool isWhile = checkType(nodeName, "while");
     bool isFor = checkType(nodeName, "for");
 
-    if(isIf || isWhile || isFor){
+    if(isFor){
+        this->visitForNode(node, parents, children);
+    }
+
+    if(isWhile || isIf){
         file<<nodeName<<"(";
     }
 
-
+    node->setVisited(true);
 
     if(!parents.empty())
     {
@@ -141,11 +195,11 @@ void Parser::visitNode(Node* node)
             }
         }
     }
-    if(isIf || isWhile || isFor){
+    if(isIf || isWhile){
        file<<"){\n";
     }
     file<< node->getCodeForNode().toUtf8().constData();
-    QVector<Node*> children = node->getChildren();
+
     if(children.empty()){
        return;
     }else{

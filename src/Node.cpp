@@ -255,12 +255,12 @@ void Node::addChildren(Node *child)
     this->childNodes.push_back(child);
 }
 
-QVector<Node*> Node::getChildren() const
+QVector<Node*>& Node::getChildren()
 {
     return this->childNodes;
 }
 
-QVector<Node *> Node::getParents() const
+QVector<Node *>& Node::getParents()
 {
     return this->parentNodes;
 }

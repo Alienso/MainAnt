@@ -38,6 +38,12 @@ private:
     //Funkcija koja se pozoiva pre svakog obilasna grafa da resetuje flag visited za svaki cvor
     void resetVisted();
 
+    //Funkcije za obilazak specijalnih nodova, kontrole toka ili slicno
+    //POZIVAJU SE SAMO IZ VISITNODE metoda
+    void visitForNode(Node* forNode, QVector<Node*> parents, QVector<Node*> children);
+    void visitWhileNode(Node* whileNode, QVector<Node*> parents, QVector<Node*> children);
+    void visitIfNode(Node* ifNode, QVector<Node*> parents, QVector<Node*> children);
+
 
 public:
     explicit Parser();
