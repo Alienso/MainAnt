@@ -125,6 +125,10 @@ void MainWindow::putNode(QListWidgetItem* item)
         BinaryFunction* n = new BinaryFunction("Binary_veceJednako", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("VJNode"));
+    }else if(item->text().compare("+VectorNode") == 0){
+        VectorNode* n = new VectorNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("VectorNode"));
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraphScene() ){
@@ -170,6 +174,7 @@ void MainWindow::functionsListInit(){
     QListWidgetItem* init =new QListWidgetItem(tr("+ForInicializeNode"), ui->listWidget);
     QListWidgetItem* whileNode =new QListWidgetItem(tr("+While"), ui->listWidget);
     QListWidgetItem* varNode =new QListWidgetItem(tr("+VarNode"), ui->listWidget);
+    QListWidgetItem* vectorNode = new QListWidgetItem(tr("+VectorNode"), ui->listWidget);
     QListWidgetItem* vece = new QListWidgetItem(tr("+GreaterThan"), ui->listWidget);
     QListWidgetItem* i = new QListWidgetItem(tr("+BinaryAnd"), ui->listWidget);
     QListWidgetItem* ili = new QListWidgetItem(tr("+BinaryOr"), ui->listWidget);
@@ -200,6 +205,7 @@ void MainWindow::functionsListInit(){
     this->_functionList.append(*jednako);
     this->_functionList.append(*lessEq);
     this->_functionList.append(*greaterEq);
+    this->_functionList.append(*vectorNode);
 
 }
 

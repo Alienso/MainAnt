@@ -32,6 +32,7 @@
 #include "./headers/ForInicializeNode.h"
 #include "./headers/WhileNode.h"
 #include "./headers/VarNode.h"
+#include "./headers/VectorNode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
