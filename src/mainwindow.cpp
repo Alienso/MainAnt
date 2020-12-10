@@ -129,6 +129,10 @@ void MainWindow::putNode(QListWidgetItem* item)
         VectorNode* n = new VectorNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("VectorNode"));
+    }else if(item->text().compare("+VectorOperations") == 0){
+        VectorOperations* n = new VectorOperations();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("VectorOperations"));
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraphScene() ){
@@ -175,6 +179,7 @@ void MainWindow::functionsListInit(){
     QListWidgetItem* whileNode =new QListWidgetItem(tr("+While"), ui->listWidget);
     QListWidgetItem* varNode =new QListWidgetItem(tr("+VarNode"), ui->listWidget);
     QListWidgetItem* vectorNode = new QListWidgetItem(tr("+VectorNode"), ui->listWidget);
+    QListWidgetItem* VectorOperations = new QListWidgetItem(tr("+VectorOperations"), ui->listWidget);
     QListWidgetItem* vece = new QListWidgetItem(tr("+GreaterThan"), ui->listWidget);
     QListWidgetItem* i = new QListWidgetItem(tr("+BinaryAnd"), ui->listWidget);
     QListWidgetItem* ili = new QListWidgetItem(tr("+BinaryOr"), ui->listWidget);
@@ -206,6 +211,7 @@ void MainWindow::functionsListInit(){
     this->_functionList.append(*lessEq);
     this->_functionList.append(*greaterEq);
     this->_functionList.append(*vectorNode);
+    this->_functionList.append(*VectorOperations);
 
 }
 

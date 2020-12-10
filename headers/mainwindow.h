@@ -33,6 +33,7 @@
 #include "./headers/WhileNode.h"
 #include "./headers/VarNode.h"
 #include "./headers/VectorNode.h"
+#include "./headers/VectorOperations.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

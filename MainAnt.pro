@@ -29,6 +29,7 @@ SOURCES += \
     src/ReturnNode.cpp \
     src/VarNode.cpp \
     src/VectorNode.cpp \
+    src/VectorOperations.cpp \
     src/WhileNode.cpp \
     src/SearchBar.cpp \
     src/StartNode.cpp\
@@ -56,6 +57,7 @@ HEADERS += \
     headers/CustomLayout.h\
     headers/VarNode.h \
     headers/VectorNode.h \
+    headers/VectorOperations.h \
     headers/WhileNode.h \
     headers/SearchBar.h \
 
