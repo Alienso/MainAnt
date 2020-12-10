@@ -7,34 +7,34 @@ BinaryFunction::BinaryFunction(QString _name, int ninputs, int noutputs,QVector<
 QString BinaryFunction::getCodeForNode()
 {
     QString text="";
-           if(this->getName()=="plus"){
+           if(this->getName()=="Binary_plus"){
                text.append("+");
            }
-           else if(this->getName()=="minus"){
+           else if(this->getName()=="Binary_minus"){
                text.append("-");
            }
-           else if(this->getName()=="puta"){
+           else if(this->getName()=="Binary_puta"){
                text.append("*");
            }
-           else if(this->getName()=="manje"){
+           else if(this->getName()=="Binary_manje"){
                text.append("<");
            }
-           else if(this->getName()=="vece"){
+           else if(this->getName()=="Binary_vece"){
                text.append(">");
            }
-           else if(this->getName()=="i"){
+           else if(this->getName()=="Binary_i"){
                text.append("&&");
            }
-           else if(this->getName()=="ili"){
+           else if(this->getName()=="Binary_ili"){
                text.append("||");
            }
-           else if(this->getName()=="jednako"){
+           else if(this->getName()=="Binary_jednako"){
                text.append("==");
            }
-           else if(this->getName()=="manje jednako"){
+           else if(this->getName()=="Binary_manjeJednako"){
                text.append("<=");
            }
-           else if(this->getName()=="vece jednako"){
+           else if(this->getName()=="Binary_veceJednako"){
                text.append(">=");
            }
        return text;

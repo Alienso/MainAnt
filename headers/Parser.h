@@ -5,6 +5,7 @@
 #include <QString>
 #include <QMap>
 #include <string>
+#include <string.h>
 #include <iostream>
 #include <cstring>
 #include <fstream>
@@ -43,7 +44,7 @@ private:
     void visitForNode(Node* forNode, QVector<Node*> parents, QVector<Node*> children);
     void visitWhileNode(Node* whileNode, QVector<Node*> parents, QVector<Node*> children);
     void visitIfNode(Node* ifNode, QVector<Node*> parents, QVector<Node*> children);
-
+    void vistiBinaryNode(Node* node, QVector<Node*> parents);
 
 public:
     explicit Parser();

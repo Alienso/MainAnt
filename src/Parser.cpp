@@ -162,6 +162,22 @@ void Parser::visitIfNode(Node *ifNode, QVector<Node *> parents, QVector<Node *> 
     }
 }
 
+void Parser::vistiBinaryNode(Node *node, QVector<Node *> parents)
+{
+    //znamo da svaki Binary cvor ima dva roditelja pored, plus cvor koji je bio pre njega i vec je obidjen
+
+   int i =0;
+    for(Node* parent : parents){
+        if(!parent->getVisited()){
+            this->visitNode(parent);
+            i++;
+        }
+        if(i == 1){
+            file<<node->getCodeForNode().toUtf8().constData();
+        }
+    }
+}
+
 Parser::Parser():id(0)
 {
 }
@@ -257,6 +273,10 @@ void Parser::visitNode(Node* node)
     bool isIf = checkType(nodeName, "if");
     bool isWhile = checkType(nodeName, "while");
     bool isFor = checkType(nodeName, "for");
+    size_t isBinary = nodeName.find("_");
+    if(isBinary == 6){
+        this->vistiBinaryNode(node, parents);
+    }
 
     if(isFor){
         this->visitForNode(node, parents, children);
@@ -286,7 +306,9 @@ void Parser::visitNode(Node* node)
             }
         }
     }
-    file<< node->getCodeForNode().toUtf8().constData();
+    if(isBinary != 6){
+        file<< node->getCodeForNode().toUtf8().constData();
+    }
 
     if(children.empty()){
        return;
@@ -295,6 +317,9 @@ void Parser::visitNode(Node* node)
            if(!child->getVisited()){
               std::string childName = child->getName().toUtf8().constData();
               bool isBody = checkType(childName, "Body");
+              if(isBody){
+                file<<"{\n";
+              }
               visitNode(child);
               if(isBody){
                   file<<"\n}\n";

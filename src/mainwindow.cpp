@@ -29,22 +29,22 @@ void MainWindow::putNode(QListWidgetItem* item)
     QListWidgetItem* variable;
     if(item->text().compare("+BinarySum") == 0){
         //std::cout<<"plus"<<std::endl;
-        BinaryFunction* n = new BinaryFunction("plus", 3, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_plus", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("plus"));
     }else if(item->text().compare("+BinaryMInus") == 0){
         //std::cout<<"minus"<<std::endl;
-        BinaryFunction* n = new BinaryFunction("minus", 3, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_minus", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("minus"));
     }else if(item->text().compare("+BinaryMUltiply") == 0){
         //std::cout<<"puta"<<std::endl;
-        BinaryFunction* n = new BinaryFunction("puta", 3, 1,{},p,ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_puta", 3, 1,{},p,ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("MulNode"));
     }else if(item->text().compare("+LessThan") == 0){
         //std::cout<<"manje"<<std::endl;
-        BinaryFunction* n = new BinaryFunction("manje", 3, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_manje", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("LTNODE"));
     }else if(item->text().compare("+Input") == 0){
@@ -102,27 +102,27 @@ void MainWindow::putNode(QListWidgetItem* item)
         variable = new QListWidgetItem(tr("V"), ui->listVars);
         p->addNode(n, new QString("VarNode"));
     }else if(item->text().compare("+GreaterThan") == 0){
-        BinaryFunction* n = new BinaryFunction("vece", 3, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_vece", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("VeceNode"));
     }else if(item->text().compare("+BinaryAnd") == 0){
-        BinaryFunction* n = new BinaryFunction("i", 3, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_i", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("INode"));
      }else if(item->text().compare("+BinaryOr") == 0){
-        BinaryFunction* n = new BinaryFunction("ili", 3, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_ili", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("IliNode"));
     }else if(item->text().compare("+BinaryEqual") == 0){
-        BinaryFunction* n = new BinaryFunction("jednako", 3, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_jednako", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("JednakoNode"));
     }else if(item->text().compare("+BinaryLessEq") == 0){
-        BinaryFunction* n = new BinaryFunction("manje jednako", 3, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_manjeJednako", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("MJNode"));
     }else if(item->text().compare("+BinaryGreaterEq") == 0){
-        BinaryFunction* n = new BinaryFunction("vece jednako", 3, 1,{}, p, ui->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_veceJednako", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("VJNode"));
     }
