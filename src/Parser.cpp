@@ -44,7 +44,7 @@ void Parser::visitForNode(Node *forNode, QVector<Node*> parents, QVector<Node*> 
              }
          }
       }
-    file<<"){\n";
+    file<<")\n";
     //Zelimo da obidjemo sve osim poslednjeg deteta cvora for, jer su oni sastavni deo ovog cvora, a poslednji je samo sledeca celina koda
     if(children.empty()){
        return;
@@ -58,6 +58,55 @@ void Parser::visitForNode(Node *forNode, QVector<Node*> parents, QVector<Node*> 
            if(!child->getVisited()){
               std::string childName = child->getName().toUtf8().constData();
               bool isBody = checkType(childName, "Body");
+              if(isBody){
+                  file<<"{";
+              }
+              visitNode(child);
+              if(isBody){
+                  file<<"\n}\n";
+              }
+           }
+       }
+    }
+}
+
+void Parser::visitWhileNode(Node *whileNode, QVector<Node *> parents, QVector<Node *> children)
+{
+    whileNode->setVisited(true);
+    //Zelimo da obidjemo sve roditelje cvora while jer oni uticu na njegovo izracunavanje
+    file<<"while"<<"(";
+    if(!parents.empty())
+    {
+        for(Node* parent : parents){
+            if(strcmp(parent->getName().toUtf8().constData(),("StartNode")) == 0)
+            {
+                continue;
+            }
+            else
+            {
+                if(!parent->getVisited()){
+                    visitNode(parent);
+                }
+             }
+         }
+      }
+    file<<")\n";
+    //Zelimo da obidjemo sve osim poslednjeg deteta cvora while, jer su oni sastavni deo ovog cvora, a poslednji je samo sledeca celina koda
+    if(children.empty()){
+       return;
+    }else{
+
+       int len = children.length();
+       //ne zelimo da obidjemo poslednje dete
+       len = len-1;
+       for(int i=0; i<len; i++){
+           Node* child = children[i];
+           if(!child->getVisited()){
+              std::string childName = child->getName().toUtf8().constData();
+              bool isBody = checkType(childName, "Body");
+              if(isBody){
+                  file<<"{";
+              }
               visitNode(child);
               if(isBody){
                   file<<"\n}\n";
@@ -166,8 +215,10 @@ void Parser::visitNode(Node* node)
     if(isFor){
         this->visitForNode(node, parents, children);
     }
-
-    if(isWhile || isIf){
+    if(isWhile){
+        this->visitWhileNode(node, parents, children);
+    }
+    if(isIf){
         file<<nodeName<<"(";
     }
 
@@ -184,18 +235,12 @@ void Parser::visitNode(Node* node)
             {
                 if(!parent->getVisited()){
                     visitNode(parent);
-                    if(isFor){
-                        std::string parentName = parent->getName().toUtf8().constData();
-                        bool isIncrement = checkType(parentName, "Increment");
-                        if(!isIncrement){
-                            file<<";";
-                        }
-                    }
+
                 }
             }
         }
     }
-    if(isIf || isWhile){
+    if(isIf){
        file<<"){\n";
     }
     file<< node->getCodeForNode().toUtf8().constData();
