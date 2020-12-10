@@ -35,8 +35,8 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
     //this->nameLbl->setStyleSheet("border: 0px solid white;");
     layout->addWidget(nameLbl,0,0,1,3);
     QFont f( "Arial", 6);
-
-    for (int i=0;i < std::min(ninputs,noutputs);i++){
+    int n = 0;
+    for (int i=0;i < std::min(ninputs,noutputs);i++,n++){
 
         Output* o = new Output();
         o->addItem(""); //Must be used to be able to drag
@@ -63,7 +63,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
         }
 
     }
-    for (int i=0;i<std::max(ninputs,noutputs);i++){
+    for (int i=n;i<std::max(ninputs,noutputs);i++){
         if (ninputs == noutputs){
             Output* o = new Output();
             o->addItem(""); //Must be used to be able to drag

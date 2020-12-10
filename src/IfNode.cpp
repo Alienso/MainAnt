@@ -7,7 +7,9 @@ IfNode::IfNode() : Node("if", 2, 1,{"","Condition"})
     setStyleSheet ("background-color: rgba(193, 66, 66, 1);"
                    "border: 1px solid rgba(237, 48, 194, 1);");
 
-
+    QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->itemAtPosition(2,2)->widget()->hide();
+    layout->itemAtPosition(1,1)->widget()->hide();
 
 }
 
