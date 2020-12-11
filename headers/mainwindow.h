@@ -39,6 +39,7 @@
 #include "./headers/StackOperations.h"
 #include "./headers/QueueNode.h"
 #include "./headers/QueueOperations.h"
+#include "./headers/EndOfStatement.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -151,6 +151,10 @@ void MainWindow::putNode(QListWidgetItem* item)
         QueueOperations* n = new QueueOperations();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("QueueOperations"));
+    }else if(item->text().compare("+EndOfStatement") == 0){
+        EndOfStatement* n = new EndOfStatement();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("EndOfStatement"));
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraphScene() ){
@@ -221,6 +225,7 @@ void MainWindow::functionsListInit(){
     QListWidgetItem* stackOperations = new QListWidgetItem(tr("+StackOperations"), ui->listWidget);
     QListWidgetItem* queueNode = new QListWidgetItem(tr("+QueueNode"), ui->listWidget);
     QListWidgetItem* queueOperations = new QListWidgetItem(tr("+QueueOperations"), ui->listWidget);
+    QListWidgetItem* endOfStatement = new QListWidgetItem(tr("+EndOfStatement"), ui->listWidget);
 
     this->_functionList.append(*plus);
     this->_functionList.append(*minus);
@@ -251,6 +256,7 @@ void MainWindow::functionsListInit(){
     this->_functionList.append(*stackOperations);
     this->_functionList.append(*queueNode);
     this->_functionList.append(*queueOperations);
+    this->_functionList.append(*endOfStatement);
 
 }
 
