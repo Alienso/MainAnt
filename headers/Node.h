@@ -44,7 +44,7 @@ private:
     bool hiddingSomething=false;
 public:
     Parser * p;
-
+    bool exist=true;
     bool isHidden=false;
 public:
     explicit Node(QWidget* parent = nullptr);
