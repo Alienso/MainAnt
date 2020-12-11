@@ -26,6 +26,8 @@ SOURCES += \
     src/BinaryFunction.cpp \
     src/Parser.cpp \
     src/PrintNode.cpp \
+    src/QueueNode.cpp \
+    src/QueueOperations.cpp \
     src/ReturnNode.cpp \
     src/StackNode.cpp \
     src/StackOperations.cpp \
@@ -56,6 +58,8 @@ HEADERS += \
     headers/BinaryFunction.h \
     headers/Parser.h \
     headers/PrintNode.h \
+    headers/QueueNode.h \
+    headers/QueueOperations.h \
     headers/ReturNode.h \
     headers/CustomLayout.h\
     headers/StackNode.h \

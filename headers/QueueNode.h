@@ -1,5 +1,5 @@
-#ifndef STACKNODE_H
-#define STACKNODE_H
+#ifndef QUEUENODE_H
+#define QUEUENODE_H
 
 #include <QLineEdit>
 #include <QComboBox>
@@ -8,15 +8,15 @@
 
 #include "./headers/Node.h"
 
-class StackNode : public Node
+class QueueNode : public Node
 {
 public:
-    StackNode();
+    QueueNode();
 
-    QLineEdit* StackName;
+    QLineEdit* QueueName;
     QComboBox* varTypes;
 
     QString getCodeForNode() override;
 };
 
-#endif // STACKNODE_H
+#endif // QUEUENODE_H

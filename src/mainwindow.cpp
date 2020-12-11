@@ -143,6 +143,14 @@ void MainWindow::putNode(QListWidgetItem* item)
         StackOperations* n = new StackOperations();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("StackOperations"));
+    }else if(item->text().compare("+QueueNode") == 0){
+        QueueNode* n = new QueueNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("QueueNode"));
+    }else if(item->text().compare("+QueueOperations") == 0){
+        QueueOperations* n = new QueueOperations();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("QueueOperations"));
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraphScene() ){
@@ -211,6 +219,8 @@ void MainWindow::functionsListInit(){
     QListWidgetItem* greaterEq = new QListWidgetItem(tr("+BinaryGreaterEq"), ui->listWidget);
     QListWidgetItem* stackNode = new QListWidgetItem(tr("+StackNode"), ui->listWidget);
     QListWidgetItem* stackOperations = new QListWidgetItem(tr("+StackOperations"), ui->listWidget);
+    QListWidgetItem* queueNode = new QListWidgetItem(tr("+QueueNode"), ui->listWidget);
+    QListWidgetItem* queueOperations = new QListWidgetItem(tr("+QueueOperations"), ui->listWidget);
 
     this->_functionList.append(*plus);
     this->_functionList.append(*minus);
@@ -239,6 +249,8 @@ void MainWindow::functionsListInit(){
     this->_functionList.append(*VectorOperations);
     this->_functionList.append(*stackNode);
     this->_functionList.append(*stackOperations);
+    this->_functionList.append(*queueNode);
+    this->_functionList.append(*queueOperations);
 
 }
 
