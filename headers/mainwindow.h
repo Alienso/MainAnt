@@ -35,6 +35,8 @@
 #include "./headers/VectorNode.h"
 #include "./headers/VectorOperations.h"
 #include "./headers/VariableReferenceNode.h"
+#include "./headers/StackNode.h"
+#include "./headers/StackOperations.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

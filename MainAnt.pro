@@ -27,6 +27,8 @@ SOURCES += \
     src/Parser.cpp \
     src/PrintNode.cpp \
     src/ReturnNode.cpp \
+    src/StackNode.cpp \
+    src/StackOperations.cpp \
     src/VarNode.cpp \
     src/VariableReferenceNode.cpp \
     src/VectorNode.cpp \
@@ -56,6 +58,8 @@ HEADERS += \
     headers/PrintNode.h \
     headers/ReturNode.h \
     headers/CustomLayout.h\
+    headers/StackNode.h \
+    headers/StackOperations.h \
     headers/VarNode.h \
     headers/VariableReferenceNode.h \
     headers/VectorNode.h \

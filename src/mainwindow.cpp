@@ -135,10 +135,19 @@ void MainWindow::putNode(QListWidgetItem* item)
         VectorOperations* n = new VectorOperations();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("VectorOperations"));
+    }else if(item->text().compare("+StackNode") == 0){
+        StackNode* n = new StackNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("StackNode"));
+    }else if(item->text().compare("+StackOperations") == 0){
+        StackOperations* n = new StackOperations();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("StackOperations"));
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraphScene() ){
         object->setContextMenuPolicy(contextMenuPolicy());
+        qDebug()<<object->getName();
     }
 
     /*QMap<QString, Node*> graf = p->getGraphScene();
@@ -200,6 +209,8 @@ void MainWindow::functionsListInit(){
     QListWidgetItem* jednako = new QListWidgetItem(tr("+BinaryEqual"), ui->listWidget);
     QListWidgetItem* lessEq = new QListWidgetItem(tr("+BinaryLessEq"), ui->listWidget);
     QListWidgetItem* greaterEq = new QListWidgetItem(tr("+BinaryGreaterEq"), ui->listWidget);
+    QListWidgetItem* stackNode = new QListWidgetItem(tr("+StackNode"), ui->listWidget);
+    QListWidgetItem* stackOperations = new QListWidgetItem(tr("+StackOperations"), ui->listWidget);
 
     this->_functionList.append(*plus);
     this->_functionList.append(*minus);
@@ -226,6 +237,8 @@ void MainWindow::functionsListInit(){
     this->_functionList.append(*greaterEq);
     this->_functionList.append(*vectorNode);
     this->_functionList.append(*VectorOperations);
+    this->_functionList.append(*stackNode);
+    this->_functionList.append(*stackOperations);
 
 }
 
