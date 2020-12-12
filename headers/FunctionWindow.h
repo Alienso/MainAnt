@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef FUNCTIONWINDOW_H
+#define FUNCTIONWINDOW_H
 
 #include <QMainWindow>
 #include <QFormLayout>
@@ -40,37 +40,31 @@
 #include "./headers/QueueNode.h"
 #include "./headers/QueueOperations.h"
 #include "./headers/EndOfStatement.h"
-#include "./headers/FunctionWindow.h"
+#include "./headers/FunctionNode.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+namespace Ui {
+class FunctionWindow;
+}
 
-class MainWindow : public QMainWindow
+class FunctionWindow : public QMainWindow
 {
     Q_OBJECT
 private:
-    Ui::MainWindow *ui;
+    Ui::FunctionWindow *ui;
     Parser *p;
-
     void functionsListInit();
+
 public:
+    explicit FunctionWindow(QWidget *parent = nullptr);
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
+    ~FunctionWindow();
 public slots:
     void putNode(QListWidgetItem* item);
-    void putVar(QListWidgetItem* item);
 
 private slots:
-    //void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
-    void on_actionOpen_triggered();
-    void on_actionSave_triggered();
-    void on_actionQuit_triggered();
-    void on_actionRun_triggered();
     void filterFunctions();
-    void on_AddFunction_clicked();
+    void on_actionRun_triggered();
 };
-#endif // MAINWINDOW_H
+
+#endif // FUNCTIONWINDOW_H

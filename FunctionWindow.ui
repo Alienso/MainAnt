@@ -23,7 +23,7 @@ color : rgb(189, 221, 235)</string>
     <item>
      <widget class="CustomGraphicsView" name="StagingArea">
       <property name="styleSheet">
-       <string notr="true">color : rgb(4, 60, 76);</string>
+       <string notr="true">color : rgb(0,0,0);</string>
       </property>
      </widget>
     </item>

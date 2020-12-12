@@ -12,10 +12,10 @@
 #include <QMenu>
 #include <QTextEdit>
 #include <bits/stdc++.h>
+#include <QMenu>
 
 #include "./headers/Output.h"
 #include "./headers/Input.h"
-#include <QMenu>
 #include "./headers/Parser.h"
 
 class Input;

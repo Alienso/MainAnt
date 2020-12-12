@@ -11,7 +11,7 @@ CONFIG += c++11
 SOURCES += \
     ./src/main.cpp \
     ./src/mainwindow.cpp \
-    FunctionWindow.cpp \
+    ./src/FunctionWindow.cpp \
     src/BodyNode.cpp \
     src/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
@@ -19,6 +19,7 @@ SOURCES += \
     src/EndOfStatement.cpp \
     src/ForInicializeNode.cpp \
     src/ForNode.cpp \
+    src/FunctionNode.cpp \
     src/IfNode.cpp \
     src/IncrementNode.cpp \
     src/Input.cpp \
@@ -45,7 +46,7 @@ SOURCES += \
 
 HEADERS += \
     ./headers/mainwindow.h \
-    FunctionWindow.h \
+    ./headers/FunctionWindow.h \
     headers/BodyNode.h \
     headers/ConditionNode.h \
     headers/CustomGraphicsView.h \
@@ -53,6 +54,7 @@ HEADERS += \
     headers/EndOfStatement.h \
     headers/ForInicializeNode.h \
     headers/ForNode.h \
+    headers/FunctionNode.h \
     headers/IfNode.h \
     headers/IncrementNode.h \
     headers/Input.h \
