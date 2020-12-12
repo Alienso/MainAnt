@@ -1,31 +1,31 @@
-#include "./headers/mainwindow.h"
-#include "ui_mainwindow.h"
+#include "FunctionWindow.h"
+#include "ui_FunctionWindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-    , p(new Parser)
+FunctionWindow::FunctionWindow(QWidget *parent) :
+    QMainWindow(parent)
+    ,ui(new Ui::FunctionWindow)
+    ,p(new Parser)
 {
     ui->setupUi(this);
-    setWindowTitle(":)");
-    setWindowIcon(QIcon("./icon.icon")); //TODO program se izvrsava iz foldera buildmainant...
+
+    setWindowTitle("FunctionWindow");
 
     functionsListInit();
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
-    connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
-    connect(ui->searchBar,&QLineEdit::textChanged,this,&MainWindow::filterFunctions);
+    connect(ui->searchBar,&QLineEdit::textChanged,this,&FunctionWindow::filterFunctions);
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
 
 }
 
-MainWindow::~MainWindow()
+FunctionWindow::~FunctionWindow()
 {
     delete ui;
 }
 
-void MainWindow::putNode(QListWidgetItem* item)
+
+void FunctionWindow::putNode(QListWidgetItem* item)
 {
     QListWidgetItem* variable;
     if(item->text().compare("+BinarySum") == 0){
@@ -100,7 +100,7 @@ void MainWindow::putNode(QListWidgetItem* item)
     }else if(item->text().compare("+VarNode") == 0){
         VarNode* n = new VarNode();
         ui->StagingArea->addWidget(n);
-        variable = new QListWidgetItem(tr("V"), ui->listVars);
+        //variable = new QListWidgetItem(tr("V"), ui->listVars);
         _inicializedVars.append(variable);
         p->addNode(n, new QString("VarNode"));
     }else if(item->text().compare("+GreaterThan") == 0){
@@ -160,41 +160,9 @@ void MainWindow::putNode(QListWidgetItem* item)
     for(Node *object : p->getGraphScene() ){
         object->setContextMenuPolicy(contextMenuPolicy());
     }
-
-    /*QMap<QString, Node*> graf = p->getGraphScene();
-    QList<QString> kljuc = graf.keys();
-    for(auto item : kljuc){
-        std::cout<<item.toUtf8().constData()<<std::endl;
-    }*/
-
-    for(auto start : p->getStartNodes()){
-        std::cout<<"OK"<<std::endl;
-    }
-    std::cout<<"---------"<<std::endl;
-    std::cout<<item->text().toUtf8().constData()<<'\n';
-
 }
 
-void MainWindow::putVar(QListWidgetItem *item)
-{
-    for(int i =0; i<_inicializedVars.size(); i++)
-    {
-        if(_inicializedVars[i] == item){
-            VariableReferenceNode* n = new VariableReferenceNode(QString::fromStdString("var"));
-            ui->StagingArea->addWidget(n);
-            p->addNode(n, new QString("VariableReferenceNode"));
-        }
-    }
-}
-
-//Evo nacina da prepoznate na sta ste kliknuli iz liste
-/*
-void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item){
-    ui->StagingArea->layout()->addWidget(new Node(item->text(),2,1, nullptr));
-}
-*/
-
-void MainWindow::functionsListInit(){
+void FunctionWindow::functionsListInit(){
     QListWidgetItem* plus = new QListWidgetItem(tr("+BinarySum"), ui->listWidget);
     QListWidgetItem* minus =new QListWidgetItem(tr("+BinaryMInus"), ui->listWidget);
     QListWidgetItem* mul =new QListWidgetItem(tr("+BinaryMUltiply"), ui->listWidget);
@@ -256,65 +224,9 @@ void MainWindow::functionsListInit(){
     this->_functionList.append(*queueNode);
     this->_functionList.append(*queueOperations);
     this->_functionList.append(*endOfStatement);
-
 }
 
-//*File->Open Ucitava se tekstualni fajl.
-void MainWindow::on_actionOpen_triggered()
-{
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                                    tr("Open MainAnt"), "",
-                                                    tr("MainAnt (*.txt);;All Files (*)"));
-
-    if (fileName.isEmpty())
-        return;
-    else {
-
-        QFile file(fileName);
-
-        if (!file.open(QIODevice::ReadOnly)) {
-            QMessageBox::information(this, tr("Unable to open file"),
-                                     file.errorString());
-            return;
-        }
-        //U in fajlu nam se nalazi sadrzaj ucitane datoteke
-        QDataStream in(&file);
-        in.setVersion(QDataStream::Qt_4_5);
-        /*ovde bi trebalo u osnovi da se izvrsi nesto ovako:
-        in>> staging area;
-        */
-    }
-}
-
-//*File->Save Cuva se tekstualni fajl.
-void MainWindow::on_actionSave_triggered()
-{
-    QString fileName = QFileDialog::getSaveFileName(this,
-                                                    tr("Save MainAnt File"), "",
-                                                    tr("MainAnt (*.mant);;All Files (*)"));
-
-    if (fileName.isEmpty())
-        return;
-    else {
-        QFile file(fileName);
-        if (!file.open(QIODevice::WriteOnly)) {
-            QMessageBox::information(this, tr("Unable to open file"),
-                                     file.errorString());
-            return;
-        }
-        //Preko out-a pisemo u fajl koji ce biti sacuvan. Verovatno necete moci da procitate kada otvorite jer je QString upisan.
-        QDataStream out(&file);
-        out.setVersion(QDataStream::Qt_4_5);
-        out << QString("Projekat MainAnt");
-    }
-}
-
-void MainWindow::on_actionQuit_triggered()
-{
-    QApplication::quit();
-}
-
-void MainWindow::on_actionRun_triggered()
+void FunctionWindow::on_actionRun_triggered()
 {
     QString p1 = p->traverseGraph();
     if(p1 == QString::fromStdString("Fali")){
@@ -322,24 +234,12 @@ void MainWindow::on_actionRun_triggered()
     }
     else
         qDebug() << p1;
-
 }
 
-void MainWindow::filterFunctions(){
+void FunctionWindow::filterFunctions(){
 
     ui->listWidget->clear();
     for (int i=0;i<_functionList.length();i++)
         if (this->_functionList[i].text().contains(ui->searchBar->text(),Qt::CaseInsensitive))
             ui->listWidget->addItem(_functionList[i].text());
-}
-
-
-void MainWindow::on_AddFunction_clicked()
-{
-    qDebug()<<"+Function";
-    FunctionWindow *f=new FunctionWindow(nullptr);
-    QMessageBox msgBox;
-    msgBox.setText("Da biste zapamtili funkciju, morate da je kompajlirate");
-    f->show();
-    msgBox.exec();
 }

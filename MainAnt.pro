@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     ./src/main.cpp \
     ./src/mainwindow.cpp \
+    FunctionWindow.cpp \
     src/BodyNode.cpp \
     src/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
@@ -44,6 +45,7 @@ SOURCES += \
 
 HEADERS += \
     ./headers/mainwindow.h \
+    FunctionWindow.h \
     headers/BodyNode.h \
     headers/ConditionNode.h \
     headers/CustomGraphicsView.h \
@@ -74,6 +76,7 @@ HEADERS += \
     headers/SearchBar.h \
 
 FORMS += \
+    FunctionWindow.ui \
     mainwindow.ui
 
 # Default rules for deployment.
