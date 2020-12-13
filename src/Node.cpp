@@ -188,6 +188,13 @@ void Node::mousePressEvent(QMouseEvent *event)
                         node->setVisitedHide(false);
                         node->hide();
                     }
+                    QGraphicsDropShadowEffect *bodyShadow = new QGraphicsDropShadowEffect;
+                    bodyShadow->setBlurRadius(13.0);
+                    //QColor color=this->palette().color(backgroundRole());
+                    bodyShadow->setColor(this->palette().Dark);
+                    bodyShadow->setOffset(8.0);
+                    this->setGraphicsEffect(bodyShadow);
+
                 }
             } else if(selectedItem->toolTip()=="Show"){
                 qDebug()<< "Show";
@@ -215,6 +222,7 @@ void Node::mousePressEvent(QMouseEvent *event)
                         node->setVisitedHide(false);
                         node->show();
                     }
+                    this->setGraphicsEffect(nullptr);
                 }
             }
         }

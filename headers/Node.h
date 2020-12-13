@@ -13,6 +13,7 @@
 #include <QTextEdit>
 #include <bits/stdc++.h>
 #include <QMenu>
+#include <QGraphicsDropShadowEffect>
 
 #include "./headers/Output.h"
 #include "./headers/Input.h"
