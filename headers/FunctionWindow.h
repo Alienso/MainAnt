@@ -64,7 +64,7 @@ public slots:
 
 private slots:
     void filterFunctions();
-    void on_actionRun_triggered();
+    void on_actionSave_Function_triggered();
 };
 
 #endif // FUNCTIONWINDOW_H

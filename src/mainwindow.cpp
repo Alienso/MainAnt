@@ -346,7 +346,7 @@ void MainWindow::on_AddFunction_clicked()
     qDebug()<<"+Function";
     FunctionWindow *f=new FunctionWindow(nullptr);
     QMessageBox msgBox;
-    msgBox.setText("Da biste zapamtili funkciju, morate da je kompajlirate");
+    msgBox.setText("To use function later, you must run 'Build->Save Function' option after defining it");
     f->show();
     msgBox.exec();
 }

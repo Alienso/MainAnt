@@ -3,8 +3,8 @@
 
 FunctionWindow::FunctionWindow(QWidget *parent) :
     QMainWindow(parent)
-    ,ui(new Ui::FunctionWindow)
-    ,p(new Parser)
+  ,ui(new Ui::FunctionWindow)
+  ,p(new Parser)
 {
     ui->setupUi(this);
 
@@ -70,18 +70,18 @@ void FunctionWindow::putNode(QListWidgetItem* item)
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("IfNode"));
     }else if(item->text().compare("+Condition") == 0){
-       ConditionNode* n = new ConditionNode();
-       ui->StagingArea->addWidget(n);
-       p->addNode(n, new QString("ConditionNode"));
+        ConditionNode* n = new ConditionNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ConditionNode"));
     }else if(item->text().compare("+Else") == 0){
         ElseNode* n = new ElseNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("ElseNode"));
-     }else if(item->text().compare("+BodyNode") == 0){
+    }else if(item->text().compare("+BodyNode") == 0){
         BodyNode* n = new BodyNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("BodyNode"));
-     }else if(item->text().compare("+ForNoode") == 0){
+    }else if(item->text().compare("+ForNoode") == 0){
         ForNode* n = new ForNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("ForNode"));
@@ -111,7 +111,7 @@ void FunctionWindow::putNode(QListWidgetItem* item)
         BinaryFunction* n = new BinaryFunction("Binary_i", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("INode"));
-     }else if(item->text().compare("+BinaryOr") == 0){
+    }else if(item->text().compare("+BinaryOr") == 0){
         BinaryFunction* n = new BinaryFunction("Binary_ili", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("IliNode"));
@@ -232,7 +232,7 @@ void FunctionWindow::functionsListInit(){
     this->_functionList.append(*FunctionNode);
 }
 
-void FunctionWindow::on_actionRun_triggered()
+void FunctionWindow::on_actionSave_Function_triggered()
 {
     QString p1 = p->traverseGraph();
     if(p1 == QString::fromStdString("Fali")){
@@ -241,6 +241,7 @@ void FunctionWindow::on_actionRun_triggered()
     else
         qDebug() << p1;
 }
+
 
 void FunctionWindow::filterFunctions(){
 
