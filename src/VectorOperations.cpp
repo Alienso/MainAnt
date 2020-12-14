@@ -15,7 +15,9 @@ VectorOperations::VectorOperations() : Node("vectorOperations", 1, 1)
 
     this->operations = new QComboBox();
     this->operations->addItem("push_back");
-    this->operations->addItem("push_back");
+    this->operations->addItem("pop_back");
+    this->operations->addItem("[]");
+    this->operations->addItem("size");
 
     layout->addWidget(this->operations, 3, 0);
     layout->addWidget(this->value, 4, 0);
@@ -34,6 +36,17 @@ QString VectorOperations::getCodeForNode()
     else if(this->operations->currentText() == QString::fromStdString("pop_back"))
     {
         text+= QString::fromStdString(".pop_back()");
+        text+= QString::fromStdString(";\n");
+    }
+    else if(this->operations->currentText() == QString::fromStdString("[]"))
+    {
+        //TODO treba videti kako ce ovo da se ukolpi u parser
+        text+= QString::fromStdString("[]");
+        text+= QString::fromStdString(";\n");
+    }
+    else if(this->operations->currentText() == QString::fromStdString("size"))
+    {
+        text+= QString::fromStdString(".size()");
         text+= QString::fromStdString(";\n");
     }
 
