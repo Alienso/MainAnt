@@ -6,6 +6,7 @@
 #include <QComboBox>
 #include <QGridLayout>
 #include <QPushButton>
+#include <QVector>
 
 #include "./headers/Node.h"
 
@@ -17,13 +18,14 @@ public:
     QLineEdit* FunctionName;
     QComboBox* combo;
     QPushButton *addArg;
-    //argumenti
-    //povratna vrednost
+    QVector<QLineEdit*> argumentsNames;
+    QVector<QComboBox*> argumentsTypes;
+    //do kog koeficijenta smo stigli u layoutu sa dodavanjem
+    int layoutK=5;
     QString getCodeForNode() override;
 
-private slots:
-    void addAgrument(void);
+public slots:
+    void addArgument();
 };
-
 
 #endif // FUNCTIONNODE_H
