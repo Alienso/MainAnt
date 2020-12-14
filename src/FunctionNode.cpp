@@ -17,12 +17,13 @@ FunctionNode::FunctionNode() : Node("function", 1, 1)
     this->FunctionName->setPlaceholderText(*placeHolderFunctionName);
 
     this->combo = new QComboBox();
-    this->combo->addItem("Integer");
-    this->combo->addItem("Float");
-    this->combo->addItem("Double");
-    this->combo->addItem("Bool");
-    this->combo->addItem("Char");
-    this->combo->addItem("String");
+    this->combo->addItem("void");
+    this->combo->addItem("integer");
+    this->combo->addItem("float");
+    this->combo->addItem("double");
+    this->combo->addItem("bool");
+    this->combo->addItem("char");
+    this->combo->addItem("string");
 
     layout->addWidget(this->combo, 3, 1);
     layout->addWidget(this->FunctionName, 3, 0);
@@ -34,27 +35,30 @@ FunctionNode::FunctionNode() : Node("function", 1, 1)
 QString FunctionNode::getCodeForNode(){
     QString text="";
 
-    if(this->combo->currentText() == QString::fromStdString("Integer"))
+    if(this->combo->currentText() == QString::fromStdString("void")){
+        text+=QString::fromStdString("void ");
+    }
+    else if(this->combo->currentText() == QString::fromStdString("integer"))
     {
         text+= QString::fromStdString("int ");
     }
-    else if(this->combo->currentText() == QString::fromStdString("Float"))
+    else if(this->combo->currentText() == QString::fromStdString("float"))
     {
         text+= QString::fromStdString("float ");
     }
-    else if(this->combo->currentText() == QString::fromStdString("Double"))
+    else if(this->combo->currentText() == QString::fromStdString("double"))
     {
         text+= QString::fromStdString("double ");
     }
-    else if(this->combo->currentText() == QString::fromStdString("Bool"))
+    else if(this->combo->currentText() == QString::fromStdString("bool"))
     {
         text+= QString::fromStdString("bool ");
     }
-    else if(this->combo->currentText() == QString::fromStdString("Char"))
+    else if(this->combo->currentText() == QString::fromStdString("char"))
     {
         text+= QString::fromStdString("char ");
     }
-    else if(this->combo->currentText() == QString::fromStdString("String"))
+    else if(this->combo->currentText() == QString::fromStdString("string"))
     {
         text+= QString::fromStdString("std::string ");
     }
@@ -63,6 +67,10 @@ QString FunctionNode::getCodeForNode(){
     text+= QString::fromStdString("(");
     int i=0;
     int n=this->argumentsTypes.length();
+    if(n == 0){
+        text += QString::fromStdString("){\n");
+        return text;
+    }
     for(i=0; i<n-1; i++){
         text+= this->argumentsTypes[i]->currentText();
         text+= QString::fromStdString(" ");
@@ -75,13 +83,13 @@ QString FunctionNode::getCodeForNode(){
     text+= this->argumentsNames.last()->text();
 
     text+= QString::fromStdString("){\n");
-    qDebug()<< text;
+    //qDebug()<< text;
     return text;
 }
 
 void FunctionNode::addArgument()
 {
-    qDebug()<<"Dodajem argument";
+    //qDebug()<<"Dodajem argument";
     this->argumentsNames.push_back(new QLineEdit());
     const QString* placeHolderArgName = new QString("Enter arg name...");
     this->argumentsNames.last()->setPlaceholderText(*placeHolderArgName);
