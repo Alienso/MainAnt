@@ -100,9 +100,9 @@ void MainWindow::putNode(QListWidgetItem* item)
     }else if(item->text().compare("+VarNode") == 0){
         VarNode* n = new VarNode();
         ui->StagingArea->addWidget(n);
-        variable = new QListWidgetItem(tr("V"), ui->listVars);
-        _inicializedVars.append(variable);
         p->addNode(n, new QString("VarNode"));
+        variable = new QListWidgetItem(tr(n->getNodeId().toUtf8().constData()), ui->listVars);
+        _inicializedVars.append(variable);
     }else if(item->text().compare("+GreaterThan") == 0){
         BinaryFunction* n = new BinaryFunction("Binary_vece", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
@@ -131,6 +131,8 @@ void MainWindow::putNode(QListWidgetItem* item)
         VectorNode* n = new VectorNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("VectorNode"));
+        variable = new QListWidgetItem(tr(n->getNodeId().toUtf8().constData()), ui->listVars);
+        _inicializedVars.append(variable);
     }else if(item->text().compare("+VectorOperations") == 0){
         VectorOperations* n = new VectorOperations();
         ui->StagingArea->addWidget(n);
@@ -139,6 +141,8 @@ void MainWindow::putNode(QListWidgetItem* item)
         StackNode* n = new StackNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("StackNode"));
+        variable = new QListWidgetItem(tr(n->getNodeId().toUtf8().constData()), ui->listVars);
+        _inicializedVars.append(variable);
     }else if(item->text().compare("+StackOperations") == 0){
         StackOperations* n = new StackOperations();
         ui->StagingArea->addWidget(n);
@@ -147,6 +151,8 @@ void MainWindow::putNode(QListWidgetItem* item)
         QueueNode* n = new QueueNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("QueueNode"));
+        variable = new QListWidgetItem(tr(n->getNodeId().toUtf8().constData()), ui->listVars);
+        _inicializedVars.append(variable);
     }else if(item->text().compare("+QueueOperations") == 0){
         QueueOperations* n = new QueueOperations();
         ui->StagingArea->addWidget(n);
@@ -180,7 +186,8 @@ void MainWindow::putVar(QListWidgetItem *item)
     for(int i =0; i<_inicializedVars.size(); i++)
     {
         if(_inicializedVars[i] == item){
-            VariableReferenceNode* n = new VariableReferenceNode(QString::fromStdString("var"));
+            VariableReferenceNode* n = new VariableReferenceNode(item->text());
+            n->setRefNameId(item->text());
             ui->StagingArea->addWidget(n);
             p->addNode(n, new QString("VariableReferenceNode"));
         }

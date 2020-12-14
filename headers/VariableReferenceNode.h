@@ -14,6 +14,11 @@ public:
     QTextEdit* varName;
 
     QString getCodeForNode() override;
+    void setRefNameId(QString _refNameId);
+    QString getRefNameId();
+
+private:
+    QString refNameId;
 };
 
 #endif // VARIABLEREFERENCENODE_H

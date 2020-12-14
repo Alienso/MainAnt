@@ -2,7 +2,8 @@
 
 VariableReferenceNode::VariableReferenceNode(QString _varName) : Node("VariableRef", 1, 1)
 {
-    setMinimumSize(100,100);
+    this->refNameId = QString::fromStdString("VarRef");
+    setMinimumSize(130,120);
     setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(18, 125, 94, 1);"
                    "border: 1px solid rgba(255, 150, 132, 1);");
@@ -20,6 +21,16 @@ VariableReferenceNode::VariableReferenceNode(QString _varName) : Node("VariableR
 QString VariableReferenceNode::getCodeForNode()
 {
     return this->name;
+}
+
+void VariableReferenceNode::setRefNameId(QString _refNameId)
+{
+    this->refNameId = _refNameId;
+}
+
+QString VariableReferenceNode::getRefNameId()
+{
+    this->refNameId;
 }
 
 
