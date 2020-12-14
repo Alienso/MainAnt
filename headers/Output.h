@@ -10,13 +10,16 @@
 #include <sstream>
 
 #include "./headers/Node.h"
+#include "./CustomGraphicsView.h"
 
+class CustomGraphicsView;
 class Input;
 
 class Output : public QListWidget
 {
 private:
     Input* next;
+    QPoint offset;
     QString addrtos(QWidget* w);
 
 public:
@@ -24,6 +27,9 @@ public:
 
 protected:
     void startDrag(Qt::DropActions supportedActions) override;
+    //void mousePressEvent(QMouseEvent *event) override;
+    //void mouseMoveEvent(QMouseEvent *event) override;
+   // void mouseReleaseEvent(QMouseEvent *event) override;
 };
 
 #endif // OUTPUT_H

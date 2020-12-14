@@ -5,6 +5,7 @@ Output::Output (QWidget *parent) : QListWidget(parent)
     setMinimumSize(20,20);
     setMaximumSize(20,20);
     setStyleSheet ("background-color: rgba(218, 129, 25, 1);");
+    this->addItem("");
     setDragEnabled(true);
     next = nullptr;
 }
@@ -44,3 +45,24 @@ void Output::startDrag(Qt::DropActions supportedActions)
     drag->setMimeData (mimeData);
     drag->exec(Qt::MoveAction);
 }
+
+/*void Output::mousePressEvent(QMouseEvent *event){
+     offset = mapToParent(event->pos());
+     if (childAt(event->pos())!=nullptr){
+         static_cast<CustomGraphicsView*>(this->parentWidget()->parentWidget())->setDragging(true);
+         static_cast<CustomGraphicsView*>(this->parentWidget()->parentWidget())->setStartPos(this->parentWidget()->mapToParent(event->pos()+offset));
+
+     }
+     QListWidget::mousePressEvent(event);
+}*/
+
+//Ovaj zabaguje povezivanje
+/*void Output::mouseMoveEvent(QMouseEvent *event){
+     static_cast<CustomGraphicsView*>(this->parentWidget()->parentWidget())->setMouseAt(this->parentWidget()->mapToParent(event->pos()+offset));
+     QListWidget::mousePressEvent(event);
+}*/
+
+/*void Output::mouseReleaseEvent(QMouseEvent *event){
+    static_cast<CustomGraphicsView*>(this->parentWidget()->parentWidget())->setDragging(false);
+    QListWidget::mousePressEvent(event);
+}*/

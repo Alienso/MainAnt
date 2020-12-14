@@ -47,6 +47,8 @@ void CustomGraphicsView::paintEvent(QPaintEvent* e)
             }
         }
     }
+    if(this->dragging)
+        painter.drawLine(this->startPos,this->mouseAt);
     update();
 }
 //Vraca nodeove nazad na svoje mesto nakon dodavanja novog node-a
@@ -60,7 +62,15 @@ void CustomGraphicsView::repositionNodes()
     }
 }
 
-QVector<Node*>* CustomGraphicsView::getNodes()
-{
+QVector<Node*>* CustomGraphicsView::getNodes(){
     return nodes;
+}
+void CustomGraphicsView::setDragging(bool val){
+    this->dragging = val;
+}
+void CustomGraphicsView::setMouseAt(QPoint pos){
+    this->mouseAt = pos;
+}
+void CustomGraphicsView::setStartPos(QPoint pos){
+    this->startPos = pos;
 }

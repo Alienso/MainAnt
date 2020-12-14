@@ -39,7 +39,6 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
     for (int i=0;i < std::min(ninputs,noutputs);i++,n++){
 
         Output* o = new Output();
-        o->addItem(""); //Must be used to be able to drag
         Input* tmp = new Input();
         layout->addWidget(tmp,i+1,0);
         layout->addWidget(o,i+1,3);
@@ -66,7 +65,6 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
     for (int i=n;i<std::max(ninputs,noutputs);i++){
         if (ninputs == noutputs){
             Output* o = new Output();
-            o->addItem(""); //Must be used to be able to drag
             Input* tmp = new Input();
             layout->addWidget(tmp,i+1,0);
             layout->addWidget(o,i+1,3);
@@ -93,7 +91,6 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
 
         if (noutputs>ninputs){
             Output* tmp = new Output();
-            tmp->addItem("");
             layout->addWidget(tmp,i+1,3);
             continue;
         }
@@ -121,16 +118,6 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
         }
     }
 }
-
-/*void node::mousePressEvent(QMouseEvent *event){
-
-    this->move(event->pos());
-    QString s(event->x() + "," + event->y());
-    std::cout<<"P: "<<event->x() << "," << event->y() << std::endl;
-    fflush(stdout);
-
-}*/
-
 
 void Node::mouseMoveEvent(QMouseEvent *event)
 {
@@ -242,6 +229,7 @@ void Node::mousePressEvent(QMouseEvent *event)
 
         //this->deleteLater();
     }
+    QFrame::mousePressEvent(event);
 }
 
 void Node::setNodeId(QString nodeId)
