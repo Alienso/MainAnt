@@ -16,11 +16,11 @@ class PrintNode : public Node
 private:
     bool manualInput;
     bool fileInput;
+    bool printMyInput;
     QTextEdit* input;
 
 public:
     PrintNode();
-
     QString getCodeForNode() override;
 };
 

@@ -273,6 +273,7 @@ void Parser::visitNode(Node* node)
     bool isIf = checkType(nodeName, "if");
     bool isWhile = checkType(nodeName, "while");
     bool isFor = checkType(nodeName, "for");
+
     size_t isBinary = nodeName.find("_");
     if(isBinary == 6){
         this->vistiBinaryNode(node, parents);
@@ -280,16 +281,13 @@ void Parser::visitNode(Node* node)
 
     if(isFor){
         this->visitForNode(node, parents, children);
-    }
-    if(isWhile){
+    }else if(isWhile){
         this->visitWhileNode(node, parents, children);
-    }
-    if(isIf){
+    }else if(isIf){
         this->visitIfNode(node, parents, children);
     }
 
     node->setVisited(true);
-
     if(!parents.empty())
     {
         for(Node* parent : parents){
