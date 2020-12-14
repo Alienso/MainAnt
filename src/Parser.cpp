@@ -178,7 +178,7 @@ void Parser::vistiBinaryNode(Node *node, QVector<Node *> parents)
     }
 }
 
-Parser::Parser():id(0)
+Parser::Parser():id(0), funcId(0)
 {
 }
 
@@ -204,6 +204,11 @@ void Parser::addNode(Node* node, QString *type)
 void Parser::addNewStart(Node *node)
 {
     this->startNodes.push_back(node);
+}
+
+void Parser::addNewFunction(Node *node)
+{
+    this->functions.push_back(node);
 }
 
 QVector<QString> Parser::getNodeNames()
@@ -325,4 +330,24 @@ void Parser::visitNode(Node* node)
            }
        }
     }
+}
+
+QString Parser::createFunction()
+{
+    //qDebug()<<"Called";
+    this->funcId += 1;
+    std::string fileName = "function" + std::to_string(this->funcId);
+    std::string filePath = "../" + fileName + ".cpp";
+
+    funcFile.open(filePath, std::ios::out|std::ios::trunc);
+
+    for(Node* func : this->functions){
+        if(!func->getVisited()){
+            func->setVisited(true);
+            funcFile<<func->getCodeForNode().toUtf8().constData();
+        }
+    }
+
+    funcFile.close();
+    return "Funkcija isparsirana";
 }

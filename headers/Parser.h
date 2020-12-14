@@ -17,6 +17,11 @@ class Node;
 class Parser
 {
 private:
+    //Pravate deo vezan za parsiranje korisnicki definisanih, funkcija
+    int funcId;
+    QVector<Node*> functions;
+
+private:
     //Vekror koji cuva cvorove grafa scene
     QVector<Node*> graph;
     //Svaki put kad se doda start node on se doda i u ovaj graf
@@ -31,8 +36,10 @@ private:
     //radi lakseg pristupanja metodama klase datog cvora i slicno
     int id;
 
-    //stremi za fal u koji cemo pisati kod
+    //stream za fal u koji cemo pisati kod
     std::ofstream file;
+    //strema za fajl u koji pisemo kod korisnicki definisanih funkcija
+    std::ofstream funcFile;
 
    //funkcija za proveru tipa noda
     bool checkType(std::string name, std::string expectedName);
@@ -50,6 +57,7 @@ public:
     explicit Parser();
     void addNode(Node* node, QString *type);
     void addNewStart(Node* node);
+    void addNewFunction(Node* node);
 
     QVector<QString> getNodeNames();
     QVector<Node*> getGraph();
@@ -63,6 +71,9 @@ public:
     QString traverseGraph();
     //Funkcija koja obilazi Nodove
     void visitNode(Node* node);
+    //poziva se kada se definise nova funkcija
+    QString createFunction();
+
 };
 
 #endif // PRASER_H

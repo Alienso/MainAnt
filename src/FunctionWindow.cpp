@@ -159,6 +159,7 @@ void FunctionWindow::putNode(QListWidgetItem* item)
         FunctionNode* n = new FunctionNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("FunctionNode"));
+        p->addNewFunction(n);
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : p->getGraphScene() ){
@@ -231,16 +232,16 @@ void FunctionWindow::functionsListInit(){
     this->_functionList.append(*endOfStatement);
     this->_functionList.append(*FunctionNode);
 }
-
+/*
 void FunctionWindow::on_actionSave_Function_triggered()
 {
-    QString p1 = p->traverseGraph();
+    QString p1 = p->createFunction();
     if(p1 == QString::fromStdString("Fali")){
         qDebug() << "Fail";
     }
     else
         qDebug() << p1;
-}
+}*/
 
 
 void FunctionWindow::filterFunctions(){
@@ -249,4 +250,14 @@ void FunctionWindow::filterFunctions(){
     for (int i=0;i<_functionList.length();i++)
         if (this->_functionList[i].text().contains(ui->searchBar->text(),Qt::CaseInsensitive))
             ui->listWidget->addItem(_functionList[i].text());
+}
+
+void FunctionWindow::on_actionAddFunction_triggered()
+{
+    QString p1 = p->createFunction();
+    if(p1 == QString::fromStdString("Fali")){
+        qDebug() << "Fail";
+    }
+    else
+        qDebug() << p1;
 }

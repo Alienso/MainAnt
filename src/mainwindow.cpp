@@ -167,17 +167,6 @@ void MainWindow::putNode(QListWidgetItem* item)
         object->setContextMenuPolicy(contextMenuPolicy());
     }
 
-    /*QMap<QString, Node*> graf = p->getGraphScene();
-    QList<QString> kljuc = graf.keys();
-    for(auto item : kljuc){
-        std::cout<<item.toUtf8().constData()<<std::endl;
-    }*/
-
-    for(auto start : p->getStartNodes()){
-        std::cout<<"OK"<<std::endl;
-    }
-    std::cout<<"---------"<<std::endl;
-    std::cout<<item->text().toUtf8().constData()<<'\n';
 
 }
 
@@ -346,7 +335,7 @@ void MainWindow::on_AddFunction_clicked()
     qDebug()<<"+Function";
     FunctionWindow *f=new FunctionWindow(nullptr);
     QMessageBox msgBox;
-    msgBox.setText("To use function later, you must run 'Build->Save Function' option after defining it");
+    msgBox.setText("To save the changes you have made chose 'Build->Add Function'.");
     f->show();
     msgBox.exec();
 }
