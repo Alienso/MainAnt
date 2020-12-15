@@ -31,7 +31,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
         args[0] = "";
     }
 
-    this->nameLbl->setMaximumSize(80,20);
+    this->nameLbl->setMaximumSize(100,20);
     layout->addWidget(nameLbl,0,0,1,3);
     QFont f( "Arial", 6);
     int n = 0;

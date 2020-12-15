@@ -13,6 +13,8 @@
 #include <QDebug>
 #include <QList>
 
+#include "./headers/ReallyBigFunctionsThatYouDontNeedToSee.h"
+
 #include "./headers/BinaryFunction.h"
 #include "./headers/Node.h"
 #include "./headers/Parser.h"
@@ -53,17 +55,18 @@ private:
     Ui::MainWindow *ui;
     Parser *p;
 
-    void functionsListInit();
 public:
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
+    Ui::MainWindow* getUi();
+    Parser* getParser();
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 public slots:
-    void putNode(QListWidgetItem* item);
     void putVar(QListWidgetItem* item);
     void functionAdded(QString FunctionName);
+    void onPutNode(QListWidgetItem* item);
 
 private slots:
     void on_actionOpen_triggered();
