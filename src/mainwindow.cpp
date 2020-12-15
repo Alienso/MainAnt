@@ -130,6 +130,7 @@ void MainWindow::functionAdded(QString FunctionName)
 {
     qDebug()<<"funkcija je dodata";
     QListWidgetItem* function = new QListWidgetItem(FunctionName, ui->FunctionView);
+}
 
 Ui::MainWindow* MainWindow::getUi(){
     return ui;

@@ -45,11 +45,6 @@
 #include "./headers/EndOfStatement.h"
 #include "./headers/FunctionNode.h"
 
-#include "./headers/mainwindow.h"
-#include "./headers/FunctionWindow.h"
-
-#include "ui_mainwindow.h"
-
 template<typename T>
 void functionsListInit(T *w,QString s){
 

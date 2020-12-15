@@ -30,7 +30,11 @@ FunctionWindow::~FunctionWindow()
     delete ui;
 }
 
-/*
+
+void FunctionWindow::onPutNode(QListWidgetItem* item){
+    putNode(item,this,"");
+}
+
 void FunctionWindow::on_actionSave_Function_triggered()
 {
     QString p1 = p->createFunction();
@@ -52,3 +56,11 @@ void FunctionWindow::filterFunctions(){
             ui->listWidget->addItem(_functionList[i].text());
 }
 
+
+
+Ui::FunctionWindow* FunctionWindow::getUi(){
+    return ui;
+}
+Parser* FunctionWindow::getParser(){
+    return p;
+}
