@@ -53,19 +53,21 @@ private:
     Ui::FunctionWindow *ui;
     Parser *p;
     void functionsListInit();
+    QLineEdit* FunctionName;
 
 public:
-    explicit FunctionWindow(QWidget *parent = nullptr);
+    explicit FunctionWindow(QWidget *parent);
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
     ~FunctionWindow();
+signals:
+    void functionAdded(QString FunctionName);
 public slots:
     void putNode(QListWidgetItem* item);
 
 private slots:
     void filterFunctions();
-    //void on_actionSave_Function_triggered();
-    void on_actionAddFunction_triggered();
+    void on_actionSave_Function_triggered();
 };
 
 #endif // FUNCTIONWINDOW_H

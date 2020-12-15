@@ -34,13 +34,7 @@ border-color: rgb(21, 45, 73);</string>
        <enum>QLayout::SetMaximumSize</enum>
       </property>
       <item>
-       <widget class="QListView" name="ClassView">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
+       <widget class="QListWidget" name="ClassView">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(44, 94, 107);
 </string>
@@ -90,15 +84,11 @@ color: rgb(21, 45, 73);
        </layout>
       </item>
       <item>
-       <widget class="QListView" name="MethodsView">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
+       <widget class="QListWidget" name="FunctionView">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(44, 94, 107);</string>
+         <string notr="true">background-color: rgb(44, 94, 107);
+color : rgb(255, 255, 255);
+</string>
         </property>
        </widget>
       </item>
@@ -144,15 +134,10 @@ color: rgb(21, 45, 73);
        </layout>
       </item>
       <item>
-       <widget class="QListView" name="VariablesView">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
+       <widget class="QListWidget" name="listWidget_4">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(44, 94, 107);</string>
+         <string notr="true">background-color: rgb(44, 94, 107);
+</string>
         </property>
        </widget>
       </item>

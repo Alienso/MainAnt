@@ -63,6 +63,7 @@ public:
 public slots:
     void putNode(QListWidgetItem* item);
     void putVar(QListWidgetItem* item);
+    void functionAdded(QString FunctionName);
 
 private slots:
     void on_actionOpen_triggered();

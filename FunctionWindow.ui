@@ -74,7 +74,7 @@ color : rgb(189, 221, 235)</string>
      <string>Build</string>
     </property>
     <addaction name="actionCompile"/>
-    <addaction name="actionAddFunction"/>
+    <addaction name="actionSave_Function"/>
    </widget>
    <addaction name="menuBuild"/>
   </widget>
@@ -84,9 +84,9 @@ color : rgb(189, 221, 235)</string>
     <string>Compile</string>
    </property>
   </action>
-  <action name="actionAddFunction">
+  <action name="actionSave_Function">
    <property name="text">
-    <string>Add Function</string>
+    <string>Save Function</string>
    </property>
   </action>
  </widget>

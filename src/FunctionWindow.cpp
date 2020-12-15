@@ -14,9 +14,15 @@ FunctionWindow::FunctionWindow(QWidget *parent) :
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putNode(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&FunctionWindow::filterFunctions);
+    connect(this, SIGNAL(functionAdded(QString)), this->parent(), SLOT(functionAdded(QString)));
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
 
+    FunctionNode* funct = new FunctionNode();
+    ui->StagingArea->addWidget(funct);
+    p->addNode(funct, new QString("FunctionNode"));
+    p->addNewFunction(funct);
+    this->FunctionName=funct->FunctionName;
 }
 
 FunctionWindow::~FunctionWindow()
@@ -232,7 +238,7 @@ void FunctionWindow::functionsListInit(){
     this->_functionList.append(*endOfStatement);
     this->_functionList.append(*FunctionNode);
 }
-/*
+
 void FunctionWindow::on_actionSave_Function_triggered()
 {
     QString p1 = p->createFunction();
@@ -241,7 +247,9 @@ void FunctionWindow::on_actionSave_Function_triggered()
     }
     else
         qDebug() << p1;
-}*/
+    emit functionAdded(this->FunctionName->text());
+    this->destroy();
+}
 
 
 void FunctionWindow::filterFunctions(){
@@ -252,14 +260,3 @@ void FunctionWindow::filterFunctions(){
             ui->listWidget->addItem(_functionList[i].text());
 }
 
-void FunctionWindow::on_actionAddFunction_triggered()
-{
-    QString p1 = p->createFunction();
-    if(p1 == QString::fromStdString("Fali")){
-        qDebug() << "Fail";
-    }
-    else
-        qDebug() << p1;
-
-
-}

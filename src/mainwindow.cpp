@@ -66,18 +66,18 @@ void MainWindow::putNode(QListWidgetItem* item)
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("IfNode"));
     }else if(item->text().compare("+Condition") == 0){
-       ConditionNode* n = new ConditionNode();
-       ui->StagingArea->addWidget(n);
-       p->addNode(n, new QString("ConditionNode"));
+        ConditionNode* n = new ConditionNode();
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ConditionNode"));
     }else if(item->text().compare("+Else") == 0){
         ElseNode* n = new ElseNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("ElseNode"));
-     }else if(item->text().compare("+BodyNode") == 0){
+    }else if(item->text().compare("+BodyNode") == 0){
         BodyNode* n = new BodyNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("BodyNode"));
-     }else if(item->text().compare("+ForNoode") == 0){
+    }else if(item->text().compare("+ForNoode") == 0){
         ForNode* n = new ForNode();
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("ForNode"));
@@ -107,7 +107,7 @@ void MainWindow::putNode(QListWidgetItem* item)
         BinaryFunction* n = new BinaryFunction("Binary_i", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("INode"));
-     }else if(item->text().compare("+BinaryOr") == 0){
+    }else if(item->text().compare("+BinaryOr") == 0){
         BinaryFunction* n = new BinaryFunction("Binary_ili", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("IliNode"));
@@ -322,11 +322,16 @@ void MainWindow::filterFunctions(){
 void MainWindow::on_AddFunction_clicked()
 {
     qDebug()<<"+Function";
-    FunctionWindow *f=new FunctionWindow(nullptr);
+    FunctionWindow *f=new FunctionWindow(this);
     QMessageBox msgBox;
     msgBox.setText("To save the changes you have made chose 'Build->Add Function'.");
     f->show();
     msgBox.exec();
+}
 
+void MainWindow::functionAdded(QString FunctionName)
+{
+    qDebug()<<"funkcija je dodata";
+    QListWidgetItem* function = new QListWidgetItem(FunctionName, ui->FunctionView);
 
 }
