@@ -32,6 +32,7 @@ protected:
     void dropEvent(QDropEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
     void dragLeaveEvent (QDragLeaveEvent *event) override;
+    void mousePressEvent(QMouseEvent* e) override;
 };
 
 #endif // INPUT_H

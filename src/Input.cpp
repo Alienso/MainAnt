@@ -28,9 +28,6 @@ void Input::dropEvent(QDropEvent *event)
         parent->addChildren(node);
         node->addParents(parent);
 
-        auto label = new QLabel ("");
-        label->setStyleSheet ("border: 1px solid black; background-color: white; qproperty-alignment: AlignCenter");
-        layout ()->addWidget(label);
         setStyleSheet ("background-color: rgba(255, 0, 0, 1);");
     }
     event->accept ();
@@ -69,4 +66,19 @@ void Input::dragLeaveEvent(QDragLeaveEvent *event)
 Output* Input::getPrevious()
 {
     return this->previous;
+}
+
+void Input::mousePressEvent(QMouseEvent* event){
+    if(event->button()==Qt::RightButton){
+        QPoint globalPos=this->mapToGlobal(event->pos());
+        QMenu myMenu;
+        myMenu.addAction("Delete");
+        QAction *selectedItem=myMenu.exec(globalPos);
+        if(selectedItem){
+            if(selectedItem->toolTip()=="Delete"){
+                this->previous = nullptr;
+                setStyleSheet ("background-color: rgba(205, 221, 63, 1);");
+            }
+        }
+    }
 }
