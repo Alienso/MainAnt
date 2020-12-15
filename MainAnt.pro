@@ -31,6 +31,7 @@ SOURCES += \
     src/PrintNode.cpp \
     src/QueueNode.cpp \
     src/QueueOperations.cpp \
+    src/ReallyBigFunctionsThatYouDontNeedToSee.cpp \
     src/ReturnNode.cpp \
     src/StackNode.cpp \
     src/StackOperations.cpp \
@@ -66,6 +67,7 @@ HEADERS += \
     headers/PrintNode.h \
     headers/QueueNode.h \
     headers/QueueOperations.h \
+    headers/ReallyBigFunctionsThatYouDontNeedToSee.h \
     headers/ReturNode.h \
     headers/CustomLayout.h\
     headers/StackNode.h \

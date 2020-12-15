@@ -1,6 +1,9 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef REALLYBIGFUNCTIONSTHATYOUDONTNEEDTOSEE_H
+#define REALLYBIGFUNCTIONSTHATYOUDONTNEEDTOSEE_H
 
+#include <QList>
+#include <QListWidgetItem>
+#include <QVector>
 #include <QMainWindow>
 #include <QFormLayout>
 #include <QtGui>
@@ -12,8 +15,6 @@
 #include <QPoint>
 #include <QDebug>
 #include <QList>
-
-#include "./headers/ReallyBigFunctionsThatYouDontNeedToSee.h"
 
 #include "./headers/BinaryFunction.h"
 #include "./headers/Node.h"
@@ -42,37 +43,12 @@
 #include "./headers/QueueNode.h"
 #include "./headers/QueueOperations.h"
 #include "./headers/EndOfStatement.h"
+#include "./headers/FunctionNode.h"
+
+#include "./headers/mainwindow.h"
 #include "./headers/FunctionWindow.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+void putNode(QListWidgetItem* item,QMainWindow* w,QString s);
+void functionsListInit(QMainWindow* w,QString s);
 
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
-private:
-    Ui::MainWindow *ui;
-    Parser *p;
-
-public:
-    QVector<QListWidgetItem> _functionList;
-    QVector<QListWidgetItem*> _inicializedVars;
-    Ui::MainWindow* getUi();
-    Parser* getParser();
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
-public slots:
-    void putVar(QListWidgetItem* item);
-    void onPutNode(QListWidgetItem* item);
-
-private slots:
-    void on_actionOpen_triggered();
-    void on_actionSave_triggered();
-    void on_actionQuit_triggered();
-    void on_actionRun_triggered();
-    void filterFunctions();
-    void on_AddFunction_clicked();
-};
-#endif // MAINWINDOW_H
+#endif // REALLYBIGFUNCTIONSTHATYOUDONTNEEDTOSEE_H
