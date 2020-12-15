@@ -31,7 +31,6 @@ SOURCES += \
     src/PrintNode.cpp \
     src/QueueNode.cpp \
     src/QueueOperations.cpp \
-    src/ReallyBigFunctionsThatYouDontNeedToSee.cpp \
     src/ReturnNode.cpp \
     src/StackNode.cpp \
     src/StackOperations.cpp \

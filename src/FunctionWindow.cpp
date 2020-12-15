@@ -16,7 +16,6 @@ FunctionWindow::FunctionWindow(QWidget *parent) :
     connect(ui->searchBar,&QLineEdit::textChanged,this,&FunctionWindow::filterFunctions);
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
-
 }
 
 FunctionWindow::~FunctionWindow()
