@@ -46,7 +46,7 @@
 #include "./headers/FunctionNode.h"
 
 template<typename T>
-void functionsListInit(T *w,QString s){
+void functionsListInit(T *w){
 
     QListWidgetItem* plus = new QListWidgetItem(w->tr("+BinarySum"), w->getUi()->listWidget);
     QListWidgetItem* minus =new QListWidgetItem(w->tr("+BinaryMInus"),  w->getUi()->listWidget);
@@ -113,7 +113,7 @@ void functionsListInit(T *w,QString s){
 }
 
 template<typename T>
-void putNode(QListWidgetItem* item,T* w,QString s)
+void putNode(QListWidgetItem* item,T* w)
 {
     QListWidgetItem* variable;
 

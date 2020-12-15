@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle(":)");
     setWindowIcon(QIcon("./icon.ico")); //TODO program se izvrsava iz foldera buildmainant...
 
-    functionsListInit(this,"main");
+    functionsListInit(this);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onPutNode(QListWidgetItem*)));
     connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
@@ -39,7 +39,7 @@ void MainWindow::putVar(QListWidgetItem *item)
 }
 
 void MainWindow::onPutNode(QListWidgetItem* item){
-    putNode(item,this,"");
+    putNode(item,this);
 }
 //*File->Open Ucitava se tekstualni fajl.
 void MainWindow::on_actionOpen_triggered()
@@ -129,7 +129,7 @@ void MainWindow::on_AddFunction_clicked()
 void MainWindow::functionAdded(QString FunctionName)
 {
     qDebug()<<"funkcija je dodata";
-    QListWidgetItem* function = new QListWidgetItem(FunctionName, ui->FunctionView);
+    new QListWidgetItem(FunctionName, ui->FunctionView);
 }
 
 Ui::MainWindow* MainWindow::getUi(){

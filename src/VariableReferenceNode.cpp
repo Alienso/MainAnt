@@ -30,7 +30,7 @@ void VariableReferenceNode::setRefNameId(QString _refNameId)
 
 QString VariableReferenceNode::getRefNameId()
 {
-    this->refNameId;
+    return this->refNameId;
 }
 
 

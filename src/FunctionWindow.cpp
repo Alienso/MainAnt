@@ -10,7 +10,7 @@ FunctionWindow::FunctionWindow(QWidget *parent) :
 
     setWindowTitle("FunctionWindow");
 
-    functionsListInit(this,"func");
+    functionsListInit(this);
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onPutNode(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&FunctionWindow::filterFunctions);
@@ -32,7 +32,7 @@ FunctionWindow::~FunctionWindow()
 
 
 void FunctionWindow::onPutNode(QListWidgetItem* item){
-    putNode(item,this,"");
+    putNode(item,this);
 }
 
 void FunctionWindow::on_actionSave_Function_triggered()
