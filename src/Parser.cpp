@@ -178,7 +178,7 @@ void Parser::vistiBinaryNode(Node *node, QVector<Node *> parents, std::ofstream&
     }
 }
 
-Parser::Parser():id(0), funcId(0)
+Parser::Parser():funcId(0),id(0)
 {
 }
 

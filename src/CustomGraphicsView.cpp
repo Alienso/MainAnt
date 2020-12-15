@@ -1,10 +1,9 @@
 #include "./headers/CustomGraphicsView.h"
 
-CustomGraphicsView::CustomGraphicsView(QWidget* parent)
+CustomGraphicsView::CustomGraphicsView(QWidget* parent) : QGraphicsView(parent)
 {
     nodes = new QVector<Node*>();
     setRenderHint(QPainter::Antialiasing);
-
 }
 
 void CustomGraphicsView::addWidget(Node* w)
@@ -30,13 +29,9 @@ void CustomGraphicsView::paintEvent(QPaintEvent* e)
     grad1.setColorAt(1, QRgb(0x7bd2e3));
     grad1.setCoordinateMode(QGradient::StretchToDeviceMode);
 
-    //QPen pen(Qt::red);
-    //pen.setWidth(8);
-
     painter.setPen(QPen(QBrush(grad1),7));
     repositionNodes();
 
-    //Povezivanje Node-ova TODO
     QPoint a,b;
     for (Node* n : *nodes){
         for (Input* i : *(n->getInputs())){
@@ -50,9 +45,9 @@ void CustomGraphicsView::paintEvent(QPaintEvent* e)
     if(this->dragging)
         painter.drawLine(this->startPos,this->mouseAt);
     update();
+    QGraphicsView::paintEvent(e);
 }
 //Vraca nodeove nazad na svoje mesto nakon dodavanja novog node-a
-//TODO
 void CustomGraphicsView::repositionNodes()
 {
 

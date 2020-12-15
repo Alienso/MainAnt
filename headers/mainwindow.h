@@ -65,7 +65,6 @@ public slots:
     void putVar(QListWidgetItem* item);
 
 private slots:
-    //void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
     void on_actionQuit_triggered();

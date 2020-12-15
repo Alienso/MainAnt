@@ -11,13 +11,6 @@ private:
 
 public:
 
-    /*A data structure to store the items handled by the layout. Each item is a QLayoutItem. We will use a QVector in this example.
-    addItem(), how to add items to the layout.
-    setGeometry(), how to perform the layout.
-    sizeHint(), the preferred size of the layout.
-    itemAt(), how to iterate over the layout.
-    takeAt(), how to remove items from the layout.*/
-
     CustomLayout(int spacing): QLayout()
     { setSpacing(spacing); }
     CustomLayout(int spacing, QWidget *parent): QLayout(parent)

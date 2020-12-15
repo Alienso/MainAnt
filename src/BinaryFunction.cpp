@@ -1,7 +1,7 @@
 #include "./headers/BinaryFunction.h"
 
 BinaryFunction::BinaryFunction(QString _name, int ninputs, int noutputs,QVector<QString> args, Parser *p_, QWidget *parent)
-    :Node(_name, ninputs, noutputs, args, p, parent){
+    :Node(_name, ninputs, noutputs, args, p_, parent){
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
 }

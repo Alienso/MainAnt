@@ -29,22 +29,18 @@ void MainWindow::putNode(QListWidgetItem* item)
 {
     QListWidgetItem* variable;
     if(item->text().compare("+BinarySum") == 0){
-        //std::cout<<"plus"<<std::endl;
         BinaryFunction* n = new BinaryFunction("Binary_plus", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("plus"));
     }else if(item->text().compare("+BinaryMInus") == 0){
-        //std::cout<<"minus"<<std::endl;
         BinaryFunction* n = new BinaryFunction("Binary_minus", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("minus"));
     }else if(item->text().compare("+BinaryMUltiply") == 0){
-        //std::cout<<"puta"<<std::endl;
         BinaryFunction* n = new BinaryFunction("Binary_puta", 3, 1,{},p,ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("MulNode"));
     }else if(item->text().compare("+LessThan") == 0){
-        //std::cout<<"manje"<<std::endl;
         BinaryFunction* n = new BinaryFunction("Binary_manje", 3, 1,{}, p, ui->StagingArea);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("LTNODE"));
@@ -182,13 +178,6 @@ void MainWindow::putVar(QListWidgetItem *item)
         }
     }
 }
-
-//Evo nacina da prepoznate na sta ste kliknuli iz liste
-/*
-void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item){
-    ui->StagingArea->layout()->addWidget(new Node(item->text(),2,1, nullptr));
-}
-*/
 
 void MainWindow::functionsListInit(){
     QListWidgetItem* plus = new QListWidgetItem(tr("+BinarySum"), ui->listWidget);

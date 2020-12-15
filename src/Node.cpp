@@ -32,7 +32,6 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
     }
 
     this->nameLbl->setMaximumSize(80,20);
-    //this->nameLbl->setStyleSheet("border: 0px solid white;");
     layout->addWidget(nameLbl,0,0,1,3);
     QFont f( "Arial", 6);
     int n = 0;
@@ -161,7 +160,7 @@ void Node::mousePressEvent(QMouseEvent *event)
                         begining=false;
                         int childNum=node->parentNodes.size();
                         int i=0;
-                        for(i; i<childNum; i++){
+                        for(; i<childNum; i++){
 
                             if(node->parentNodes[i]->getVisitedHide()==false){
                                 node->parentNodes[i]->setVisitedHide(true);
@@ -194,7 +193,7 @@ void Node::mousePressEvent(QMouseEvent *event)
                         begining=false;
                         int childNum=node->parentNodes.size();
                         int i=0;
-                        for(i; i<childNum; i++){
+                        for(; i<childNum; i++){
 
                             if(node->parentNodes[i]->getVisitedHide()==false){
                                 node->parentNodes[i]->setVisitedHide(true);
@@ -270,7 +269,9 @@ QVector<Input*>* Node::getInputs(){
     return &(this->inputs);
 }
 
-QString Node::getCodeForNode(){}
+QString Node::getCodeForNode(){
+    return "";
+}
 
 QString Node::getNodeId()
 {

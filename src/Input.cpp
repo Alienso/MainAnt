@@ -22,7 +22,7 @@ void Input::dropEvent(QDropEvent *event)
         this->previous = ptr;
         //Pokazivac na covr ciji output povezujemo na ovaj input
         Node* parent = static_cast<Node*>(ptr->parent());
-        //POkazivac na cvor ciji je ovo Input
+        //Pokazivac na cvor ciji je ovo Input
         Node* node = static_cast<Node*>(this->parent());
 
         parent->addChildren(node);
