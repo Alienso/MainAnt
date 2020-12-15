@@ -343,7 +343,7 @@ QString Parser::createFunction()
     //qDebug()<<"Called";
     this->funcId += 1;
     std::string fileName = "function" + std::to_string(this->funcId);
-    std::string filePath = "../" + fileName + ".cpp";
+    std::string filePath = "../Functions/" + fileName + ".cpp";
 
     funcFile.open(filePath, std::ios::out|std::ios::trunc);
 
@@ -351,6 +351,11 @@ QString Parser::createFunction()
         if(!func->getVisited()){
             func->setVisited(true);
             funcFile<<func->getCodeForNode().toUtf8().constData();
+
+            QVector<Node*> children = func->getChildren();
+            for(auto child : children){
+                visitNode(child, funcFile);
+            }
         }
     }
 

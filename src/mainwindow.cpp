@@ -327,4 +327,6 @@ void MainWindow::on_AddFunction_clicked()
     msgBox.setText("To save the changes you have made chose 'Build->Add Function'.");
     f->show();
     msgBox.exec();
+
+
 }

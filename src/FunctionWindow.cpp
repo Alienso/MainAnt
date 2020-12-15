@@ -260,4 +260,6 @@ void FunctionWindow::on_actionAddFunction_triggered()
     }
     else
         qDebug() << p1;
+
+
 }
