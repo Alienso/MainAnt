@@ -46,12 +46,17 @@ private:
     //Funkcija koja se pozoiva pre svakog obilasna grafa da resetuje flag visited za svaki cvor
     void resetVisted();
 
+    //Funkcija koja obilazi graf i generise kod
+    void traverseGraph(std::ofstream& out);
+    //Funkcija koja obilazi cvorove
+    void visitNode(Node* node, std::ofstream& out);
+
     //Funkcije za obilazak specijalnih nodova, kontrole toka ili slicno
     //POZIVAJU SE SAMO IZ VISITNODE metoda
-    void visitForNode(Node* forNode, QVector<Node*> parents, QVector<Node*> children);
-    void visitWhileNode(Node* whileNode, QVector<Node*> parents, QVector<Node*> children);
-    void visitIfNode(Node* ifNode, QVector<Node*> parents, QVector<Node*> children);
-    void vistiBinaryNode(Node* node, QVector<Node*> parents);
+    void visitForNode(Node* forNode, QVector<Node*> parents, QVector<Node*> children, std::ofstream& out);
+    void visitWhileNode(Node* whileNode, QVector<Node*> parents, QVector<Node*> children, std::ofstream& out);
+    void visitIfNode(Node* ifNode, QVector<Node*> parents, QVector<Node*> children, std::ofstream& out);
+    void vistiBinaryNode(Node* node, QVector<Node*> parents, std::ofstream& out);
 
 public:
     explicit Parser();
@@ -67,10 +72,8 @@ public:
 
     void removeNode(Node* node);
 
-    //Funkcija koja ce da obilazi graph i da generise kod
-    QString traverseGraph();
-    //Funkcija koja obilazi Nodove
-    void visitNode(Node* node);
+    //funkcija koja se poziva za akciju run
+    QString compileAndRun();
     //poziva se kada se definise nova funkcija
     QString createFunction();
 

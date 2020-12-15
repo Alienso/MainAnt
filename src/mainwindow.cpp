@@ -312,7 +312,7 @@ void MainWindow::on_actionQuit_triggered()
 
 void MainWindow::on_actionRun_triggered()
 {
-    QString p1 = p->traverseGraph();
+    QString p1 = p->compileAndRun();
     if(p1 == QString::fromStdString("Fali")){
         qDebug() << "Fail";
     }

@@ -11,5 +11,5 @@ EndOfStatement::EndOfStatement() :Node("endofstatement", 1, 0)
 
 QString EndOfStatement::getCodeForNode()
 {
-    return QString::fromStdString(";");
+    return QString::fromStdString(";\n");
 }
