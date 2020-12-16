@@ -18,6 +18,7 @@ public:
     QLineEdit* FunctionName;
     QComboBox* combo;
     QPushButton *addArg;
+    QVector<QPushButton*> deleteButton;
     QVector<QLineEdit*> argumentsNames;
     QVector<QComboBox*> argumentsTypes;
     //do kog koeficijenta smo stigli u layoutu sa dodavanjem
@@ -26,6 +27,7 @@ public:
 
 public slots:
     void addArgument();
+    void deleteArgument();
 };
 
 #endif // FUNCTIONNODE_H

@@ -102,11 +102,40 @@ void FunctionNode::addArgument()
     this->argumentsTypes.last()->addItem("char");
     this->argumentsTypes.last()->addItem("string");
 
+    this->deleteButton.push_back(new QPushButton("X"));
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    connect(this->deleteButton.last(), SIGNAL(clicked()), this, SLOT(deleteArgument()));
 
-    layout->addWidget(this->argumentsNames.last(), this->layoutK, 1);
     layout->addWidget(this->argumentsTypes.last(), this->layoutK, 0);
+    layout->addWidget(this->argumentsNames.last(), this->layoutK, 1);
+    layout->addWidget(this->deleteButton.last(), this->layoutK, 2);
 
     this->layoutK++;
+}
+
+void FunctionNode::deleteArgument()
+{
+    //qDebug()<<"Brisem argument";
+
+    QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    QWidget* sender=qobject_cast<QWidget*>(this->sender());
+
+    int indexDel=layout->indexOf(sender);
+    int indexType=indexDel-2;
+    int indexName=indexDel-1;
+
+    layout->itemAt(indexType)->widget()->close();
+    layout->itemAt(indexName)->widget()->close();
+    sender->deleteLater();
+
+    int i=0;
+    for (auto a: this->argumentsNames) {
+        if(a==layout->itemAt(indexName)->widget()){
+            this->argumentsNames.removeAt(i);
+            this->argumentsTypes.removeAt(i);
+            this->deleteButton.removeAt(i);
+        }
+        i++;
+    }
 }
