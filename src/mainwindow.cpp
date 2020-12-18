@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->searchBar,&QLineEdit::textChanged,this,&MainWindow::filterFunctions);
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
+    filterFunctions(); //Zove se da bi sortirao listu node-ova
 
 }
 
