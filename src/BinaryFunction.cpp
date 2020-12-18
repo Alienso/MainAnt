@@ -4,6 +4,9 @@ BinaryFunction::BinaryFunction(QString _name, int ninputs, int noutputs,QVector<
     :Node(_name, ninputs, noutputs, args, p_, parent){
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
+    this->inputTypes = {'q','i','f'};
+    this->outputType = 's';
+    applyColors();
 }
 
 QString BinaryFunction::getCodeForNode()

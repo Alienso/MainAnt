@@ -8,6 +8,12 @@ Node::Node(QWidget *parent) : QFrame(parent)
                    );
     this->setLayout(new QGridLayout());
     *(this->getOldPos()) = this->pos();
+    colors['i'] = "background-color: rgba(0,0,255, 0.75);"; //int long
+    colors['f'] = "background-color: rgba(0,255,0, 1);"; //float double
+    colors['b'] = "background-color: rgba(255, 0, 0, 1);"; //bool
+    colors['s'] = "background-color: rgba(255, 255, 0, 1);"; //string
+    colors['c'] = "background-color: rgba(255, 0, 255, 1);"; //char
+    colors['q'] = "background-color: rgba(0, 255, 255, 1);"; //kontrola toka
 }
 
 //TODO QT resetuje velicinu fonta u textEditu kada se sve izbrise
@@ -42,6 +48,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
         layout->addWidget(tmp,i+1,0);
         layout->addWidget(o,i+1,3);
         this->inputs.push_back(tmp);
+        this->output = o;
 
         if (args[i].compare("") != 0){
             QLabel* lbl = new QLabel(args[i]);
@@ -229,6 +236,14 @@ void Node::mousePressEvent(QMouseEvent *event)
         //this->deleteLater();
     }
     QFrame::mousePressEvent(event);
+}
+
+void Node::applyColors(){
+
+    for (int i = 0;i<inputs.size();i++){
+        inputs[i]->setStyleSheet(colors[inputTypes[i]]);
+    }
+    output->setStyleSheet(colors[outputType]);
 }
 
 void Node::setNodeId(QString nodeId)

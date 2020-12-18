@@ -28,7 +28,7 @@ void Input::dropEvent(QDropEvent *event)
         parent->addChildren(node);
         node->addParents(parent);
 
-        setStyleSheet ("background-color: rgba(255, 0, 0, 1);");
+        //setStyleSheet ("background-color: rgba(255, 0, 0, 1);");
     }
     event->accept ();
 }
@@ -77,7 +77,7 @@ void Input::mousePressEvent(QMouseEvent* event){
         if(selectedItem){
             if(selectedItem->toolTip()=="Delete"){
                 this->previous = nullptr;
-                setStyleSheet ("background-color: rgba(205, 221, 63, 1);");
+                //setStyleSheet ("background-color: rgba(205, 221, 63, 1);");
             }
         }
     }

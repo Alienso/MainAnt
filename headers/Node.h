@@ -25,17 +25,19 @@ class Parser;
 
 class Node : public QFrame{
     Q_OBJECT
-private:
+protected:
     QString name;
     QPoint offset;
     QPoint oldPos_;
     QVector<Input*> inputs;
+    QVector<QChar> inputTypes;
+    QChar outputType;
+    QMap<QChar,QString> colors;
     Output* output;
     Node* next;//Ovo polje nam verovatno ne treba
     QLabel* nameLbl;
     QString formatText;
     QString nodeId;
-
     QVector<Node*> parentNodes;// inputi ovog cvora !!OVO MENJA SAMO! input klasa
     QVector<Node*> childNodes;// outputi ovog cvora !!OVO MENJA SAMO! input klasa
     //flag za obilazak grafa
@@ -43,6 +45,9 @@ private:
     //ova dva flaga sluze za opcije show i hide
     bool  visitedHide=false;
     bool hiddingSomething=false;
+
+protected:
+    void applyColors();
 public:
     Parser * p;
     bool exist=true;
