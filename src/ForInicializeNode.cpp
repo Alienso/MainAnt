@@ -10,8 +10,7 @@ ForInicializeNode::ForInicializeNode() : Node("ForInicializeNode", 1, 1)
 
 QString ForInicializeNode::getCodeForNode()
 {
-    //TODO mora da se napise kode koji ce da vraca inicilaze for node
-    QString text = "initisallize";
+    QString text = "";
     return text;
 }
 

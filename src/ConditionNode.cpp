@@ -10,7 +10,7 @@ ConditionNode::ConditionNode() : Node("Condition", 1, 1)
 
 QString ConditionNode::getCodeForNode()
 {
-    QString text = "condition";
+    QString text = "";
     return text;
 }
 

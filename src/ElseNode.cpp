@@ -10,7 +10,6 @@ ElseNode::ElseNode():Node("Else", 1, 1)
 
 QString ElseNode::getCodeForNode()
 {
-    QString text = "#include<isotream>\n#include<string>\n\nint main(){\n";
-    qDebug()<<"Else";
+    QString text = "else";
     return text;
 }

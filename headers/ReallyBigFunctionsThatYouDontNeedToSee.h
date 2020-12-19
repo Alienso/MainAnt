@@ -44,6 +44,7 @@
 #include "./headers/QueueOperations.h"
 #include "./headers/EndOfStatement.h"
 #include "./headers/FunctionNode.h"
+#include "./headers/FunctionReturnNode.h"
 
 template<typename T>
 void functionsListInit(T *w){

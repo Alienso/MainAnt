@@ -10,7 +10,6 @@ IncrementNode::IncrementNode() : Node("Increment", 1, 1)
 
 QString IncrementNode::getCodeForNode()
 {
-    //TODO mora da se napise kode koji ce da vraca cvor Increment node
-    QString text = "increment";
+    QString text = "";
     return text;
 }

@@ -20,6 +20,7 @@ SOURCES += \
     src/ForInicializeNode.cpp \
     src/ForNode.cpp \
     src/FunctionNode.cpp \
+    src/FunctionReturnNode.cpp \
     src/IfNode.cpp \
     src/IncrementNode.cpp \
     src/Input.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
     headers/ForInicializeNode.h \
     headers/ForNode.h \
     headers/FunctionNode.h \
+    headers/FunctionReturnNode.h \
     headers/IfNode.h \
     headers/IncrementNode.h \
     headers/Input.h \

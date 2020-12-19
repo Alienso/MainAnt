@@ -23,6 +23,11 @@ FunctionWindow::FunctionWindow(QWidget *parent) :
     p->addNode(funct, new QString("FunctionNode"));
     p->addNewFunction(funct);
     this->FunctionName=funct->FunctionName;
+
+    FunctionReturnNode* ret = new FunctionReturnNode();
+    ui->StagingArea->addWidget(ret);
+    p->addNode(ret, new QString("FunctionRteurnNode"));
+
 }
 
 FunctionWindow::~FunctionWindow()
