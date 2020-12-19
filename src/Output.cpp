@@ -4,7 +4,6 @@ Output::Output (QWidget *parent) : QListWidget(parent)
 {
     setMinimumSize(20,20);
     setMaximumSize(20,20);
-    setStyleSheet ("background-color: rgba(218, 129, 25, 1);");
     this->addItem("");
     setDragEnabled(true);
     next = nullptr;
@@ -44,6 +43,13 @@ void Output::startDrag(Qt::DropActions supportedActions)
     auto drag = new QDrag(this);
     drag->setMimeData (mimeData);
     drag->exec(Qt::MoveAction);
+}
+
+void Output::setColor(QChar c){
+    this->color = c;
+}
+QChar Output::getColor(){
+    return this->color;
 }
 
 /*void Output::mousePressEvent(QMouseEvent *event){

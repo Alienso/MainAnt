@@ -21,12 +21,15 @@ class Input : public QFrame
 {
 private:
     Output* previous;
+    QChar color;
     uintptr_t stoaddr(std::string s);
 
 public:
     explicit Input(QWidget *parent = nullptr);
 
     Output* getPrevious();
+    QChar getColor();
+    void setColor(QChar c);
 
 protected:
     void dropEvent(QDropEvent *event) override;

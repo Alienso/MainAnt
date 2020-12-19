@@ -74,6 +74,8 @@ public:
     bool getVisitedHide();
     QString getName();
     QVector<Node *> getParentNodes();
+    void setColors(QVector<QChar> v);
+    QMap<QChar,QString> getColors();
 
 protected:
     void mousePressEvent(QMouseEvent *event);

@@ -8,12 +8,12 @@ Node::Node(QWidget *parent) : QFrame(parent)
                    );
     this->setLayout(new QGridLayout());
     *(this->getOldPos()) = this->pos();
-    colors['i'] = "background-color: rgba(0,0,255, 0.75);"; //int long
-    colors['f'] = "background-color: rgba(0,255,0, 1);"; //float double
-    colors['b'] = "background-color: rgba(255, 0, 0, 1);"; //bool
-    colors['s'] = "background-color: rgba(255, 255, 0, 1);"; //string
-    colors['c'] = "background-color: rgba(255, 0, 255, 1);"; //char
-    colors['q'] = "background-color: rgba(0, 255, 255, 1);"; //kontrola toka
+    colors['i'] = "border-width: 2px;border-color: rgba(0,0,255, 0.75);border-radius: 10px;"; //int long
+    colors['f'] = "border-width: 2px;border-color: rgba(0,255,0, 1);border-radius: 10px;"; //float double
+    colors['b'] = "border-width: 2px;border-color: rgba(255, 0, 0, 1);border-radius: 10px;"; //bool
+    colors['s'] = "border-width: 2px;border-color: rgba(255, 255, 0, 1);border-radius: 10px;"; //string
+    colors['c'] = "border-width: 2px;border-color: rgba(255, 0, 255, 1);border-radius: 10px;"; //char
+    colors['q'] = "border-width: 2px;border-color: rgba(0, 255, 255, 1);border-radius: 10px;"; //kontrola toka
 }
 
 //TODO QT resetuje velicinu fonta u textEditu kada se sve izbrise
@@ -244,6 +244,21 @@ void Node::applyColors(){
         inputs[i]->setStyleSheet(colors[inputTypes[i]]);
     }
     output->setStyleSheet(colors[outputType]);
+}
+
+void Node::setColors(QVector<QChar> v){
+    int i=0;
+    for(i=0;i<inputs.size();i++){
+        inputTypes.push_back(v[i]);
+        inputs[i]->setColor(v[i]);
+    }
+    outputType = v[i];
+    output->setColor(v[i]);
+    applyColors();
+}
+
+QMap<QChar,QString> Node::getColors(){
+    return colors;
 }
 
 void Node::setNodeId(QString nodeId)

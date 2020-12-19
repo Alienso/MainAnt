@@ -20,10 +20,13 @@ class Output : public QListWidget
 private:
     Input* next;
     QPoint offset;
+    QChar color;
     QString addrtos(QWidget* w);
 
 public:
     explicit Output (QWidget *parent = nullptr);
+    QChar getColor();
+    void setColor(QChar c);
 
 protected:
     void startDrag(Qt::DropActions supportedActions) override;

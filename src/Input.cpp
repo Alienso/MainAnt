@@ -5,7 +5,6 @@ Input::Input (QWidget *parent) : QFrame (parent)
     setMinimumSize(20,20);
     setMaximumSize(20,20);
     setAcceptDrops(true);
-    setStyleSheet ("background-color: rgba(205, 221, 63, 1);");
     setLayout(new QGridLayout());
     previous = nullptr;
 }
@@ -28,7 +27,6 @@ void Input::dropEvent(QDropEvent *event)
         parent->addChildren(node);
         node->addParents(parent);
 
-        //setStyleSheet ("background-color: rgba(255, 0, 0, 1);");
     }
     event->accept ();
 }
@@ -54,13 +52,13 @@ uintptr_t Input::stoaddr(std::string s){
 void Input::dragEnterEvent(QDragEnterEvent *event)
 {
     event->accept ();
-    setStyleSheet ("background-color: rgba(255, 0, 0, 0.5);");
+    setStyleSheet ((static_cast<Node*>(parentWidget())->getColors())[this->color] + "background-color: rgba(0,0,0,0.5)");
 }
 
 void Input::dragLeaveEvent(QDragLeaveEvent *event)
 {
     event->accept ();
-    setStyleSheet ("background-color: rgba(255, 0, 0, 1);");
+    setStyleSheet ((static_cast<Node*>(parentWidget())->getColors())[this->color]);
 }
 
 Output* Input::getPrevious()
@@ -81,4 +79,11 @@ void Input::mousePressEvent(QMouseEvent* event){
             }
         }
     }
+}
+
+void Input::setColor(QChar c){
+    this->color = c;
+}
+QChar Input::getColor(){
+    return this->color;
 }
