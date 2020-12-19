@@ -8,12 +8,13 @@ Node::Node(QWidget *parent) : QFrame(parent)
                    );
     this->setLayout(new QGridLayout());
     *(this->getOldPos()) = this->pos();
-    colors['i'] = "border-width: 2px;border-color: rgba(0,0,255, 0.75);border-radius: 10px;"; //int long
-    colors['f'] = "border-width: 2px;border-color: rgba(0,255,0, 1);border-radius: 10px;"; //float double
-    colors['b'] = "border-width: 2px;border-color: rgba(255, 0, 0, 1);border-radius: 10px;"; //bool
-    colors['s'] = "border-width: 2px;border-color: rgba(255, 255, 0, 1);border-radius: 10px;"; //string
-    colors['c'] = "border-width: 2px;border-color: rgba(255, 0, 255, 1);border-radius: 10px;"; //char
-    colors['q'] = "border-width: 2px;border-color: rgba(0, 255, 255, 1);border-radius: 10px;"; //kontrola toka
+    colors['i'] = "border-width: 2px;border-color: rgba(0, 194, 255, 1);border-radius: 10px;"; //int long
+    colors['n'] = "border-width: 2px;border-color: rgba(173, 91, 219, 1);border-radius: 10px;"; //broj
+    colors['f'] = "border-width: 2px;border-color: rgba(141, 233, 50, 1);border-radius: 10px;"; //float double
+    colors['b'] = "border-width: 2px;border-color: rgba(255, 2, 116, 1);border-radius: 10px;"; //bool
+    colors['s'] = "border-width: 2px;border-color: rgba(255, 156, 57, 1);border-radius: 10px;"; //string
+    colors['c'] = "border-width: 2px;border-color: rgba(255, 104, 107, 1);border-radius: 10px;"; //char
+    colors['q'] = "border-width: 2px;border-color: rgba(65, 247, 201, 1);border-radius: 10px;"; //kontrola toka
 }
 
 //TODO QT resetuje velicinu fonta u textEditu kada se sve izbrise
