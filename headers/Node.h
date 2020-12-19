@@ -30,10 +30,10 @@ protected:
     QPoint offset;
     QPoint oldPos_;
     QVector<Input*> inputs;
+    QVector<Output*> outputs;
     QVector<QChar> inputTypes;
-    QChar outputType;
+    QVector<QChar> outputTypes;
     QMap<QChar,QString> colors;
-    Output* output;
     Node* next;//Ovo polje nam verovatno ne treba
     QLabel* nameLbl;
     QString formatText;

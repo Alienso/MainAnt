@@ -186,7 +186,7 @@ void Parser::addNode(Node* node, QString *type)
 {
     std::string idString = std::to_string(this->id);
     std::string NodeType = type->toUtf8().constData();
-    std::string tmp = NodeType + "_node" + idString;
+    std::string tmp = NodeType + "_node" + idString; //Promena duzine niske u sredini cini da program radi
     int len = tmp.size();
 
     node->setNodeId(QString::fromStdString(tmp));

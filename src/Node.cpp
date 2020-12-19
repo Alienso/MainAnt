@@ -49,7 +49,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
         layout->addWidget(tmp,i+1,0);
         layout->addWidget(o,i+1,3);
         this->inputs.push_back(tmp);
-        this->output = o;
+        this->outputs.push_back(o);
 
         if (args[i].compare("") != 0){
             QLabel* lbl = new QLabel(args[i]);
@@ -76,6 +76,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
             layout->addWidget(tmp,i+1,0);
             layout->addWidget(o,i+1,3);
             this->inputs.push_back(tmp);
+            this->outputs.push_back(o);
 
             if (args[i].compare("") != 0){
                 QLabel* lbl = new QLabel(args[i]);
@@ -98,6 +99,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
 
         if (noutputs>ninputs){
             Output* tmp = new Output();
+            this->outputs.push_back(tmp);
             layout->addWidget(tmp,i+1,3);
             continue;
         }
@@ -240,21 +242,24 @@ void Node::mousePressEvent(QMouseEvent *event)
 }
 
 void Node::applyColors(){
-
-    for (int i = 0;i<inputs.size();i++){
+    int i;
+    for (i = 0;i<inputs.size();i++)
         inputs[i]->setStyleSheet(colors[inputTypes[i]]);
-    }
-    output->setStyleSheet(colors[outputType]);
+    for (i=0;i<outputs.size();i++)
+        outputs[i]->setStyleSheet(colors[outputTypes[i]]);
 }
 
 void Node::setColors(QVector<QChar> v){
     int i=0;
-    for(i=0;i<inputs.size();i++){
+    for(;i<inputs.size();i++){
         inputTypes.push_back(v[i]);
         inputs[i]->setColor(v[i]);
     }
-    outputType = v[i];
-    output->setColor(v[i]);
+    int n = i;
+    for(i=0;i<outputs.size();i++){
+        outputTypes.push_back(v[n+i]);
+        outputs[i]->setColor(v[n+i]);
+    }
     applyColors();
 }
 
