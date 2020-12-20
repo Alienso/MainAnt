@@ -186,7 +186,7 @@ void Parser::addNode(Node* node, QString *type)
 {
     std::string idString = std::to_string(this->id);
     std::string NodeType = type->toUtf8().constData();
-    std::string tmp = NodeType + "_node" + idString; //Promena duzine niske u sredini cini da program radi
+    std::string tmp = NodeType + "_nodes" + idString; //Promena duzine niske u sredini cini da program radi
     int len = tmp.size();
 
     node->setNodeId(QString::fromStdString(tmp));
@@ -338,7 +338,7 @@ void Parser::visitNode(Node* node, std::ofstream& out)
     }
 }
 
-QString Parser::createFunction()
+QString Parser::createFunctionCode()
 {
     //qDebug()<<"Called";
     this->funcId += 1;
@@ -361,4 +361,51 @@ QString Parser::createFunction()
 
     funcFile.close();
     return "Funkcija isparsirana";
+}
+
+void Parser::createFunctionBlueprint(QVector<Node*>* nodes){
+    std::string fileName = "function" + std::to_string(this->funcId);
+    std::string filePath = "../Functions/" + fileName + ".mant";
+
+    funcFile.open(filePath, std::ios::out|std::ios::trunc);
+
+    for (Node* n : *nodes){
+        QString inputs = "";
+        QString outputs = "";
+        int k = 0;
+        for (auto i: *n->getInputs()){
+            if ((i!=nullptr) && (i->getPrevious()!=nullptr)){
+                Node* to = static_cast<Node*>((i->getPrevious())->parentWidget());
+                int no = -1;
+                int j = 0;
+                for (Output* o : *to->getOutputs()){
+                    if (o == i->getPrevious())
+                        no = j;
+                    j++;
+                }
+                inputs.append(QString::number(k) + " " + to->getNodeId() + " " + QString::number(no) + " ");
+                k++;
+            }
+            else k++;
+        }
+        k = 0;
+        for (auto o: *n->getOutputs()){
+            if ((o!=nullptr) && (o->getNext()!=nullptr)){
+                Node* to = static_cast<Node*>((o->getNext())->parentWidget());
+                int no = -1;
+                int j = 0;
+                for (Input* i:*n->getInputs()){
+                    if (i == o->getNext())
+                        no = j;
+                    j++;
+                }
+                outputs.append(QString::number(k) + " " + to->getNodeId() + " " + QString::number(no) + " ");
+                k++;
+            }
+        }
+
+        funcFile<<n->getNodeId().toUtf8().constData()<<" "<<n->pos().x() <<" "<<n->pos().y()<<" ins "<<inputs.toUtf8().constData()<<" outs "<<outputs.toUtf8().constData()<<std::endl;
+    }
+    funcFile.close();
+    return;
 }

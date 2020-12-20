@@ -19,6 +19,7 @@ void Input::dropEvent(QDropEvent *event)
     if (!t.isEmpty ())
     {
         this->previous = ptr;
+        ptr->setNext(this);
         //Pokazivac na covr ciji output povezujemo na ovaj input
         Node* parent = static_cast<Node*>(ptr->parent());
         //Pokazivac na cvor ciji je ovo Input

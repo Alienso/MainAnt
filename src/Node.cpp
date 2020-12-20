@@ -304,6 +304,9 @@ QPoint* Node::getOldPos(){
 QVector<Input*>* Node::getInputs(){
     return &(this->inputs);
 }
+QVector<Output*>* Node::getOutputs(){
+    return &(this->outputs);
+}
 
 QString Node::getCodeForNode(){
     return "";

@@ -68,6 +68,7 @@ public:
 
     QPoint* getOldPos();
     QVector<Input*>* getInputs();
+    QVector<Output*>* getOutputs();
     QString getNodeId();
     void setVisited(bool flag);
     bool getVisited();

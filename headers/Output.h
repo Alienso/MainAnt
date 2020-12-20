@@ -27,6 +27,8 @@ public:
     explicit Output (QWidget *parent = nullptr);
     QChar getColor();
     void setColor(QChar c);
+    Input* getNext();
+    void setNext(Input* ptr);
 
 protected:
     void startDrag(Qt::DropActions supportedActions) override;

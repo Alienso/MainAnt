@@ -51,6 +51,12 @@ void Output::setColor(QChar c){
 QChar Output::getColor(){
     return this->color;
 }
+Input* Output::getNext(){
+    return this->next;
+}
+void Output::setNext(Input* ptr){
+    next = ptr;
+}
 
 /*void Output::mousePressEvent(QMouseEvent *event){
      offset = mapToParent(event->pos());

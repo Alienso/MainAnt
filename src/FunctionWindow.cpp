@@ -42,12 +42,16 @@ void FunctionWindow::onPutNode(QListWidgetItem* item){
 
 void FunctionWindow::on_actionSave_Function_triggered()
 {
-    QString p1 = p->createFunction();
-    if(p1 == QString::fromStdString("Fali")){
+    //Generate cpp
+    QString p1 = p->createFunctionCode();
+    if(p1.compare(QString::fromStdString("Fali")) == 0){
         qDebug() << "Fail";
     }
     else
         qDebug() << p1;
+
+    //Generate .mant
+    p->createFunctionBlueprint(ui->StagingArea->getNodes());
     emit functionAdded(this->FunctionName->text());
     this->destroy();
 }
