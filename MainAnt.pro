@@ -12,36 +12,36 @@ SOURCES += \
     ./src/main.cpp \
     ./src/mainwindow.cpp \
     ./src/FunctionWindow.cpp \
-    src/BodyNode.cpp \
-    src/ConditionNode.cpp \
+    src/nodes/BodyNode.cpp \
+    src/nodes/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
-    src/ElseNode.cpp \
-    src/EndOfStatement.cpp \
-    src/ForInicializeNode.cpp \
-    src/ForNode.cpp \
-    src/FunctionNode.cpp \
-    src/FunctionReturnNode.cpp \
-    src/IfNode.cpp \
-    src/IncrementNode.cpp \
+    src/nodes/ElseNode.cpp \
+    src/nodes/EndOfStatement.cpp \
+    src/nodes/ForInicializeNode.cpp \
+    src/nodes/ForNode.cpp \
+    src/nodes/FunctionNode.cpp \
+    src/nodes/FunctionReturnNode.cpp \
+    src/nodes/IfNode.cpp \
+    src/nodes/IncrementNode.cpp \
     src/Input.cpp \
-    src/InputNode.cpp \
+    src/nodes/InputNode.cpp \
     src/Node.cpp \
     src/Output.cpp \
-    src/BinaryFunction.cpp \
+    src/nodes/BinaryFunction.cpp \
     src/Parser.cpp \
-    src/PrintNode.cpp \
-    src/QueueNode.cpp \
-    src/QueueOperations.cpp \
-    src/ReturnNode.cpp \
-    src/StackNode.cpp \
-    src/StackOperations.cpp \
-    src/VarNode.cpp \
-    src/VariableReferenceNode.cpp \
-    src/VectorNode.cpp \
-    src/VectorOperations.cpp \
-    src/WhileNode.cpp \
+    src/nodes/PrintNode.cpp \
+    src/nodes/QueueNode.cpp \
+    src/nodes/QueueOperations.cpp \
+    src/nodes/ReturnNode.cpp \
+    src/nodes/StackNode.cpp \
+    src/nodes/StackOperations.cpp \
+    src/nodes/VarNode.cpp \
+    src/nodes/VariableReferenceNode.cpp \
+    src/nodes/VectorNode.cpp \
+    src/nodes/VectorOperations.cpp \
+    src/nodes/WhileNode.cpp \
     src/SearchBar.cpp \
-    src/StartNode.cpp\
+    src/nodes/StartNode.cpp\
     src/CustomLayout.cpp
     
 

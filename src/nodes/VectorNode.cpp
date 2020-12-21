@@ -1,4 +1,4 @@
-#include "../headers/VectorNode.h"
+#include "../../headers/VectorNode.h"
 
 VectorNode::VectorNode() : Node("vector", 1, 1)
 {

@@ -1,4 +1,4 @@
-#include "../headers/ConditionNode.h"
+#include "../../headers/ConditionNode.h"
 
 ConditionNode::ConditionNode() : Node("Condition", 1, 1)
 {

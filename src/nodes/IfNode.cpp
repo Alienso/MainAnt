@@ -1,4 +1,4 @@
-#include "../headers/IfNode.h"
+#include "../../headers/IfNode.h"
 
 IfNode::IfNode() : Node("if", 2, 1,{"","Condition"})
 {

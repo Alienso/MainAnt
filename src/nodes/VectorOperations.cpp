@@ -1,4 +1,4 @@
-#include "../headers/VectorOperations.h"
+#include "../../headers/VectorOperations.h"
 
 VectorOperations::VectorOperations() : Node("vectorOperations", 1, 1)
 {

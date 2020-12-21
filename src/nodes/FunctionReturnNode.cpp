@@ -1,4 +1,4 @@
-#include "../headers/FunctionReturnNode.h"
+#include "../../headers/FunctionReturnNode.h"
 
 FunctionReturnNode::FunctionReturnNode() : Node("FunctionReturn", 1, 0), isVoid(false), edit(nullptr)
 {

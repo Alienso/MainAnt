@@ -1,4 +1,4 @@
-#include "../headers/VarNode.h"
+#include "../../headers/VarNode.h"
 
 VarNode::VarNode() : Node("var", 1, 1)
 {
