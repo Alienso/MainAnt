@@ -185,12 +185,12 @@ void putNode(QListWidgetItem* item,T* w)
         WhileNode* n = new WhileNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("WhileNode"));
-    /*}else if(item->text().compare("+Var") == 0){
+    }else if(item->text().compare("+Var") == 0){
         VarNode* n = new VarNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("VarNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
-        w->_inicializedVars.append(variable);*/
+        w->_inicializedVars.append(variable);
     }else if(item->text().compare(">") == 0){
         BinaryFunction* n = new BinaryFunction("Binary_vece", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
         w->getUi()->StagingArea->addWidget(n);
@@ -215,32 +215,32 @@ void putNode(QListWidgetItem* item,T* w)
         BinaryFunction* n = new BinaryFunction("Binary_veceJednako", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("VJNode"));
-    /*}else if(item->text().compare("+Vector") == 0){
+    }else if(item->text().compare("+Vector") == 0){
         VectorNode* n = new VectorNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("VectorNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
-        w->_inicializedVars.append(variable);*/
+        w->_inicializedVars.append(variable);
     }else if(item->text().compare("+VectorOperations") == 0){
         VectorOperations* n = new VectorOperations();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("VectorOperations"));
-    /*}else if(item->text().compare("+Stack") == 0){
+    }else if(item->text().compare("+Stack") == 0){
         StackNode* n = new StackNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("StackNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
-        w->_inicializedVars.append(variable);*/
+        w->_inicializedVars.append(variable);
     }else if(item->text().compare("+StackOperations") == 0){
         StackOperations* n = new StackOperations();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("StackOperations"));
-    /*}else if(item->text().compare("+Queue") == 0){
+    }else if(item->text().compare("+Queue") == 0){
         QueueNode* n = new QueueNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("QueueNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
-        w->_inicializedVars.append(variable);*/
+        w->_inicializedVars.append(variable);
     }else if(item->text().compare("+QueueOperations") == 0){
         QueueOperations* n = new QueueOperations();
         w->getUi()->StagingArea->addWidget(n);

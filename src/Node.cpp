@@ -157,7 +157,7 @@ void Node::mousePressEvent(QMouseEvent *event)
                 qDebug()<<"Delete";
                 this->close();
                 this->exist=false;
-                //this->p->removeNode(this);
+                this->destroy();
             }
             else if(selectedItem->toolTip()=="Hide"){
                 qDebug()<< "Hide";
