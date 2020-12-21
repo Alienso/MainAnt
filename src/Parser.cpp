@@ -368,7 +368,9 @@ void Parser::createFunctionBlueprint(QVector<Node*>* nodes){
     std::string filePath = "../Functions/" + fileName + ".mant";
 
     funcFile.open(filePath, std::ios::out|std::ios::trunc);
-
+    for (Node* n : *nodes)
+        funcFile<<n->getNodeId().toUtf8().constData()<<" ";
+    funcFile<<" "<<std::endl<<QString::number(nodes->size()).toUtf8().constData()<<std::endl;
     for (Node* n : *nodes){
         QString inputs = "";
         QString outputs = "";
@@ -394,7 +396,7 @@ void Parser::createFunctionBlueprint(QVector<Node*>* nodes){
                 Node* to = static_cast<Node*>((o->getNext())->parentWidget());
                 int no = -1;
                 int j = 0;
-                for (Input* i:*n->getInputs()){
+                for (Input* i:*to->getInputs()){
                     if (i == o->getNext())
                         no = j;
                     j++;
