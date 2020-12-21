@@ -88,7 +88,25 @@ void MainWindow::on_actionSave_triggered()
         //Preko out-a pisemo u fajl koji ce biti sacuvan. Verovatno necete moci da procitate kada otvorite jer je QString upisan.
         QDataStream out(&file);
         out.setVersion(QDataStream::Qt_4_5);
-        out << QString("Projekat MainAnt");
+
+        QString text="";
+        auto Nodes=ui->StagingArea->getNodes();
+        for(auto a : *Nodes){
+            text.append("Name: "+a->getName() + "\n");
+            text.append("NodeId: "+a->getNodeId() + "\n");
+            text.append("Inputs: ");
+            for(auto inputi: a->getParentNodes()){
+                text.append(inputi->getNodeId()+"\n");
+            }
+            text.append("\n");
+            text.append("Outputs: ");
+            for(auto inputi: a->getChildren()){
+                text.append(inputi->getNodeId()+"\n");
+            }
+            text.append("\n");
+        }
+        out<<text.toUtf8().constData();
+        //out << QString("Projekat MainAnt");
     }
 }
 
