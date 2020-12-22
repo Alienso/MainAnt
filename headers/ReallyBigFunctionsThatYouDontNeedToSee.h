@@ -29,6 +29,7 @@
 #include "./headers/IfNode.h"
 #include "./headers/ConditionNode.h"
 #include "./headers/ElseNode.h"
+#include "./headers/ElseIfNode.h"
 #include "./headers/BodyNode.h"
 #include "./headers/ForNode.h"
 #include "./headers/IncrementNode.h"
@@ -60,6 +61,7 @@ void functionsListInit(T *w){
     QListWidgetItem* ifNode = new QListWidgetItem(w->tr("+If"),  w->getUi()->listWidget);
     QListWidgetItem* cond =new QListWidgetItem(w->tr("+Condition"),  w->getUi()->listWidget);
     QListWidgetItem* elseNode =new QListWidgetItem(w->tr("+Else"), w->getUi()->listWidget);
+    QListWidgetItem* elseIfNode =new QListWidgetItem(w->tr("+ElseIf"), w->getUi()->listWidget);
     QListWidgetItem* body =new QListWidgetItem(w->tr("+Body"),  w->getUi()->listWidget);
     QListWidgetItem* forNode =new QListWidgetItem(w->tr("+For"),  w->getUi()->listWidget);
     QListWidgetItem* inc =new QListWidgetItem(w->tr("+Increment"),  w->getUi()->listWidget);
@@ -94,6 +96,7 @@ void functionsListInit(T *w){
     w->_functionList.append(*varNode);
     w->_functionList.append(*ifNode);
     w->_functionList.append(*elseNode);
+    w->_functionList.append(*elseIfNode);
     w->_functionList.append(*cond);
     w->_functionList.append(*body);
     w->_functionList.append(*forNode);
@@ -165,7 +168,11 @@ void putNode(QListWidgetItem* item,T* w)
         ElseNode* n = new ElseNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("ElseNode"));
-     }else if(item->text().compare("+Body") == 0){
+     }else if(item->text().compare("+ElseIf") == 0){
+        ElseIfNode* n = new ElseIfNode();
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("ElseIFNode"));
+    }else if(item->text().compare("+Body") == 0){
         BodyNode* n = new BodyNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("BodyNode"));

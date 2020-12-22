@@ -178,6 +178,19 @@ void Parser::vistiBinaryNode(Node *node, QVector<Node *> parents, std::ofstream&
     }
 }
 
+void Parser::visitElseIfNode(Node *node, QVector<Node *> parents, std::ofstream &out)
+{
+    //Zelimo samo na poseban nacin da obidjemo roditelje elseif cvora, tj samo uslov lepi da sklopimo
+    out<<node->getCodeForNode().toUtf8().constData();
+    for(Node* parent : parents){
+        if(!parent->getVisited()){
+            this->visitNode(parent, out);
+        }
+    }
+    out<<")";
+
+}
+
 Parser::Parser():funcId(0),id(0)
 {
 }
@@ -284,6 +297,7 @@ void Parser::visitNode(Node* node, std::ofstream& out)
     bool isIf = checkType(nodeName, "if");
     bool isWhile = checkType(nodeName, "while");
     bool isFor = checkType(nodeName, "for");
+    bool isElseIf = checkType(nodeName, "elseIf");
 
     size_t isBinary = nodeName.find("_");
     if(isBinary == 6){
@@ -296,6 +310,8 @@ void Parser::visitNode(Node* node, std::ofstream& out)
         this->visitWhileNode(node, parents, children, out);
     }else if(isIf){
         this->visitIfNode(node, parents, children, out);
+    }else if(isElseIf){
+        this->visitElseIfNode(node, parents, out);
     }
 
     node->setVisited(true);
@@ -315,7 +331,7 @@ void Parser::visitNode(Node* node, std::ofstream& out)
             }
         }
     }
-    if(isBinary != 6){
+    if(isBinary != 6 && !isElseIf){
         out<< node->getCodeForNode().toUtf8().constData();
     }
 

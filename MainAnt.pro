@@ -15,6 +15,7 @@ SOURCES += \
     src/nodes/BodyNode.cpp \
     src/nodes/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
+    src/nodes/ElseIfNode.cpp \
     src/nodes/ElseNode.cpp \
     src/nodes/EndOfStatement.cpp \
     src/nodes/ForInicializeNode.cpp \
@@ -51,6 +52,7 @@ HEADERS += \
     headers/BodyNode.h \
     headers/ConditionNode.h \
     headers/CustomGraphicsView.h \
+    headers/ElseIfNode.h \
     headers/ElseNode.h \
     headers/EndOfStatement.h \
     headers/ForInicializeNode.h \
