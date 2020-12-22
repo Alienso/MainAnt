@@ -2,6 +2,8 @@
 #define CLASSWINDOW_H
 
 #include <QMainWindow>
+#include "headers/ReallyBigFunctionsThatYouDontNeedToSee.h"
+#include "./headers/ClassNode.h"
 
 namespace Ui {
 class ClassWindow;
@@ -17,6 +19,9 @@ public:
 
 private:
     Ui::ClassWindow *ui;
+    QLineEdit* ClassName;
+    Parser *p;
+
 };
 
 #endif // CLASSWINDOW_H

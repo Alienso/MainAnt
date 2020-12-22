@@ -3,9 +3,19 @@
 
 ClassWindow::ClassWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::ClassWindow)
+    ui(new Ui::ClassWindow),
+    p(new Parser)
 {
     ui->setupUi(this);
+
+    setWindowTitle("ClassWindow");
+
+    ClassNode* c = new ClassNode();
+    //ui->StagingArea->addWidget(c);
+    p->addNode(c, new QString("ClassNode"));
+    //p->addNewFunction(c);
+    this->ClassName=c->ClassName;
+
 }
 
 ClassWindow::~ClassWindow()

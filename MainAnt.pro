@@ -14,6 +14,7 @@ SOURCES += \
     ./src/FunctionWindow.cpp \
     ./src/ClassWindow.cpp \
     src/nodes/BodyNode.cpp \
+    src/nodes/ClassNode.cpp \
     src/nodes/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
     src/nodes/ElseIfNode.cpp \
@@ -52,6 +53,7 @@ HEADERS += \
     ./headers/FunctionWindow.h \
     ./headers/ClassWindow.h \
     headers/BodyNode.h \
+    headers/ClassNode.h \
     headers/ConditionNode.h \
     headers/CustomGraphicsView.h \
     headers/ElseIfNode.h \
