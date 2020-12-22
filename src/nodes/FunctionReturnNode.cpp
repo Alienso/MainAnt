@@ -43,12 +43,12 @@ QString FunctionReturnNode::getCodeForNode()
 {
     QString text = "";
     if (this->isVoid){
-        text.append("return;");
+        text.append("return;\n}");
     }else{
         QString returnVale = edit->text();
         text.append("return ");
         text.append(returnVale);
-        text.append(";");
+        text.append(";\n}");
 
     }
     return text;

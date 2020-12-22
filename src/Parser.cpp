@@ -356,13 +356,19 @@ void Parser::visitNode(Node* node, std::ofstream& out)
 
 QString Parser::createFunctionCode()
 {
-    //qDebug()<<"Called";
+    if(this->funcId == 0){
+        //Ova komanda ne uspeva samo prvi put kad aovaj direktrijum ne postoji
+        system("rm -r Functions");
+        system("mkdir Functions");
+    }
+    //Krairamo jedinstveno ime svakog fajla funkcije
     this->funcId += 1;
     std::string fileName = "function" + std::to_string(this->funcId);
-    std::string filePath = "../Functions/" + fileName + ".cpp";
+    std::string filePath = "Functions/" + fileName + ".cpp";
 
     funcFile.open(filePath, std::ios::out|std::ios::trunc);
 
+    //Na klasican nacin obilazimo cvorove na sceni
     for(Node* func : this->functions){
         if(!func->getVisited()){
             func->setVisited(true);
