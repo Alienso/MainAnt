@@ -46,6 +46,7 @@ protected:
     bool  visitedHide=false;
     bool hiddingSomething=false;
 
+
 protected:
     void applyColors();
 public:
@@ -77,6 +78,9 @@ public:
     QVector<Node *> getParentNodes();
     void setColors(QVector<QChar> v);
     QMap<QChar,QString> getColors();
+
+    //funkcija za referencirnaje
+    virtual QString getVarName() const;
 
 protected:
     void mousePressEvent(QMouseEvent *event);

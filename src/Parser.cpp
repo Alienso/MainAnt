@@ -319,6 +319,7 @@ void Parser::visitNode(Node* node, std::ofstream& out)
     bool isWhile = checkType(nodeName, "while");
     bool isFor = checkType(nodeName, "for");
     bool isElseIf = checkType(nodeName, "elseIf");
+    bool isReferenc = checkType(nodeName, "VariableRef");
 
     size_t isBinary = nodeName.find("_");
     if(isBinary == 6){
@@ -352,8 +353,13 @@ void Parser::visitNode(Node* node, std::ofstream& out)
             }
         }
     }
-    if(isBinary != 6 && !isElseIf){
+    if(isBinary != 6 && !isElseIf && !isReferenc){
         out<< node->getCodeForNode().toUtf8().constData();
+    }
+    if(isReferenc){
+        QString keyName = node->getCodeForNode();
+        Node* referedNode = this->graphScene[keyName];
+        out<<referedNode->getVarName().toUtf8().constData();
     }
 
     if(children.empty()){

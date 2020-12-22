@@ -74,3 +74,9 @@ QString VectorNode::getCodeForNode()
     return text;
 
 }
+
+QString VectorNode::getVarName() const
+{
+    QString text = this->vectorName->text();
+    return text;
+}

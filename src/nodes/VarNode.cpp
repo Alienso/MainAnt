@@ -87,3 +87,9 @@ QString VarNode::getCodeForNode()
     qDebug()<< text;
     return text;
 }
+
+QString VarNode::getVarName() const
+{
+    QString text = this->varName->text();
+    return text;
+}

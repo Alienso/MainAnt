@@ -72,3 +72,9 @@ QString QueueNode::getCodeForNode()
 
 }
 
+QString QueueNode::getVarName() const
+{
+    QString text = this->QueueName->text();
+    return text;
+}
+

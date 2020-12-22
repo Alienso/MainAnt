@@ -18,6 +18,7 @@ public:
     QComboBox* combo;
 
     QString getCodeForNode() override;
+    QString getVarName() const override;
 
 };
 

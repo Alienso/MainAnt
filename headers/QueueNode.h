@@ -17,6 +17,7 @@ public:
     QComboBox* varTypes;
 
     QString getCodeForNode() override;
+    QString getVarName() const override;
 };
 
 #endif // QUEUENODE_H

@@ -32,7 +32,6 @@ void MainWindow::putVar(QListWidgetItem *item)
     {
         if(_inicializedVars[i] == item){
             VariableReferenceNode* n = new VariableReferenceNode(item->text());
-            n->setRefNameId(item->text());
             ui->StagingArea->addWidget(n);
             p->addNode(n, new QString("VariableReferenceNode"));
         }

@@ -267,6 +267,11 @@ QMap<QChar,QString> Node::getColors(){
     return colors;
 }
 
+QString Node::getVarName() const
+{
+    return "";
+}
+
 void Node::setNodeId(QString nodeId)
 {
     this->nodeId = nodeId;

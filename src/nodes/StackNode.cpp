@@ -72,3 +72,9 @@ QString StackNode::getCodeForNode()
 
 }
 
+QString StackNode::getVarName() const
+{
+    QString text = this->StackName->text();
+    return text;
+}
+

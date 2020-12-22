@@ -2,7 +2,7 @@
 
 VariableReferenceNode::VariableReferenceNode(QString _varName) : Node("VariableRef", 1, 1)
 {
-    this->refNameId = QString::fromStdString("VarRef");
+    this->refNameId = _varName;
     setMinimumSize(130,120);
     setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(18, 125, 94, 1);"
@@ -18,9 +18,10 @@ VariableReferenceNode::VariableReferenceNode(QString _varName) : Node("VariableR
     layout->addWidget(this->varName);
 }
 
+//Saamo u slucaju variableREferenc enode zelimo da vracamo id node na koji referise jer je to zaprovo njegova uloga, tj njegov kod
 QString VariableReferenceNode::getCodeForNode()
 {
-    return this->name;
+    return this->refNameId;
 }
 
 void VariableReferenceNode::setRefNameId(QString _refNameId)

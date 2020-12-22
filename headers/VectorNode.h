@@ -9,7 +9,7 @@
 #include "./headers/Node.h"
 
 class VectorNode : public Node
-{
+{       
 public:
     VectorNode();
 
@@ -18,6 +18,7 @@ public:
     QComboBox* varTypes;
 
     QString getCodeForNode() override;
+    QString getVarName() const override;
 };
 
 #endif // VECTORNODE_H
