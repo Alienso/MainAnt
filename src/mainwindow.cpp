@@ -157,3 +157,13 @@ Ui::MainWindow* MainWindow::getUi(){
 Parser* MainWindow::getParser(){
     return p;
 }
+
+void MainWindow::on_AddClass_clicked()
+{
+    qDebug()<<"+Class";
+    ClassWindow *c=new ClassWindow(this);
+    QMessageBox msgBox;
+    msgBox.setText("To save the changes you have made chose 'Build->Save'.");
+    c->show();
+    msgBox.exec();
+}

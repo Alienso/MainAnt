@@ -12,6 +12,7 @@ SOURCES += \
     ./src/main.cpp \
     ./src/mainwindow.cpp \
     ./src/FunctionWindow.cpp \
+    ./src/ClassWindow.cpp \
     src/nodes/BodyNode.cpp \
     src/nodes/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
@@ -49,6 +50,7 @@ SOURCES += \
 HEADERS += \
     ./headers/mainwindow.h \
     ./headers/FunctionWindow.h \
+    ./headers/ClassWindow.h \
     headers/BodyNode.h \
     headers/ConditionNode.h \
     headers/CustomGraphicsView.h \
@@ -84,6 +86,7 @@ HEADERS += \
     hea
 
 FORMS += \
+    ClassWindow.ui \
     FunctionWindow.ui \
     mainwindow.ui
 

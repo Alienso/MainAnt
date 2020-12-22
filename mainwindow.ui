@@ -57,7 +57,7 @@ border-color: rgb(21, 45, 73);</string>
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="AddFunction_2">
+         <widget class="QPushButton" name="AddClass">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>

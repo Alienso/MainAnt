@@ -43,6 +43,7 @@
 #include "./headers/QueueOperations.h"
 #include "./headers/EndOfStatement.h"
 #include "./headers/FunctionWindow.h"
+#include "ClassWindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -75,5 +76,6 @@ private slots:
     void on_actionRun_triggered();
     void filterFunctions();
     void on_AddFunction_clicked();
+    void on_AddClass_clicked();
 };
 #endif // MAINWINDOW_H
