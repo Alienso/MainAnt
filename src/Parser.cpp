@@ -275,11 +275,23 @@ QString Parser::compileAndRun()
     file.open("../mainAntCode.cpp", std::ios::out|std::ios::trunc);
     this->writeMyFunctions(file);
     this->traverseGraph(file);
-    //system("g++ -o mainAnt../mainAntCode.cpp");
-    //system("./mainAnt");
     file.close();
 
+    system("g++ -o mainAnt ../mainAntCode.cpp");
+    system("./mainAnt");
+
+
     return QString::fromStdString("Zavrsio sam");
+}
+
+QString Parser::compile()
+{
+    file.open("../mainAntCode.cpp", std::ios::out|std::ios::trunc);
+    this->writeMyFunctions(file);
+    this->traverseGraph(file);
+    file.close();
+
+    return QString::fromStdString("kompilirano");
 }
 
 

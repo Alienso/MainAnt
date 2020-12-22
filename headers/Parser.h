@@ -77,6 +77,8 @@ public:
 
     //funkcija koja se poziva za akciju run
     QString compileAndRun();
+    //funkcij akoja se zove z aakciju compile
+    QString  compile();
     //poziva se kada se definise nova funkcija
     QString createFunctionCode();
     void createFunctionBlueprint(QVector<Node*>* nodes);

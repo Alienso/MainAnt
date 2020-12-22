@@ -167,3 +167,8 @@ void MainWindow::on_AddClass_clicked()
     c->show();
     msgBox.exec();
 }
+
+void MainWindow::on_actionCompile_triggered()
+{
+  qDebug()<<p->compile();
+}

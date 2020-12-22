@@ -77,5 +77,6 @@ private slots:
     void filterFunctions();
     void on_AddFunction_clicked();
     void on_AddClass_clicked();
+    void on_actionCompile_triggered();
 };
 #endif // MAINWINDOW_H
