@@ -1,5 +1,25 @@
 #include "../headers/Parser.h"
 
+void Parser::writeMyFunctions(std::ofstream &formingFile)
+{
+    qDebug()<<"Pisem f-ju u fajl";
+    for(int i=0; i < this->funcId; i++){
+        int num = i+1;
+        std::string filePath = "./Functions/function" + std::to_string(num) + ".cpp";
+        std::ifstream file (filePath);
+        if(file.is_open()){
+            std::string line;
+            qDebug()<<"Citam kinije iz function fajla";
+            while(std::getline(file, line)){
+                formingFile<<line<<"\n";
+            }
+            file.close();
+        }else{
+            qDebug()<<"Fajl se ne moze otvoriti";
+        }
+    }
+}
+
 bool Parser::checkType(std::string name, std::string expectedName)
 {
     int cmp = name.compare(expectedName);
@@ -253,6 +273,7 @@ void Parser::removeNode(Node* node)
 QString Parser::compileAndRun()
 {
     file.open("../mainAntCode.cpp", std::ios::out|std::ios::trunc);
+    this->writeMyFunctions(file);
     this->traverseGraph(file);
     //system("g++ -o mainAnt../mainAntCode.cpp");
     //system("./mainAnt");

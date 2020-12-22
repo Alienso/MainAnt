@@ -20,6 +20,8 @@ private:
     //Pravate deo vezan za parsiranje korisnicki definisanih, funkcija
     int funcId;
     QVector<Node*> functions;
+    //Funkcija koja ispisuje definicije korisnicki definisanih funkcija u fajl koji se formira
+    void writeMyFunctions(std::ofstream& formingFile);
 
 private:
     //Vekror koji cuva cvorove grafa scene
@@ -46,9 +48,9 @@ private:
     //Funkcija koja se pozoiva pre svakog obilasna grafa da resetuje flag visited za svaki cvor
     void resetVisted();
 
-    //Funkcija koja obilazi graf i generise kod
+    //Funkcija koja otvara strim za pisanje i zapocinje obilazak grafa
     void traverseGraph(std::ofstream& out);
-    //Funkcija koja obilazi cvorove
+    //Funkcija koja obilazi cvorove scene i ispisuje dati kod u zadati strim
     void visitNode(Node* node, std::ofstream& out);
 
     //Funkcije za obilazak specijalnih nodova, kontrole toka ili slicno
