@@ -1,6 +1,6 @@
 #include "../../headers/BodyNode.h"
 
-BodyNode::BodyNode():Node("Body", 1, 1)
+BodyNode::BodyNode():Node("Body", 1, 1,{"flow"})
 {
     setMinimumSize(80,80);
     setMaximumSize(180, 100);

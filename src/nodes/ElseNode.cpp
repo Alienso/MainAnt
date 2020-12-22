@@ -1,6 +1,6 @@
 #include "../../headers/ElseNode.h"
 
-ElseNode::ElseNode():Node("Else", 1, 1)
+ElseNode::ElseNode():Node("Else", 1, 1,{"flow"})
 {
     setMinimumSize(80,80);
     setMaximumSize(180, 100);

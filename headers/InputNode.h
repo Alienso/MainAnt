@@ -14,7 +14,7 @@
 class InputNode : public Node
 {
 private:
-    QString text = nullptr;
+    QString text = "";
     QLineEdit* input;
 
 public:

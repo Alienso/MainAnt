@@ -1,6 +1,6 @@
 #include "../../headers/ElseIfNode.h"
 
-ElseIfNode::ElseIfNode():Node("elseIf", 2, 1)
+ElseIfNode::ElseIfNode():Node("elseIf", 2, 1, {"flow", "condition"})
 {
     setMinimumSize(80,80);
     setMaximumSize(180, 100);

@@ -1,8 +1,7 @@
 #include "./headers/WhileNode.h"
 
 
-WhileNode::WhileNode():
-    Node("while",2,1)
+WhileNode::WhileNode():Node("while",2,1,{"flow","condition"})
 {
     setMinimumSize(100,100);
     setMaximumWidth(200);

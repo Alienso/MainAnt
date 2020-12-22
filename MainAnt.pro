@@ -81,6 +81,7 @@ HEADERS += \
     headers/VectorOperations.h \
     headers/WhileNode.h \
     headers/SearchBar.h \
+    hea
 
 FORMS += \
     FunctionWindow.ui \

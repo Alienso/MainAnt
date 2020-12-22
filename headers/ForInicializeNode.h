@@ -7,7 +7,7 @@ class ForInicializeNode : public Node
 {
 public:
     ForInicializeNode();
-    QString getCodeForNode();
+    QString getCodeForNode() override;
 };
 
 #endif // FORINICIALIZENODE_H

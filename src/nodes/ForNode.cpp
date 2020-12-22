@@ -1,6 +1,6 @@
 #include "../../headers/ForNode.h"
 
-ForNode::ForNode() : Node("for", 4, 1,{"pre-init","condition","post-init","body"})
+ForNode::ForNode() : Node("for", 4, 1,{"flow","init","condition","increment"})
 {
     setMinimumSize(80,80);
     setMaximumSize(180, 120);

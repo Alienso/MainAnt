@@ -1,6 +1,6 @@
 #include "../../headers/IfNode.h"
 
-IfNode::IfNode() : Node("if", 2, 1,{"","Condition"})
+IfNode::IfNode() : Node("if", 2, 1,{"flow","Condition"})
 {
     setMinimumSize(80,80);
     setMaximumSize(180, 100);

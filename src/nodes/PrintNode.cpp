@@ -7,7 +7,7 @@
  * Sadrzi jedan ulaz.
 */
 
-PrintNode::PrintNode() : Node("print", 1, 1)
+PrintNode::PrintNode() : Node("print", 1, 1, {"flow/input"})
 {
     setMinimumSize(200,300);
     setMaximumWidth(200);

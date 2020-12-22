@@ -1,6 +1,6 @@
 #include "../../headers/ConditionNode.h"
 
-ConditionNode::ConditionNode() : Node("Condition", 1, 1)
+ConditionNode::ConditionNode() : Node("Condition", 1, 1, {"flow"})
 {
     setMinimumSize(80,80);
     setMaximumSize(180, 100);

@@ -1,6 +1,6 @@
 #include "../../headers/EndOfStatement.h"
 
-EndOfStatement::EndOfStatement() :Node("endofstatement", 1, 0)
+EndOfStatement::EndOfStatement() :Node("endofstatement", 1, 0, {"flow"})
 {
     setMinimumSize(60,60);
     setMaximumWidth(200);

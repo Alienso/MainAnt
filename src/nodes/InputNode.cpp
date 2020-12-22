@@ -8,6 +8,7 @@
 */
 
 
+
 InputNode::InputNode():Node("input", 1, 1)
 {
     setMinimumSize(80,80);
@@ -20,11 +21,11 @@ InputNode::InputNode():Node("input", 1, 1)
    QLineEdit* lineEdit = new QLineEdit(nullptr);
    this->input = lineEdit;
    layout->addWidget(lineEdit,2,0);
+
 }
 
 
-QString InputNode::getCodeForNode()
-{
+QString InputNode::getCodeForNode(){
     QString t = this->input->text();
     this->text = t;
     return t;
@@ -34,3 +35,4 @@ QString InputNode::getText() const
 {
     return text;
 }
+
