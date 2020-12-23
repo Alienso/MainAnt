@@ -136,10 +136,9 @@ void MainWindow::filterFunctions(){
 
 void MainWindow::on_AddFunction_clicked()
 {
-    qDebug()<<"+Function";
-    FunctionWindow *f=new FunctionWindow(this);
+    FunctionWindow *f=new FunctionWindow(this, "FunctionWindow");
     QMessageBox msgBox;
-    msgBox.setText("To save the changes you have made chose 'Build->Add Function'.");
+    msgBox.setText("To save the changes you have made chose 'Build->Save'.");
     f->show();
     msgBox.exec();
 }

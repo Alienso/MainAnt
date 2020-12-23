@@ -89,7 +89,7 @@ border-color: rgb(21, 45, 73);</string>
      <string>Build</string>
     </property>
     <addaction name="actionCompile"/>
-    <addaction name="actionSave_Function"/>
+    <addaction name="actionSave"/>
    </widget>
    <addaction name="menuBuild"/>
   </widget>
@@ -99,9 +99,9 @@ border-color: rgb(21, 45, 73);</string>
     <string>Compile</string>
    </property>
   </action>
-  <action name="actionSave_Function">
+  <action name="actionSave">
    <property name="text">
-    <string>Save Function</string>
+    <string>Save</string>
    </property>
   </action>
  </widget>

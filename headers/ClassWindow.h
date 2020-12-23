@@ -12,15 +12,14 @@ class ClassWindow;
 class ClassWindow : public QMainWindow
 {
     Q_OBJECT
-
-public:
-    explicit ClassWindow(QWidget *parent = nullptr);
-    ~ClassWindow();
-
 private:
     Ui::ClassWindow *ui;
     QLineEdit* ClassName;
     Parser *p;
+
+public:
+    explicit ClassWindow(QWidget *parent = nullptr);
+    ~ClassWindow();
 
 };
 

@@ -9,6 +9,7 @@
 #include <QVector>
 
 #include "./headers/Node.h"
+#include "./headers/FunctionWindow.h"
 
 class ClassNode : public Node
 {
@@ -19,7 +20,8 @@ public:
     QPushButton *addMethod;
     QPushButton *addVariable;
     QString getCodeForNode() override;
-
+public slots:
+    void addMethodSlot();
 };
 
 #endif // CLASSNODE_H

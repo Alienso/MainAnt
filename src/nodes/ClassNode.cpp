@@ -2,10 +2,10 @@
 
 ClassNode::ClassNode() : Node("Class", 1, 1)
 {
-    setMinimumSize(300,200);
+    setMinimumSize(150,125);
     setMaximumWidth(300);
-    setStyleSheet ("background-color: rgba(164, 13, 129, 1);"
-                   "border: 1px solid rgba(137, 252, 255, 1);");
+    setStyleSheet ("background-color: rgba(255, 187, 0, 1);"
+                   "border: 1px solid rgba(127, 40, 254, 1);");
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
@@ -19,10 +19,21 @@ ClassNode::ClassNode() : Node("Class", 1, 1)
 
     layout->addWidget(this->ClassName, 3, 0);
     layout->addWidget(this->addMethod, 4, 0);
-    layout->addWidget(this->addVariable, 4, 1);
+    layout->addWidget(this->addVariable, 5, 0);
+
+    connect(this->addMethod, SIGNAL(clicked()), this, SLOT(addMethodSlot(void)));
 }
 
 QString ClassNode::getCodeForNode(){
     QString text="";
     return text;
+}
+
+void ClassNode::addMethodSlot()
+{
+    FunctionWindow *m=new FunctionWindow(this, "MethodWidnow");
+    QMessageBox msgBox;
+    msgBox.setText("To save the changes you have made chose 'Build->Save'.");
+    m->show();
+    msgBox.exec();
 }

@@ -9,13 +9,13 @@ ClassWindow::ClassWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowTitle("ClassWindow");
+    ui->StagingArea->setLayout(new CustomLayout(1));
 
     ClassNode* c = new ClassNode();
-    //ui->StagingArea->addWidget(c);
+    ui->StagingArea->addWidget(c);
     p->addNode(c, new QString("ClassNode"));
     //p->addNewFunction(c);
     this->ClassName=c->ClassName;
-
 }
 
 ClassWindow::~ClassWindow()
