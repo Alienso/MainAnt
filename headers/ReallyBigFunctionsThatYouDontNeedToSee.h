@@ -55,6 +55,7 @@ void functionsListInit(T *w){
     QListWidgetItem* plus = new QListWidgetItem(w->tr("+"), w->getUi()->listWidget);
     QListWidgetItem* minus =new QListWidgetItem(w->tr("-"),  w->getUi()->listWidget);
     QListWidgetItem* mul =new QListWidgetItem(w->tr("*"),  w->getUi()->listWidget);
+    QListWidgetItem* div =new QListWidgetItem(w->tr("/"),  w->getUi()->listWidget);
     QListWidgetItem* less =new QListWidgetItem(w->tr("<"),  w->getUi()->listWidget);
     QListWidgetItem* input =new QListWidgetItem(w->tr("+Input"),  w->getUi()->listWidget);
     QListWidgetItem* print =new QListWidgetItem(w->tr("+Print"),  w->getUi()->listWidget);
@@ -88,6 +89,7 @@ void functionsListInit(T *w){
     w->_functionList.append(*plus);
     w->_functionList.append(*minus);
     w->_functionList.append(*mul);
+    w->_functionList.append(*div);
     w->_functionList.append(*less);
     w->_functionList.append(*lessEq);
     w->_functionList.append(*vece);
@@ -138,6 +140,10 @@ void putNode(QListWidgetItem* item,T* w)
         BinaryFunction* n = new BinaryFunction("Binary_puta", 3, 1,{},w->getParser(),w->getUi()->StagingArea);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("MulNode"));
+    }else if(item->text().compare("/") == 0){
+        BinaryFunction* n = new BinaryFunction("Binary_podeljeno", 3, 1,{},w->getParser(),w->getUi()->StagingArea);
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("DivNode"));
     }else if(item->text().compare("<") == 0){
         BinaryFunction* n = new BinaryFunction("Binary_manje", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
         w->getUi()->StagingArea->addWidget(n);

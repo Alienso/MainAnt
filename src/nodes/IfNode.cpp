@@ -10,6 +10,7 @@ IfNode::IfNode() : Node("if", 2, 1,{"flow","Condition"})
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(2,2)->widget()->hide();
     layout->itemAtPosition(1,1)->widget()->hide();
+    setColors({'q','q','q'});
 
 }
 

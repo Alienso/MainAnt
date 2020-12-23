@@ -5,6 +5,7 @@ Node::Node(QWidget *parent) : QFrame(parent)
     setMaximumSize(150,150);
     setStyleSheet ("background-color: rgba(24, 135, 127, 1);"
                    "border: 1px solid rgba(205, 221, 63, 1);"
+                   "border-radius: 5px;"
                    );
     this->setLayout(new QGridLayout());
     *(this->getOldPos()) = this->pos();
