@@ -1,4 +1,4 @@
-#include "../../headers/ElseNode.h"
+#include "./headers/nodesHeaders/ElseNode.h"
 
 ElseNode::ElseNode():Node("Else", 1, 1,{"flow"})
 {

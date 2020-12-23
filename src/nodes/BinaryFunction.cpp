@@ -1,4 +1,4 @@
-#include "./headers/BinaryFunction.h"
+#include "./headers/nodesHeaders/BinaryFunction.h"
 
 BinaryFunction::BinaryFunction(QString _name, int ninputs, int noutputs,QVector<QString> args, Parser *p_, QWidget *parent)
     :Node(_name, ninputs, noutputs, args, p_, parent){

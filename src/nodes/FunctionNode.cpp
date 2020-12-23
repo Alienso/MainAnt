@@ -1,4 +1,4 @@
-#include "./headers/FunctionNode.h"
+#include "./headers/nodesHeaders/FunctionNode.h"
 
 FunctionNode::FunctionNode() : Node("function", 1, 1)
 {

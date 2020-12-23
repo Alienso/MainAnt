@@ -1,4 +1,4 @@
-#include "./headers/WhileNode.h"
+#include "./headers/nodesHeaders/WhileNode.h"
 
 
 WhileNode::WhileNode():Node("while",2,1,{"flow","condition"})

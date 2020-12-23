@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "headers/ReallyBigFunctionsThatYouDontNeedToSee.h"
-#include "./headers/ClassNode.h"
+#include "./headers/nodesHeaders/ClassNode.h"
 
 namespace Ui {
 class ClassWindow;

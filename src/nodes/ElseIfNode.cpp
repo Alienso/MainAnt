@@ -1,4 +1,4 @@
-#include "../../headers/ElseIfNode.h"
+#include "./headers/nodesHeaders/ElseIfNode.h"
 
 ElseIfNode::ElseIfNode():Node("elseIf", 2, 1, {"flow", "condition"})
 {

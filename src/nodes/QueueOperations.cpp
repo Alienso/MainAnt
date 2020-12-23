@@ -1,4 +1,4 @@
-#include "../../headers/QueueOperations.h"
+#include "./headers/nodesHeaders/QueueOperations.h"
 
 QueueOperations::QueueOperations() : Node("queueOperations", 1, 1)
 {

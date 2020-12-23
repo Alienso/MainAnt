@@ -1,4 +1,4 @@
-#include "../../headers/BodyNode.h"
+#include "./headers/nodesHeaders/BodyNode.h"
 
 BodyNode::BodyNode():Node("Body", 1, 1,{"flow"})
 {

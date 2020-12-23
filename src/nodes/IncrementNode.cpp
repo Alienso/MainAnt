@@ -1,4 +1,4 @@
-#include "../../headers/IncrementNode.h"
+#include "./headers/nodesHeaders/IncrementNode.h"
 
 IncrementNode::IncrementNode() : Node("Increment", 1, 1)
 {

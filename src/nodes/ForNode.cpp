@@ -1,4 +1,4 @@
-#include "../../headers/ForNode.h"
+#include "./headers/nodesHeaders/ForNode.h"
 
 ForNode::ForNode() : Node("for", 4, 1,{"flow","init","condition","increment"})
 {

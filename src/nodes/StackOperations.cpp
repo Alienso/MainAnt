@@ -1,4 +1,4 @@
-#include "../../headers/StackOperations.h"
+#include "./headers/nodesHeaders/StackOperations.h"
 
 StackOperations::StackOperations() : Node("stackOperations", 1, 1)
 {

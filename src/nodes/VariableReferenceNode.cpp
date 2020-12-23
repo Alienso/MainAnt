@@ -1,4 +1,4 @@
-#include "../../headers/VariableReferenceNode.h"
+#include "./headers/nodesHeaders/VariableReferenceNode.h"
 
 VariableReferenceNode::VariableReferenceNode(QString _varName) : Node("VariableRef", 1, 1)
 {

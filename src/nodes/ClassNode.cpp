@@ -1,4 +1,4 @@
-#include "./headers/ClassNode.h"
+#include "./headers/nodesHeaders/ClassNode.h"
 
 ClassNode::ClassNode() : Node("Class", 1, 1)
 {

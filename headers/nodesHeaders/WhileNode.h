@@ -6,7 +6,7 @@
 #include <QFont>
 
 #include "./headers/Node.h"
-#include "./headers/ConditionNode.h"
+#include "./headers/nodesHeaders/ConditionNode.h"
 #include "./BodyNode.h"
 
 

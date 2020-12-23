@@ -1,4 +1,4 @@
-#include "./headers/QueueNode.h"
+#include "./headers/nodesHeaders/QueueNode.h"
 
 QueueNode::QueueNode() : Node("queue", 1, 1)
 {

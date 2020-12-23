@@ -53,39 +53,39 @@ HEADERS += \
     ./headers/mainwindow.h \
     ./headers/FunctionWindow.h \
     ./headers/ClassWindow.h \
-    headers/BodyNode.h \
-    headers/ClassNode.h \
-    headers/ConditionNode.h \
+    headers/nodesHeaders/BodyNode.h \
+    headers/nodesHeaders/ClassNode.h \
+    headers/nodesHeaders/ConditionNode.h \
     headers/CustomGraphicsView.h \
-    headers/ElseIfNode.h \
-    headers/ElseNode.h \
-    headers/EndOfStatement.h \
-    headers/ForInicializeNode.h \
-    headers/ForNode.h \
-    headers/FunctionNode.h \
-    headers/FunctionReturnNode.h \
-    headers/IfNode.h \
-    headers/IncDecNode.h \
-    headers/IncrementNode.h \
+    headers/nodesHeaders/ElseIfNode.h \
+    headers/nodesHeaders/ElseNode.h \
+    headers/nodesHeaders/EndOfStatement.h \
+    headers/nodesHeaders/ForInicializeNode.h \
+    headers/nodesHeaders/ForNode.h \
+    headers/nodesHeaders/FunctionNode.h \
+    headers/nodesHeaders/FunctionReturnNode.h \
+    headers/nodesHeaders/IfNode.h \
+    headers/nodesHeaders/IncDecNode.h \
+    headers/nodesHeaders/IncrementNode.h \
     headers/Input.h \
-    headers/InputNode.h \
+    headers/nodesHeaders/InputNode.h \
     headers/Node.h \
     headers/Output.h \
-    headers/BinaryFunction.h \
+    headers/nodesHeaders/BinaryFunction.h \
     headers/Parser.h \
-    headers/PrintNode.h \
-    headers/QueueNode.h \
-    headers/QueueOperations.h \
+    headers/nodesHeaders/PrintNode.h \
+    headers/nodesHeaders/QueueNode.h \
+    headers/nodesHeaders/QueueOperations.h \
     headers/ReallyBigFunctionsThatYouDontNeedToSee.h \
-    headers/ReturNode.h \
+    headers/nodesHeaders/ReturNode.h \
     headers/CustomLayout.h\
-    headers/StackNode.h \
-    headers/StackOperations.h \
-    headers/VarNode.h \
-    headers/VariableReferenceNode.h \
-    headers/VectorNode.h \
-    headers/VectorOperations.h \
-    headers/WhileNode.h \
+    headers/nodesHeaders/StackNode.h \
+    headers/nodesHeaders/StackOperations.h \
+    headers/nodesHeaders/VarNode.h \
+    headers/nodesHeaders/VariableReferenceNode.h \
+    headers/nodesHeaders/VectorNode.h \
+    headers/nodesHeaders/VectorOperations.h \
+    headers/nodesHeaders/WhileNode.h \
     headers/SearchBar.h \
     hea
 

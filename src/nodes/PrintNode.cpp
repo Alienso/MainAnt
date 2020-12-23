@@ -1,4 +1,4 @@
-#include "./headers/PrintNode.h"
+#include "./headers/nodesHeaders/PrintNode.h"
 
 /*
  * Cvor koji omogucava ispis. ON je zapravo sacinjen od text editora u koji ne moze da se pise iz aplikacije.

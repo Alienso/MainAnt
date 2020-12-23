@@ -1,4 +1,4 @@
-#include "../../headers/StartNode.h"
+#include "./headers/nodesHeaders/StartNode.h"
 
 StartNode::StartNode():Node("StartNode", 0, 1)
 {

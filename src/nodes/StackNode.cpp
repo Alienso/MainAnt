@@ -1,4 +1,4 @@
-#include "./headers/StackNode.h"
+#include "./headers/nodesHeaders/StackNode.h"
 
 StackNode::StackNode() : Node("stack", 1, 1)
 {

@@ -1,4 +1,4 @@
-#include "../../headers/EndOfStatement.h"
+#include "./headers/nodesHeaders/EndOfStatement.h"
 
 EndOfStatement::EndOfStatement() :Node("endofstatement", 1, 0, {"flow"})
 {

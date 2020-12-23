@@ -1,4 +1,4 @@
-#include "../../headers/IncDecNode.h"
+#include "./headers/nodesHeaders/IncDecNode.h"
 
 IncDecNode::IncDecNode() : Node("incdec", 1, 1)
 {

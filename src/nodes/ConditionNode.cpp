@@ -1,4 +1,4 @@
-#include "../../headers/ConditionNode.h"
+#include "./headers/nodesHeaders/ConditionNode.h"
 
 ConditionNode::ConditionNode() : Node("Condition", 1, 1, {"flow"})
 {
