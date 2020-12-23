@@ -25,6 +25,7 @@ SOURCES += \
     src/nodes/FunctionNode.cpp \
     src/nodes/FunctionReturnNode.cpp \
     src/nodes/IfNode.cpp \
+    src/nodes/IncDecNode.cpp \
     src/nodes/IncrementNode.cpp \
     src/Input.cpp \
     src/nodes/InputNode.cpp \
@@ -64,6 +65,7 @@ HEADERS += \
     headers/FunctionNode.h \
     headers/FunctionReturnNode.h \
     headers/IfNode.h \
+    headers/IncDecNode.h \
     headers/IncrementNode.h \
     headers/Input.h \
     headers/InputNode.h \

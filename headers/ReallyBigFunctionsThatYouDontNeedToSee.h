@@ -46,6 +46,7 @@
 #include "./headers/EndOfStatement.h"
 #include "./headers/FunctionNode.h"
 #include "./headers/FunctionReturnNode.h"
+#include "./headers/IncDecNode.h"
 
 template<typename T>
 void functionsListInit(T *w){
@@ -81,6 +82,7 @@ void functionsListInit(T *w){
     QListWidgetItem* queueNode = new QListWidgetItem(w->tr("+Queue"),  w->getUi()->listWidget);
     QListWidgetItem* queueOperations = new QListWidgetItem(w->tr("+QueueOperations"),  w->getUi()->listWidget);
     QListWidgetItem* endOfStatement = new QListWidgetItem(w->tr(";"), w->getUi()->listWidget);
+    QListWidgetItem* incDec = new QListWidgetItem(w->tr("++/--"), w->getUi()->listWidget);
 
     w->_functionList.append(*plus);
     w->_functionList.append(*minus);
@@ -115,7 +117,7 @@ void functionsListInit(T *w){
     w->_functionList.append(*queueNode);
     w->_functionList.append(*queueOperations);
     w->_functionList.append(*endOfStatement);
-
+    w->_functionList.append(*incDec);
 }
 
 template<typename T>
@@ -256,6 +258,10 @@ void putNode(QListWidgetItem* item,T* w)
         EndOfStatement* n = new EndOfStatement();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("EndOfStatement"));
+    }else if(item->text().compare("++/--") == 0){
+        IncDecNode* n = new IncDecNode();
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("IncDec"));
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : w->getParser()->getGraphScene() ){
