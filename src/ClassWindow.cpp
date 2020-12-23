@@ -16,9 +16,32 @@ ClassWindow::ClassWindow(QWidget *parent) :
     p->addNode(c, new QString("ClassNode"));
     //p->addNewFunction(c);
     this->ClassName=c->ClassName;
+
+    connect(this, SIGNAL(classAdded(QString)), this->parent(), SLOT(classAdded(QString)));
+
 }
 
 ClassWindow::~ClassWindow()
 {
     delete ui;
+}
+
+void ClassWindow::methodAdded(QString MethodName)
+{
+    new QListWidgetItem(MethodName, ui->MethodView);
+}
+
+void ClassWindow::on_actionSave_triggered()
+{
+    QString p1 = p->createFunctionCode();
+    if(p1.compare(QString::fromStdString("Fali")) == 0){
+        qDebug() << "Fail";
+    }
+    else
+        qDebug() << p1;
+
+    //Generate .mant
+    emit classAdded(this->ClassName->text());
+
+    this->destroy();
 }

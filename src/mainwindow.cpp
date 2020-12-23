@@ -166,8 +166,13 @@ void MainWindow::on_AddClass_clicked()
     c->show();
     msgBox.exec();
 }
+void MainWindow::classAddclassAdded(QString ClassName)
+{
+    new QListWidgetItem(ClassName, ui->ClassView);
+}
 
 void MainWindow::on_actionCompile_triggered()
 {
-  qDebug()<<p->compile();
+    qDebug()<<p->compile();
 }
+

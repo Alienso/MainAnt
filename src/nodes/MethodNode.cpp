@@ -1,10 +1,10 @@
-#include "./headers/nodesHeaders/FunctionNode.h"
+#include "./headers/nodesHeaders/MethodNode.h"
 
-FunctionNode::FunctionNode() : Node("function", 1, 1)
+MethodNode::MethodNode() : Node("method", 1, 1)
 {
     setMinimumSize(300,200);
     setMaximumWidth(300);
-    setStyleSheet ("background-color: rgba(164, 13, 129, 1);"
+    setStyleSheet ("background-color: rgba(255, 64, 138, 1);"
                    "border: 1px solid rgba(137, 252, 255, 1);");
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
@@ -12,9 +12,9 @@ FunctionNode::FunctionNode() : Node("function", 1, 1)
 
     this->addArg=new QPushButton("+argument");
 
-    this->FunctionName = new QLineEdit();
-    const QString* placeHolderFunctionName = new QString("Enter function name...");
-    this->FunctionName->setPlaceholderText(*placeHolderFunctionName);
+    this->MethodName = new QLineEdit();
+    const QString* placeHolderMethodName = new QString("Enter method name...");
+    this->MethodName->setPlaceholderText(*placeHolderMethodName);
 
     this->combo = new QComboBox();
     this->combo->addItem("void");
@@ -25,15 +25,24 @@ FunctionNode::FunctionNode() : Node("function", 1, 1)
     this->combo->addItem("char");
     this->combo->addItem("string");
 
+    this->comboMethod = new QComboBox();
+    this->comboMethod->addItem("public");
+    this->comboMethod->addItem("private");
+    this->comboMethod->addItem("protected");
+
+    layout->addWidget(this->comboMethod, 2, 0);
     layout->addWidget(this->combo, 3, 0);
-    layout->addWidget(this->FunctionName, 3, 1);
+    layout->addWidget(this->MethodName, 3, 1);
     layout->addWidget(this->addArg, 4, 0);
 
     connect(this->addArg, SIGNAL(clicked()), this, SLOT(addArgument(void)));
 }
 
-QString FunctionNode::getCodeForNode(){
+QString MethodNode::getCodeForNode(){
     QString text="";
+
+    text.append(this->comboMethod->currentText());
+    text.append(" ");
 
     if(this->combo->currentText() == QString::fromStdString("void")){
         text+=QString::fromStdString("void ");
@@ -63,7 +72,7 @@ QString FunctionNode::getCodeForNode(){
         text+= QString::fromStdString("std::string ");
     }
 
-    text+= this->FunctionName->text();
+    text+= this->MethodName->text();
     text+= QString::fromStdString("(");
     int i=0;
     int n=this->argumentsTypes.length();
@@ -83,11 +92,10 @@ QString FunctionNode::getCodeForNode(){
     text+= this->argumentsNames.last()->text();
 
     text+= QString::fromStdString("){\n");
-    //qDebug()<< text;
     return text;
 }
 
-void FunctionNode::addArgument()
+void MethodNode::addArgument()
 {
     //qDebug()<<"Dodajem argument";
     this->argumentsNames.push_back(new QLineEdit());
@@ -114,7 +122,7 @@ void FunctionNode::addArgument()
     this->layoutK++;
 }
 
-void FunctionNode::deleteArgument()
+void MethodNode::deleteArgument()
 {
     //qDebug()<<"Brisem argument";
 

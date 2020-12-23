@@ -20,7 +20,13 @@ private:
 public:
     explicit ClassWindow(QWidget *parent = nullptr);
     ~ClassWindow();
+signals:
+    void classAdded(QString ClassName);
+public slots:
+    void methodAdded(QString MethodName);
 
+private slots:
+    void on_actionSave_triggered();
 };
 
 #endif // CLASSWINDOW_H

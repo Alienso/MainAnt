@@ -47,6 +47,7 @@
 #include "./headers/nodesHeaders/FunctionNode.h"
 #include "./headers/nodesHeaders/FunctionReturnNode.h"
 #include "./headers/nodesHeaders/IncDecNode.h"
+#include "./headers/nodesHeaders/MethodNode.h"
 
 template<typename T>
 void functionsListInit(T *w){

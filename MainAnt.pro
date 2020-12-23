@@ -33,6 +33,7 @@ SOURCES += \
     src/Output.cpp \
     src/nodes/BinaryFunction.cpp \
     src/Parser.cpp \
+    src/nodes/MethodNode.cpp \
     src/nodes/PrintNode.cpp \
     src/nodes/QueueNode.cpp \
     src/nodes/QueueOperations.cpp \
@@ -73,6 +74,7 @@ HEADERS += \
     headers/Output.h \
     headers/nodesHeaders/BinaryFunction.h \
     headers/Parser.h \
+    headers/nodesHeaders/MethodNode.h \
     headers/nodesHeaders/PrintNode.h \
     headers/nodesHeaders/QueueNode.h \
     headers/nodesHeaders/QueueOperations.h \

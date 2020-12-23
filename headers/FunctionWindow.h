@@ -13,8 +13,10 @@ class FunctionWindow : public QMainWindow
 private:
     Ui::FunctionWindow *ui;
     Parser *p;
-    QLineEdit* FunctionName;
+    QLineEdit* FunctionOrMethodName;
     QString title;
+    //samo za method
+    QComboBox* comboMethod;
 
 public:
     explicit FunctionWindow(QWidget *parent, QString title);
@@ -25,6 +27,7 @@ public:
     ~FunctionWindow();
 signals:
     void functionAdded(QString FunctionName);
+    void methodAdded(QString MethodName);
 
 private slots:
     void filterFunctions();

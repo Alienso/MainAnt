@@ -15,16 +15,17 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title) :
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onPutNode(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&FunctionWindow::filterFunctions);
+    //ovo se ne povezuje, izgleda da ne moze da nadje slot?
     connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
 
-    if(this->title=="FunctionWIndow"){
+    if(this->title=="FunctionWindow"){
         FunctionNode* funct = new FunctionNode();
         ui->StagingArea->addWidget(funct);
         p->addNode(funct, new QString("FunctionNode"));
         p->addNewFunction(funct);
-        this->FunctionName=funct->FunctionName;
+        this->FunctionOrMethodName=funct->FunctionName;
 
         FunctionReturnNode* ret = new FunctionReturnNode();
         ui->StagingArea->addWidget(ret);
@@ -32,7 +33,16 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title) :
 
         connect(this, SIGNAL(functionAdded(QString)), this->parent(), SLOT(functionAdded(QString)));
     }
+    else{
+        MethodNode* method = new MethodNode();
+        ui->StagingArea->addWidget(method);
+        p->addNode(method, new QString("MethodNode"));
+        //p->addNewFunction(method);
+        this->FunctionOrMethodName=method->MethodName;
+        this->comboMethod=method->comboMethod;
 
+        connect(this, SIGNAL(methodAdded(QString)), this->parent(), SLOT(methodAdded(QString)));
+    }
 }
 
 FunctionWindow::~FunctionWindow()
@@ -57,8 +67,12 @@ void FunctionWindow::on_actionSave_triggered()
 
     //Generate .mant
     p->createFunctionBlueprint(ui->StagingArea->getNodes());
-    if(this->title=="FunctionWIndow"){
-        emit functionAdded(this->FunctionName->text());}
+    if(this->title=="FunctionWindow"){
+        emit functionAdded(this->FunctionOrMethodName->text());
+    }
+    else{
+        emit methodAdded(this->comboMethod->currentText()+" "+this->FunctionOrMethodName->text());
+    }
     this->destroy();
 }
 
