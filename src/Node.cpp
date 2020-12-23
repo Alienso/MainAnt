@@ -61,12 +61,14 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
             txt->setFontPointSize(6);
             layout->addWidget(lbl,i+1,1,1,1);
             layout->addWidget(txt,i+1,2,1,1);
+            this->args.push_back(txt);
         }
         else {
             QTextEdit* txt = new QTextEdit();
             txt->setFixedSize(40,20);
             txt->setFontPointSize(6);
             layout->addWidget(txt,i+1,1);
+            this->args.push_back(txt);
         }
 
     }
@@ -88,12 +90,14 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
                 txt->setFixedSize(40,20);
                 layout->addWidget(lbl,i+1,1,1,1);
                 layout->addWidget(txt,i+1,2,1,1);
+                this->args.push_back(txt);
             }
             else {
                 QTextEdit* txt = new QTextEdit();
                 txt->setFixedSize(40,20);
                 txt->setFontPointSize(6);
                 layout->addWidget(txt,i+1,1);
+                this->args.push_back(txt);
             }
             continue;
         }
@@ -118,12 +122,14 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
                 txt->setFontPointSize(6);
                 layout->addWidget(lbl,i+1,1,1,1);
                 layout->addWidget(txt,i+1,2,1,1);
+                this->args.push_back(txt);
             }
             else {
                 QTextEdit* txt = new QTextEdit();
                 txt->setFixedSize(40,20);
                 txt->setFontPointSize(6);
                 layout->addWidget(txt,i+1,1);
+                this->args.push_back(txt);
             }
         }
     }

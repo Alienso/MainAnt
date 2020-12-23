@@ -33,6 +33,7 @@ protected:
     QVector<Output*> outputs;
     QVector<QChar> inputTypes;
     QVector<QChar> outputTypes;
+    QVector<QTextEdit*> args;
     QMap<QChar,QString> colors;
     Node* next;//Ovo polje nam verovatno ne treba
     QLabel* nameLbl;

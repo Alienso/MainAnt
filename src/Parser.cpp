@@ -219,7 +219,7 @@ void Parser::addNode(Node* node, QString *type)
 {
     std::string idString = std::to_string(this->id);
     std::string NodeType = type->toUtf8().constData();
-    std::string tmp = NodeType + "_nodes" + idString; //Promena duzine niske u sredini cini da program radi
+    std::string tmp = NodeType + "_node" + idString; //Promena duzine niske u sredini cini da return radi ali zato ostali nmodeovi ne rade???
     int len = tmp.size();
 
     node->setNodeId(QString::fromStdString(tmp));

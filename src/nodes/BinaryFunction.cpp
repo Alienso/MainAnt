@@ -42,6 +42,9 @@ BinaryFunction::BinaryFunction(QString _name, int ninputs, int noutputs,QVector<
 QString BinaryFunction::getCodeForNode()
 {
     QString text="";
+    QString arg1 = this->args[1]->toPlainText();
+    QString arg2 = this->args[2]->toPlainText();
+    text.append(arg1);
            if(this->getName()=="Binary_plus"){
                text.append("+");
            }
@@ -75,6 +78,9 @@ QString BinaryFunction::getCodeForNode()
            else if(this->getName()=="Binary_veceJednako"){
                text.append(">=");
            }
+       text.append(arg2);
+       std::cout<<text.toUtf8().constData();
+       fflush(stdout);
        return text;
 }
 
