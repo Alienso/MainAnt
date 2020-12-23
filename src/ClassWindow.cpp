@@ -1,10 +1,13 @@
 #include "./headers/ClassWindow.h"
 #include "ui_ClassWindow.h"
 
-ClassWindow::ClassWindow(QWidget *parent) :
+ClassWindow::ClassWindow(QWidget *parent, int classId) :
     QMainWindow(parent),
     ui(new Ui::ClassWindow),
-    p(new Parser)
+    p(new Parser),
+    classId(classId),
+    methodId(0)
+
 {
     ui->setupUi(this);
 
@@ -26,6 +29,16 @@ ClassWindow::~ClassWindow()
     delete ui;
 }
 
+int ClassWindow::getClassId()
+{
+    return this->classId;
+}
+
+int ClassWindow::getMethodId()
+{
+    return this->methodId;
+}
+
 void ClassWindow::methodAdded(QString MethodName)
 {
     if(MethodName!=""){
@@ -34,12 +47,14 @@ void ClassWindow::methodAdded(QString MethodName)
 
 void ClassWindow::on_actionSave_triggered()
 {
-    //QString p1 = p->createFunctionCode();
-    //if(p1.compare(QString::fromStdString("Fali")) == 0){
-    //    qDebug() << "Fail";
-    //}
-    //else
-        //qDebug() << p1;
+    int classNum = this->getClassId();
+    int methodNum = this->getMethodId();
+    QString p1 = p->createMethodCode(classNum, methodNum);
+    if(p1.compare(QString::fromStdString("Fali")) == 0){
+        qDebug() << "Fail";
+    }
+    else
+        qDebug() << p1;
 
     //Generate .mant
     emit classAdded(this->ClassName->text());

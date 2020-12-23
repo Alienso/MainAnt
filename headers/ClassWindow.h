@@ -16,10 +16,14 @@ private:
     Ui::ClassWindow *ui;
     QLineEdit* ClassName;
     Parser *p;
+    int classId;
+    int methodId;
 
 public:
-    explicit ClassWindow(QWidget *parent = nullptr);
+    explicit ClassWindow(QWidget *parent = nullptr, int classId=0);
     ~ClassWindow();
+    int getClassId();
+    int getMethodId();
 signals:
     void classAdded(QString ClassName);
 public slots:

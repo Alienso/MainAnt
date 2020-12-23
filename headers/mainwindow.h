@@ -56,6 +56,7 @@ private:
     Ui::MainWindow *ui;
     Parser *p;
     int funcId;
+    int classId;
 
 public:
     QVector<QListWidgetItem> _functionList;
@@ -63,6 +64,7 @@ public:
     Ui::MainWindow* getUi();
     Parser* getParser();
     int getFuncId();
+    int getClassId();
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 

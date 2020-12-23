@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , p(new Parser)
     , funcId(0)
+    ,classId(0)
 {
     ui->setupUi(this);
     setWindowTitle(":)");
@@ -166,10 +167,16 @@ int MainWindow::getFuncId()
     return this->funcId;
 }
 
+int MainWindow::getClassId()
+{
+    return this->classId;
+}
+
 void MainWindow::on_AddClass_clicked()
 {
     qDebug()<<"+Class";
-    ClassWindow *c=new ClassWindow(this);
+    int classNum = getClassId();
+    ClassWindow *c=new ClassWindow(this, classNum);
     QMessageBox msgBox;
     msgBox.setText("To save the changes you have made chose 'Build->Save'.");
     c->show();

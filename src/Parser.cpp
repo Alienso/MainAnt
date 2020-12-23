@@ -473,3 +473,37 @@ void Parser::createFunctionBlueprint(QVector<Node*>* nodes, int funcNum){
     funcFile.close();
     return;
 }
+
+QString Parser::createMethodCode(int classNum, int methodNum)
+{
+    if(methodNum == 1){
+        //Ova komanda ne uspeva samo prvi put kad aovaj direktrijum ne postoji
+        std::string comand_ = "rm -r Class" + std::to_string(classNum);
+        const char* comand = comand_.c_str();
+        system(comand);
+        std::string comand2_ = "mkdir Class" + std::to_string(classNum);
+        const char* comand2 = comand2_.c_str();
+        system(comand2);
+    }
+    //Krairamo jedinstveno ime svakog fajla funkcije
+    std::string fileName = "method" + std::to_string(methodNum);
+    std::string filePath = "Class"+ std::to_string(classNum) +"/" + fileName + ".cpp";
+
+    this->methodFile.open(filePath, std::ios::out|std::ios::trunc);
+
+    //Na klasican nacin obilazimo cvorove na sceni
+    for(Node* method : this->methods){
+        if(!method->getVisited()){
+            method->setVisited(true);
+            funcFile<<method->getCodeForNode().toUtf8().constData();
+
+            QVector<Node*> children = method->getChildren();
+            for(auto child : children){
+                visitNode(child, this->methodFile);
+            }
+        }
+    }
+
+    this->methodFile.close();
+    return "metod isparsirana";
+}

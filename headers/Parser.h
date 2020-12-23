@@ -22,6 +22,8 @@ private:
     //Funkcija koja ispisuje definicije korisnicki definisanih funkcija u fajl koji se formira
     void writeMyFunctions(std::ofstream& formingFile, int funcNum);
 
+    //Privatana deo za parsiranje metoda klasa
+    QVector<Node*> methods;
 private:
     //Vekror koji cuva cvorove grafa scene
     QVector<Node*> graph;
@@ -41,6 +43,8 @@ private:
     std::ofstream file;
     //strema za fajl u koji pisemo kod korisnicki definisanih funkcija
     std::ofstream funcFile;
+    //stream za fajl u koji pisemo kod korissnicki definisanog metoda za korisnicki definisanu klasu
+    std::ofstream methodFile;
 
    //funkcija za proveru tipa noda
     bool checkType(std::string name, std::string expectedName);
@@ -81,6 +85,8 @@ public:
     //poziva se kada se definise nova funkcija
     QString createFunctionCode(int funcNum);
     void createFunctionBlueprint(QVector<Node*>* nodes, int funcNum);
+    //poziva se kada se definise novi metod funkcije
+    QString createMethodCode(int classNum, int methodNum);
 
 };
 
