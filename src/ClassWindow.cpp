@@ -28,7 +28,8 @@ ClassWindow::~ClassWindow()
 
 void ClassWindow::methodAdded(QString MethodName)
 {
-    new QListWidgetItem(MethodName, ui->MethodView);
+    if(MethodName!=""){
+        new QListWidgetItem(MethodName, ui->MethodView);}
 }
 
 void ClassWindow::on_actionSave_triggered()

@@ -71,7 +71,8 @@ void FunctionWindow::on_actionSave_triggered()
         emit functionAdded(this->FunctionOrMethodName->text());
     }
     else{
-        emit methodAdded(this->comboMethod->currentText()+" "+this->FunctionOrMethodName->text());
+       // this->comboMethod->currentText()+" "
+        emit methodAdded(this->FunctionOrMethodName->text());
     }
     this->destroy();
 }

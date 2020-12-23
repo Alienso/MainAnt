@@ -145,8 +145,8 @@ void MainWindow::on_AddFunction_clicked()
 
 void MainWindow::functionAdded(QString FunctionName)
 {
-    qDebug()<<"funkcija je dodata";
-    new QListWidgetItem(FunctionName, ui->FunctionView);
+    if(FunctionName!=""){
+        new QListWidgetItem(FunctionName, ui->FunctionView);}
 }
 
 Ui::MainWindow* MainWindow::getUi(){
@@ -166,9 +166,10 @@ void MainWindow::on_AddClass_clicked()
     c->show();
     msgBox.exec();
 }
-void MainWindow::classAddclassAdded(QString ClassName)
+void MainWindow::classAdded(QString ClassName)
 {
-    new QListWidgetItem(ClassName, ui->ClassView);
+    if(ClassName!=""){
+        new QListWidgetItem(ClassName, ui->ClassView);}
 }
 
 void MainWindow::on_actionCompile_triggered()
