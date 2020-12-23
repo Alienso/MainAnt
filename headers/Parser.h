@@ -18,10 +18,9 @@ class Parser
 {
 private:
     //Pravate deo vezan za parsiranje korisnicki definisanih, funkcija
-    int funcId;
     QVector<Node*> functions;
     //Funkcija koja ispisuje definicije korisnicki definisanih funkcija u fajl koji se formira
-    void writeMyFunctions(std::ofstream& formingFile);
+    void writeMyFunctions(std::ofstream& formingFile, int funcNum);
 
 private:
     //Vekror koji cuva cvorove grafa scene
@@ -76,12 +75,12 @@ public:
     void removeNode(Node* node);
 
     //funkcija koja se poziva za akciju run
-    QString compileAndRun();
+    QString compileAndRun(int funcNum);
     //funkcij akoja se zove z aakciju compile
-    QString  compile();
+    QString  compile(int funcNum);
     //poziva se kada se definise nova funkcija
-    QString createFunctionCode();
-    void createFunctionBlueprint(QVector<Node*>* nodes);
+    QString createFunctionCode(int funcNum);
+    void createFunctionBlueprint(QVector<Node*>* nodes, int funcNum);
 
 };
 

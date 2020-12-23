@@ -15,15 +15,17 @@ private:
     Parser *p;
     QLineEdit* FunctionOrMethodName;
     QString title;
+    int funcId;
     //samo za method
     QComboBox* comboMethod;
 
 public:
-    explicit FunctionWindow(QWidget *parent, QString title);
+    explicit FunctionWindow(QWidget *parent, QString title, int funcNum);
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
     Ui::FunctionWindow* getUi();
     Parser* getParser();
+    int getFuncId();
     ~FunctionWindow();
 signals:
     void functionAdded(QString FunctionName);

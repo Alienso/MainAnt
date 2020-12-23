@@ -34,12 +34,12 @@ void ClassWindow::methodAdded(QString MethodName)
 
 void ClassWindow::on_actionSave_triggered()
 {
-    QString p1 = p->createFunctionCode();
-    if(p1.compare(QString::fromStdString("Fali")) == 0){
-        qDebug() << "Fail";
-    }
-    else
-        qDebug() << p1;
+    //QString p1 = p->createFunctionCode();
+    //if(p1.compare(QString::fromStdString("Fali")) == 0){
+    //    qDebug() << "Fail";
+    //}
+    //else
+        //qDebug() << p1;
 
     //Generate .mant
     emit classAdded(this->ClassName->text());

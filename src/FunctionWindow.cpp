@@ -1,10 +1,11 @@
 #include "./headers/FunctionWindow.h"
 #include "ui_FunctionWindow.h"
 
-FunctionWindow::FunctionWindow(QWidget *parent, QString title) :
+FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum) :
     QMainWindow(parent)
   ,ui(new Ui::FunctionWindow)
   ,p(new Parser)
+  ,funcId(funcNum)
 {
     ui->setupUi(this);
 
@@ -58,7 +59,8 @@ void FunctionWindow::onPutNode(QListWidgetItem* item){
 void FunctionWindow::on_actionSave_triggered()
 {
     //Generate cpp
-    QString p1 = p->createFunctionCode();
+    int funcNum = getFuncId();
+    QString p1 = p->createFunctionCode(funcNum);
     if(p1.compare(QString::fromStdString("Fali")) == 0){
         qDebug() << "Fail";
     }
@@ -66,7 +68,7 @@ void FunctionWindow::on_actionSave_triggered()
         qDebug() << p1;
 
     //Generate .mant
-    p->createFunctionBlueprint(ui->StagingArea->getNodes());
+    p->createFunctionBlueprint(ui->StagingArea->getNodes(), funcNum);
     if(this->title=="FunctionWindow"){
         emit functionAdded(this->FunctionOrMethodName->text());
     }
@@ -93,4 +95,9 @@ Ui::FunctionWindow* FunctionWindow::getUi(){
 }
 Parser* FunctionWindow::getParser(){
     return p;
+}
+
+int FunctionWindow::getFuncId()
+{
+    return this->funcId;
 }

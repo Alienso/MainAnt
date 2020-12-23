@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , p(new Parser)
+    , funcId(0)
 {
     ui->setupUi(this);
     setWindowTitle(":)");
@@ -116,7 +117,8 @@ void MainWindow::on_actionQuit_triggered()
 
 void MainWindow::on_actionRun_triggered()
 {
-    QString p1 = p->compileAndRun();
+    int funcNum = this->getFuncId();
+    QString p1 = p->compileAndRun(funcNum);
     if(p1 == QString::fromStdString("Fali")){
         qDebug() << "Fail";
     }
@@ -136,7 +138,9 @@ void MainWindow::filterFunctions(){
 
 void MainWindow::on_AddFunction_clicked()
 {
-    FunctionWindow *f=new FunctionWindow(this, "FunctionWindow");
+    this->funcId = this->funcId +1;
+    int funcNum = this->getFuncId();
+    FunctionWindow *f=new FunctionWindow(this, "FunctionWindow", funcNum);
     QMessageBox msgBox;
     msgBox.setText("To save the changes you have made chose 'Build->Save'.");
     f->show();
@@ -157,6 +161,11 @@ Parser* MainWindow::getParser(){
     return p;
 }
 
+int MainWindow::getFuncId()
+{
+    return this->funcId;
+}
+
 void MainWindow::on_AddClass_clicked()
 {
     qDebug()<<"+Class";
@@ -174,6 +183,7 @@ void MainWindow::classAdded(QString ClassName)
 
 void MainWindow::on_actionCompile_triggered()
 {
-    qDebug()<<p->compile();
+    int funNum = this->getFuncId();
+    qDebug()<<p->compile(funNum);
 }
 

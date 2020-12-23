@@ -1,11 +1,13 @@
 #include "../headers/Parser.h"
 
-void Parser::writeMyFunctions(std::ofstream &formingFile)
+void Parser::writeMyFunctions(std::ofstream &formingFile, int funcNum)
 {
     qDebug()<<"Pisem f-ju u fajl";
-    for(int i=0; i < this->funcId; i++){
+    int i = 0;
+    for(; i < funcNum; i++){
         int num = i+1;
-        std::string filePath = "./Functions/function" + std::to_string(num) + ".cpp";
+        std::string filePath = "Functions/function" + std::to_string(num) + ".cpp";
+        qDebug()<<QString::fromStdString(filePath);
         std::ifstream file (filePath);
         if(file.is_open()){
             std::string line;
@@ -211,7 +213,7 @@ void Parser::visitElseIfNode(Node *node, QVector<Node *> parents, std::ofstream 
 
 }
 
-Parser::Parser():funcId(0),id(0)
+Parser::Parser():id(0)
 {
 }
 
@@ -270,10 +272,10 @@ void Parser::removeNode(Node* node)
     this->graphScene.erase(it);
 }
 
-QString Parser::compileAndRun()
+QString Parser::compileAndRun(int funcNum)
 {
     file.open("../mainAntCode.cpp", std::ios::out|std::ios::trunc);
-    this->writeMyFunctions(file);
+    this->writeMyFunctions(file, funcNum);
     this->traverseGraph(file);
     file.close();
 
@@ -284,10 +286,10 @@ QString Parser::compileAndRun()
     return QString::fromStdString("Zavrsio sam");
 }
 
-QString Parser::compile()
+QString Parser::compile(int funcNum)
 {
     file.open("../mainAntCode.cpp", std::ios::out|std::ios::trunc);
-    this->writeMyFunctions(file);
+    this->writeMyFunctions(file, funcNum);
     this->traverseGraph(file);
     file.close();
 
@@ -393,16 +395,15 @@ void Parser::visitNode(Node* node, std::ofstream& out)
     }
 }
 
-QString Parser::createFunctionCode()
+QString Parser::createFunctionCode(int funcNum)
 {
-    if(this->funcId == 0){
+    if(funcNum == 1){
         //Ova komanda ne uspeva samo prvi put kad aovaj direktrijum ne postoji
         system("rm -r Functions");
         system("mkdir Functions");
     }
     //Krairamo jedinstveno ime svakog fajla funkcije
-    this->funcId += 1;
-    std::string fileName = "function" + std::to_string(this->funcId);
+    std::string fileName = "function" + std::to_string(funcNum);
     std::string filePath = "Functions/" + fileName + ".cpp";
 
     funcFile.open(filePath, std::ios::out|std::ios::trunc);
@@ -424,8 +425,8 @@ QString Parser::createFunctionCode()
     return "Funkcija isparsirana";
 }
 
-void Parser::createFunctionBlueprint(QVector<Node*>* nodes){
-    std::string fileName = "function" + std::to_string(this->funcId);
+void Parser::createFunctionBlueprint(QVector<Node*>* nodes, int funcNum){
+    std::string fileName = "function" + std::to_string(funcNum);
     std::string filePath = "../Functions/" + fileName + ".mant";
 
     funcFile.open(filePath, std::ios::out|std::ios::trunc);

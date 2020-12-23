@@ -31,7 +31,7 @@ QString ClassNode::getCodeForNode(){
 
 void ClassNode::addMethodSlot()
 {
-    FunctionWindow *m=new FunctionWindow(qobject_cast<QWidget*>(this->parent()->parent()->parent()), "MethodWidnow");
+    FunctionWindow *m=new FunctionWindow(qobject_cast<QWidget*>(this->parent()->parent()->parent()), "MethodWidnow", 0);
     QMessageBox msgBox;
     msgBox.setText("To save the changes you have made chose 'Build->Save'.");
     m->show();

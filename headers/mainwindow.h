@@ -55,12 +55,14 @@ class MainWindow : public QMainWindow
 private:
     Ui::MainWindow *ui;
     Parser *p;
+    int funcId;
 
 public:
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
     Ui::MainWindow* getUi();
     Parser* getParser();
+    int getFuncId();
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
