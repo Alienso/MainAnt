@@ -84,7 +84,7 @@ QString VarNode::getCodeForNode()
         text+= this->value->text();
         text+= QString::fromStdString("\";\n");
     }
-    qDebug()<< text;
+    //qDebug()<< text;
     return text;
 }
 

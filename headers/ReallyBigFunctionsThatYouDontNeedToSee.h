@@ -48,10 +48,12 @@
 #include "./headers/nodesHeaders/FunctionReturnNode.h"
 #include "./headers/nodesHeaders/IncDecNode.h"
 #include "./headers/nodesHeaders/MethodNode.h"
+#include "./headers/nodesHeaders/AssignNode.h"
 
 template<typename T>
 void functionsListInit(T *w){
 
+    QListWidgetItem* assigne = new QListWidgetItem(w->tr("="), w->getUi()->listWidget);
     QListWidgetItem* plus = new QListWidgetItem(w->tr("+"), w->getUi()->listWidget);
     QListWidgetItem* minus =new QListWidgetItem(w->tr("-"),  w->getUi()->listWidget);
     QListWidgetItem* mul =new QListWidgetItem(w->tr("*"),  w->getUi()->listWidget);
@@ -86,6 +88,7 @@ void functionsListInit(T *w){
     QListWidgetItem* endOfStatement = new QListWidgetItem(w->tr(";"), w->getUi()->listWidget);
     QListWidgetItem* incDec = new QListWidgetItem(w->tr("++/--"), w->getUi()->listWidget);
 
+    w->_functionList.append(*assigne);
     w->_functionList.append(*plus);
     w->_functionList.append(*minus);
     w->_functionList.append(*mul);
@@ -128,7 +131,11 @@ void putNode(QListWidgetItem* item,T* w)
 {
     QListWidgetItem* variable;
 
-    if(item->text().compare("+") == 0){
+    if(item->text().compare("=") == 0){
+        AssignNode* n = new AssignNode();
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("Assigne"));
+    }else if(item->text().compare("+") == 0){
         BinaryFunction* n = new BinaryFunction("Binary_plus", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("plus"));

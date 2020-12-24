@@ -44,6 +44,7 @@
 #include "./headers/nodesHeaders/EndOfStatement.h"
 #include "./headers/FunctionWindow.h"
 #include "./headers/ClassWindow.h"
+#include "./headers//nodesHeaders/AssignNode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

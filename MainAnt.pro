@@ -13,6 +13,7 @@ SOURCES += \
     ./src/mainwindow.cpp \
     ./src/FunctionWindow.cpp \
     ./src/ClassWindow.cpp \
+    src/nodes/AssignNode.cpp \
     src/nodes/BodyNode.cpp \
     src/nodes/ClassNode.cpp \
     src/nodes/ConditionNode.cpp \
@@ -54,6 +55,7 @@ HEADERS += \
     ./headers/mainwindow.h \
     ./headers/FunctionWindow.h \
     ./headers/ClassWindow.h \
+    headers/nodesHeaders/AssignNode.h \
     headers/nodesHeaders/BodyNode.h \
     headers/nodesHeaders/ClassNode.h \
     headers/nodesHeaders/ConditionNode.h \
