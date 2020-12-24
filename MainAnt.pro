@@ -15,6 +15,7 @@ SOURCES += \
     ./src/ClassWindow.cpp \
     src/nodes/AssignNode.cpp \
     src/nodes/BodyNode.cpp \
+    src/nodes/ClassField.cpp \
     src/nodes/ClassNode.cpp \
     src/nodes/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
@@ -58,6 +59,7 @@ HEADERS += \
     ./headers/ClassWindow.h \
     headers/nodesHeaders/AssignNode.h \
     headers/nodesHeaders/BodyNode.h \
+    headers/nodesHeaders/ClassField.h \
     headers/nodesHeaders/ClassNode.h \
     headers/nodesHeaders/ConditionNode.h \
     headers/CustomGraphicsView.h \

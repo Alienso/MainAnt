@@ -22,6 +22,7 @@ ClassNode::ClassNode() : Node("Class", 1, 1)
     layout->addWidget(this->addVariable, 5, 0);
 
     connect(this->addMethod, SIGNAL(clicked()), this, SLOT(addMethodSlot(void)));
+    connect(this->addVariable, SIGNAL(clicked()), this, SLOT(addFieldSlot(void)));
 }
 
 QString ClassNode::getCodeForNode(){
@@ -36,4 +37,12 @@ void ClassNode::addMethodSlot()
     msgBox.setText("To save the changes you have made chose 'Build->Save'.");
     m->show();
     msgBox.exec();
+}
+
+void ClassNode::addFieldSlot()
+{
+    ClassField* field = new ClassField();
+    this->fields.push_back(field);
+    QLayout* layout = (QLayout*)this->parent()->parent();
+    layout->addWidget(field);
 }

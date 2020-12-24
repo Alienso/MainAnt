@@ -10,6 +10,7 @@
 
 #include "./headers/Node.h"
 #include "./headers/FunctionWindow.h"
+#include "./headers/nodesHeaders/ClassField.h"
 
 class ClassNode : public Node
 {
@@ -19,9 +20,12 @@ public:
     QLineEdit* ClassName;
     QPushButton *addMethod;
     QPushButton *addVariable;
+    QVector<ClassField*> fields;
+
     QString getCodeForNode() override;
 public slots:
     void addMethodSlot();
+    void addFieldSlot();
 };
 
 #endif // CLASSNODE_H
