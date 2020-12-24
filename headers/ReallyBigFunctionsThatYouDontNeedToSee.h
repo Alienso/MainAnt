@@ -49,6 +49,7 @@
 #include "./headers/nodesHeaders/IncDecNode.h"
 #include "./headers/nodesHeaders/MethodNode.h"
 #include "./headers/nodesHeaders/AssignNode.h"
+#include "./headers/nodesHeaders/MapNode.h"
 
 template<typename T>
 void functionsListInit(T *w){
@@ -87,6 +88,8 @@ void functionsListInit(T *w){
     QListWidgetItem* queueOperations = new QListWidgetItem(w->tr("+QueueOperations"),  w->getUi()->listWidget);
     QListWidgetItem* endOfStatement = new QListWidgetItem(w->tr(";"), w->getUi()->listWidget);
     QListWidgetItem* incDec = new QListWidgetItem(w->tr("++/--"), w->getUi()->listWidget);
+    QListWidgetItem* dictionary = new QListWidgetItem(w->tr("Dictionary"), w->getUi()->listWidget);
+
 
     w->_functionList.append(*assigne);
     w->_functionList.append(*plus);
@@ -123,6 +126,7 @@ void functionsListInit(T *w){
     w->_functionList.append(*queueNode);
     w->_functionList.append(*queueOperations);
     w->_functionList.append(*endOfStatement);
+    w->_functionList.append(*dictionary);
     w->_functionList.append(*incDec);
 }
 
@@ -276,6 +280,10 @@ void putNode(QListWidgetItem* item,T* w)
         IncDecNode* n = new IncDecNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("IncDec"));
+    }else if(item->text().compare("Dictionary") == 0){
+        MapNode* n = new MapNode();
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("Map"));
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : w->getParser()->getGraphScene() ){
