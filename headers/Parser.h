@@ -82,6 +82,7 @@ public:
     QVector<Node*> getGraph();
     //Ova funkcija je samo za tesstiranje NEMA smisla da neko ima pristup ovom vektoru
     QVector<Node*> getStartNodes();
+    void eraseStartNode(QString name);
     QMap<QString, Node*> getGraphScene();
 
     void removeNode(Node* node);

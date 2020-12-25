@@ -213,12 +213,12 @@ void Parser::visitElseIfNode(Node *node, QVector<Node *> parents, std::ofstream 
 
 }
 
-Parser::Parser():id(0)
-                ,hasIO(false)
+Parser::Parser():hasIO(false)
                 ,hasVector(false)
                 ,hasStack(false)
                 ,hasMap(false)
                 ,hasQueue(false)
+                ,id(0)
 {
     headers = "";
 }
@@ -265,6 +265,25 @@ QVector<Node *> Parser::getGraph()
 QVector<Node *> Parser::getStartNodes()
 {
     return this->startNodes;
+}
+
+void Parser::eraseStartNode(QString name)
+{
+    int pos = -1;
+    int i =0;
+    for(auto node : startNodes){
+        QString n = node->getName();
+        int cmp = n.compare(name);
+        //Ako su sjednaki stringovi pamtimo poziciju od pocetka
+        if(cmp == 0){
+            pos = i;
+            //Mozemo da prekinemo jer znamo da su sva imena cvorova jedinstvena i da se svaki
+            //startni cvor moze smao jednom dodari u vektor startnih cvorova
+            break;
+        }
+        i++;
+    }
+    startNodes.erase(startNodes.begin() + pos);
 }
 
 QMap<QString, Node *> Parser::getGraphScene()
