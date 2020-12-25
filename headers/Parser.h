@@ -25,6 +25,14 @@ private:
     //Privatana deo za parsiranje metoda klasa
     QVector<Node*> methods;
 private:
+    //Privatni deo vezan za kreiranje hedera
+    std::string headers;
+    bool hasIO;
+    bool hasVector;
+    bool hasStack;
+    bool hasMap;
+    bool hasQueue;
+private:
     //Vekror koji cuva cvorove grafa scene
     QVector<Node*> graph;
     //Svaki put kad se doda start node on se doda i u ovaj graf
@@ -87,6 +95,7 @@ public:
     void createFunctionBlueprint(QVector<Node*>* nodes, int funcNum);
     //poziva se kada se definise novi metod funkcije
     QString createMethodCode(int classNum, int methodNum);
+    void setHeader(std::string header);
 
 };
 

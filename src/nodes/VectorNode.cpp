@@ -62,7 +62,7 @@ QString VectorNode::getCodeForNode()
     {
         text+= QString::fromStdString("vector<char> ");
         text+= this->vectorName->text();
-        text+= QString::fromStdString("\;\n");
+        text+= QString::fromStdString(";\n");
     }
     else if(this->varTypes->currentText() == QString::fromStdString("String"))
     {

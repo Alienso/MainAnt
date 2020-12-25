@@ -88,7 +88,7 @@ void functionsListInit(T *w){
     QListWidgetItem* queueOperations = new QListWidgetItem(w->tr("+QueueOperations"),  w->getUi()->listWidget);
     QListWidgetItem* endOfStatement = new QListWidgetItem(w->tr(";"), w->getUi()->listWidget);
     QListWidgetItem* incDec = new QListWidgetItem(w->tr("++/--"), w->getUi()->listWidget);
-    QListWidgetItem* dictionary = new QListWidgetItem(w->tr("Dictionary"), w->getUi()->listWidget);
+    QListWidgetItem* dictionary = new QListWidgetItem(w->tr("+Dictionary"), w->getUi()->listWidget);
 
 
     w->_functionList.append(*assigne);
@@ -163,10 +163,12 @@ void putNode(QListWidgetItem* item,T* w)
         InputNode* n = new InputNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("InputNode"));
+        w->getParser()->setHeader("io");
     }else if(item->text().compare("+Print") == 0){
         PrintNode* n = new PrintNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("PrintNode"));
+        w->getParser()->setHeader("io");
     }else if(item->text().compare("+Return") == 0){
         ReturnNode* n = new ReturnNode();
         w->getUi()->StagingArea->addWidget(n);
@@ -248,30 +250,36 @@ void putNode(QListWidgetItem* item,T* w)
         w->getParser()->addNode(n, new QString("VectorNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
         w->_inicializedVars.append(variable);
+        w->getParser()->setHeader("vector");
     }else if(item->text().compare("+VectorOperations") == 0){
         VectorOperations* n = new VectorOperations();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("VectorOperations"));
+        w->getParser()->setHeader("vector");
     }else if(item->text().compare("+Stack") == 0){
         StackNode* n = new StackNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("StackNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
         w->_inicializedVars.append(variable);
+        w->getParser()->setHeader("stack");
     }else if(item->text().compare("+StackOperations") == 0){
         StackOperations* n = new StackOperations();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("StackOperations"));
+        w->getParser()->setHeader("stack");
     }else if(item->text().compare("+Queue") == 0){
         QueueNode* n = new QueueNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("QueueNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
         w->_inicializedVars.append(variable);
+        w->getParser()->setHeader("queue");
     }else if(item->text().compare("+QueueOperations") == 0){
         QueueOperations* n = new QueueOperations();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("QueueOperations"));
+        w->getParser()->setHeader("queue");
     }else if(item->text().compare(";") == 0){
         EndOfStatement* n = new EndOfStatement();
         w->getUi()->StagingArea->addWidget(n);
@@ -284,6 +292,7 @@ void putNode(QListWidgetItem* item,T* w)
         MapNode* n = new MapNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Map"));
+        w->getParser()->setHeader("map");
     }
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : w->getParser()->getGraphScene() ){

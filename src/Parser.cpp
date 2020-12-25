@@ -214,7 +214,13 @@ void Parser::visitElseIfNode(Node *node, QVector<Node *> parents, std::ofstream 
 }
 
 Parser::Parser():id(0)
+                ,hasIO(false)
+                ,hasVector(false)
+                ,hasStack(false)
+                ,hasMap(false)
+                ,hasQueue(false)
 {
+    headers = "";
 }
 
 void Parser::addNode(Node* node, QString *type)
@@ -275,6 +281,7 @@ void Parser::removeNode(Node* node)
 QString Parser::compileAndRun(int funcNum)
 {
     file.open("../mainAntCode.cpp", std::ios::out|std::ios::trunc);
+    file<<this->headers;
     this->writeMyFunctions(file, funcNum);
     this->traverseGraph(file);
     file.close();
@@ -289,6 +296,7 @@ QString Parser::compileAndRun(int funcNum)
 QString Parser::compile(int funcNum)
 {
     file.open("../mainAntCode.cpp", std::ios::out|std::ios::trunc);
+    file<<this->headers;
     this->writeMyFunctions(file, funcNum);
     this->traverseGraph(file);
     file.close();
@@ -305,7 +313,7 @@ void Parser::traverseGraph(std::ofstream& out){
        out<<"Nema startnih cvorova\n";
     }else
     {
-        out<<"#include <iostream>\n#include <string>\n";
+        //out<<"#include <iostream>\n#include <string>\n";
         for(Node* startNode : this->startNodes){
             startNode->setVisited(true);
             out<<startNode->getCodeForNode().toUtf8().constData();
@@ -506,4 +514,48 @@ QString Parser::createMethodCode(int classNum, int methodNum)
 
     this->methodFile.close();
     return "metod isparsirana";
+}
+
+void Parser::setHeader(std::string header)
+{
+    int cmp = header.compare("map");
+    if(cmp == 0){
+        if (hasMap == false){
+            hasMap = true;
+            this->headers += "#include <map>\n";
+        }
+        return;
+    }
+    cmp = header.compare("vector");
+    if(cmp == 0){
+        if (hasVector == false){
+            hasVector = true;
+            this->headers += "#include <vector>\n";
+        }
+        return;
+    }
+    cmp = header.compare("queue");
+    if(cmp == 0){
+        if (hasQueue == false){
+            hasQueue = true;
+            this->headers += "#include <queue>\n";
+        }
+        return;
+    }
+    cmp = header.compare("stack");
+    if(cmp == 0){
+        if (hasStack == false){
+            hasStack = true;
+            this->headers += "#include <stack>\n";
+        }
+        return;
+    }
+    cmp = header.compare("io");
+    if(cmp == 0){
+        if (hasIO == false){
+            hasIO = true;
+            this->headers += "#include <iostream>\n#include <string>\n";
+        }
+        return;
+    }
 }
