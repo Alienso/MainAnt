@@ -42,6 +42,11 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum) :
         this->FunctionOrMethodName=method->MethodName;
         this->comboMethod=method->comboMethod;
 
+        FunctionReturnNode* ret = new FunctionReturnNode();
+        ui->StagingArea->addWidget(ret);
+        p->addNode(ret, new QString("FunctionRteurnNode"));
+
+
         connect(this, SIGNAL(methodAdded(QString)), this->parent(), SLOT(methodAdded(QString)));
     }
 }
@@ -49,6 +54,18 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum) :
 FunctionWindow::~FunctionWindow()
 {
     delete ui;
+}
+
+void FunctionWindow::putVar(QListWidgetItem *item)
+{
+    for(int i =0; i<_inicializedVars.size(); i++)
+    {
+        if(_inicializedVars[i] == item){
+            VariableReferenceNode* n = new VariableReferenceNode(item->text());
+            ui->StagingArea->addWidget(n);
+            p->addNode(n, new QString("VariableReferenceNode"));
+        }
+    }
 }
 
 

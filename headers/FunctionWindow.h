@@ -27,6 +27,8 @@ public:
     Parser* getParser();
     int getFuncId();
     ~FunctionWindow();
+public slots:
+    void putVar(QListWidgetItem* item);
 signals:
     void functionAdded(QString FunctionName);
     void methodAdded(QString MethodName);
