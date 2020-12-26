@@ -15,7 +15,7 @@ Node::Node(QWidget *parent) : QFrame(parent)
     colors['b'] = "border-width: 2px;border-color: rgba(255, 2, 116, 1);border-radius: 10px;"; //bool
     colors['s'] = "border-width: 2px;border-color: rgba(255, 156, 57, 1);border-radius: 10px;"; //string
     colors['c'] = "border-width: 2px;border-color: rgba(255, 104, 107, 1);border-radius: 10px;"; //char
-    colors['q'] = "border-width: 2px;border-color: rgba(65, 247, 201, 1);border-radius: 10px;"; //kontrola toka
+    colors['q'] = "border-width: 2px;border-color: rgba(65, 247, 201, 1);border-top-right-radius: 10px;border-bottom-right-radius: 10px;"; //kontrola toka
 }
 
 //TODO QT resetuje velicinu fonta u textEditu kada se sve izbrise
@@ -29,14 +29,9 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser 
     this->name = _name;
     this->nameLbl = new QLabel(name);
     if (args.length() == 0){
-        args.resize(ninputs);
+        args.resize(ninputs == 0 ? 1 : ninputs);
         for (int i=0;i<ninputs;i++)
             args[i] = "";
-    }
-
-    if (args.length() == 0){ //TMP RESENJE
-        args.resize(1);
-        args[0] = "";
     }
 
     this->nameLbl->setMaximumSize(100,20);
