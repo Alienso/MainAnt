@@ -105,10 +105,21 @@ void MainWindow::on_AddFunction_clicked()
     msgBox.exec();
 }
 
-void MainWindow::functionAdded(QString FunctionName)
+void MainWindow::functionAdded(QString FunctionName, int argNum, QVector<QString> argNames, QVector<QString> argTypes, QString retVal)
 {
     if(FunctionName!=""){
-        new QListWidgetItem(FunctionName, ui->FunctionView);}
+        QString func = retVal + " " +FunctionName;
+        for(int i=0; i<argNum; i++){
+            if(i == 0){
+                func = func + "(" +  argTypes[i] + " " + argNames[i] + ", ";
+            }else if(i == argNum - 1){
+                func = func + argTypes[i] + " " + argNames[i];
+            }else{
+                func = func + argTypes[i] + " " + argNames[i] + ", ";
+            }
+        }
+        func = func + ")";
+        new QListWidgetItem(func, ui->FunctionView);}
 }
 
 Ui::MainWindow* MainWindow::getUi(){

@@ -23,6 +23,11 @@ public:
     QVector<QComboBox*> argumentsTypes;
     //do kog koeficijenta smo stigli u layoutu sa dodavanjem
     int layoutK=5;
+
+    int getArgNum() const;
+    QString getRetVal() const;
+
+
     QString getCodeForNode() override;
 
 public slots:
@@ -31,6 +36,7 @@ public slots:
 
 private:
     int currWidth = 200;
+    int argNum;
 };
 
 #endif // FUNCTIONNODE_H

@@ -18,6 +18,9 @@ private:
     int funcId;
     //samo za method
     QComboBox* comboMethod;
+    //POtrebno za slanje informacija mainwindowu, setuju se u konstruktoru
+    FunctionNode* func;
+    MethodNode* method;
 
 public:
     explicit FunctionWindow(QWidget *parent, QString title, int funcNum);
@@ -30,7 +33,7 @@ public:
 public slots:
     void putVar(QListWidgetItem* item);
 signals:
-    void functionAdded(QString FunctionName);
+    void functionAdded(QString FunctionName, int argNum, QVector<QString> argNames, QVector<QString> argTypes, QString retType);
     void methodAdded(QString MethodName);
 
 private slots:

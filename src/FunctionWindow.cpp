@@ -16,13 +16,13 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum) :
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onPutNode(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&FunctionWindow::filterFunctions);
-    //ovo se ne povezuje, izgleda da ne moze da nadje slot?
     connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
 
     if(this->title=="FunctionWindow"){
         FunctionNode* funct = new FunctionNode();
+        this->func = funct;
         ui->StagingArea->addWidget(funct);
         p->addNode(funct, new QString("FunctionNode"));
         p->addNewFunction(funct);
@@ -32,10 +32,11 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum) :
         ui->StagingArea->addWidget(ret);
         p->addNode(ret, new QString("FunctionRteurnNode"));
 
-        connect(this, SIGNAL(functionAdded(QString)), this->parent(), SLOT(functionAdded(QString)));
+        connect(this, SIGNAL(functionAdded(QString, int, QVector<QString>, QVector<QString>, QString)), this->parent(), SLOT(functionAdded(QString, int, QVector<QString>, QVector<QString>, QString)));
     }
     else{
-        MethodNode* method = new MethodNode();
+        MethodNode* met = new MethodNode();
+        this->method = met;
         ui->StagingArea->addWidget(method);
         p->addNode(method, new QString("MethodNode"));
         //p->addNewFunction(method);
@@ -87,7 +88,16 @@ void FunctionWindow::on_actionSave_triggered()
     //Generate .mant
     p->createFunctionBlueprint(ui->StagingArea->getNodes(), funcNum);
     if(this->title=="FunctionWindow"){
-        emit functionAdded(this->FunctionOrMethodName->text());
+        QVector<QString> argNames;
+        QVector<QString> argTypes;
+        int n = this->func->getArgNum();
+        for(int i=0; i<n; i++){
+            argNames.push_back(this->func->argumentsNames[i]->text());
+            argTypes.push_back(this->func->argumentsTypes[i]->currentText());
+        }
+        QString retVal = this->func->getRetVal();
+
+        emit functionAdded(this->FunctionOrMethodName->text(), n, argNames, argTypes, retVal);
     }
     else{
        // this->comboMethod->currentText()+" "

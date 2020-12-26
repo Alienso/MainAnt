@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/FunctionNode.h"
 
-FunctionNode::FunctionNode() : Node("Function", 1, 1)
+FunctionNode::FunctionNode() : Node("Function", 1, 1), argNum(0)
 {
     setMinimumSize(300,currWidth);
     setStyleSheet ("background-color: rgba(164, 13, 129, 1);"
@@ -33,7 +33,13 @@ FunctionNode::FunctionNode() : Node("Function", 1, 1)
     connect(this->addArg, SIGNAL(clicked()), this, SLOT(addArgument(void)));
 }
 
-QString FunctionNode::getCodeForNode(){
+int FunctionNode::getArgNum() const
+{
+    return this->argNum;
+}
+
+QString FunctionNode::getRetVal() const
+{
     QString text="";
 
     if(this->combo->currentText() == QString::fromStdString("void")){
@@ -63,6 +69,12 @@ QString FunctionNode::getCodeForNode(){
     {
         text+= QString::fromStdString("std::string ");
     }
+
+    return text;
+}
+
+QString FunctionNode::getCodeForNode(){
+    QString text=getRetVal();
 
     text+= this->FunctionName->text();
     text+= QString::fromStdString("(");
@@ -114,6 +126,7 @@ void FunctionNode::addArgument()
 
     this->layoutK++;
     this->currWidth += 40;
+    this->argNum += 1;
     setMinimumSize(300,currWidth);
 }
 
