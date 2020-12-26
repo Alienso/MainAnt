@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/ClassNode.h"
 
-ClassNode::ClassNode() : Node("Class", 1, 1)
+ClassNode::ClassNode() : Node("Class", 1, 0)
 {
     setMinimumSize(150,125);
     setMaximumWidth(300);
@@ -43,7 +43,6 @@ void ClassNode::addFieldSlot()
 {
     ClassField* field = new ClassField();
     this->fields.push_back(field);
-    qDebug()<<this->parent();
     auto StagingAreaCopy=qobject_cast<QGraphicsView*>(this->parent());
     QGridLayout* layout = static_cast<QGridLayout*>(StagingAreaCopy->layout());
     layout->addWidget(field);
