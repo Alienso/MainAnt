@@ -12,6 +12,8 @@
 #include <QPoint>
 #include <QDebug>
 #include <QList>
+#include <QProcess>
+#include <QApplication>
 
 #include "./headers/ReallyBigFunctionsThatYouDontNeedToSee.h"
 
@@ -75,10 +77,11 @@ public slots:
     void onPutNode(QListWidgetItem* item);
 
 private slots:
-    void on_actionOpen_triggered();
-    void on_actionSave_triggered();
     void on_actionQuit_triggered();
     void on_actionRun_triggered();
+    void on_actionRestart_triggered();
+    void on_actionOpen_Code_triggered();
+
     void filterFunctions();
     void on_AddFunction_clicked();
     void on_AddClass_clicked();

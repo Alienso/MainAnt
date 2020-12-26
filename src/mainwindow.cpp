@@ -43,71 +43,28 @@ void MainWindow::putVar(QListWidgetItem *item)
 void MainWindow::onPutNode(QListWidgetItem* item){
     putNode(item,this);
 }
-//*File->Open Ucitava se tekstualni fajl.
-void MainWindow::on_actionOpen_triggered()
+
+void MainWindow::on_actionRestart_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                                    tr("Open MainAnt"), "",
-                                                    tr("MainAnt (*.txt);;All Files (*)"));
-
-    if (fileName.isEmpty())
-        return;
-    else {
-
-        QFile file(fileName);
-
-        if (!file.open(QIODevice::ReadOnly)) {
-            QMessageBox::information(this, tr("Unable to open file"),
-                                     file.errorString());
-            return;
-        }
-        //U in fajlu nam se nalazi sadrzaj ucitane datoteke
-        QDataStream in(&file);
-        in.setVersion(QDataStream::Qt_4_5);
-        /*ovde bi trebalo u osnovi da se izvrsi nesto ovako:
-        in>> staging area;
-        */
-    }
+    qApp->quit();
+    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
 }
 
-//*File->Save Cuva se tekstualni fajl.
-void MainWindow::on_actionSave_triggered()
+void MainWindow::on_actionOpen_Code_triggered()
 {
-    QString fileName = QFileDialog::getSaveFileName(this,
-                                                    tr("Save MainAnt File"), "",
-                                                    tr("MainAnt (*.mant);;All Files (*)"));
+    QProcess process;
+    QString fileTmp = QDir::currentPath();
+    int i=fileTmp.lastIndexOf('/');
+    QStringRef fileTmp2(&fileTmp, 0, i+1);
+    QString file=fileTmp2.toUtf8()+"mainAntCode.cpp";
 
-    if (fileName.isEmpty())
-        return;
-    else {
-        QFile file(fileName);
-        if (!file.open(QIODevice::WriteOnly)) {
-            QMessageBox::information(this, tr("Unable to open file"),
-                                     file.errorString());
-            return;
-        }
-        //Preko out-a pisemo u fajl koji ce biti sacuvan. Verovatno necete moci da procitate kada otvorite jer je QString upisan.
-        QDataStream out(&file);
-        out.setVersion(QDataStream::Qt_4_5);
-
-        QString text="";
-        auto Nodes=ui->StagingArea->getNodes();
-        for(auto a : *Nodes){
-            text.append("Name: "+a->getName() + "\n");
-            text.append("NodeId: "+a->getNodeId() + "\n");
-            text.append("Inputs: ");
-            for(auto inputi: a->getParentNodes()){
-                text.append(inputi->getNodeId()+"\n");
-            }
-            text.append("\n");
-            text.append("Outputs: ");
-            for(auto inputi: a->getChildren()){
-                text.append(inputi->getNodeId()+"\n");
-            }
-            text.append("\n");
-        }
-        out<<text.toUtf8().constData();
-        //out << QString("Projekat MainAnt");
+    if(QFile::exists(file)){
+    QDesktopServices::openUrl(QUrl(file));
+    }
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Can't find mainAntCode.cpp file. Make sure you first Compile or Run your program.");
+        msgBox.exec();
     }
 }
 
@@ -193,4 +150,3 @@ void MainWindow::on_actionCompile_triggered()
     int funNum = this->getFuncId();
     qDebug()<<p->compile(funNum);
 }
-

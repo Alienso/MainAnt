@@ -253,9 +253,7 @@ color: rgb(220, 234, 251);</string>
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionOpen"/>
-    <addaction name="actionSave"/>
-    <addaction name="actionSave_as"/>
+    <addaction name="actionRestart"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuBuild">
@@ -264,21 +262,12 @@ color: rgb(220, 234, 251);</string>
     </property>
     <addaction name="actionCompile"/>
     <addaction name="actionRun"/>
+    <addaction name="actionOpen_Code"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuBuild"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionOpen">
-   <property name="text">
-    <string>&amp;Open</string>
-   </property>
-  </action>
-  <action name="actionSave">
-   <property name="text">
-    <string>&amp;Save</string>
-   </property>
-  </action>
   <action name="actionCompile">
    <property name="text">
     <string>&amp;Compile</string>
@@ -289,19 +278,19 @@ color: rgb(220, 234, 251);</string>
     <string>&amp;Run</string>
    </property>
   </action>
-  <action name="actionSave_as">
-   <property name="text">
-    <string>Sa&amp;ve as</string>
-   </property>
-  </action>
-  <action name="actionHelp">
-   <property name="text">
-    <string>Help</string>
-   </property>
-  </action>
   <action name="actionQuit">
    <property name="text">
     <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionRestart">
+   <property name="text">
+    <string>Restart</string>
+   </property>
+  </action>
+  <action name="actionOpen_Code">
+   <property name="text">
+    <string>Open Code</string>
    </property>
   </action>
  </widget>
