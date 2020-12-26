@@ -2,11 +2,12 @@
 
 FunctionNode::FunctionNode() : Node("function", 1, 1)
 {
-    setMinimumSize(300,200);
-    setMaximumWidth(300);
+    setMinimumSize(300,currWidth);
     setStyleSheet ("background-color: rgba(164, 13, 129, 1);"
-                   "border: 1px solid rgba(137, 252, 255, 1);");
+                   "border: 1px solid rgba(137, 252, 255, 1);"
+                   "border-radius:5px;");
 
+    setColors({'q','q'});
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
 
@@ -112,6 +113,8 @@ void FunctionNode::addArgument()
     layout->addWidget(this->deleteButton.last(), this->layoutK, 2);
 
     this->layoutK++;
+    this->currWidth += 40;
+    setMinimumSize(300,currWidth);
 }
 
 void FunctionNode::deleteArgument()
@@ -138,4 +141,6 @@ void FunctionNode::deleteArgument()
         }
         i++;
     }
+    this->currWidth -= 40;
+    setMinimumSize(300,currWidth);
 }

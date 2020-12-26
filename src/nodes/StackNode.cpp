@@ -3,9 +3,10 @@
 StackNode::StackNode() : Node("stack", 1, 1)
 {
     setMinimumSize(180,150);
-    setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(251, 170, 81, 1);"
-                   "border: 1px solid rgba(88, 17, 87, 1);");
+                   "border: 1px solid rgba(88, 17, 87, 1);"
+                   "border-radius:5px;");
+    setColors({'q','q'});
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();

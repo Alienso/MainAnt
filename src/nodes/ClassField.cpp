@@ -5,9 +5,12 @@ ClassField::ClassField() : Node("classField", 1, 0)
     setMinimumSize(170,150);
     setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(98, 190, 164, 1);"
-                   "border: 1px solid rgba(255, 150, 132, 1);");
+                   "border: 1px solid rgba(255, 150, 132, 1);"
+                   "border-radius:5px;");
+
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
+    setColors({'q'});
 
     this->fieldName = new QLineEdit();
     const QString* placeHolderValue = new QString("Enter field name...");

@@ -4,11 +4,12 @@ VariableReferenceNode::VariableReferenceNode(QString _varName) : Node("VariableR
 {
     this->refNameId = _varName;
     setMinimumSize(130,120);
-    setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(18, 125, 94, 1);"
-                   "border: 1px solid rgba(255, 150, 132, 1);");
-
+                   "border: 1px solid rgba(255, 150, 132, 1);"
+                   "border-radius:5px;");
+    setColors({'q','q'});
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->itemAtPosition(1,1)->widget()->hide();
 
     this->name = _varName;
     this->varName = new QTextEdit();

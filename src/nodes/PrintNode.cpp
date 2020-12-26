@@ -9,11 +9,13 @@
 
 PrintNode::PrintNode() : Node("print", 1, 1, {"flow/input"})
 {
-    setMinimumSize(200,300);
-    setMaximumWidth(200);
+    setMinimumSize(200,150);
     setStyleSheet ("background-color: rgba(105, 50, 129, 1);"
-                   "border: 1px solid rgba(194, 145, 211, 1);");
+                   "border: 1px solid rgba(194, 145, 211, 1);"
+                   "border-radius:5px;");
+    setColors({'s','q'});
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->itemAtPosition(1,2)->widget()->hide();
 
     QRadioButton* fileInputRadioButton = new QRadioButton("Input from file",this);
     QRadioButton *manualInputRadioButton = new QRadioButton("Manula input",this);

@@ -17,7 +17,7 @@ BinaryFunction::BinaryFunction(QString _name, int ninputs, int noutputs,QVector<
         setColors({'q','n','n','n'});
     }
     else if(this->getName()=="Binary_manje"){
-        setColors({'q','n','n','n'});
+        setColors({'q','n','n','b'});
     }
     else if(this->getName()=="Binary_vece"){
         setColors({'q','n','n','b'});
@@ -29,7 +29,7 @@ BinaryFunction::BinaryFunction(QString _name, int ninputs, int noutputs,QVector<
         setColors({'q','b','b','b'});
     }
     else if(this->getName()=="Binary_jednako"){
-        setColors({'q','n','n','n'});
+        setColors({'q','n','n','b'});
     }
     else if(this->getName()=="Binary_manjeJednako"){
         setColors({'q','n','n','b'});

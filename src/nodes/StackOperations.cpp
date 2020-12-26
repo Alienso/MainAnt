@@ -2,11 +2,11 @@
 
 StackOperations::StackOperations() : Node("stackOperations", 1, 1)
 {
-    setMinimumSize(120,120);
-    setMaximumWidth(200);
+    setMinimumSize(180,150);
     setStyleSheet ("background-color: rgba(225, 75, 44, 1);"
-                   "border: 1px solid rgba(255, 150, 132, 1);");
-
+                   "border: 1px solid rgba(255, 150, 132, 1);"
+                   "border-radius:5px;");
+    setColors({'q','q'});
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
 

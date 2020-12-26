@@ -5,10 +5,12 @@ ClassNode::ClassNode() : Node("Class", 1, 0)
     setMinimumSize(150,125);
     setMaximumWidth(300);
     setStyleSheet ("background-color: rgba(255, 187, 0, 1);"
-                   "border: 1px solid rgba(127, 40, 254, 1);");
+                   "border: 1px solid rgba(127, 40, 254, 1);"
+                   "border-radius:5px;");
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
+    setColors({'q'});
 
     this->addMethod=new QPushButton("+method");
     this->addVariable=new QPushButton("+variable");

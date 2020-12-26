@@ -3,10 +3,10 @@
 QueueNode::QueueNode() : Node("queue", 1, 1)
 {
     setMinimumSize(180,150);
-    setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(137, 24, 102, 1);"
-                   "border: 1px solid rgba(212, 44, 97, 1);");
-
+                   "border: 1px solid rgba(212, 44, 97, 1);"
+                   "border-radius:5px;");
+    setColors({'q','q'});
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
 

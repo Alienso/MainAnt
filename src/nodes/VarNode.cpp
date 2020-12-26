@@ -3,11 +3,13 @@
 VarNode::VarNode() : Node("var", 1, 1)
 {
     setMinimumSize(150,150);
-    setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(78, 105, 104, 1);"
-                   "border: 1px solid rgba(255, 150, 132, 1);");
+                   "border: 1px solid rgba(255, 150, 132, 1);"
+                   "border-radius:5px;");
 
+    setColors({'q','q'});
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->itemAtPosition(1,1)->widget()->hide();
 
     this->value = new QLineEdit();
     const QString* placeHolderValue = new QString("Enter var value...");

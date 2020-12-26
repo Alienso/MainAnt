@@ -2,11 +2,11 @@
 
 QueueOperations::QueueOperations() : Node("queueOperations", 1, 1)
 {
-    setMinimumSize(120,120);
-    setMaximumWidth(200);
+    setMinimumSize(180,150);
     setStyleSheet ("background-color: rgba(62, 66, 115, 1);"
-                   "border: 1px solid rgba(212, 44, 97, 1);");
-
+                   "border: 1px solid rgba(212, 44, 97, 1);"
+                   "border-radius:5px");
+    setColors({'q','q'});
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
 

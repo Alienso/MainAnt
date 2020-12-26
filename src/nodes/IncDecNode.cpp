@@ -2,12 +2,15 @@
 
 IncDecNode::IncDecNode() : Node("incdec", 1, 1)
 {
-    setMinimumSize(220,160);
-    setMaximumWidth(200);
+    setMinimumSize(220,150);
     setStyleSheet ("background-color: rgba(48, 125, 44, 1);"
-                   "border: 1px solid rgba(255, 150, 132, 1);");
+                   "border: 1px solid rgba(255, 150, 132, 1);"
+                   "border-radius:5px;");
+
+    setColors({'q','q'});
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->itemAtPosition(1,1)->widget()->hide();
 
     this->operand = new QLineEdit();
     const QString* placeHolderVarName = new QString("Enter var name...");

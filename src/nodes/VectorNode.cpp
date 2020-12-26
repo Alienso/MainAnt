@@ -3,7 +3,6 @@
 VectorNode::VectorNode() : Node("vector", 1, 1)
 {
     setMinimumSize(180,150);
-    setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(38, 55, 114, 1);"
                    "border: 1px solid rgba(255, 150, 132, 1);");
 

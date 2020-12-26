@@ -28,6 +28,9 @@ public:
 public slots:
     void addArgument();
     void deleteArgument();
+
+private:
+    int currWidth = 200;
 };
 
 #endif // FUNCTIONNODE_H

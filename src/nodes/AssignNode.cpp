@@ -1,13 +1,15 @@
 #include "../../headers/nodesHeaders/AssignNode.h"
 
-AssignNode::AssignNode() : Node("assigne", 1, 1)
+AssignNode::AssignNode() : Node("Assign", 1, 1)
 {
     setMinimumSize(150,150);
-    setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(180, 0, 0, 1);"
-                   "border: 1px solid rgba(255, 150, 132, 1);");
+                   "border: 1px solid rgba(255, 150, 132, 1);"
+                   "border-radius:5px;");
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->itemAtPosition(1,1)->widget()->hide();
+    setColors({'q','q'});
 
     this->value = new QLineEdit();
     const QString* placeHolderValue = new QString("Enter value...");

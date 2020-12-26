@@ -2,8 +2,7 @@
 
 MapNode::MapNode() : Node("map", 1, 1)
 {
-    setMinimumSize(150,200);
-    setMaximumWidth(200);
+    setMinimumSize(150,150);
     setStyleSheet ("background-color: rgba(120, 120, 0, 1);"
                    "border: 1px solid rgba(255, 150, 132, 1);");
 

@@ -5,8 +5,10 @@ FunctionReturnNode::FunctionReturnNode() : Node("FunctionReturn", 1, 0), isVoid(
     setMinimumSize(180,180);
     setMaximumWidth(200);
     setStyleSheet ("background-color: rgba(0, 111, 113, 1);"
-                   "border: 1px solid rgba(80, 196, 198, 1);");
+                   "border: 1px solid rgba(80, 196, 198, 1);"
+                   "border-radius:5px;");
 
+    setColors({'q'});
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
 
     QButtonGroup *choice = new QButtonGroup(this);
