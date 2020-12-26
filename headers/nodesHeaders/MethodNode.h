@@ -29,6 +29,8 @@ public:
 public slots:
     void addArgument();
     void deleteArgument();
+private:
+    int currWidth = 200;
 };
 
 #endif // METHODNODE_H

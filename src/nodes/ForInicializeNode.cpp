@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/ForInicializeNode.h"
 
-ForInicializeNode::ForInicializeNode() : Node("ForInicializeNode", 1, 1)
+ForInicializeNode::ForInicializeNode() : Node("ForInitializeNode", 1, 1)
 {
     setMinimumSize(80,80);
     setMaximumSize(180, 100);

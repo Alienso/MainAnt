@@ -8,6 +8,9 @@ ElseIfNode::ElseIfNode():Node("elseIf", 2, 1, {"flow", "condition"})
                    "border: 1px solid rgba(237, 48, 194, 1);"
                    "border-radius:5px");
     setColors({'q','b','q'});
+
+    QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->itemAtPosition(1,2)->widget()->hide();
 }
 
 QString ElseIfNode::getCodeForNode()

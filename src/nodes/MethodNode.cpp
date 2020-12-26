@@ -2,10 +2,12 @@
 
 MethodNode::MethodNode() : Node("method", 1, 1)
 {
-    setMinimumSize(300,200);
+    setMinimumSize(300,currWidth);
     setMaximumWidth(300);
     setStyleSheet ("background-color: rgba(255, 64, 138, 1);"
-                   "border: 1px solid rgba(137, 252, 255, 1);");
+                   "border: 1px solid rgba(137, 252, 255, 1);"
+                   "border-radius:5px;");
+    setColors({'q','q'});
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
@@ -120,6 +122,8 @@ void MethodNode::addArgument()
     layout->addWidget(this->deleteButton.last(), this->layoutK, 2);
 
     this->layoutK++;
+    this->currWidth += 40;
+    setMinimumSize(300,currWidth);
 }
 
 void MethodNode::deleteArgument()
@@ -146,4 +150,6 @@ void MethodNode::deleteArgument()
         }
         i++;
     }
+    this->currWidth -= 40;
+    setMinimumSize(300,currWidth);
 }

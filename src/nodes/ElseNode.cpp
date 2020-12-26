@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/ElseNode.h"
 
-ElseNode::ElseNode():Node("Else", 1, 1,{"flow"})
+ElseNode::ElseNode():Node("else", 1, 1,{"flow"})
 {
     setStyleSheet ("background-color: rgba(193, 66, 66, 1);"
                    "border: 1px solid rgba(237, 48, 194, 1);"

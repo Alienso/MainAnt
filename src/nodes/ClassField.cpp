@@ -1,6 +1,6 @@
 #include "../../headers/nodesHeaders/ClassField.h"
 
-ClassField::ClassField() : Node("classField", 1, 0)
+ClassField::ClassField() : Node("ClassField", 1, 0)
 {
     setMinimumSize(170,150);
     setMaximumWidth(200);

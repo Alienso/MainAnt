@@ -225,20 +225,15 @@ Parser::Parser():hasIO(false)
 
 void Parser::addNode(Node* node, QString *type)
 {
-    std::string idString = std::to_string(this->id);
-    std::string NodeType = type->toUtf8().constData();
-    std::string tmp = NodeType + "_node" + idString; //Promena duzine niske u sredini cini da return radi ali zato ostali nmodeovi ne rade???
-    int len = tmp.size();
+    QString idString = QString::number(this->id);
+    QString NodeType = type->toUtf8().constData();
+    QString tmp = NodeType + "_node" + idString;
 
-    node->setNodeId(QString::fromStdString(tmp));
+    node->setNodeId(tmp);
 
-    char charArray[len];
-    strcpy(charArray, tmp.c_str());
-    QString *name = new  QString(charArray);
-
-    this->nodeNames.push_back(*name);
+    this->nodeNames.push_back(tmp);
     this->graph.push_back(node);
-    this->graphScene.insert(*name, node);
+    this->graphScene.insert(tmp, node);
     this->id +=1;
 }
 

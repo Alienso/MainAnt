@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/FunctionNode.h"
 
-FunctionNode::FunctionNode() : Node("function", 1, 1)
+FunctionNode::FunctionNode() : Node("Function", 1, 1)
 {
     setMinimumSize(300,currWidth);
     setStyleSheet ("background-color: rgba(164, 13, 129, 1);"
