@@ -43,6 +43,8 @@ void ClassNode::addFieldSlot()
 {
     ClassField* field = new ClassField();
     this->fields.push_back(field);
-    QLayout* layout = (QLayout*)this->parent()->parent();
+    qDebug()<<this->parent();
+    auto StagingAreaCopy=qobject_cast<QGraphicsView*>(this->parent());
+    QGridLayout* layout = static_cast<QGridLayout*>(StagingAreaCopy->layout());
     layout->addWidget(field);
 }
