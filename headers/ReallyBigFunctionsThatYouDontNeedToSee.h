@@ -60,6 +60,7 @@ void functionsListInit(T *w){
     QListWidgetItem* minus =new QListWidgetItem(w->tr("-"),  w->getUi()->listWidget);
     QListWidgetItem* mul =new QListWidgetItem(w->tr("*"),  w->getUi()->listWidget);
     QListWidgetItem* div =new QListWidgetItem(w->tr("/"),  w->getUi()->listWidget);
+    QListWidgetItem* mod =new QListWidgetItem(w->tr("%"),  w->getUi()->listWidget);
     QListWidgetItem* less =new QListWidgetItem(w->tr("<"),  w->getUi()->listWidget);
     QListWidgetItem* input =new QListWidgetItem(w->tr("+Input"),  w->getUi()->listWidget);
     QListWidgetItem* print =new QListWidgetItem(w->tr("+Print"),  w->getUi()->listWidget);
@@ -90,6 +91,11 @@ void functionsListInit(T *w){
     QListWidgetItem* endOfStatement = new QListWidgetItem(w->tr(";"), w->getUi()->listWidget);
     QListWidgetItem* incDec = new QListWidgetItem(w->tr("++/--"), w->getUi()->listWidget);
     QListWidgetItem* dictionary = new QListWidgetItem(w->tr("+Dictionary"), w->getUi()->listWidget);
+    QListWidgetItem* time = new QListWidgetItem(w->tr("+Time"), w->getUi()->listWidget);
+    QListWidgetItem* rand = new QListWidgetItem(w->tr("+Rand"), w->getUi()->listWidget);
+    QListWidgetItem* srand = new QListWidgetItem(w->tr("+srand"), w->getUi()->listWidget);
+    QListWidgetItem* pi = new QListWidgetItem(w->tr("+PI"), w->getUi()->listWidget);
+
 
 
     w->_functionList.append(*assigne);
@@ -97,6 +103,7 @@ void functionsListInit(T *w){
     w->_functionList.append(*minus);
     w->_functionList.append(*mul);
     w->_functionList.append(*div);
+    w->_functionList.append(*mod);
     w->_functionList.append(*less);
     w->_functionList.append(*lessEq);
     w->_functionList.append(*vece);
@@ -129,6 +136,11 @@ void functionsListInit(T *w){
     w->_functionList.append(*endOfStatement);
     w->_functionList.append(*dictionary);
     w->_functionList.append(*incDec);
+
+     w->_functionList.append(*time);
+     w->_functionList.append(*rand);
+     w->_functionList.append(*srand);
+     w->_functionList.append(*pi);
 }
 
 template<typename T>
@@ -156,6 +168,10 @@ void putNode(QListWidgetItem* item,T* w)
         BinaryFunction* n = new BinaryFunction("Binary_podeljeno", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("DivNode"));
+    }else if(item->text().compare("%") == 0){
+        BinaryFunction* n = new BinaryFunction("Binary_mod", 3, 1);
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("ModNode"));
     }else if(item->text().compare("<") == 0){
         BinaryFunction* n = new BinaryFunction("Binary_manje", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
@@ -295,7 +311,31 @@ void putNode(QListWidgetItem* item,T* w)
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Map"));
         w->getParser()->setHeader("map");
+    }else if(item->text().compare("+Time") == 0){
+        Node* n = new Node("time",1,1,{},"time(NULL)");
+        n->setColors({'q','i'});
+        static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("Time"));
+    }else if(item->text().compare("+Rand") == 0){
+        Node* n = new Node("Rand",1,1,{},"rand()");
+        n->setColors({'q','i'});
+        static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("Rand"));
+    }else if(item->text().compare("+srand") == 0){
+        Node* n = new Node("srand",1,1,{},"srand()");
+        n->setColors({'q','q'});
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("srand"));
+    }else if(item->text().compare("+PI") == 0){
+        Node* n = new Node("Pi",1,1,{},"3.14159265359");
+        n->setColors({'q','f'});
+        static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("Pi"));
     }
+
     //postavlja policy za meni koji se otvara desnim klikom
     for(Node *object : w->getParser()->getGraphScene() ){
         object->setContextMenuPolicy(w->contextMenuPolicy());

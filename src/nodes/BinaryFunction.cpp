@@ -37,6 +37,9 @@ BinaryFunction::BinaryFunction(QString _name, int ninputs, int noutputs)
     else if(this->getName()=="Binary_veceJednako"){
         setColors({'q','n','n','b'});
     }
+    else if(this->getName()=="Binary_mod"){
+        setColors({'q','n','n','n'});
+    }
 }
 
 QString BinaryFunction::getCodeForNode()
@@ -77,6 +80,9 @@ QString BinaryFunction::getCodeForNode()
            }
            else if(this->getName()=="Binary_veceJednako"){
                text.append(">=");
+           }
+           else if(this->getName()=="Binary_mod"){
+               text.append("%");
            }
        text.append(arg2);
        std::cout<<text.toUtf8().constData();

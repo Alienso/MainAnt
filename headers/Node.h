@@ -29,6 +29,7 @@ protected:
     QString name;
     QPoint offset;
     QPoint oldPos_;
+    QString code;
     QVector<Input*> inputs;
     QVector<Output*> outputs;
     QVector<QChar> inputTypes;
@@ -55,7 +56,7 @@ public:
     bool isHidden=false;
 public:
     explicit Node(QWidget* parent = nullptr);
-    Node(QString name,int ninputs,int noutputs,QVector<QString> args = {}, QWidget* parent = nullptr);
+    Node(QString name,int ninputs,int noutputs,QVector<QString> args = {},QString Code = "", QWidget* parent = nullptr);
     virtual QString getCodeForNode();
     
     void addWidget(QWidget* w);
