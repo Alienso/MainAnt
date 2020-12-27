@@ -67,6 +67,11 @@ Output* Input::getPrevious()
     return this->previous;
 }
 
+void Input::setPrevious(Output* out)
+{
+    previous = out;
+}
+
 void Input::mousePressEvent(QMouseEvent* event){
     if(event->button()==Qt::RightButton){
         QPoint globalPos=this->mapToGlobal(event->pos());

@@ -28,6 +28,7 @@ public:
     explicit Input(QWidget *parent = nullptr);
 
     Output* getPrevious();
+    void setPrevious(Output* out);
     QChar getColor();
     void setColor(QChar c);
 
