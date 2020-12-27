@@ -32,6 +32,7 @@ private:
     bool hasStack;
     bool hasMap;
     bool hasQueue;
+    bool hasCstdio;
 private:
     //Vekror koji cuva cvorove grafa scene
     QVector<Node*> graph;

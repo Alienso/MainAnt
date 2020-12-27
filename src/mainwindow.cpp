@@ -37,8 +37,8 @@ void MainWindow::putFunction(QListWidgetItem *item)
     QString retVal = list[0];
     QString funcName = list[1];
 
-    QVector<QString> funcTypes = {};
-    QVector<QString> funcNames = {};
+    QVector<QString> funcTypes = {" ",};
+    QVector<QString> funcNames = {"flow"};
 
     int listSize = list.size();
     qDebug()<<list;

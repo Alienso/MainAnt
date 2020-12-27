@@ -218,6 +218,7 @@ Parser::Parser():hasIO(false)
                 ,hasStack(false)
                 ,hasMap(false)
                 ,hasQueue(false)
+                ,hasCstdio(false)
                 ,id(0)
 {
     headers = "";
@@ -300,8 +301,14 @@ QString Parser::compileAndRun(int funcNum)
     this->traverseGraph(file);
     file.close();
 
+#ifdef Q_OS_UNIX
     system("g++ -o mainAnt ../mainAntCode.cpp");
     system("./mainAnt");
+#endif
+#ifdef Q_OS_WIN
+    system("g++ -o mainAnt.exe ../mainAntCode.cpp");
+    system("mainAnt.exe");
+#endif
 
 
     return QString::fromStdString("Zavrsio sam");
@@ -421,7 +428,12 @@ QString Parser::createFunctionCode(int funcNum)
 {
     if(funcNum == 1){
         //Ova komanda ne uspeva samo prvi put kad aovaj direktrijum ne postoji
+#ifdef Q_OS_UNIX
         system("rm -r Functions");
+#endif
+#ifdef Q_OS_WIN
+        system("rd /s /q Functions");
+#endif
         system("mkdir Functions");
     }
     //Krairamo jedinstveno ime svakog fajla funkcije
@@ -500,9 +512,17 @@ QString Parser::createMethodCode(int classNum, int methodNum)
 {
     if(methodNum == 1){
         //Ova komanda ne uspeva samo prvi put kad aovaj direktrijum ne postoji
+
+#ifdef Q_OS_UNIX
         std::string comand_ = "rm -r Class" + std::to_string(classNum);
         const char* comand = comand_.c_str();
         system(comand);
+#endif
+#ifdef Q_OS_WIN
+        std::string comand_ = "rd /s /q Class" + std::to_string(classNum);
+        const char* comand = comand_.c_str();
+        system(comand);
+#endif
         std::string comand2_ = "mkdir Class" + std::to_string(classNum);
         const char* comand2 = comand2_.c_str();
         system(comand2);
@@ -569,6 +589,14 @@ void Parser::setHeader(std::string header)
         if (hasIO == false){
             hasIO = true;
             this->headers += "#include <iostream>\n#include <string>\n";
+        }
+        return;
+    }
+    cmp = header.compare("cstdio");
+    if(cmp == 0){
+        if (hasCstdio == false){
+            hasCstdio = true;
+            this->headers += "#include <cstdio>\n";
         }
         return;
     }

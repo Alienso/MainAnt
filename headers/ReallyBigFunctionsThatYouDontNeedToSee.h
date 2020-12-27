@@ -174,6 +174,7 @@ void putNode(QListWidgetItem* item,T* w)
         ReturnNode* n = new ReturnNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("ReturnNode"));
+        w->getParser()->setHeader("cstdio");
     }else if(item->text().compare("+Start") == 0){
         StartNode* n = new StartNode();
         w->getUi()->StagingArea->addWidget(n);
