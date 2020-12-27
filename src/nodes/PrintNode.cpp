@@ -9,7 +9,7 @@
 
 PrintNode::PrintNode() : Node("print", 1, 1, {"flow/input"})
 {
-    setMinimumSize(200,150);
+    setMinimumSize(200,200);
     setStyleSheet ("background-color: rgba(105, 50, 129, 1);"
                    "border: 1px solid rgba(194, 145, 211, 1);"
                    "border-radius:5px;");

@@ -50,6 +50,7 @@
 #include "./headers/nodesHeaders/MethodNode.h"
 #include "./headers/nodesHeaders/AssignNode.h"
 #include "./headers/nodesHeaders/MapNode.h"
+#include "./headers/nodesHeaders/FuncReferenceNode.h"
 
 template<typename T>
 void functionsListInit(T *w){

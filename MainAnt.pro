@@ -24,6 +24,7 @@ SOURCES += \
     src/nodes/EndOfStatement.cpp \
     src/nodes/ForInicializeNode.cpp \
     src/nodes/ForNode.cpp \
+    src/nodes/FuncReferenceNode.cpp \
     src/nodes/FunctionNode.cpp \
     src/nodes/FunctionReturnNode.cpp \
     src/nodes/IfNode.cpp \
@@ -68,6 +69,7 @@ HEADERS += \
     headers/nodesHeaders/EndOfStatement.h \
     headers/nodesHeaders/ForInicializeNode.h \
     headers/nodesHeaders/ForNode.h \
+    headers/nodesHeaders/FuncReferenceNode.h \
     headers/nodesHeaders/FunctionNode.h \
     headers/nodesHeaders/FunctionReturnNode.h \
     headers/nodesHeaders/IfNode.h \

@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onPutNode(QListWidgetItem*)));
     connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
+    connect(ui->FunctionView, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putFunction(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&MainWindow::filterFunctions);
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
@@ -26,6 +27,44 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::putFunction(QListWidgetItem *item)
+{
+    QString funcDeclaration = item->text();
+    QStringList list = funcDeclaration.split(QRegExp("\\s+"));
+
+    QString retVal = list[0];
+    QString funcName = list[1];
+
+    QVector<QString> funcTypes = {};
+    QVector<QString> funcNames = {};
+
+    int listSize = list.size();
+    qDebug()<<list;
+    if(listSize == 4){
+        FuncReferenceNode* n = new FuncReferenceNode(retVal, funcName, funcTypes, funcNames);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("FuncReferenceNode"));
+        return;
+    }else{
+        int i =3;
+        while(true){
+            funcTypes.push_back(list[i]);
+            funcNames.push_back(list[i+1]);
+
+            if(list[i+2].compare(")") == 0){
+                break;
+            }
+            //ako i+2 nije ) onda  je to , pa mozemo da ga prekocmo
+            i +=3;
+        }
+    }
+
+    FuncReferenceNode* n = new FuncReferenceNode(retVal, funcName, funcTypes, funcNames);
+    ui->StagingArea->addWidget(n);
+    p->addNode(n, new QString("FuncReferenceNode"));
+    \
 }
 
 void MainWindow::putVar(QListWidgetItem *item)
@@ -109,16 +148,23 @@ void MainWindow::functionAdded(QString FunctionName, int argNum, QVector<QString
 {
     if(FunctionName!=""){
         QString func = retVal + " " +FunctionName;
+        if(argNum == 0){
+            func+= " ( ";
+        }
+        //qDebug()<<argNum;
         for(int i=0; i<argNum; i++){
-            if(i == 0){
-                func = func + "(" +  argTypes[i] + " " + argNames[i] + ", ";
-            }else if(i == argNum - 1){
+            if(i == 0 && argNum>=2){
+                func = func + " ( " +  argTypes[i] + " " + argNames[i] + " , ";
+            }else if(i==0 && argNum==1){
+                func = func + " ( " +  argTypes[i] + " " + argNames[i];
+            }
+            else if(i == argNum - 1){
                 func = func + argTypes[i] + " " + argNames[i];
             }else{
-                func = func + argTypes[i] + " " + argNames[i] + ", ";
+                func = func + argTypes[i] + " " + argNames[i] + " , ";
             }
         }
-        func = func + ")";
+        func = func + " )";
         new QListWidgetItem(func, ui->FunctionView);}
 }
 

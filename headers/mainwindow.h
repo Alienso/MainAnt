@@ -72,6 +72,7 @@ public:
     ~MainWindow();
 
 public slots:
+    void putFunction(QListWidgetItem* item);
     void putVar(QListWidgetItem* item);
     void functionAdded(QString FunctionName, int argNum, QVector<QString> argNames, QVector<QString> argTypes, QString retVal);
     void onPutNode(QListWidgetItem* item);
