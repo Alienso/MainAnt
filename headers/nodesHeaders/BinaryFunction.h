@@ -10,7 +10,7 @@
 class BinaryFunction : public Node
 {
 public:
-    BinaryFunction(QString _name,int ninputs,int noutputs, QVector<QString> args = {}, Parser * p_ = nullptr,QWidget* parent = nullptr);
+    BinaryFunction(QString _name,int ninputs,int noutputs);
 
     QString getCodeForNode() override;
 };

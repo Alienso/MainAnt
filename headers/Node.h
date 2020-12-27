@@ -51,12 +51,11 @@ protected:
 protected:
     void applyColors();
 public:
-    Parser * p;
     bool exist=true;
     bool isHidden=false;
 public:
     explicit Node(QWidget* parent = nullptr);
-    Node(QString name,int ninputs,int noutputs,QVector<QString> args = {},Parser *p_=nullptr, QWidget* parent = nullptr);
+    Node(QString name,int ninputs,int noutputs,QVector<QString> args = {}, QWidget* parent = nullptr);
     virtual QString getCodeForNode();
     
     void addWidget(QWidget* w);

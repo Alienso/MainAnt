@@ -19,13 +19,12 @@ Node::Node(QWidget *parent) : QFrame(parent)
 }
 
 //TODO QT resetuje velicinu fonta u textEditu kada se sve izbrise
-Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args, Parser *p_,QWidget* parent) : Node(parent)
+Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args,QWidget* parent) : Node(parent)
 {
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->setHorizontalSpacing(2);
     layout->setVerticalSpacing(5);
     this->setMaximumSize(150, ninputs>noutputs ? 27*(ninputs+1) : 27*(noutputs+1));
-    this->p=p_;
     this->name = _name;
     this->nameLbl = new QLabel(name);
     if (args.length() == 0){

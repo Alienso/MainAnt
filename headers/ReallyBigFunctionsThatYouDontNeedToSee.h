@@ -141,23 +141,23 @@ void putNode(QListWidgetItem* item,T* w)
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Assigne"));
     }else if(item->text().compare("+") == 0){
-        BinaryFunction* n = new BinaryFunction("Binary_plus", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_plus", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("plus"));
     }else if(item->text().compare("-") == 0){
-        BinaryFunction* n = new BinaryFunction("Binary_minus", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_minus", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("minus"));
     }else if(item->text().compare("*") == 0){
-        BinaryFunction* n = new BinaryFunction("Binary_puta", 3, 1,{},w->getParser(),w->getUi()->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_puta", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("MulNode"));
     }else if(item->text().compare("/") == 0){
-        BinaryFunction* n = new BinaryFunction("Binary_podeljeno", 3, 1,{},w->getParser(),w->getUi()->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_podeljeno", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("DivNode"));
     }else if(item->text().compare("<") == 0){
-        BinaryFunction* n = new BinaryFunction("Binary_manje", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_manje", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("LTNODE"));
     }else if(item->text().compare("+Input") == 0){
@@ -223,27 +223,27 @@ void putNode(QListWidgetItem* item,T* w)
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
         w->_inicializedVars.append(variable);
     }else if(item->text().compare(">") == 0){
-        BinaryFunction* n = new BinaryFunction("Binary_vece", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_vece", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("VeceNode"));
     }else if(item->text().compare("AND") == 0){
-        BinaryFunction* n = new BinaryFunction("Binary_i", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_i", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("INode"));
      }else if(item->text().compare("OR") == 0){
-        BinaryFunction* n = new BinaryFunction("Binary_ili", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_ili", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("IliNode"));
     }else if(item->text().compare("==") == 0){
-        BinaryFunction* n = new BinaryFunction("Binary_jednako", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_jednako", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("JednakoNode"));
     }else if(item->text().compare("<=") == 0){
-        BinaryFunction* n = new BinaryFunction("Binary_manjeJednako", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_manjeJednako", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("MJNode"));
     }else if(item->text().compare(">=") == 0){
-        BinaryFunction* n = new BinaryFunction("Binary_veceJednako", 3, 1,{}, w->getParser(), w->getUi()->StagingArea);
+        BinaryFunction* n = new BinaryFunction("Binary_veceJednako", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("VJNode"));
     }else if(item->text().compare("+Vector") == 0){
