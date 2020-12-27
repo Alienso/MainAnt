@@ -43,57 +43,63 @@ MethodNode::MethodNode() : Node("method", 1, 1)
 QString MethodNode::getCodeForNode(){
     QString text="";
 
-    text.append(this->comboMethod->currentText());
-    text.append(" ");
+    if(this->MethodName->text()!=""){
+        text.append(this->comboMethod->currentText());
+        text.append(" ");
 
-    if(this->combo->currentText() == QString::fromStdString("void")){
-        text+=QString::fromStdString("void ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("integer"))
-    {
-        text+= QString::fromStdString("int ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("float"))
-    {
-        text+= QString::fromStdString("float ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("double"))
-    {
-        text+= QString::fromStdString("double ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("bool"))
-    {
-        text+= QString::fromStdString("bool ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("char"))
-    {
-        text+= QString::fromStdString("char ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("string"))
-    {
-        text+= QString::fromStdString("std::string ");
-    }
+        if(this->combo->currentText() == QString::fromStdString("void")){
+            text+=QString::fromStdString("void ");
+        }
+        else if(this->combo->currentText() == QString::fromStdString("integer"))
+        {
+            text+= QString::fromStdString("int ");
+        }
+        else if(this->combo->currentText() == QString::fromStdString("float"))
+        {
+            text+= QString::fromStdString("float ");
+        }
+        else if(this->combo->currentText() == QString::fromStdString("double"))
+        {
+            text+= QString::fromStdString("double ");
+        }
+        else if(this->combo->currentText() == QString::fromStdString("bool"))
+        {
+            text+= QString::fromStdString("bool ");
+        }
+        else if(this->combo->currentText() == QString::fromStdString("char"))
+        {
+            text+= QString::fromStdString("char ");
+        }
+        else if(this->combo->currentText() == QString::fromStdString("string"))
+        {
+            text+= QString::fromStdString("std::string ");
+        }
 
-    text+= this->MethodName->text();
-    text+= QString::fromStdString(" ( ");
-    int i=0;
-    int n=this->argumentsTypes.length();
-    if(n == 0){
-        text += QString::fromStdString(" ) \n");
-        return text;
-    }
-    for(i=0; i<n-1; i++){
-        text+= this->argumentsTypes[i]->currentText();
-        text+= QString::fromStdString(" ");
-        text+= this->argumentsNames[i]->text();
-        text+= QString::fromStdString(" , ");
-    }
-    //da ne bi dodao zarez na poslednji argument
-    text+= this->argumentsTypes.last()->currentText();
-    text+= QString::fromStdString(" ");
-    text+= this->argumentsNames.last()->text();
+        text+= this->MethodName->text();
+        text+= QString::fromStdString(" ( ");
+        int i=0;
+        int n=this->argumentsTypes.length();
+        if(n == 0){
+            text += QString::fromStdString(" ) \n");
+            return text;
+        }
+        for(i=0; i<n-1; i++){
+            if(this->argumentsNames[i]->text()!=""){
+                text+= this->argumentsTypes[i]->currentText();
+                text+= QString::fromStdString(" ");
+                text+= this->argumentsNames[i]->text();
+                text+= QString::fromStdString(" , ");
+            }
+        }
+        //da ne bi dodao zarez na poslednji argument
+        if(this->argumentsNames[i]->text()!=""){
+            text+= this->argumentsTypes.last()->currentText();
+            text+= QString::fromStdString(" ");
+            text+= this->argumentsNames.last()->text();
+        }
 
-    text+= QString::fromStdString(" ) \n");
+        text+= QString::fromStdString(" ) \n");
+    }
     return text;
 }
 

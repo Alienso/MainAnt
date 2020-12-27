@@ -74,28 +74,35 @@ QString FunctionNode::getRetVal() const
 }
 
 QString FunctionNode::getCodeForNode(){
-    QString text=getRetVal();
+    QString text="";
+    if(this->FunctionName->text()!=""){
+        text+=getRetVal();
 
-    text+= this->FunctionName->text();
-    text+= QString::fromStdString(" ( ");
-    int i=0;
-    int n=this->argumentsTypes.length();
-    if(n == 0){
-        text += QString::fromStdString("){\n");
-        return text;
-    }
-    for(i=0; i<n-1; i++){
-        text+= this->argumentsTypes[i]->currentText();
-        text+= QString::fromStdString(" ");
-        text+= this->argumentsNames[i]->text();
-        text+= QString::fromStdString(" , ");
-    }
-    //da ne bi dodao zarez na poslednji argument
-    text+= this->argumentsTypes.last()->currentText();
-    text+= QString::fromStdString(" ");
-    text+= this->argumentsNames.last()->text();
+        text+= this->FunctionName->text();
+        text+= QString::fromStdString(" ( ");
+        int i=0;
+        int n=this->argumentsTypes.length();
+        if(n == 0){
+            text += QString::fromStdString("){\n");
+            return text;
+        }
+        for(i=0; i<n-1; i++){
+            if(this->argumentsNames[i]->text()!=""){
+                text+= this->argumentsTypes[i]->currentText();
+                text+= QString::fromStdString(" ");
+                text+= this->argumentsNames[i]->text();
+                text+= QString::fromStdString(" , ");
+            }
+        }
+        //da ne bi dodao zarez na poslednji argument
+        if(this->argumentsNames[i]->text()!=""){
+            text+= this->argumentsTypes.last()->currentText();
+            text+= QString::fromStdString(" ");
+            text+= this->argumentsNames.last()->text();
+        }
 
-    text+= QString::fromStdString(" ) \n");
+        text+= QString::fromStdString(" ) \n");
+    }
     return text;
 }
 

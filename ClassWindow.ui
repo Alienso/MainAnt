@@ -34,7 +34,9 @@ border-color: rgb(21, 45, 73);</string>
       <item>
        <widget class="QListWidget" name="MethodView">
         <property name="styleSheet">
-         <string notr="true">color : rgb(189, 221, 235)</string>
+         <string notr="true">background-color: rgb(44, 94, 107);
+color : rgb(255, 255, 255);
+</string>
         </property>
        </widget>
       </item>
@@ -51,7 +53,9 @@ border-color: rgb(21, 45, 73);</string>
       <item>
        <widget class="QListWidget" name="VariableView">
         <property name="styleSheet">
-         <string notr="true">color : rgb(189, 221, 235)</string>
+         <string notr="true">background-color: rgb(44, 94, 107);
+color : rgb(255, 255, 255);
+</string>
         </property>
        </widget>
       </item>

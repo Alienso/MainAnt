@@ -18,17 +18,19 @@ private:
     Parser *p;
     int classId;
     int methodId;
+    QVector<QString> stringsFromMethodView;
 
 public:
     explicit ClassWindow(QWidget *parent = nullptr, int classId=0);
     ~ClassWindow();
     int getClassId();
     int getMethodId();
+    QString methodsForMainWindow();
+    QString variablesForMainWindow();
 signals:
-    void classAdded(QString ClassName);
+    void classAdded(QString ClassName, QString Methods, QString Variables);
 public slots:
     void methodAdded(QString MethodName);
-
 private slots:
     void on_actionSave_triggered();
 };

@@ -135,9 +135,10 @@ color: rgb(21, 45, 73);
        </layout>
       </item>
       <item>
-       <widget class="QListWidget" name="listWidget_4">
+       <widget class="QListWidget" name="VariablesView">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(44, 94, 107);
+color : rgb(255, 255, 255);
 </string>
         </property>
        </widget>

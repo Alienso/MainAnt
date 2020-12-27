@@ -37,6 +37,38 @@ ClassField::ClassField() : Node("ClassField", 1, 0)
 QString ClassField::getCodeForNode()
 {
     QString text = "";
+
+    if(this->fieldName->text()!=""){
+        text+=this->fieldAccessModifiers->currentText();
+        text+=" ";
+
+        if(this->fieldType->currentText() == QString::fromStdString("Integer"))
+        {
+            text+="int ";
+        }
+        else if(this->fieldType->currentText() == QString::fromStdString("Float"))
+        {
+            text+=" float ";
+        }
+        else if(this->fieldType->currentText() == QString::fromStdString("Double"))
+        {
+            text+= "double ";
+        }
+        else if(this->fieldType->currentText() == QString::fromStdString("Bool"))
+        {
+            text+= "bool ";
+        }
+        else if(this->fieldType->currentText() == QString::fromStdString("Char"))
+        {
+            text+="char ";
+        }
+        else if(this->fieldType->currentText() == QString::fromStdString("String"))
+        {
+            text+= "string ";
+        }
+        text+=this->fieldName->text();
+    }
+
     return text;
 }
 

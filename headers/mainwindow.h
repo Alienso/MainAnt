@@ -87,6 +87,6 @@ private slots:
     void on_AddFunction_clicked();
     void on_AddClass_clicked();
     void on_actionCompile_triggered();
-    void classAdded(QString ClassName);
+    void classAdded(QString ClassName, QString Methods, QString Variables);
 };
 #endif // MAINWINDOW_H
