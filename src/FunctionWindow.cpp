@@ -26,13 +26,12 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum) :
         ui->StagingArea->addWidget(funct);
         p->addNode(funct, new QString("FunctionNode"));
         p->addNewFunction(funct);
-        this->FunctionOrMethodName=funct->FunctionName;
 
         FunctionReturnNode* ret = new FunctionReturnNode();
         ui->StagingArea->addWidget(ret);
         p->addNode(ret, new QString("FunctionRteurnNode"));
 
-        connect(this, SIGNAL(functionAdded(QString, int, QVector<QString>, QVector<QString>, QString)), this->parent(), SLOT(functionAdded(QString, int, QVector<QString>, QVector<QString>, QString)));
+        connect(this, SIGNAL(functionAdded(QString)), this->parent(), SLOT(functionAdded(QString)));
     }
     else{
         MethodNode* met = new MethodNode();
@@ -40,7 +39,6 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum) :
         ui->StagingArea->addWidget(method);
         p->addNode(method, new QString("MethodNode"));
         //p->addNewFunction(method);
-        this->FunctionOrMethodName=method->MethodName;
         this->comboMethod=method->comboMethod;
 
         FunctionReturnNode* ret = new FunctionReturnNode();
@@ -97,11 +95,11 @@ void FunctionWindow::on_actionSave_triggered()
         }
         QString retVal = this->func->getRetVal();
 
-        emit functionAdded(this->FunctionOrMethodName->text(), n, argNames, argTypes, retVal);
+        emit functionAdded(this->func->getCodeForNode());
     }
     else{
        // this->comboMethod->currentText()+" "
-        emit methodAdded(this->FunctionOrMethodName->text());
+        emit methodAdded(this->method->getCodeForNode());
     }
     this->destroy();
 }

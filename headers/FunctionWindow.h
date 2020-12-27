@@ -13,7 +13,7 @@ class FunctionWindow : public QMainWindow
 private:
     Ui::FunctionWindow *ui;
     Parser *p;
-    QLineEdit* FunctionOrMethodName;
+    //QLineEdit* FunctionOrMethodName;
     QString title;
     int funcId;
     //samo za method
@@ -33,7 +33,7 @@ public:
 public slots:
     void putVar(QListWidgetItem* item);
 signals:
-    void functionAdded(QString FunctionName, int argNum, QVector<QString> argNames, QVector<QString> argTypes, QString retType);
+    void functionAdded(QString FunctionName);
     void methodAdded(QString MethodName);
 
 private slots:

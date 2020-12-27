@@ -75,25 +75,25 @@ QString MethodNode::getCodeForNode(){
     }
 
     text+= this->MethodName->text();
-    text+= QString::fromStdString("(");
+    text+= QString::fromStdString(" ( ");
     int i=0;
     int n=this->argumentsTypes.length();
     if(n == 0){
-        text += QString::fromStdString("){\n");
+        text += QString::fromStdString(" ) \n");
         return text;
     }
     for(i=0; i<n-1; i++){
         text+= this->argumentsTypes[i]->currentText();
         text+= QString::fromStdString(" ");
         text+= this->argumentsNames[i]->text();
-        text+= QString::fromStdString(", ");
+        text+= QString::fromStdString(" , ");
     }
     //da ne bi dodao zarez na poslednji argument
     text+= this->argumentsTypes.last()->currentText();
     text+= QString::fromStdString(" ");
     text+= this->argumentsNames.last()->text();
 
-    text+= QString::fromStdString("){\n");
+    text+= QString::fromStdString(" ) \n");
     return text;
 }
 

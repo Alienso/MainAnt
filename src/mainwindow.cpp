@@ -98,7 +98,7 @@ void MainWindow::on_actionOpen_Code_triggered()
     QString file=fileTmp2.toUtf8()+"mainAntCode.cpp";
 
     if(QFile::exists(file)){
-    QDesktopServices::openUrl(QUrl(file));
+        QDesktopServices::openUrl(QUrl(file));
     }
     else{
         QMessageBox msgBox;
@@ -144,28 +144,9 @@ void MainWindow::on_AddFunction_clicked()
     msgBox.exec();
 }
 
-void MainWindow::functionAdded(QString FunctionName, int argNum, QVector<QString> argNames, QVector<QString> argTypes, QString retVal)
+void MainWindow::functionAdded(QString FunctionName)
 {
-    if(FunctionName!=""){
-        QString func = retVal + " " +FunctionName;
-        if(argNum == 0){
-            func+= " ( ";
-        }
-        //qDebug()<<argNum;
-        for(int i=0; i<argNum; i++){
-            if(i == 0 && argNum>=2){
-                func = func + " ( " +  argTypes[i] + " " + argNames[i] + " , ";
-            }else if(i==0 && argNum==1){
-                func = func + " ( " +  argTypes[i] + " " + argNames[i];
-            }
-            else if(i == argNum - 1){
-                func = func + argTypes[i] + " " + argNames[i];
-            }else{
-                func = func + argTypes[i] + " " + argNames[i] + " , ";
-            }
-        }
-        func = func + " )";
-        new QListWidgetItem(func, ui->FunctionView);}
+    new QListWidgetItem(FunctionName, ui->FunctionView);
 }
 
 Ui::MainWindow* MainWindow::getUi(){

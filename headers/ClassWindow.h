@@ -14,7 +14,7 @@ class ClassWindow : public QMainWindow
     Q_OBJECT
 private:
     Ui::ClassWindow *ui;
-    QLineEdit* ClassName;
+    ClassNode *classNode;
     Parser *p;
     int classId;
     int methodId;

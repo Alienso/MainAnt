@@ -77,7 +77,7 @@ QString FunctionNode::getCodeForNode(){
     QString text=getRetVal();
 
     text+= this->FunctionName->text();
-    text+= QString::fromStdString("(");
+    text+= QString::fromStdString(" ( ");
     int i=0;
     int n=this->argumentsTypes.length();
     if(n == 0){
@@ -88,15 +88,14 @@ QString FunctionNode::getCodeForNode(){
         text+= this->argumentsTypes[i]->currentText();
         text+= QString::fromStdString(" ");
         text+= this->argumentsNames[i]->text();
-        text+= QString::fromStdString(", ");
+        text+= QString::fromStdString(" , ");
     }
     //da ne bi dodao zarez na poslednji argument
     text+= this->argumentsTypes.last()->currentText();
     text+= QString::fromStdString(" ");
     text+= this->argumentsNames.last()->text();
 
-    text+= QString::fromStdString("){\n");
-    //qDebug()<< text;
+    text+= QString::fromStdString(" ) \n");
     return text;
 }
 

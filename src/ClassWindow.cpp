@@ -17,8 +17,7 @@ ClassWindow::ClassWindow(QWidget *parent, int classId) :
     ClassNode* c = new ClassNode();
     ui->StagingArea->addWidget(c);
     p->addNode(c, new QString("ClassNode"));
-    //p->addNewFunction(c);
-    this->ClassName=c->ClassName;
+    this->classNode=c;
 
     connect(this, SIGNAL(classAdded(QString)), this->parent(), SLOT(classAdded(QString)));
 
@@ -57,7 +56,7 @@ void ClassWindow::on_actionSave_triggered()
         qDebug() << p1;
 
     //Generate .mant
-    emit classAdded(this->ClassName->text());
+    emit classAdded(this->classNode->ClassName->text());
 
     this->destroy();
 }
