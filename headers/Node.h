@@ -14,6 +14,7 @@
 #include <bits/stdc++.h>
 #include <QMenu>
 #include <QGraphicsDropShadowEffect>
+#include <QMessageBox>
 
 #include "./headers/Output.h"
 #include "./headers/Input.h"

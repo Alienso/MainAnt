@@ -156,10 +156,17 @@ void Node::mousePressEvent(QMouseEvent *event)
 
         if(selectedItem){
             if(selectedItem->toolTip()=="Delete"){
-                qDebug()<<"Delete";
-                this->close();
-                this->exist=false;
-                this->destroy();
+                if(this->name=="Class" || this->name=="Method" || this->name=="Function" || this->name=="FunctionReturn"){
+                    QMessageBox msgBox;
+                    msgBox.setText("You can't delete " + this->name + "Node.");
+                    msgBox.exec();
+                }
+                else{
+                    qDebug()<<"Delete";
+                    this->close();
+                    this->exist=false;
+                    this->destroy();
+                }
             }
             else if(selectedItem->toolTip()=="Hide"){
                 qDebug()<< "Hide";

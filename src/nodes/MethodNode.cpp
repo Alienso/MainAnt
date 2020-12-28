@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/MethodNode.h"
 
-MethodNode::MethodNode() : Node("method", 1, 1)
+MethodNode::MethodNode() : Node("Method", 1, 1)
 {
     setMinimumSize(300,currWidth);
     setMaximumWidth(300);
