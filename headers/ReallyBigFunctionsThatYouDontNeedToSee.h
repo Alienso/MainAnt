@@ -52,6 +52,7 @@
 #include "./headers/nodesHeaders/MapNode.h"
 #include "./headers/nodesHeaders/FuncReferenceNode.h"
 #include "./headers/nodesHeaders/BreakNode.h"
+#include "./headers/nodesHeaders/ContinueNode.h"
 
 template<typename T>
 void functionsListInit(T *w){
@@ -96,7 +97,8 @@ void functionsListInit(T *w){
     QListWidgetItem* rand = new QListWidgetItem(w->tr("+Rand"), w->getUi()->listWidget);
     QListWidgetItem* srand = new QListWidgetItem(w->tr("+srand"), w->getUi()->listWidget);
     QListWidgetItem* pi = new QListWidgetItem(w->tr("+PI"), w->getUi()->listWidget);
-    QListWidgetItem* breakNode = new QListWidgetItem(w->tr("+break"), w->getUi()->listWidget);
+    QListWidgetItem* breakNode = new QListWidgetItem(w->tr("+Break"), w->getUi()->listWidget);
+    QListWidgetItem* continueNode = new QListWidgetItem(w->tr("+Continue"), w->getUi()->listWidget);
 
 
     w->_functionList.append(*assigne);
@@ -143,6 +145,7 @@ void functionsListInit(T *w){
      w->_functionList.append(*srand);
      w->_functionList.append(*pi);
      w->_functionList.append(*breakNode);
+     w->_functionList.append(*continueNode);
 }
 
 template<typename T>
@@ -336,11 +339,16 @@ void putNode(QListWidgetItem* item,T* w)
         static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Pi"));
-    }else if(item->text().compare("+break") == 0){
+    }else if(item->text().compare("+Break") == 0){
         BreakNode* n = new BreakNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("break"));
         w->getParser()->setHeader("break");
+    }else if(item->text().compare("+Continue") == 0){
+        ContinueNode* n = new ContinueNode();
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("continue"));
+        w->getParser()->setHeader("continue");
     }
 
     //postavlja policy za meni koji se otvara desnim klikom

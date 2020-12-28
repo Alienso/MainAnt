@@ -20,6 +20,7 @@ SOURCES += \
     src/nodes/ClassNode.cpp \
     src/nodes/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
+    src/nodes/ContinueNode.cpp \
     src/nodes/ElseIfNode.cpp \
     src/nodes/ElseNode.cpp \
     src/nodes/EndOfStatement.cpp \
@@ -66,6 +67,7 @@ HEADERS += \
     headers/nodesHeaders/ClassNode.h \
     headers/nodesHeaders/ConditionNode.h \
     headers/CustomGraphicsView.h \
+    headers/nodesHeaders/ContinueNode.h \
     headers/nodesHeaders/ElseIfNode.h \
     headers/nodesHeaders/ElseNode.h \
     headers/nodesHeaders/EndOfStatement.h \
@@ -99,7 +101,7 @@ HEADERS += \
     headers/nodesHeaders/VectorOperations.h \
     headers/nodesHeaders/WhileNode.h \
     headers/SearchBar.h \
-    hea
+    hea \
 
 FORMS += \
     ClassWindow.ui \
