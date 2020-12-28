@@ -15,8 +15,11 @@
 class ClassNode : public Node
 {
     Q_OBJECT
+private:
+    int methodId;
+    int classId;
 public:
-    ClassNode();
+    ClassNode(int classNum);
     QLineEdit* ClassName;
     QPushButton *addMethod;
     QPushButton *addVariable;

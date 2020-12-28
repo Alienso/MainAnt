@@ -137,7 +137,7 @@ void MainWindow::on_AddFunction_clicked()
 {
     this->funcId = this->funcId +1;
     int funcNum = this->getFuncId();
-    FunctionWindow *f=new FunctionWindow(this, "FunctionWindow", funcNum);
+    FunctionWindow *f=new FunctionWindow(this, "FunctionWindow", funcNum, 0);
     QMessageBox msgBox;
     msgBox.setText("To save the changes you have made chose 'Build->Save'.");
     f->show();

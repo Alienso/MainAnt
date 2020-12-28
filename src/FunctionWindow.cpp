@@ -1,11 +1,12 @@
 #include "./headers/FunctionWindow.h"
 #include "ui_FunctionWindow.h"
 
-FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum) :
+FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int classId) :
     QMainWindow(parent)
   ,ui(new Ui::FunctionWindow)
   ,p(new Parser)
   ,funcId(funcNum)
+  ,classId(classId)
 {
     ui->setupUi(this);
 
@@ -38,7 +39,7 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum) :
         this->method = met;
         ui->StagingArea->addWidget(method);
         p->addNode(method, new QString("MethodNode"));
-        //p->addNewFunction(method);
+        p->addMethod(met);
         this->comboMethod=method->comboMethod;
 
         FunctionReturnNode* ret = new FunctionReturnNode();
@@ -75,16 +76,27 @@ void FunctionWindow::onPutNode(QListWidgetItem* item){
 void FunctionWindow::on_actionSave_triggered()
 {
     //Generate cpp
-    int funcNum = getFuncId();
-    QString p1 = p->createFunctionCode(funcNum);
-    if(p1.compare(QString::fromStdString("Fali")) == 0){
-        qDebug() << "Fail";
+    if(this->title == "FunctionWindow"){
+        int funcNum = getFuncId();
+        QString p1 = p->createFunctionCode(funcNum);
+        if(p1.compare(QString::fromStdString("Fali")) == 0){
+            qDebug() << "Fail";
+        }
+        else
+            qDebug() << p1;
+    }else{
+        int methodId = getFuncId();
+        QString p1 = p->createMethodCode(classId,methodId);
+        if(p1.compare(QString::fromStdString("Fali")) == 0){
+            qDebug() << "Fail";
+        }
+        else
+            qDebug() << p1;
     }
-    else
-        qDebug() << p1;
+
 
     //Generate .mant
-    p->createFunctionBlueprint(ui->StagingArea->getNodes(), funcNum);
+    p->createFunctionBlueprint(ui->StagingArea->getNodes(), funcId);
     if(this->title=="FunctionWindow"){
         QVector<QString> argNames;
         QVector<QString> argTypes;

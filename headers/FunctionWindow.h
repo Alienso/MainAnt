@@ -16,6 +16,7 @@ private:
     //QLineEdit* FunctionOrMethodName;
     QString title;
     int funcId;
+    int classId;
     //samo za method
     QComboBox* comboMethod;
     //POtrebno za slanje informacija mainwindowu, setuju se u konstruktoru
@@ -23,7 +24,7 @@ private:
     MethodNode* method;
 
 public:
-    explicit FunctionWindow(QWidget *parent, QString title, int funcNum);
+    explicit FunctionWindow(QWidget *parent, QString title, int funcNum, int classId);
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
     Ui::FunctionWindow* getUi();

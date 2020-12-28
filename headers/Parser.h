@@ -78,6 +78,7 @@ public:
     void addNode(Node* node, QString *type);
     void addNewStart(Node* node);
     void addNewFunction(Node* node);
+    void addMethod(Node* node);
 
     QVector<QString> getNodeNames();
     QVector<Node*> getGraph();

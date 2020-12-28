@@ -248,6 +248,11 @@ void Parser::addNewFunction(Node *node)
     this->functions.push_back(node);
 }
 
+void Parser::addMethod(Node *node)
+{
+    this->methods.push_back(node);
+}
+
 QVector<QString> Parser::getNodeNames()
 {
     return this->nodeNames;
@@ -511,12 +516,14 @@ void Parser::createFunctionBlueprint(QVector<Node*>* nodes, int funcNum){
 
 QString Parser::createMethodCode(int classNum, int methodNum)
 {
+    qDebug()<<"Creating method";
     if(methodNum == 1){
-        //Ova komanda ne uspeva samo prvi put kad aovaj direktrijum ne postoji
+        //Ova komanda ne uspeva samo prvi put kad ovaj direktrijum ne postoji
 
 #ifdef Q_OS_UNIX
         std::string comand_ = "rm -r Class" + std::to_string(classNum);
         const char* comand = comand_.c_str();
+        qDebug()<<QString::fromStdString(comand_);
         system(comand);
 #endif
 #ifdef Q_OS_WIN
@@ -538,7 +545,8 @@ QString Parser::createMethodCode(int classNum, int methodNum)
     for(Node* method : this->methods){
         if(!method->getVisited()){
             method->setVisited(true);
-            funcFile<<method->getCodeForNode().toUtf8().constData();
+            methodFile<<method->getCodeForNode().toUtf8().constData();
+            methodFile<<"{\n";
 
             QVector<Node*> children = method->getChildren();
             for(auto child : children){
@@ -548,7 +556,7 @@ QString Parser::createMethodCode(int classNum, int methodNum)
     }
 
     this->methodFile.close();
-    return "metod isparsirana";
+    return "metod isparsiran";
 }
 
 void Parser::setHeader(std::string header)

@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/ClassNode.h"
 
-ClassNode::ClassNode() : Node("Class", 1, 0)
+ClassNode::ClassNode(int classNum) : Node("Class", 1, 0), methodId(0), classId(classNum)
 {
     setMinimumSize(150,125);
     setMaximumWidth(300);
@@ -34,7 +34,8 @@ QString ClassNode::getCodeForNode(){
 
 void ClassNode::addMethodSlot()
 {
-    FunctionWindow *m=new FunctionWindow(qobject_cast<QWidget*>(this->parent()->parent()->parent()), "MethodWidnow", 0);
+    methodId+=1;
+    FunctionWindow *m=new FunctionWindow(qobject_cast<QWidget*>(this->parent()->parent()->parent()), "MethodWidnow", methodId, classId);
     QMessageBox msgBox;
     msgBox.setText("To save the changes you have made chose 'Build->Save'.");
     m->show();

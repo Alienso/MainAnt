@@ -14,7 +14,8 @@ ClassWindow::ClassWindow(QWidget *parent, int classId) :
     setWindowTitle("ClassWindow");
     ui->StagingArea->setLayout(new CustomLayout(1));
 
-    ClassNode* c = new ClassNode();
+    int classNum = this->getClassId();
+    ClassNode* c = new ClassNode(classNum);
     ui->StagingArea->addWidget(c);
     p->addNode(c, new QString("ClassNode"));
     this->classNode=c;
@@ -78,7 +79,8 @@ void ClassWindow::methodAdded(QString MethodName)
 
 void ClassWindow::on_actionSave_triggered()
 {
-    int classNum = this->getClassId();
+    //Ovo je poziv pogresnog metoda :D
+    /*int classNum = this->getClassId();
     int methodNum = this->getMethodId();
     QString p1 = p->createMethodCode(classNum, methodNum);
     if(p1.compare(QString::fromStdString("Fali")) == 0){
@@ -86,7 +88,7 @@ void ClassWindow::on_actionSave_triggered()
     }
     else
         qDebug() << p1;
-
+    */
     //Generate .mant
     emit classAdded(this->classNode->ClassName->text(), this->methodsForMainWindow(), this->variablesForMainWindow());
 
