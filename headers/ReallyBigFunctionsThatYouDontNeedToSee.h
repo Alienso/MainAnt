@@ -51,6 +51,7 @@
 #include "./headers/nodesHeaders/AssignNode.h"
 #include "./headers/nodesHeaders/MapNode.h"
 #include "./headers/nodesHeaders/FuncReferenceNode.h"
+#include "./headers/nodesHeaders/BreakNode.h"
 
 template<typename T>
 void functionsListInit(T *w){
@@ -95,7 +96,7 @@ void functionsListInit(T *w){
     QListWidgetItem* rand = new QListWidgetItem(w->tr("+Rand"), w->getUi()->listWidget);
     QListWidgetItem* srand = new QListWidgetItem(w->tr("+srand"), w->getUi()->listWidget);
     QListWidgetItem* pi = new QListWidgetItem(w->tr("+PI"), w->getUi()->listWidget);
-
+    QListWidgetItem* breakNode = new QListWidgetItem(w->tr("+break"), w->getUi()->listWidget);
 
 
     w->_functionList.append(*assigne);
@@ -141,6 +142,7 @@ void functionsListInit(T *w){
      w->_functionList.append(*rand);
      w->_functionList.append(*srand);
      w->_functionList.append(*pi);
+     w->_functionList.append(*breakNode);
 }
 
 template<typename T>
@@ -306,7 +308,7 @@ void putNode(QListWidgetItem* item,T* w)
         IncDecNode* n = new IncDecNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("IncDec"));
-    }else if(item->text().compare("Dictionary") == 0){
+    }else if(item->text().compare("+Dictionary") == 0){
         MapNode* n = new MapNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Map"));
@@ -334,6 +336,11 @@ void putNode(QListWidgetItem* item,T* w)
         static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Pi"));
+    }else if(item->text().compare("+break") == 0){
+        BreakNode* n = new BreakNode();
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("break"));
+        w->getParser()->setHeader("break");
     }
 
     //postavlja policy za meni koji se otvara desnim klikom
