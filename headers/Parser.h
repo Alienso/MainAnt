@@ -24,6 +24,9 @@ private:
 
     //Privatana deo za parsiranje metoda klasa
     QVector<Node*> methods;
+
+    //Privatan deo za parsiranje klasa
+    QVector<Node*> classes;
 private:
     //Privatni deo vezan za kreiranje hedera
     std::string headers;
@@ -54,6 +57,10 @@ private:
     std::ofstream funcFile;
     //stream za fajl u koji pisemo kod korissnicki definisanog metoda za korisnicki definisanu klasu
     std::ofstream methodFile;
+    //stream koji otvaramo kada kreiramo heder za korisnicki definisanu klasu
+    std::ofstream headerClass;
+    //stream koji otvaramo kada kreimramo cpp fajl korisnicki definisane klase
+    std::ofstream cppClass;
 
    //funkcija za proveru tipa noda
     bool checkType(std::string name, std::string expectedName);
@@ -79,6 +86,7 @@ public:
     void addNewStart(Node* node);
     void addNewFunction(Node* node);
     void addMethod(Node* node);
+    void addNewClass(Node* node);
 
     QVector<QString> getNodeNames();
     QVector<Node*> getGraph();
@@ -96,8 +104,9 @@ public:
     //poziva se kada se definise nova funkcija
     QString createFunctionCode(int funcNum);
     void createFunctionBlueprint(QVector<Node*>* nodes, int funcNum);
-    //poziva se kada se definise novi metod funkcije
+    //poziva se kada se definise novi metod klase
     QString createMethodCode(int classNum, int methodNum);
+    QString crateClassCode(QString className, int classId, QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods);
     void setHeader(std::string header);
 
 };

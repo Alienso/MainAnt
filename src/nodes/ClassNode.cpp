@@ -28,7 +28,7 @@ ClassNode::ClassNode(int classNum) : Node("Class", 1, 0), methodId(0), classId(c
 }
 
 QString ClassNode::getCodeForNode(){
-    QString text="";
+    QString text="class" + this->ClassName->text() + "(){\n";
     return text;
 }
 

@@ -18,8 +18,12 @@ private:
     Parser *p;
     int classId;
     int methodId;
+    //Public metoddi klase
     QVector<QString> stringsFromMethodView;
-
+    //private metodi klase
+    QVector<QString> privateMethods;
+    //protected methodi klase
+    QVector<QString> protectedMethods;
 public:
     explicit ClassWindow(QWidget *parent = nullptr, int classId=0);
     ~ClassWindow();

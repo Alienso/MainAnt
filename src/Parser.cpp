@@ -253,6 +253,11 @@ void Parser::addMethod(Node *node)
     this->methods.push_back(node);
 }
 
+void Parser::addNewClass(Node *node)
+{
+    this->classes.push_back(node);
+}
+
 QVector<QString> Parser::getNodeNames()
 {
     return this->nodeNames;
@@ -557,6 +562,44 @@ QString Parser::createMethodCode(int classNum, int methodNum)
 
     this->methodFile.close();
     return "metod isparsiran";
+}
+
+QString Parser::crateClassCode(QString className, int classId, QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods)
+{
+    //Pravimoo header clase
+    QString comand = "../" + className + ".hpp";
+    std::string headerFilePath = comand.toUtf8().constData();
+    headerClass.open(headerFilePath, std::ios::out | std::ios::trunc);
+    headerClass<<"#ifndef __";
+    QString classNameUpper = className.toUpper();
+    headerClass<< classNameUpper.toUtf8().constData();
+    headerClass<< "_H__\n";
+    headerClass<<"#define __ ";
+    headerClass<< classNameUpper.toUtf8().constData();
+    headerClass<<"_H__\n";
+
+    Node* classNode = classes[0];
+    headerClass<<classNode->getCodeForNode().toUtf8().constData();
+
+    //pisemo deklaracije metoda u fajl
+    headerClass<<"private:\n";
+    for(auto method : privateMethods){
+        headerClass<<"\t"<<method.toUtf8().constData()<<"\n";
+    }
+    headerClass<<"protected:\n";
+    for(auto method : protectedMethods){
+        headerClass<<"\t"<<method.toUtf8().constData()<<"\n";
+    }
+    headerClass<<"public:\n";
+    for(auto method : publicMethods){
+        headerClass<<"\t"<<method.toUtf8().constData()<<"\n";
+    }
+
+    headerClass<<"};\n#endif\n";
+    headerClass.close();
+    //pravimo cpp fajl klase
+
+    return "klasa isparsirana";
 }
 
 void Parser::setHeader(std::string header)

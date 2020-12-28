@@ -18,6 +18,7 @@ ClassWindow::ClassWindow(QWidget *parent, int classId) :
     ClassNode* c = new ClassNode(classNum);
     ui->StagingArea->addWidget(c);
     p->addNode(c, new QString("ClassNode"));
+    p->addNewClass(c);
     this->classNode=c;
 
     connect(this, SIGNAL(classAdded(QString, QString, QString)), this->parent(), SLOT(classAdded(QString, QString, QString)));
@@ -73,22 +74,25 @@ void ClassWindow::methodAdded(QString MethodName)
         auto methStr=MethodName.split(" ");
         if(methStr[0]=="public"){
             this->stringsFromMethodView.push_back("   "+MethodName);
+        }else if(methStr[0] == "private"){
+            this->privateMethods.push_back(" " + MethodName);
+        }else if(methStr[0] == "protected"){
+            this->protectedMethods.push_back(" " + MethodName);
         }
     }
 }
 
 void ClassWindow::on_actionSave_triggered()
 {
-    //Ovo je poziv pogresnog metoda :D
-    /*int classNum = this->getClassId();
-    int methodNum = this->getMethodId();
-    QString p1 = p->createMethodCode(classNum, methodNum);
+    int classNum = this->getClassId();
+    QString name = classNode->ClassName->text();
+    QString p1 = p->crateClassCode(name, classNum, stringsFromMethodView, privateMethods, protectedMethods);
     if(p1.compare(QString::fromStdString("Fali")) == 0){
         qDebug() << "Fail";
     }
     else
         qDebug() << p1;
-    */
+
     //Generate .mant
     emit classAdded(this->classNode->ClassName->text(), this->methodsForMainWindow(), this->variablesForMainWindow());
 
