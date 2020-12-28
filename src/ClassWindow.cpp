@@ -53,7 +53,7 @@ QString ClassWindow::variablesForMainWindow()
     QString text="";
     for(auto fields : this->classNode->fields){
         QString varText=fields->getCodeForNode();
-        if(varText!=""){
+        if(varText!="" and fields->exist==true){
             auto varStr=varText.split(" ");
             if(varStr[0]=="public"){
                 text+=this->classNode->ClassName->text();
