@@ -83,7 +83,7 @@ QString FunctionNode::getCodeForNode(){
         int i=0;
         int n=this->argumentsTypes.length();
         if(n == 0){
-            text += QString::fromStdString("){\n");
+            text += QString::fromStdString(")");
             return text;
         }
         for(i=0; i<n-1; i++){
@@ -101,7 +101,7 @@ QString FunctionNode::getCodeForNode(){
             text+= this->argumentsNames.last()->text();
         }
 
-        text+= QString::fromStdString(" ) \n");
+        text+= QString::fromStdString(" )");
     }
     return text;
 }

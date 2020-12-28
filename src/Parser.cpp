@@ -447,6 +447,7 @@ QString Parser::createFunctionCode(int funcNum)
         if(!func->getVisited()){
             func->setVisited(true);
             funcFile<<func->getCodeForNode().toUtf8().constData();
+            funcFile<<"{\n";
 
             QVector<Node*> children = func->getChildren();
             for(auto child : children){
