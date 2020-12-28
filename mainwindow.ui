@@ -159,22 +159,13 @@ color : rgb(255, 255, 255);
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="AddVariable">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::RightToLeft</enum>
-          </property>
+         <widget class="QLabel" name="label">
           <property name="styleSheet">
            <string notr="true">background-color: rgb(5, 155, 154);
 color: rgb(21, 45, 73);</string>
           </property>
           <property name="text">
-           <string>+  variable</string>
+           <string>  Variables   </string>
           </property>
          </widget>
         </item>

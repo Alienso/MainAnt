@@ -40,25 +40,6 @@ color : rgb(255, 255, 255);
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="styleSheet">
-         <string notr="true">color : rgb(189, 221, 235)</string>
-        </property>
-        <property name="text">
-         <string>Variables</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QListWidget" name="VariableView">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(44, 94, 107);
-color : rgb(255, 255, 255);
-</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </item>
     <item>
