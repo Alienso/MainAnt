@@ -710,6 +710,7 @@ QString Parser:: crateClassCode(QString className, int classId, int methodNum,
     }
 
     cppClass.close();
+    this->setHeader(hppFile.toUtf8().constData());
 
     return "klasa isparsirana";
 }
@@ -764,4 +765,9 @@ void Parser::setHeader(std::string header)
         }
         return;
     }
+
+    //Ako ni nije ni jedan od ovih headera onda znamo da je f-Ja pozvana da bi se dodao header za korisnicki definisanu klasu
+    this->headers+="#includ \"";
+    this->headers+=header;
+    this->headers+="\"\n";
 }
