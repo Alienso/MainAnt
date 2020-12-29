@@ -2,9 +2,12 @@
 
 MapNode::MapNode() : Node("map", 1, 1)
 {
-    setMinimumSize(150,150);
+    setMinimumSize(160,180);
     setStyleSheet ("background-color: rgba(120, 120, 0, 1);"
-                   "border: 1px solid rgba(255, 150, 132, 1);");
+                   "border: 1px solid rgba(255, 150, 132, 1);"
+                   "border-radius:5px;");
+    setColors({'q','q'});
+
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
 

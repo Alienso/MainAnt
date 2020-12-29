@@ -53,6 +53,7 @@
 #include "./headers/nodesHeaders/FuncReferenceNode.h"
 #include "./headers/nodesHeaders/BreakNode.h"
 #include "./headers/nodesHeaders/ContinueNode.h"
+#include "./headers/nodesHeaders/MapOperations.h"
 
 template<typename T>
 void functionsListInit(T *w){
@@ -99,6 +100,7 @@ void functionsListInit(T *w){
     QListWidgetItem* pi = new QListWidgetItem(w->tr("+PI"), w->getUi()->listWidget);
     QListWidgetItem* breakNode = new QListWidgetItem(w->tr("+Break"), w->getUi()->listWidget);
     QListWidgetItem* continueNode = new QListWidgetItem(w->tr("+Continue"), w->getUi()->listWidget);
+    QListWidgetItem* mapOperations = new QListWidgetItem(w->tr("+DictionaryOperations"), w->getUi()->listWidget);
 
 
     w->_functionList.append(*assigne);
@@ -146,6 +148,7 @@ void functionsListInit(T *w){
      w->_functionList.append(*pi);
      w->_functionList.append(*breakNode);
      w->_functionList.append(*continueNode);
+     w->_functionList.append(*mapOperations);
 }
 
 template<typename T>
@@ -349,6 +352,11 @@ void putNode(QListWidgetItem* item,T* w)
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("continue"));
         w->getParser()->setHeader("continue");
+    }else if(item->text().compare("+DictionaryOperations") == 0){
+        MapOperations* n = new MapOperations();
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("mapOperations"));
+        w->getParser()->setHeader("mapOperations");
     }
 
     //postavlja policy za meni koji se otvara desnim klikom

@@ -39,6 +39,7 @@ SOURCES += \
     src/nodes/BinaryFunction.cpp \
     src/Parser.cpp \
     src/nodes/MapNode.cpp \
+    src/nodes/MapOperations.cpp \
     src/nodes/MethodNode.cpp \
     src/nodes/PrintNode.cpp \
     src/nodes/QueueNode.cpp \
@@ -86,6 +87,7 @@ HEADERS += \
     headers/nodesHeaders/BinaryFunction.h \
     headers/Parser.h \
     headers/nodesHeaders/MapNode.h \
+    headers/nodesHeaders/MapOperations.h \
     headers/nodesHeaders/MethodNode.h \
     headers/nodesHeaders/PrintNode.h \
     headers/nodesHeaders/QueueNode.h \
