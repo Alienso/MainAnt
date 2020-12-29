@@ -19,7 +19,7 @@ VectorNode::VectorNode() : Node("vector", 1, 1)
     this->capacity->setPlaceholderText(*placeHolderVarName);
 
     this->varTypes = new QComboBox();
-    this->varTypes->addItem("Integer");
+    this->varTypes->addItem("Int");
     this->varTypes->addItem("Float");
     this->varTypes->addItem("Double");
     this->varTypes->addItem("Bool");
@@ -33,45 +33,18 @@ VectorNode::VectorNode() : Node("vector", 1, 1)
 
 QString VectorNode::getCodeForNode()
 {
-    QString text = "";
+    QString text = "vector<";
 
-    if(this->varTypes->currentText() == QString::fromStdString("Integer"))
-    {
-        text+= QString::fromStdString("vector<int> ");
-        text+= this->vectorName->text();
-        text+= QString::fromStdString(";\n");
+    if(this->varTypes->currentText() == QString::fromStdString("String")){
+        text+= QString::fromStdString("std::string>");
+    }else{
+        text+= varTypes->currentText().toLower();
+        text+= QString::fromStdString("> ");
     }
-    else if(this->varTypes->currentText() == QString::fromStdString("Float"))
-    {
-        text+= QString::fromStdString("vector<float> ");
-        text+= this->vectorName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("Double"))
-    {
-        text+= QString::fromStdString("vector<double> ");
-        text+= this->vectorName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("Bool"))
-    {
-        text+= QString::fromStdString("vector<bool> ");
-        text+= this->vectorName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("Char"))
-    {
-        text+= QString::fromStdString("vector<char> ");
-        text+= this->vectorName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("String"))
-    {
-        text+= QString::fromStdString("vector<std::string> ");
-        text+= this->vectorName->text();
-        text+= QString::fromStdString("\";\n");
-    }
-    qDebug()<< text;
+
+    text+= this->vectorName->text();
+    text+= QString::fromStdString(";\n");
+
     return text;
 
 }

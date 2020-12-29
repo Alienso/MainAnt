@@ -17,7 +17,7 @@ StackNode::StackNode() : Node("stack", 1, 1)
 
 
     this->varTypes = new QComboBox();
-    this->varTypes->addItem("Integer");
+    this->varTypes->addItem("Int");
     this->varTypes->addItem("Float");
     this->varTypes->addItem("Double");
     this->varTypes->addItem("Bool");
@@ -30,45 +30,18 @@ StackNode::StackNode() : Node("stack", 1, 1)
 
 QString StackNode::getCodeForNode()
 {
-    QString text = "";
-    if(this->varTypes->currentText() == QString::fromStdString("Integer"))
-    {
-        text+= QString::fromStdString("stack<int> ");
-        text+= this->StackName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("Float"))
-    {
-        text+= QString::fromStdString("stack<float> ");
-        text+= this->StackName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("Double"))
-    {
-        text+= QString::fromStdString("stack<double> ");
-        text+= this->StackName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("Bool"))
-    {
-        text+= QString::fromStdString("stack<bool> ");
-        text+= this->StackName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("Char"))
-    {
-        text+= QString::fromStdString("stack<char> ");
-        text+= this->StackName->text();
-        text+= QString::fromStdString("\";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("String"))
-    {
-        text+= QString::fromStdString("stack<std::string> ");
-        text+= this->StackName->text();
-        text+= QString::fromStdString("\";\n");
+    QString text = "stack<";
+
+    if(this->varTypes->currentText() == QString::fromStdString("String")){
+        text+= QString::fromStdString("std::string>");
+    }else{
+        text+= varTypes->currentText().toLower();
+        text+= QString::fromStdString("> ");
     }
 
-    qDebug()<<text;
+    text+= this->StackName->text();
+    text+= QString::fromStdString(";\n");
+
     return text;
 
 }

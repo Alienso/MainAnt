@@ -16,7 +16,7 @@ QueueNode::QueueNode() : Node("queue", 1, 1)
 
 
     this->varTypes = new QComboBox();
-    this->varTypes->addItem("Integer");
+    this->varTypes->addItem("Int");
     this->varTypes->addItem("Float");
     this->varTypes->addItem("Double");
     this->varTypes->addItem("Bool");
@@ -29,46 +29,20 @@ QueueNode::QueueNode() : Node("queue", 1, 1)
 
 QString QueueNode::getCodeForNode()
 {
-    QString text = "";
-    if(this->varTypes->currentText() == QString::fromStdString("Integer"))
-    {
-        text+= QString::fromStdString("queue<int> ");
-        text+= this->QueueName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("Float"))
-    {
-        text+= QString::fromStdString("queue<float> ");
-        text+= this->QueueName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("Double"))
-    {
-        text+= QString::fromStdString("queue<double> ");
-        text+= this->QueueName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("Bool"))
-    {
-        text+= QString::fromStdString("queue<bool> ");
-        text+= this->QueueName->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("Char"))
-    {
-        text+= QString::fromStdString("queue<char> ");
-        text+= this->QueueName->text();
-        text+= QString::fromStdString("\";\n");
-    }
-    else if(this->varTypes->currentText() == QString::fromStdString("String"))
-    {
-        text+= QString::fromStdString("queue<std::string> ");
-        text+= this->QueueName->text();
-        text+= QString::fromStdString("\";\n");
+    QString text = "queue<";
+
+    if(this->varTypes->currentText() == QString::fromStdString("String")){
+        text+= QString::fromStdString("std::string>");
+    }else{
+        text+= varTypes->currentText().toLower();
+        text+= QString::fromStdString("> ");
     }
 
-    qDebug()<<text;
+    text+= this->QueueName->text();
+    text+= QString::fromStdString(";\n");
+
     return text;
+
 
 }
 

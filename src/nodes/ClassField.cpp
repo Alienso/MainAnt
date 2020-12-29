@@ -17,7 +17,7 @@ ClassField::ClassField() : Node("ClassField", 1, 0)
     this->fieldName->setPlaceholderText(*placeHolderValue);
 
     this->fieldType = new QComboBox();
-    this->fieldType->addItem("Integer");
+    this->fieldType->addItem("Int");
     this->fieldType->addItem("Float");
     this->fieldType->addItem("Double");
     this->fieldType->addItem("Bool");
@@ -42,29 +42,11 @@ QString ClassField::getCodeForNode()
         text+=this->fieldAccessModifiers->currentText();
         text+=" ";
 
-        if(this->fieldType->currentText() == QString::fromStdString("Integer"))
+        if(this->fieldType->currentText() == QString::fromStdString("String"))
         {
-            text+="int ";
-        }
-        else if(this->fieldType->currentText() == QString::fromStdString("Float"))
-        {
-            text+=" float ";
-        }
-        else if(this->fieldType->currentText() == QString::fromStdString("Double"))
-        {
-            text+= "double ";
-        }
-        else if(this->fieldType->currentText() == QString::fromStdString("Bool"))
-        {
-            text+= "bool ";
-        }
-        else if(this->fieldType->currentText() == QString::fromStdString("Char"))
-        {
-            text+="char ";
-        }
-        else if(this->fieldType->currentText() == QString::fromStdString("String"))
-        {
-            text+= "string ";
+            text+= "std::string ";
+        }else{
+            text+=this->fieldType->currentText().toLower();
         }
         text+=this->fieldName->text();
     }

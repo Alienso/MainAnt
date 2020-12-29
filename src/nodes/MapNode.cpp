@@ -21,7 +21,7 @@ MapNode::MapNode() : Node("map", 1, 1)
     this->keyTypes->addItem("String");
 
     this->valueTypes = new QComboBox();
-    this->valueTypes->addItem("Integer");
+    this->valueTypes->addItem("Int");
     this->valueTypes->addItem("Float");
     this->valueTypes->addItem("Double");
     this->valueTypes->addItem("Bool");

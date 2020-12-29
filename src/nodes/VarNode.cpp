@@ -20,7 +20,7 @@ VarNode::VarNode() : Node("var", 1, 1)
     this->varName->setPlaceholderText(*placeHolderVarName);
 
     this->combo = new QComboBox();
-    this->combo->addItem("Integer");
+    this->combo->addItem("Int");
     this->combo->addItem("Float");
     this->combo->addItem("Double");
     this->combo->addItem("Bool");
@@ -36,55 +36,30 @@ QString VarNode::getCodeForNode()
 {
     QString text = "";
 
-    if(this->combo->currentText() == QString::fromStdString("Integer"))
-    {
-        text+= QString::fromStdString("int ");
-        text+= this->varName->text();
-        text+= QString::fromStdString(" = ");
-        text+= this->value->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("Float"))
-    {
-        text+= QString::fromStdString("float ");
-        text+= this->varName->text();
-        text+= QString::fromStdString(" = ");
-        text+= this->value->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("Double"))
-    {
-        text+= QString::fromStdString("double ");
-        text+= this->varName->text();
-        text+= QString::fromStdString(" = ");
-        text+= this->value->text();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("Bool"))
-    {
-        text+= QString::fromStdString("bool ");
-        text+= this->varName->text();
-        text+= QString::fromStdString(" = ");
-        text+= this->value->text().toLower();
-        text+= QString::fromStdString(";\n");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("Char"))
-    {
-        text+= QString::fromStdString("char ");
-        text+= this->varName->text();
-        text+= QString::fromStdString(" = ");
-        text+= QString::fromStdString("\"");
-        text+= this->value->text();
-        text+= QString::fromStdString("\";\n");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("String"))
-    {
+    if(this->combo->currentText() == QString::fromStdString("String")){
         text+= QString::fromStdString("std::string ");
         text+= this->varName->text();
         text+= QString::fromStdString(" = ");
         text+= QString::fromStdString("\"");
         text+= this->value->text();
         text+= QString::fromStdString("\";\n");
+    }else{
+        text+= this->combo->currentText().toLower();
+        text+= QString::fromStdString(" ");
+        text+= this->varName->text();
+        text+= QString::fromStdString(" = ");
+
+        if(this->combo->currentText() == QString::fromStdString("Char")){
+            text+= QString::fromStdString("\"");
+            text+= this->value->text();
+            text+= QString::fromStdString("\"");
+        }else if(this->combo->currentText() == QString::fromStdString("Bool")) {
+            text+= this->value->text().toLower();
+        }else{
+            text+= this->value->text();
+        }
+
+        text+= QString::fromStdString(";\n");
     }
     //qDebug()<< text;
     return text;
