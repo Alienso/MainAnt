@@ -27,6 +27,8 @@ private:
 
     //Privatan deo za parsiranje klasa
     QVector<Node*> classes;
+    //Funkcij akoja ispisuje metode u cpp fajl klase
+    void writeMyMethod(std::ofstream& formingFile, std::string filePath, QString className);
 private:
     //Privatni deo vezan za kreiranje hedera
     std::string headers;
@@ -61,6 +63,9 @@ private:
     std::ofstream headerClass;
     //stream koji otvaramo kada kreimramo cpp fajl korisnicki definisane klase
     std::ofstream cppClass;
+
+    //Metod koji od QVector<QString> kreira QString, koristi se za kreiranje metoda klase
+    QString createQString(QStringList& collection, bool addClassName, QString className);
 
    //funkcija za proveru tipa noda
     bool checkType(std::string name, std::string expectedName);
@@ -106,7 +111,9 @@ public:
     void createFunctionBlueprint(QVector<Node*>* nodes, int funcNum);
     //poziva se kada se definise novi metod klase
     QString createMethodCode(int classNum, int methodNum);
-    QString crateClassCode(QString className, int classId, QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods);
+    QString crateClassCode(QString className, int classId, int methodNum,
+                           QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods,
+                           QVector<Node*> publicAttributes, QVector<Node*> privateAttributes, QVector<Node*> protectedAttributes);
     void setHeader(std::string header);
 
 };

@@ -175,7 +175,7 @@ void MainWindow::on_AddClass_clicked()
     int classNum = getClassId();
     ClassWindow *c=new ClassWindow(this, classNum);
     QMessageBox msgBox;
-    msgBox.setText("To save the changes you have made chose 'Build->Save'.");
+    msgBox.setText("If you want you class to be saved you nedd to enter the name. Class name most be one string either one word, or more words combined witn _.To save the changes you have made chose 'Build->Save'.");
     c->show();
     msgBox.exec();
 }

@@ -7,7 +7,7 @@ void Parser::writeMyFunctions(std::ofstream &formingFile, int funcNum)
     for(; i < funcNum; i++){
         int num = i+1;
         std::string filePath = "Functions/function" + std::to_string(num) + ".cpp";
-        qDebug()<<QString::fromStdString(filePath);
+        //qDebug()<<QString::fromStdString(filePath);
         std::ifstream file (filePath);
         if(file.is_open()){
             std::string line;
@@ -20,6 +20,57 @@ void Parser::writeMyFunctions(std::ofstream &formingFile, int funcNum)
             qDebug()<<"Fajl se ne moze otvoriti";
         }
     }
+}
+
+void Parser::writeMyMethod(std::ofstream &formingFile, std::string filePath, QString className)
+{
+    std::ifstream file (filePath);
+    if(file.is_open()){
+        std::string line;
+        int linesRead = 0;
+        while(std::getline(file, line)){
+            if(linesRead == 0){
+                qDebug()<<line.c_str();
+                QString readLine = "public " + QString::fromStdString(line);//dodali smo public samo da bi se poklopio poziv za createString
+                qDebug()<<readLine;
+                QStringList lista = readLine.split(" ");
+                QString code = createQString(lista, true, className);
+
+                formingFile<<code.toUtf8().constData()<<"\n";
+                linesRead++;
+                continue;
+
+            }
+            formingFile<<line<<"\n";
+            linesRead++;
+        }
+        file.close();
+    }else{
+        qDebug()<<"Fajl se ne moze otvoriti";
+    }
+}
+
+QString Parser::createQString(QStringList &collection, bool addClassName, QString className)
+{
+    //Mi saljemo vektor stringvoa koji na prvoj pozivciji ima modifikator prisstupa
+    //Zelimo string bez modifikatora pristupa
+    //Ako je addClassName true, onda znaci da na ime metoda dodamo ClassName::imemetoda
+
+    QString code = "";
+    int vectorSize = collection.size();
+    code+=collection[1];
+    //qDebug()<<collection;
+    code+=" ";
+    if(addClassName){
+        code+=className;
+        code+="::";
+    }
+    for(int i=2; i<vectorSize; i++){
+        code+=collection[i];
+        code+=" ";
+    }
+    qDebug()<<code.toUtf8().constData();
+    return code;
 }
 
 bool Parser::checkType(std::string name, std::string expectedName)
@@ -550,7 +601,11 @@ QString Parser::createMethodCode(int classNum, int methodNum)
     for(Node* method : this->methods){
         if(!method->getVisited()){
             method->setVisited(true);
-            methodFile<<method->getCodeForNode().toUtf8().constData();
+            QString methodCode = method->getCodeForNode();
+            methodCode = methodCode.trimmed();
+            QStringList stringArray = methodCode.split(" ");
+            QString code = createQString(stringArray, false, "");
+            methodFile<<code.toUtf8().constData();
             methodFile<<"{\n";
 
             QVector<Node*> children = method->getChildren();
@@ -564,7 +619,9 @@ QString Parser::createMethodCode(int classNum, int methodNum)
     return "metod isparsiran";
 }
 
-QString Parser::crateClassCode(QString className, int classId, QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods)
+QString Parser:: crateClassCode(QString className, int classId, int methodNum,
+                               QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods,
+                               QVector<Node*> publicAttributes, QVector<Node*> privateAttributes, QVector<Node*> protectedAttributes)
 {
     //Pravimoo header clase
     QString comand = "../" + className + ".hpp";
@@ -582,22 +639,77 @@ QString Parser::crateClassCode(QString className, int classId, QVector<QString> 
     headerClass<<classNode->getCodeForNode().toUtf8().constData();
 
     //pisemo deklaracije metoda u fajl
-    headerClass<<"private:\n";
-    for(auto method : privateMethods){
-        headerClass<<"\t"<<method.toUtf8().constData()<<"\n";
+    if(privateMethods.size() != 0){
+        headerClass<<"private:\n";
+        for(auto method : privateMethods){
+            method = method.trimmed();
+            QStringList stringArray = method.split(" ");
+            QString code = createQString(stringArray, false, "");
+            headerClass<<"\t"<<code.toUtf8().constData()<<";\n";
+        }
     }
-    headerClass<<"protected:\n";
-    for(auto method : protectedMethods){
-        headerClass<<"\t"<<method.toUtf8().constData()<<"\n";
+    if(protectedMethods.size() != 0){
+        headerClass<<"protected:\n";
+        for(auto method : protectedMethods){
+            method = method.trimmed();
+            QStringList stringArray = method.split(" ");
+            QString code = createQString(stringArray, false, "");
+            headerClass<<"\t"<<code.toUtf8().constData()<<";\n";
+        }
     }
-    headerClass<<"public:\n";
-    for(auto method : publicMethods){
-        headerClass<<"\t"<<method.toUtf8().constData()<<"\n";
+    if(publicMethods.size() != 0){
+        headerClass<<"public:\n";
+        for(auto method : publicMethods){
+            method = method.trimmed();
+            QStringList stringArray = method.split(" ");
+            QString code = createQString(stringArray, false, "");
+            headerClass<<"\t"<<code.toUtf8().constData()<<";\n";
+        }
+    }
+    //definisemo polja klase
+    if(privateAttributes.size() != 0){
+        headerClass<<"private:\n";
+        for(auto atr : privateAttributes){
+            headerClass<<"\t"<<atr->getCodeForNode().toUtf8().constData()<<";\n";
+        }
+    }
+    if(protectedAttributes.size() != 0){
+        headerClass<<"protected:\n";
+        for(auto atr : protectedAttributes){
+            headerClass<<"\t"<<atr->getCodeForNode().toUtf8().constData()<<";\n";
+        }
+    }
+    if(publicAttributes.size() != 0){
+        headerClass<<"public:\n";
+        for(auto atr : publicAttributes){
+            headerClass<<"\t"<<atr->getCodeForNode().toUtf8().constData()<<";\n";
+        }
     }
 
     headerClass<<"};\n#endif\n";
     headerClass.close();
+
     //pravimo cpp fajl klase
+    QString hppFile = className  + ".hpp"; //koristicemo za includ d a znamo sta da includujemo
+    QString comand1 = "../" + className + ".cpp";
+    std::string cppFilePath = comand1.toUtf8().constData();
+    cppClass.open(cppFilePath, std::ios::out | std::ios::trunc);
+    cppClass<<"#include \""<<hppFile.toUtf8().constData()<<"\""<<"\n";
+
+    //Sve funkcije koje su deklarisane u okviru ove klase nalaze se u ovom direktorijumu
+    QString rootdirq = "Class" + QString::fromStdString(std::to_string(classId));
+    std::string rootdir = rootdirq.toUtf8().constData();
+    //Sada prolazimo kroz cppp fajlove yu kojima su deklaracije funkcija i sve ih prepisujemo jednu ispod druge u zajednici cpp fajl
+    for(int i=0; i<methodNum; i++){
+        int num = i+1;
+        std::string filePath =  rootdir + "/method" + std::to_string(num) + ".cpp";
+        system("pwd");
+        qDebug()<<filePath.c_str();
+        writeMyMethod(cppClass, filePath, className);
+
+    }
+
+    cppClass.close();
 
     return "klasa isparsirana";
 }

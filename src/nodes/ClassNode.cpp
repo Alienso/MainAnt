@@ -27,8 +27,13 @@ ClassNode::ClassNode(int classNum) : Node("Class", 1, 0), methodId(0), classId(c
     connect(this->addVariable, SIGNAL(clicked()), this, SLOT(addFieldSlot(void)));
 }
 
+int ClassNode::getMethodId()
+{
+    return this->methodId;
+}
+
 QString ClassNode::getCodeForNode(){
-    QString text="class" + this->ClassName->text() + "(){\n";
+    QString text="class " + this->ClassName->text() + "(){\n";
     return text;
 }
 
@@ -49,4 +54,9 @@ void ClassNode::addFieldSlot()
     auto StagingAreaCopy=qobject_cast<QGraphicsView*>(this->parent());
     QGridLayout* layout = static_cast<QGridLayout*>(StagingAreaCopy->layout());
     layout->addWidget(field);
+}
+
+QVector<ClassField *>& ClassNode::getAttributes()
+{
+    return this->fields;
 }

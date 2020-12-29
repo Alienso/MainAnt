@@ -25,10 +25,13 @@ public:
     QPushButton *addVariable;
     QVector<ClassField*> fields;
 
+    int getMethodId();
+
     QString getCodeForNode() override;
 public slots:
     void addMethodSlot();
     void addFieldSlot();
+    QVector<ClassField *>& getAttributes();
 };
 
 #endif // CLASSNODE_H

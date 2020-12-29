@@ -39,8 +39,6 @@ QString ClassField::getCodeForNode()
     QString text = "";
 
     if(this->fieldName->text()!=""){
-        text+=this->fieldAccessModifiers->currentText();
-        text+=" ";
 
         if(this->fieldType->currentText() == QString::fromStdString("String"))
         {
@@ -48,6 +46,7 @@ QString ClassField::getCodeForNode()
         }else{
             text+=this->fieldType->currentText().toLower();
         }
+        text+=" ";
         text+=this->fieldName->text();
     }
 

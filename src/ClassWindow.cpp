@@ -6,7 +6,7 @@ ClassWindow::ClassWindow(QWidget *parent, int classId) :
     ui(new Ui::ClassWindow),
     p(new Parser),
     classId(classId),
-    methodId(0)
+    methodCounter(0)
 
 {
     ui->setupUi(this);
@@ -35,9 +35,17 @@ int ClassWindow::getClassId()
     return this->classId;
 }
 
-int ClassWindow::getMethodId()
+int ClassWindow::getMethodCounter()
 {
-    return this->methodId;
+    setMethodCounter();
+    return this->methodCounter;
+}
+
+void ClassWindow::setMethodCounter()
+{
+    //posto brigu o idju metoda zapravo vodi klass node, pre svakog pristupa methodId promenljivi moramo pozvati ovu set metodu!
+    int m = this->classNode->getMethodId();
+    methodCounter = m;
 }
 
 QString ClassWindow::methodsForMainWindow()
@@ -67,6 +75,21 @@ QString ClassWindow::variablesForMainWindow()
     return text;
 }
 
+void ClassWindow::fillAtributes()
+{
+    QVector<ClassField*> attributes = classNode->getAttributes();
+
+    for(auto &atr : attributes){
+       if(atr->fieldAccessModifiers->currentText() == "public"){
+            publicAttributes.push_back(atr);
+       }else if(atr->fieldAccessModifiers->currentText() == "private"){
+            privateAttributes.push_back(atr);
+       }else if(atr->fieldAccessModifiers->currentText() == "private"){
+            protectedAttributes.push_back(atr);
+       }
+    }
+}
+
 void ClassWindow::methodAdded(QString MethodName)
 {
     if(MethodName!=""){
@@ -86,7 +109,9 @@ void ClassWindow::on_actionSave_triggered()
 {
     int classNum = this->getClassId();
     QString name = classNode->ClassName->text();
-    QString p1 = p->crateClassCode(name, classNum, stringsFromMethodView, privateMethods, protectedMethods);
+    fillAtributes();
+    int methods = getMethodCounter();
+    QString p1 = p->crateClassCode(name, classNum, methods,stringsFromMethodView, privateMethods, protectedMethods, publicAttributes, privateAttributes, protectedAttributes);
     if(p1.compare(QString::fromStdString("Fali")) == 0){
         qDebug() << "Fail";
     }
