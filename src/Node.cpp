@@ -165,6 +165,11 @@ void Node::mousePressEvent(QMouseEvent *event)
                     qDebug()<<"Delete";
                     this->close();
                     this->exist=false;
+                    auto parentMainWindow=qobject_cast<QMainWindow*>(this->parent()->parent()->parent());
+                    connect(this, SIGNAL(deletedReferencedNode(QString)), parentMainWindow, SLOT(onDeletedReferencedNode(QString)));
+                    if(this->name=="var" || this->name=="vector" || this->name=="stack" || this->name=="queue"){
+                        emit deletedReferencedNode(this->nodeId);
+                    }
                     this->destroy();
                 }
             }

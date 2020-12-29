@@ -15,6 +15,7 @@
 #include <QMenu>
 #include <QGraphicsDropShadowEffect>
 #include <QMessageBox>
+#include <QMainWindow>
 
 #include "./headers/Output.h"
 #include "./headers/Input.h"
@@ -87,6 +88,8 @@ public:
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
+signals:
+    void deletedReferencedNode(QString name);
 };
 
 #endif // NODE_H

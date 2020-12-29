@@ -76,6 +76,7 @@ public slots:
     void putVar(QListWidgetItem* item);
     void functionAdded(QString FunctionName);
     void onPutNode(QListWidgetItem* item);
+    void onDeletedReferencedNode(QString name);
 
 private slots:
     void on_actionQuit_triggered();

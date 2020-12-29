@@ -83,6 +83,16 @@ void MainWindow::onPutNode(QListWidgetItem* item){
     putNode(item,this);
 }
 
+void MainWindow::onDeletedReferencedNode(QString name)
+{
+    for(int i = 0; i < ui->listVars->count(); i++){
+        if(ui->listVars->item(i)->text()==name){
+            QListWidgetItem* item = ui->listVars->item(i);
+            delete item;
+        }
+    }
+}
+
 void MainWindow::on_actionRestart_triggered()
 {
     qApp->quit();
