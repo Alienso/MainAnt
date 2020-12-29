@@ -294,6 +294,18 @@ void Parser::addNewStart(Node *node)
     this->startNodes.push_back(node);
 }
 
+void Parser::removeStart(Node *node)
+{
+    int i=0;
+    int j=-1;
+    for(i=0; i<this->startNodes.size(); i++){
+        if(this->startNodes[i]==node){
+            j=i;
+        }
+    }
+    this->startNodes.erase(this->startNodes.begin()+j);
+}
+
 void Parser::addNewFunction(Node *node)
 {
     this->functions.push_back(node);

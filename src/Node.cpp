@@ -170,6 +170,10 @@ void Node::mousePressEvent(QMouseEvent *event)
                     if(this->name=="var" || this->name=="vector" || this->name=="stack" || this->name=="queue"){
                         emit deletedReferencedNode(this->nodeId);
                     }
+                    connect(this, SIGNAL(deletedStartNode(Node*)), parentMainWindow, SLOT(onDeletedStartNode(Node*)));
+                    if(this->name=="StartNode"){
+                        emit deletedStartNode(this);
+                    }
                     this->destroy();
                 }
             }

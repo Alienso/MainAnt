@@ -89,6 +89,7 @@ public:
     explicit Parser();
     void addNode(Node* node, QString *type);
     void addNewStart(Node* node);
+    void removeStart(Node* node);
     void addNewFunction(Node* node);
     void addMethod(Node* node);
     void addNewClass(Node* node);

@@ -90,6 +90,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
 signals:
     void deletedReferencedNode(QString name);
+    void deletedStartNode(Node *start);
 };
 
 #endif // NODE_H

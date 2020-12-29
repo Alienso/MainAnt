@@ -93,6 +93,11 @@ void MainWindow::onDeletedReferencedNode(QString name)
     }
 }
 
+void MainWindow::onDeletedStartNode(Node *start)
+{
+    p->removeStart(start);
+}
+
 void MainWindow::on_actionRestart_triggered()
 {
     qApp->quit();
