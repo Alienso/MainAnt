@@ -68,9 +68,8 @@ FunctionWindow::~FunctionWindow()
 bool FunctionWindow::checkArrgument(QString argName)
 {
     //Proveravmo da li se ovaj argumen vec nalazi u listi argumenata
-    int size = argInList.size();
-    for(int i=0; i<size; i++){
-        if(argName.compare(argInList[i]) == 0){
+    for(auto arg : argInList){
+        if(argName.compare(arg) == 0){
             return true;
         }
     }
@@ -92,8 +91,8 @@ void FunctionWindow::putVar(QListWidgetItem *item)
 void FunctionWindow::argAdded()
 {
     int num = func->getArgNum();
-    for(int i=0;i<num; i++){
-        QString argName = func->argumentsNames[i]->text();
+    for(auto arg : func->argumentsNames){
+        QString argName = arg->text();
         bool alreadyIn = checkArrgument(argName);
         if(!alreadyIn){
             argInList.push_back(argName);
@@ -151,10 +150,29 @@ void FunctionWindow::on_actionSave_triggered()
         emit functionAdded(this->func->getCodeForNode());
     }
     else{
-       // this->comboMethod->currentText()+" "
+        // this->comboMethod->currentText()+" "
         emit methodAdded(this->method->getCodeForNode());
     }
     this->destroy();
+}
+
+void FunctionWindow::deleteArgumentFromList(QString nameOfArgumen)
+{
+    //brisemo iz polja
+    for(int i = 0; i < ui->attributesArgumentsList->count(); i++){
+        if(ui->attributesArgumentsList->item(i)->text()==nameOfArgumen){
+            QListWidgetItem* item = ui->attributesArgumentsList->item(i);
+            delete item;
+        }
+    }
+    //brisemo iz liste argInList
+    int i=0;
+    for(auto arg : this->argInList){
+        if(arg==nameOfArgumen){
+            this->argInList.remove(i);
+        }
+        i++;
+    }
 }
 
 
@@ -164,6 +182,20 @@ void FunctionWindow::filterFunctions(){
     for (int i=0;i<_functionList.length();i++)
         if (this->_functionList[i].text().contains(ui->searchBar->text(),Qt::CaseInsensitive))
             ui->listWidget->addItem(_functionList[i].text());
+}
+void FunctionWindow::onDeletedReferencedNode(QString name)
+{
+    for(int i = 0; i < ui->listVars->count(); i++){
+        if(ui->listVars->item(i)->text()==name){
+            QListWidgetItem* item = ui->listVars->item(i);
+            delete item;
+        }
+    }
+}
+
+void FunctionWindow::onDeletedStartNode(Node *start)
+{
+    p->removeStart(start);
 }
 
 

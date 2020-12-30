@@ -28,8 +28,6 @@ public:
 
     int getArgNum() const;
     QString getRetVal() const;
-
-
     QString getCodeForNode() override;
 
 public slots:
@@ -39,6 +37,8 @@ public slots:
 private:
     int currWidth = 200;
     int argNum;
+signals:
+    void deleteArgumentFromList(QString nameOfArgumen);
 };
 
 #endif // FUNCTIONNODE_H
