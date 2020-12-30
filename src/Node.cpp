@@ -142,6 +142,17 @@ void Node::mouseMoveEvent(QMouseEvent *event)
     this->oldPos_ = this->pos();
 }
 
+void Node::deleteNodeInParentSlot(QString nodeId)
+{
+    int i=0;
+    for(auto childrenOfNode : this->childNodes){
+        if(childrenOfNode->nodeId==nodeId){
+            this->childNodes.remove(i);
+        }
+        i++;
+    }
+}
+
 void Node::mousePressEvent(QMouseEvent *event)
 {
     offset = event->pos();
@@ -176,6 +187,10 @@ void Node::mousePressEvent(QMouseEvent *event)
                         emit deletedStartNode(this);
                     }
                     this->destroy();
+                }
+                for(auto parentOfNode : this->parentNodes){
+                    connect(this, SIGNAL(deleteNodeInParentSignal(QString)), parentOfNode, SLOT(deleteNodeInParentSlot(QString)));
+                    emit(deleteNodeInParentSignal(this->nodeId));
                 }
             }
             else if(selectedItem->toolTip()=="Hide"){
