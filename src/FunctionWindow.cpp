@@ -1,12 +1,13 @@
 #include "./headers/FunctionWindow.h"
 #include "ui_FunctionWindow.h"
 
-FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int classId) :
+FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int classId, QVector<QString>& argAttr) :
     QMainWindow(parent)
   ,ui(new Ui::FunctionWindow)
   ,p(new Parser)
   ,funcId(funcNum)
   ,classId(classId)
+  ,argInList({})
 {
     ui->setupUi(this);
 
@@ -35,6 +36,11 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
         connect(this, SIGNAL(functionAdded(QString)), this->parent(), SLOT(functionAdded(QString)));
     }
     else{
+        int n= argAttr.size();
+        for(int i=0; i<n;i++){
+            new QListWidgetItem(argAttr[i], ui->attributesArgumentsList);
+        }
+
         MethodNode* met = new MethodNode();
         this->method = met;
         ui->StagingArea->addWidget(method);
@@ -56,6 +62,18 @@ FunctionWindow::~FunctionWindow()
     delete ui;
 }
 
+bool FunctionWindow::checkArrgument(QString argName)
+{
+    //Proveravmo da li se ovaj argumen vec nalazi u listi argumenata
+    int size = argInList.size();
+    for(int i=0; i<size; i++){
+        if(argName.compare(argInList[i]) == 0){
+            return true;
+        }
+    }
+    return false;
+}
+
 void FunctionWindow::putVar(QListWidgetItem *item)
 {
     for(int i =0; i<_inicializedVars.size(); i++)
@@ -64,6 +82,18 @@ void FunctionWindow::putVar(QListWidgetItem *item)
             VariableReferenceNode* n = new VariableReferenceNode(item->text());
             ui->StagingArea->addWidget(n);
             p->addNode(n, new QString("VariableReferenceNode"));
+        }
+    }
+}
+
+void FunctionWindow::argAdded()
+{
+    int num = func->getArgNum();
+    for(int i=0;i<num; i++){
+        QString argName = func->argumentsNames[i]->text();
+        bool alreadyIn = checkArrgument(argName);
+        if(!alreadyIn){
+            new QListWidgetItem(argName, ui->attributesArgumentsList);
         }
     }
 }

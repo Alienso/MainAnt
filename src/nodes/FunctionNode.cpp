@@ -12,6 +12,7 @@ FunctionNode::FunctionNode() : Node("Function", 1, 1), argNum(0)
     layout->itemAtPosition(1,1)->widget()->hide();
 
     this->addArg=new QPushButton("+argument");
+    this->addToVisible = new QPushButton("Make arguments visible");
 
     this->FunctionName = new QLineEdit();
     const QString* placeHolderFunctionName = new QString("Enter function name...");
@@ -29,8 +30,11 @@ FunctionNode::FunctionNode() : Node("Function", 1, 1), argNum(0)
     layout->addWidget(this->combo, 3, 0);
     layout->addWidget(this->FunctionName, 3, 1);
     layout->addWidget(this->addArg, 4, 0);
+    layout->addWidget(this->addToVisible, 5, 0);
 
     connect(this->addArg, SIGNAL(clicked()), this, SLOT(addArgument(void)));
+    //auto parentFunctionWindow=qobject_cast<QMainWindow*>(this->parent()->parent()->parent());
+    //connect(this->addToVisible, SIGNAL(clicked()),parentFunctionWindow, SLOT(argAdded()));
 }
 
 int FunctionNode::getArgNum() const

@@ -90,6 +90,7 @@ void ClassWindow::fillAtributes()
     }
 }
 
+
 void ClassWindow::methodAdded(QString MethodName)
 {
     if(MethodName!=""){

@@ -152,7 +152,9 @@ void MainWindow::on_AddFunction_clicked()
 {
     this->funcId = this->funcId +1;
     int funcNum = this->getFuncId();
-    FunctionWindow *f=new FunctionWindow(this, "FunctionWindow", funcNum, 0);
+    //POtrebno za poziv konstruktora FunctionWindowa
+    QVector<QString> definedAttributes ={};
+    FunctionWindow *f=new FunctionWindow(this, "FunctionWindow", funcNum, 0, definedAttributes);
     QMessageBox msgBox;
     msgBox.setText("To save the changes you have made chose 'Build->Save'.");
     f->show();
