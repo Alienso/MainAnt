@@ -47,7 +47,11 @@ QString BinaryFunction::getCodeForNode()
     QString text="";
     QString arg1 = this->args[1]->toPlainText();
     QString arg2 = this->args[2]->toPlainText();
-    text.append(arg1);
+    if (arg1.compare("") == 0){
+        text.append("#1");
+        std::cout<<"Nema prvog arga\n";
+    }
+    else text.append(arg1);
            if(this->getName()=="Binary_plus"){
                text.append("+");
            }
@@ -84,7 +88,11 @@ QString BinaryFunction::getCodeForNode()
            else if(this->getName()=="Binary_mod"){
                text.append("%");
            }
-       text.append(arg2);
+       if (arg2.compare("") == 0){
+           text.append("#2");
+           std::cout<<"Nema drugog arga\n";
+       }
+       else text.append(arg2);
        std::cout<<text.toUtf8().constData();
        fflush(stdout);
        return text;

@@ -458,10 +458,10 @@ void Parser::visitNode(Node* node, std::ofstream& out)
     bool isReferenc = checkType(nodeName, "VariableRef");
     bool isFuncRef = node->funcRef;
 
-    size_t isBinary = nodeName.find("_");
+    /*size_t isBinary = nodeName.find("_");
     if(isBinary == 6){
         this->vistiBinaryNode(node, parents, out);
-    }
+    }*/
 
     if(isFor){
         this->visitForNode(node, parents, children, out);
@@ -476,24 +476,31 @@ void Parser::visitNode(Node* node, std::ofstream& out)
     }
 
     node->setVisited(true);
-    if(!parents.empty())
-    {
-        for(Node* parent : parents){
-            if(strcmp(parent->getName().toUtf8().constData(),("StartNode")) == 0)
-            {
-                continue;
-            }
-            else
-            {
-                if(!parent->getVisited()){
-                    visitNode(parent, out);
 
+    if(!isElseIf && !isReferenc && !isFuncRef){
+        QString code = node->getCodeForNode();
+        for(int i = 0;i<code.length();){
+            QChar c = code[i];
+            if(c == "#"){
+                i++;
+                int n_arg = code[i].toLatin1() - 48;
+                std::cout<<n_arg<<std::endl;
+                fflush(stdout);
+                Node* parent = static_cast<Node*>(((*(node->getInputs()))[n_arg]->getPrevious()->parentWidget()));
+                if(strcmp(parent->getName().toUtf8().constData(),("StartNode")) == 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    if(!parent->getVisited()){
+                        visitNode(parent,out);
+                    }
                 }
             }
+            else out<<c.toLatin1();
+            i++;
         }
-    }
-    if(isBinary != 6 && !isElseIf && !isReferenc && !isFuncRef){
-        out<< node->getCodeForNode().toUtf8().constData();
     }
     if(isReferenc){
         QString keyName = node->getCodeForNode();
