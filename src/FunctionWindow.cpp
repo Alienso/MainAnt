@@ -19,6 +19,7 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onPutNode(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&FunctionWindow::filterFunctions);
     connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
+    connect(ui->attributesArgumentsList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(addReferenced(QListWidgetItem*)));
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
 
@@ -34,6 +35,8 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
         p->addNode(ret, new QString("FunctionRteurnNode"));
 
         connect(this, SIGNAL(functionAdded(QString)), this->parent(), SLOT(functionAdded(QString)));
+
+        connect(this->func->addToVisible, SIGNAL(clicked()), this, SLOT(argAdded()));
     }
     else{
         int n= argAttr.size();
@@ -93,9 +96,17 @@ void FunctionWindow::argAdded()
         QString argName = func->argumentsNames[i]->text();
         bool alreadyIn = checkArrgument(argName);
         if(!alreadyIn){
+            argInList.push_back(argName);
             new QListWidgetItem(argName, ui->attributesArgumentsList);
         }
     }
+}
+
+void FunctionWindow::addReferenced(QListWidgetItem *item)
+{
+    ReferenceNode *rf=new ReferenceNode(item->text());
+    ui->StagingArea->addWidget(rf);
+    p->addNode(rf, new QString("RefNode"));
 }
 
 

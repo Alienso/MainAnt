@@ -39,6 +39,7 @@ private:
 public slots:
     void putVar(QListWidgetItem* item);
     void argAdded();
+    void addReferenced(QListWidgetItem *item);
 signals:
     void functionAdded(QString FunctionName);
     void methodAdded(QString MethodName);
