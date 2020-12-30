@@ -49,6 +49,7 @@ protected:
     //ova dva flaga sluze za opcije show i hide
     bool  visitedHide=false;
     bool hiddingSomething=false;
+    //polje koje ukazuje na posebno parsiranje cvora
 
 
 protected:
@@ -56,6 +57,7 @@ protected:
 public:
     bool exist=true;
     bool isHidden=false;
+    bool funcRef;
 public:
     explicit Node(QWidget* parent = nullptr);
     Node(QString name,int ninputs,int noutputs,QVector<QString> args = {},QString Code = "", QWidget* parent = nullptr);

@@ -5,10 +5,11 @@ FuncReferenceNode::FuncReferenceNode(QString retVal, QString funcName, QVector<Q
 {
     this->name = funcName;
     this->retVal = retVal;
+    this->funcRef = true;
 }
 
 //Vracamo samo ime funkcije ostalo ce parser da odradi
 QString FuncReferenceNode::getCodeForNode()
 {
-    return this->name;
+    return this->name + "(";
 }

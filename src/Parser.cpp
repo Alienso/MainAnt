@@ -11,7 +11,7 @@ void Parser::writeMyFunctions(std::ofstream &formingFile, int funcNum)
         std::ifstream file (filePath);
         if(file.is_open()){
             std::string line;
-            qDebug()<<"Citam kinije iz function fajla";
+            qDebug()<<"Citam funkcije iz function fajla";
             while(std::getline(file, line)){
                 formingFile<<line<<"\n";
             }
@@ -264,6 +264,26 @@ void Parser::visitElseIfNode(Node *node, QVector<Node *> parents, std::ofstream 
 
 }
 
+void Parser::visitFuncRefNode(Node *node, QVector<Node *> parents, std::ofstream &out)
+{
+    //ovaj cvor je zapravo poziv korisnicki definisane funkcije, treba samo roditelje da lepo obidjemo
+    out<<node->getCodeForNode().toUtf8().constData();
+    //formiracemo tsring a zatim ga ispisati na izlaz
+    QString code = "";
+    for(Node* parent : parents){
+        if(!parent->getVisited()){
+            parent->setVisited(true);
+            code+= parent->getCodeForNode();
+            code+= ", ";
+        }
+    }
+    int lastIndexOfComa = code.lastIndexOf(", ");
+    code = code.remove(lastIndexOfComa, 1);
+    code+=");\n";
+    out<<code.toUtf8().constData();
+
+}
+
 Parser::Parser():hasIO(false)
                 ,hasVector(false)
                 ,hasStack(false)
@@ -436,6 +456,7 @@ void Parser::visitNode(Node* node, std::ofstream& out)
     bool isFor = checkType(nodeName, "for");
     bool isElseIf = checkType(nodeName, "elseIf");
     bool isReferenc = checkType(nodeName, "VariableRef");
+    bool isFuncRef = node->funcRef;
 
     size_t isBinary = nodeName.find("_");
     if(isBinary == 6){
@@ -450,6 +471,8 @@ void Parser::visitNode(Node* node, std::ofstream& out)
         this->visitIfNode(node, parents, children, out);
     }else if(isElseIf){
         this->visitElseIfNode(node, parents, out);
+    }else if(isFuncRef){
+        this->visitFuncRefNode(node, parents, out);
     }
 
     node->setVisited(true);
@@ -469,7 +492,7 @@ void Parser::visitNode(Node* node, std::ofstream& out)
             }
         }
     }
-    if(isBinary != 6 && !isElseIf && !isReferenc){
+    if(isBinary != 6 && !isElseIf && !isReferenc && !isFuncRef){
         out<< node->getCodeForNode().toUtf8().constData();
     }
     if(isReferenc){
