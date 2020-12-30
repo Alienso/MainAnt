@@ -18,6 +18,8 @@ public:
     QLineEdit* FunctionName;
     QComboBox* combo;
     QPushButton *addArg;
+    //Kada se ovo dugme klikne dodaju se argumenti u listu za referenciranje na njih
+    QPushButton *addToVisible;
     QVector<QPushButton*> deleteButton;
     QVector<QLineEdit*> argumentsNames;
     QVector<QComboBox*> argumentsTypes;

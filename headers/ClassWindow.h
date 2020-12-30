@@ -30,6 +30,7 @@ private:
     QVector<Node*> privateAttributes;
     QVector<Node*> protectedAttributes;
 
+
 public:
     explicit ClassWindow(QWidget *parent = nullptr, int classId=0);
     ~ClassWindow();
@@ -39,6 +40,7 @@ public:
     QString methodsForMainWindow();
     QString variablesForMainWindow();
     void fillAtributes();
+
 signals:
     void classAdded(QString ClassName, QString Methods, QString Variables);
 public slots:

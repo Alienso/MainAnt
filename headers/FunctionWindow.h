@@ -2,6 +2,7 @@
 #define FUNCTIONWINDOW_H
 
 #include "./headers/ReallyBigFunctionsThatYouDontNeedToSee.h"
+#include "./headers/nodesHeaders/ReferenceNode.h"
 
 namespace Ui {
 class FunctionWindow;
@@ -22,17 +23,22 @@ private:
     //POtrebno za slanje informacija mainwindowu, setuju se u konstruktoru
     FunctionNode* func;
     MethodNode* method;
+    QVector<QString> argInList;
 
 public:
-    explicit FunctionWindow(QWidget *parent, QString title, int funcNum, int classId);
+    explicit FunctionWindow(QWidget *parent, QString title, int funcNum, int classId, QVector<QString>& argAttr);
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
     Ui::FunctionWindow* getUi();
     Parser* getParser();
     int getFuncId();
     ~FunctionWindow();
+
+private:
+    bool checkArrgument(QString argName);
 public slots:
     void putVar(QListWidgetItem* item);
+    void argAdded();
 signals:
     void functionAdded(QString FunctionName);
     void methodAdded(QString MethodName);

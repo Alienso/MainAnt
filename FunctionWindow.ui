@@ -27,7 +27,7 @@ border-color: rgb(21, 45, 73);</string>
      </widget>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,2,0,0">
+     <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,2,0,0,0,0">
       <property name="leftMargin">
        <number>10</number>
       </property>
@@ -67,6 +67,19 @@ border-color: rgb(21, 45, 73);</string>
       </item>
       <item>
        <widget class="QListWidget" name="listVars"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="styleSheet">
+         <string notr="true">color : rgb(189, 221, 235)</string>
+        </property>
+        <property name="text">
+         <string>Atrributes/Arguments</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="attributesArgumentsList"/>
       </item>
      </layout>
     </item>

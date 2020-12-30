@@ -24,6 +24,8 @@ public:
     QPushButton *addMethod;
     QPushButton *addVariable;
     QVector<ClassField*> fields;
+    QVector<QString> definedAttributes;
+
 
     int getMethodId();
 
@@ -31,6 +33,7 @@ public:
 public slots:
     void addMethodSlot();
     void addFieldSlot();
+    void fillDefinedAttributes();
     QVector<ClassField *>& getAttributes();
 };
 

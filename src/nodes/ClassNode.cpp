@@ -40,7 +40,8 @@ QString ClassNode::getCodeForNode(){
 void ClassNode::addMethodSlot()
 {
     methodId+=1;
-    FunctionWindow *m=new FunctionWindow(qobject_cast<QWidget*>(this->parent()->parent()->parent()), "MethodWidnow", methodId, classId);
+    fillDefinedAttributes();
+    FunctionWindow *m=new FunctionWindow(qobject_cast<QWidget*>(this->parent()->parent()->parent()), "MethodWidnow", methodId, classId, definedAttributes);
     QMessageBox msgBox;
     msgBox.setText("To save the changes you have made chose 'Build->Save'.");
     m->show();
@@ -54,6 +55,14 @@ void ClassNode::addFieldSlot()
     auto StagingAreaCopy=qobject_cast<QGraphicsView*>(this->parent());
     QGridLayout* layout = static_cast<QGridLayout*>(StagingAreaCopy->layout());
     layout->addWidget(field);
+}
+
+void ClassNode::fillDefinedAttributes()
+{
+    for(ClassField* attr : fields){
+        QString name = attr->fieldName->text();
+        definedAttributes.push_back(name);
+    }
 }
 
 QVector<ClassField *>& ClassNode::getAttributes()
