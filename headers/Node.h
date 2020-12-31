@@ -93,6 +93,9 @@ protected:
 signals:
     void deletedReferencedNode(QString name);
     void deletedStartNode(Node *start);
+    void deleteNodeInParentSignal(QString nodeId);
+public slots:
+    void deleteNodeInParentSlot(QString nodeId);
 };
 
 #endif // NODE_H

@@ -19,6 +19,7 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onPutNode(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&FunctionWindow::filterFunctions);
     connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
+    connect(ui->attributesArgumentsList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(addReferenced(QListWidgetItem*)));
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
 
@@ -34,6 +35,8 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
         p->addNode(ret, new QString("FunctionRteurnNode"));
 
         connect(this, SIGNAL(functionAdded(QString)), this->parent(), SLOT(functionAdded(QString)));
+
+        connect(this->func->addToVisible, SIGNAL(clicked()), this, SLOT(argAdded()));
     }
     else{
         int n= argAttr.size();
@@ -65,9 +68,8 @@ FunctionWindow::~FunctionWindow()
 bool FunctionWindow::checkArrgument(QString argName)
 {
     //Proveravmo da li se ovaj argumen vec nalazi u listi argumenata
-    int size = argInList.size();
-    for(int i=0; i<size; i++){
-        if(argName.compare(argInList[i]) == 0){
+    for(auto arg : argInList){
+        if(argName.compare(arg) == 0){
             return true;
         }
     }
@@ -89,13 +91,21 @@ void FunctionWindow::putVar(QListWidgetItem *item)
 void FunctionWindow::argAdded()
 {
     int num = func->getArgNum();
-    for(int i=0;i<num; i++){
-        QString argName = func->argumentsNames[i]->text();
+    for(auto arg : func->argumentsNames){
+        QString argName = arg->text();
         bool alreadyIn = checkArrgument(argName);
         if(!alreadyIn){
+            argInList.push_back(argName);
             new QListWidgetItem(argName, ui->attributesArgumentsList);
         }
     }
+}
+
+void FunctionWindow::addReferenced(QListWidgetItem *item)
+{
+    ReferenceNode *rf=new ReferenceNode(item->text());
+    ui->StagingArea->addWidget(rf);
+    p->addNode(rf, new QString("RefNode"));
 }
 
 
@@ -140,10 +150,29 @@ void FunctionWindow::on_actionSave_triggered()
         emit functionAdded(this->func->getCodeForNode());
     }
     else{
-       // this->comboMethod->currentText()+" "
+        // this->comboMethod->currentText()+" "
         emit methodAdded(this->method->getCodeForNode());
     }
     this->destroy();
+}
+
+void FunctionWindow::deleteArgumentFromList(QString nameOfArgumen)
+{
+    //brisemo iz polja
+    for(int i = 0; i < ui->attributesArgumentsList->count(); i++){
+        if(ui->attributesArgumentsList->item(i)->text()==nameOfArgumen){
+            QListWidgetItem* item = ui->attributesArgumentsList->item(i);
+            delete item;
+        }
+    }
+    //brisemo iz liste argInList
+    int i=0;
+    for(auto arg : this->argInList){
+        if(arg==nameOfArgumen){
+            this->argInList.remove(i);
+        }
+        i++;
+    }
 }
 
 
@@ -153,6 +182,20 @@ void FunctionWindow::filterFunctions(){
     for (int i=0;i<_functionList.length();i++)
         if (this->_functionList[i].text().contains(ui->searchBar->text(),Qt::CaseInsensitive))
             ui->listWidget->addItem(_functionList[i].text());
+}
+void FunctionWindow::onDeletedReferencedNode(QString name)
+{
+    for(int i = 0; i < ui->listVars->count(); i++){
+        if(ui->listVars->item(i)->text()==name){
+            QListWidgetItem* item = ui->listVars->item(i);
+            delete item;
+        }
+    }
+}
+
+void FunctionWindow::onDeletedStartNode(Node *start)
+{
+    p->removeStart(start);
 }
 
 

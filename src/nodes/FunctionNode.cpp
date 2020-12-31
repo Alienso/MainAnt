@@ -29,12 +29,10 @@ FunctionNode::FunctionNode() : Node("Function", 1, 1), argNum(0)
 
     layout->addWidget(this->combo, 3, 0);
     layout->addWidget(this->FunctionName, 3, 1);
-    layout->addWidget(this->addArg, 4, 0);
-    layout->addWidget(this->addToVisible, 5, 0);
+    layout->addWidget(this->addArg, 5, 0);
+    layout->addWidget(this->addToVisible, 4, 0);
 
     connect(this->addArg, SIGNAL(clicked()), this, SLOT(addArgument(void)));
-    //auto parentFunctionWindow=qobject_cast<QMainWindow*>(this->parent()->parent()->parent());
-    //connect(this->addToVisible, SIGNAL(clicked()),parentFunctionWindow, SLOT(argAdded()));
 }
 
 int FunctionNode::getArgNum() const
@@ -130,6 +128,10 @@ void FunctionNode::addArgument()
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     connect(this->deleteButton.last(), SIGNAL(clicked()), this, SLOT(deleteArgument()));
 
+    //za brisanje iz argInList i iz Arguments
+    auto parentFunctionWindow=qobject_cast<QMainWindow*>(this->parent()->parent()->parent());
+    connect(this, SIGNAL(deleteArgumentFromList(QString)), parentFunctionWindow, SLOT(deleteArgumentFromList(QString)));
+
     layout->addWidget(this->argumentsTypes.last(), this->layoutK, 0);
     layout->addWidget(this->argumentsNames.last(), this->layoutK, 1);
     layout->addWidget(this->deleteButton.last(), this->layoutK, 2);
@@ -142,7 +144,6 @@ void FunctionNode::addArgument()
 
 void FunctionNode::deleteArgument()
 {
-    //qDebug()<<"Brisem argument";
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     QWidget* sender=qobject_cast<QWidget*>(this->sender());
@@ -155,15 +156,19 @@ void FunctionNode::deleteArgument()
     layout->itemAt(indexName)->widget()->close();
     sender->deleteLater();
 
+    QString nameOfArgument="";
     int i=0;
     for (auto a: this->argumentsNames) {
         if(a==layout->itemAt(indexName)->widget()){
             this->argumentsNames.removeAt(i);
             this->argumentsTypes.removeAt(i);
             this->deleteButton.removeAt(i);
+            nameOfArgument.append(a->text());
         }
         i++;
     }
     this->currWidth -= 40;
     setMinimumSize(300,currWidth);
+
+    emit deleteArgumentFromList(nameOfArgument);
 }

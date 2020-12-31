@@ -39,6 +39,9 @@ private:
 public slots:
     void putVar(QListWidgetItem* item);
     void argAdded();
+    void addReferenced(QListWidgetItem *item);
+    void onDeletedReferencedNode(QString name);
+    void onDeletedStartNode(Node *start);
 signals:
     void functionAdded(QString FunctionName);
     void methodAdded(QString MethodName);
@@ -47,6 +50,7 @@ private slots:
     void filterFunctions();
     void onPutNode(QListWidgetItem* item);
     void on_actionSave_triggered();
+    void deleteArgumentFromList(QString nameOfArgumen);
 
 };
 
