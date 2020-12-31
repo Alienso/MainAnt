@@ -139,8 +139,8 @@ void Parser::visitForNode(Node *forNode, QVector<Node*> parents, QVector<Node*> 
        int len = children.length();
        //ne zelimo da obidjemo poslednje dete
        len = len-1;
-       for(int i=0; i<len; i++){
-           Node* child = children[i];
+       //for(int i=0; i<len; i++){
+           Node* child = static_cast<Node*>((*forNode->getOutputs())[0]->getNext()->parentWidget());
            if(!child->getVisited()){
               std::string childName = child->getName().toUtf8().constData();
               bool isBody = checkType(childName, "Body");
@@ -152,7 +152,7 @@ void Parser::visitForNode(Node *forNode, QVector<Node*> parents, QVector<Node*> 
                   out<<"\n}\n";
               }
            }
-       }
+       //}
     }
 }
 
@@ -189,8 +189,8 @@ void Parser::visitWhileNode(Node *whileNode, QVector<Node *> parents, QVector<No
        int len = children.length();
        //ne zelimo da obidjemo poslednje dete
        len = len-1;
-       for(int i=0; i<len; i++){
-           Node* child = children[i];
+       //for(int i=0; i<len; i++){
+           Node* child = static_cast<Node*>((*whileNode->getOutputs())[0]->getNext()->parentWidget());
            if(!child->getVisited()){
               std::string childName = child->getName().toUtf8().constData();
               bool isBody = checkType(childName, "Body");
@@ -202,7 +202,7 @@ void Parser::visitWhileNode(Node *whileNode, QVector<Node *> parents, QVector<No
                   out<<"\n}\n";
               }
            }
-       }
+       //}
     }
 }
 
@@ -240,7 +240,7 @@ void Parser::visitIfNode(Node *ifNode, QVector<Node *> parents, QVector<Node *> 
        //ne zelimo da obidjemo poslednje dete
        len = len-1;
        //for(int i=0; i<len; i++){
-           Node* child = children[0];
+           Node* child = static_cast<Node*>((*ifNode->getOutputs())[0]->getNext()->parentWidget());
            if(!child->getVisited()){
               std::string childName = child->getName().toUtf8().constData();
               bool isBody = checkType(childName, "Body");
@@ -493,7 +493,7 @@ void Parser::visitNode(Node* node, std::ofstream& out)
 
     node->setVisited(true);
 
-    if(!isIf && !isElseIf && !isReferenc && !isFuncRef && !isWhile){
+    if(!isIf && !isElseIf && !isReferenc && !isFuncRef && !isWhile && !isFor){
         QString code = node->getCodeForNode();
         for(int i = 0;i<code.length();i++){
             QChar c = code[i];
