@@ -12,6 +12,6 @@ ElseNode::ElseNode():Node("else", 1, 1,{"flow"})
 
 QString ElseNode::getCodeForNode()
 {
-    QString text = "else";
+    QString text = "else ";
     return text;
 }

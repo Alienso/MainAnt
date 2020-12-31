@@ -225,9 +225,13 @@ void Parser::visitIfNode(Node *ifNode, QVector<Node *> parents, QVector<Node *> 
                 }
              }
          }
-      }
+    }
+    QString code = ifNode->getCodeForNode();
+    if (parents.size()==1 && code.compare("")!=0){
+        out<<code.toUtf8().constData();
+    }
     out<<")\n";
-    //Zelimo da obidjemo sve osim poslednjeg deteta cvora while, jer su oni sastavni deo ovog cvora, a poslednji je samo sledeca celina koda
+    //Zelimo da obidjemo sve osim poslednjeg deteta cvora if, jer su oni sastavni deo ovog cvora, a poslednji je samo sledeca celina koda
     if(children.empty()){
        return;
     }else{
@@ -235,8 +239,8 @@ void Parser::visitIfNode(Node *ifNode, QVector<Node *> parents, QVector<Node *> 
        int len = children.length();
        //ne zelimo da obidjemo poslednje dete
        len = len-1;
-       for(int i=0; i<len; i++){
-           Node* child = children[i];
+       //for(int i=0; i<len; i++){
+           Node* child = children[0];
            if(!child->getVisited()){
               std::string childName = child->getName().toUtf8().constData();
               bool isBody = checkType(childName, "Body");
@@ -248,7 +252,7 @@ void Parser::visitIfNode(Node *ifNode, QVector<Node *> parents, QVector<Node *> 
                   out<<"\n}\n";
               }
            }
-       }
+      // }
     }
 }
 
@@ -270,15 +274,8 @@ void Parser::vistiBinaryNode(Node *node, QVector<Node *> parents, std::ofstream&
 
 void Parser::visitElseIfNode(Node *node, QVector<Node *> parents, std::ofstream &out)
 {
-    //Zelimo samo na poseban nacin da obidjemo roditelje elseif cvora, tj samo uslov lepi da sklopimo
-    out<<node->getCodeForNode().toUtf8().constData();
-    for(Node* parent : parents){
-        if(!parent->getVisited()){
-            this->visitNode(parent, out);
-        }
-    }
-    out<<")";
-
+    out<<"else ";
+    visitIfNode(node,parents,node->getChildren(),out);
 }
 
 void Parser::visitFuncRefNode(Node *node, QVector<Node *> parents, std::ofstream &out)
@@ -496,7 +493,7 @@ void Parser::visitNode(Node* node, std::ofstream& out)
 
     node->setVisited(true);
 
-    if(!isElseIf && !isReferenc && !isFuncRef && !isWhile){
+    if(!isIf && !isElseIf && !isReferenc && !isFuncRef && !isWhile){
         QString code = node->getCodeForNode();
         for(int i = 0;i<code.length();i++){
             QChar c = code[i];
