@@ -46,6 +46,7 @@ SOURCES += \
     src/nodes/QueueOperations.cpp \
     src/nodes/ReferenceNode.cpp \
     src/nodes/ReturnNode.cpp \
+    src/nodes/SrandNode.cpp \
     src/nodes/StackNode.cpp \
     src/nodes/StackOperations.cpp \
     src/nodes/VarNode.cpp \
@@ -105,6 +106,7 @@ HEADERS += \
     headers/nodesHeaders/VectorOperations.h \
     headers/nodesHeaders/WhileNode.h \
     headers/SearchBar.h \
+    headers/nodesHeaders/SrandNode.h
 
 FORMS += \
     ClassWindow.ui \

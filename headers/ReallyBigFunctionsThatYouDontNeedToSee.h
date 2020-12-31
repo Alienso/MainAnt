@@ -54,6 +54,7 @@
 #include "./headers/nodesHeaders/BreakNode.h"
 #include "./headers/nodesHeaders/ContinueNode.h"
 #include "./headers/nodesHeaders/MapOperations.h"
+#include "./headers/nodesHeaders/SrandNode.h"
 
 template<typename T>
 void functionsListInit(T *w){
@@ -332,8 +333,7 @@ void putNode(QListWidgetItem* item,T* w)
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Rand"));
     }else if(item->text().compare("+srand") == 0){
-        Node* n = new Node("srand",2,1,{},"srand(#1)");
-        n->setColors({'i','q','q'});
+        Node* n = new SrandNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("srand"));
     }else if(item->text().compare("+PI") == 0){
