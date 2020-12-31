@@ -15,5 +15,8 @@ ElseIfNode::ElseIfNode():Node("elseIf", 2, 1, {"flow", "condition"})
 
 QString ElseIfNode::getCodeForNode()
 {
-    return "else if(";
+    //return "else if(";
+    if (this->args[1]->toPlainText().compare("") == 0)
+        return "else if(#1";
+    return "else if(" + this->args[1]->toPlainText();
 }

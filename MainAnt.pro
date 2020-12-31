@@ -105,7 +105,6 @@ HEADERS += \
     headers/nodesHeaders/VectorOperations.h \
     headers/nodesHeaders/WhileNode.h \
     headers/SearchBar.h \
-    hea \
 
 FORMS += \
     ClassWindow.ui \

@@ -332,8 +332,8 @@ void putNode(QListWidgetItem* item,T* w)
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Rand"));
     }else if(item->text().compare("+srand") == 0){
-        Node* n = new Node("srand",1,1,{},"srand()");
-        n->setColors({'q','q'});
+        Node* n = new Node("srand",2,1,{},"srand(#1)");
+        n->setColors({'i','q','q'});
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("srand"));
     }else if(item->text().compare("+PI") == 0){

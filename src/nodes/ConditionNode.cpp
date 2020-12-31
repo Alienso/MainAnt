@@ -10,8 +10,8 @@ ConditionNode::ConditionNode() : Node("Condition", 1, 1)
 
 QString ConditionNode::getCodeForNode()
 {
+    if (args[0]->toPlainText().compare("") == 0) return "#0";
     if (args[0]->toPlainText().compare("true",Qt::CaseInsensitive) == 0) return "true";
     if (args[0]->toPlainText().compare("false",Qt::CaseInsensitive) == 0) return "false";
     return args[0]->toPlainText();
 }
-

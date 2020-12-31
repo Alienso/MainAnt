@@ -12,6 +12,5 @@ BodyNode::BodyNode():Node("Body", 1, 1)
 }
 
 QString BodyNode::getCodeForNode(){
-    QString text = "";
-    return text;
+    return "";
 }

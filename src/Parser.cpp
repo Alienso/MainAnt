@@ -96,8 +96,10 @@ void Parser::visitForNode(Node *forNode, QVector<Node*> parents, QVector<Node*> 
     forNode->setVisited(true);
     //Zelimo da obidjemo sve roditelje cvora For jer oni uticu na njegovo izracunavanje
     out<<"for"<<"(";
+    QString code = forNode->getCodeForNode();
     if(!parents.empty())
     {
+        int i=0;
         for(Node* parent : parents){
             if(strcmp(parent->getName().toUtf8().constData(),("StartNode")) == 0)
             {
@@ -106,8 +108,16 @@ void Parser::visitForNode(Node *forNode, QVector<Node*> parents, QVector<Node*> 
             else
             {
                 if(!parent->getVisited()){
-                    visitNode(parent, out);
-
+                    i++;
+                    if (i!=2){
+                        visitNode(parent, out);
+                    }
+                    else{
+                        if (code.compare("")==0){
+                            visitNode(parent,out);
+                        }
+                        else out<<code.toUtf8().constData();
+                    }
                     std::string parentName = parent->getName().toUtf8().constData();
                     bool isIncrement = checkType(parentName, "Increment");
                     if(!isIncrement){
@@ -117,6 +127,9 @@ void Parser::visitForNode(Node *forNode, QVector<Node*> parents, QVector<Node*> 
              }
          }
       }
+    if(parents.size() == 1 && code.compare("") !=0){
+        out<<";"<<code.toUtf8().constData()<<";";
+    }
     out<<")\n";
     //Zelimo da obidjemo sve osim poslednjeg deteta cvora for, jer su oni sastavni deo ovog cvora, a poslednji je samo sledeca celina koda
     if(children.empty()){
@@ -148,6 +161,7 @@ void Parser::visitWhileNode(Node *whileNode, QVector<Node *> parents, QVector<No
     whileNode->setVisited(true);
     //Zelimo da obidjemo sve roditelje cvora while jer oni uticu na njegovo izracunavanje
     out<<"while"<<"(";
+    QString code = whileNode->getCodeForNode();
     if(!parents.empty())
     {
         for(Node* parent : parents){
@@ -163,6 +177,9 @@ void Parser::visitWhileNode(Node *whileNode, QVector<Node *> parents, QVector<No
              }
          }
       }
+    if (parents.size() == 1 && code.compare("") != 0){
+        out<<code.toUtf8().constData();
+    }
     out<<")\n";
     //Zelimo da obidjemo sve osim poslednjeg deteta cvora while, jer su oni sastavni deo ovog cvora, a poslednji je samo sledeca celina koda
     if(children.empty()){
@@ -268,20 +285,22 @@ void Parser::visitFuncRefNode(Node *node, QVector<Node *> parents, std::ofstream
 {
     //ovaj cvor je zapravo poziv korisnicki definisane funkcije, treba samo roditelje da lepo obidjemo
     out<<node->getCodeForNode().toUtf8().constData();
-    //formiracemo tsring a zatim ga ispisati na izlaz
-    QString code = "";
+    int n_args = node->getInputs()->size();
+    int i=0;
     for(Node* parent : parents){
+        if (i==0){
+            i++;
+            continue;
+        }
         if(!parent->getVisited()){
-            parent->setVisited(true);
-            code+= parent->getCodeForNode();
-            code+= ", ";
+            this->visitNode(parent,out);
+        }
+        i++;
+        if (i!=n_args){
+            out<< ", ";
         }
     }
-    int lastIndexOfComa = code.lastIndexOf(", ");
-    code = code.remove(lastIndexOfComa, 1);
-    code+=");\n";
-    out<<code.toUtf8().constData();
-
+    out<<");\n";
 }
 
 Parser::Parser():hasIO(false)
@@ -477,29 +496,28 @@ void Parser::visitNode(Node* node, std::ofstream& out)
 
     node->setVisited(true);
 
-    if(!isElseIf && !isReferenc && !isFuncRef){
+    if(!isElseIf && !isReferenc && !isFuncRef && !isWhile){
         QString code = node->getCodeForNode();
-        for(int i = 0;i<code.length();){
+        for(int i = 0;i<code.length();i++){
             QChar c = code[i];
             if(c == "#"){
                 i++;
                 int n_arg = code[i].toLatin1() - 48;
-                std::cout<<n_arg<<std::endl;
-                fflush(stdout);
-                Node* parent = static_cast<Node*>(((*(node->getInputs()))[n_arg]->getPrevious()->parentWidget()));
-                if(strcmp(parent->getName().toUtf8().constData(),("StartNode")) == 0)
-                {
-                    continue;
-                }
-                else
-                {
-                    if(!parent->getVisited()){
-                        visitNode(parent,out);
+                if ((*(node->getInputs()))[n_arg]->getPrevious() != nullptr){
+                    Node* parent = static_cast<Node*>(((*(node->getInputs()))[n_arg]->getPrevious()->parentWidget()));
+                    if(strcmp(parent->getName().toUtf8().constData(),("StartNode")) == 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if(!parent->getVisited()){
+                            visitNode(parent,out);
+                        }
                     }
                 }
             }
             else out<<c.toLatin1();
-            i++;
         }
     }
     if(isReferenc){

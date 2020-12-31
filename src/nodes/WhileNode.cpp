@@ -13,8 +13,5 @@ WhileNode::WhileNode():Node("while",2,1,{"flow","condition"})
 
 QString WhileNode::getCodeForNode()
 {
-    QString text = "";
-
-    return text;
-
+    return this->args[1]->toPlainText();
 }

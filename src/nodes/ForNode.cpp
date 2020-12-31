@@ -15,7 +15,5 @@ ForNode::ForNode() : Node("for", 4, 1,{"flow","init","condition","increment"})
 
 QString ForNode::getCodeForNode()
 {
-    //TODO mora da se napise kode koji ce da vraca for node
-    QString text = "";
-    return text;
+    return this->args[2]->toPlainText();
 }

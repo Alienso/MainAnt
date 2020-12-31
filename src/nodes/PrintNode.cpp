@@ -7,15 +7,16 @@
  * Sadrzi jedan ulaz.
 */
 
-PrintNode::PrintNode() : Node("print", 1, 1, {"flow/input"})
+PrintNode::PrintNode() : Node("print", 2, 1, {"flow","input"})
 {
     setMinimumSize(200,200);
     setStyleSheet ("background-color: rgba(105, 50, 129, 1);"
                    "border: 1px solid rgba(194, 145, 211, 1);"
                    "border-radius:5px;");
-    setColors({'s','q'});
+    setColors({'q','s','q'});
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,2)->widget()->hide();
+    layout->itemAtPosition(2,2)->widget()->hide();
 
     QRadioButton* fileInputRadioButton = new QRadioButton("Input from file",this);
     QRadioButton *manualInputRadioButton = new QRadioButton("Manula input",this);
@@ -78,16 +79,16 @@ PrintNode::PrintNode() : Node("print", 1, 1, {"flow/input"})
 
     });
 
-    layout->addWidget(printMyInputButton, 2, 1);
-    layout->addWidget(fileInputRadioButton,3,1);
-    layout->addWidget(manualInputRadioButton,4,1);
+    layout->addWidget(printMyInputButton, 3, 1);
+    layout->addWidget(fileInputRadioButton,4,1);
+    layout->addWidget(manualInputRadioButton,5,1);
 }
 
 QString PrintNode::getCodeForNode()
 {
     QString text;
     if(this->printMyInput){
-        return "std::cout<<";
+        return args[1]->toPlainText().compare("") == 0 ? "std::cout<<#1" : "std::cout<<" + args[1]->toPlainText();
     }
     text.push_back("std::cout<<\"");
     if(this->manualInput){

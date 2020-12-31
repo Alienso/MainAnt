@@ -16,7 +16,8 @@ IfNode::IfNode() : Node("if", 2, 1,{"flow","Condition"})
 
 QString IfNode::getCodeForNode(){
 
-    QString text = "";
-    return text;
+    if (this->args[1]->toPlainText().compare("") == 0)
+        return "#1";
+    return "";
 
 }

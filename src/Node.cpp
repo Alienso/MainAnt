@@ -16,6 +16,7 @@ Node::Node(QWidget *parent) : QFrame(parent)
     colors['s'] = "border-width: 2px;border-color: rgba(255, 156, 57, 1);border-radius: 10px;"; //string
     colors['c'] = "border-width: 2px;border-color: rgba(255, 104, 107, 1);border-radius: 10px;"; //char
     colors['q'] = "border-width: 2px;border-color: rgba(65, 247, 201, 1);border-top-right-radius: 10px;border-bottom-right-radius: 10px;"; //kontrola toka
+    colors['v'] = "border-width: 2px;border-color: rgba(0, 0, 0, 1);border-radius: 10px;"; //int long
 }
 
 //TODO QT resetuje velicinu fonta u textEditu kada se sve izbrise
