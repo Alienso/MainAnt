@@ -9,6 +9,7 @@ VectorNode::VectorNode() : Node("vector", 1, 1)
     setColors({'q','q'});
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->itemAtPosition(1,1)->widget()->hide();
 
     this->vectorName = new QLineEdit();
     const QString* placeHolderValue = new QString("Enter vecotr name...");

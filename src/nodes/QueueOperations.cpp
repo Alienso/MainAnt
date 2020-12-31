@@ -1,14 +1,15 @@
 #include "./headers/nodesHeaders/QueueOperations.h"
 
-QueueOperations::QueueOperations() : Node("queueOperations", 1, 1)
+QueueOperations::QueueOperations() : Node("queueOperations", 2, 1)
 {
     setMinimumSize(180,150);
     setStyleSheet ("background-color: rgba(62, 66, 115, 1);"
                    "border: 1px solid rgba(212, 44, 97, 1);"
                    "border-radius:5px");
-    setColors({'q','q'});
+    setColors({'q','v','q'});
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
+    layout->itemAtPosition(2,1)->widget()->hide();
 
     this->value = new QLineEdit();
     const QString* placeHolderValue = new QString("Enter value...");
@@ -33,7 +34,9 @@ QString QueueOperations::getCodeForNode()
     if(this->operations->currentText() == QString::fromStdString("push"))
     {
         text+= QString::fromStdString(".push(");
-        text+= this->value->text();
+        if (this->value->text().compare("") != 0)
+            text+= this->value->text();
+        else text+="#1";
         text+= QString::fromStdString(");\n");
     }
     else if(this->operations->currentText() == QString::fromStdString("pop"))

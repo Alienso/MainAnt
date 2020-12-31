@@ -38,7 +38,7 @@ BinaryFunction::BinaryFunction(QString _name, int ninputs, int noutputs)
         setColors({'q','n','n','b'});
     }
     else if(this->getName()=="Binary_mod"){
-        setColors({'q','n','n','n'});
+        setColors({'q','n','n','i'});
     }
 }
 
