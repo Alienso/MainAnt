@@ -526,6 +526,21 @@ void Parser::visitNode(Node* node, std::ofstream& out)
     if(children.empty()){
        return;
     }else{
+        if (isFor || isWhile || isIf){
+            Node* child = static_cast<Node*>((*node->getOutputs())[1]->getNext()->parentWidget());
+            if(!child->getVisited()){
+               std::string childName = child->getName().toUtf8().constData();
+               bool isBody = checkType(childName, "Body");
+               if(isBody){
+                 out<<"{\n";
+               }
+               visitNode(child, out);
+               if(isBody){
+                   out<<"\n}\n";
+               }
+            }
+            return;
+        }
        for(Node* child : children){
            if(!child->getVisited()){
               std::string childName = child->getName().toUtf8().constData();
