@@ -415,7 +415,10 @@ QString Parser::compileAndRun(int funcNum)
     system("./mainAnt");
 #endif
 #ifdef Q_OS_WIN
-    system("g++ -o mainAnt.exe ../mainAntCode.cpp");
+    std::ofstream file;
+    file.open("make.bat", std::ios::out|std::ios::trunc);
+    file<<"g++ -o mainAnt.exe ../mainAntCode.cpp\r\nPAUSE";
+    system("make.bat");
     system("mainAnt.exe");
 #endif
 
