@@ -20,7 +20,7 @@ FunctionNode::FunctionNode() : Node("Function", 1, 1), argNum(0)
 
     this->combo = new QComboBox();
     this->combo->addItem("void");
-    this->combo->addItem("integer");
+    this->combo->addItem("int");
     this->combo->addItem("float");
     this->combo->addItem("double");
     this->combo->addItem("bool");
@@ -44,32 +44,13 @@ QString FunctionNode::getRetVal() const
 {
     QString text="";
 
-    if(this->combo->currentText() == QString::fromStdString("void")){
-        text+=QString::fromStdString("void ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("integer"))
-    {
-        text+= QString::fromStdString("int ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("float"))
-    {
-        text+= QString::fromStdString("float ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("double"))
-    {
-        text+= QString::fromStdString("double ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("bool"))
-    {
-        text+= QString::fromStdString("bool ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("char"))
-    {
-        text+= QString::fromStdString("char ");
-    }
-    else if(this->combo->currentText() == QString::fromStdString("string"))
+    if(this->combo->currentText() == QString::fromStdString("string"))
     {
         text+= QString::fromStdString("std::string ");
+    }else
+    {
+        text+=this->combo->currentText().toLower();
+        text+= QString::fromStdString(" ");
     }
 
     return text;
