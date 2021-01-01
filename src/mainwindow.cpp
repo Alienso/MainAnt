@@ -224,3 +224,33 @@ void MainWindow::on_actionCompile_triggered()
     int funNum = this->getFuncId();
     qDebug()<<p->compile(funNum);
 }
+
+void MainWindow::on_actionFormat_Code_triggered()
+{
+    QString fileTmp = QDir::currentPath();
+    int i=fileTmp.lastIndexOf('/');
+    QStringRef fileTmp2(&fileTmp, 0, i+1);
+    QString file=fileTmp2.toUtf8()+"mainAntCode.cpp";
+    QString fileFormat = fileTmp2.toUtf8()+"mainAntCodeFormat.cpp";
+
+    std::ifstream currentFile;
+    std::ofstream formatedFile;
+
+    currentFile.open(file.toUtf8().constData());
+    formatedFile.open(fileFormat.toUtf8().constData());
+
+    if(currentFile.is_open() && formatedFile.is_open())
+    {
+        std::string format = "";
+        std::string tmp;
+        while(std::getline(currentFile, tmp)){
+            if(tmp.find('}') != std::string::npos)
+                format.pop_back();
+            formatedFile << format << tmp <<"\n";
+            if(tmp.find('{') != std::string::npos)
+                format+="\t";
+        }
+        currentFile.close();
+        formatedFile.close();
+    }
+}

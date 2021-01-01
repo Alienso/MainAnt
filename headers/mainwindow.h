@@ -14,6 +14,9 @@
 #include <QList>
 #include <QProcess>
 #include <QApplication>
+#include <fstream>
+#include <string>
+#include <iostream>
 
 #include "./headers/ReallyBigFunctionsThatYouDontNeedToSee.h"
 
@@ -90,5 +93,6 @@ private slots:
     void on_AddClass_clicked();
     void on_actionCompile_triggered();
     void classAdded(QString ClassName, QString Methods, QString Variables);
+    void on_actionFormat_Code_triggered();
 };
 #endif // MAINWINDOW_H

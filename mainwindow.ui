@@ -255,6 +255,7 @@ color: rgb(220, 234, 251);</string>
     <addaction name="actionCompile"/>
     <addaction name="actionRun"/>
     <addaction name="actionOpen_Code"/>
+    <addaction name="actionFormat_Code"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuBuild"/>
@@ -283,6 +284,11 @@ color: rgb(220, 234, 251);</string>
   <action name="actionOpen_Code">
    <property name="text">
     <string>Open Code</string>
+   </property>
+  </action>
+  <action name="actionFormat_Code">
+   <property name="text">
+    <string>Format Code</string>
    </property>
   </action>
  </widget>
