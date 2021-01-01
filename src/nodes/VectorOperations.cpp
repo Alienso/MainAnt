@@ -45,9 +45,12 @@ QString VectorOperations::getCodeForNode()
     }
     else if(this->operations->currentText() == QString::fromStdString("[]"))
     {
-        //TODO treba videti kako ce ovo da se ukolpi u parser
-        text+= QString::fromStdString("[]");
-        text+= QString::fromStdString(";\n");
+
+        text+= QString::fromStdString("[");
+        if (this->value->text().compare("") != 0)
+            text+= this->value->text();
+        else text+="#1";
+        text+= QString::fromStdString("];\n");
     }
     else if(this->operations->currentText() == QString::fromStdString("size"))
     {

@@ -44,6 +44,12 @@ QString VectorNode::getCodeForNode()
     }
 
     text+= this->vectorName->text();
+    if(this->capacity->text().length() != 0){
+        text+=QString::fromStdString("(");
+        text+=this->capacity->text();
+        text+=QString::fromStdString(")");
+    }
+
     text+= QString::fromStdString(";\n");
 
     return text;
