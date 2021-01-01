@@ -39,6 +39,7 @@ private:
 public slots:
     void putVar(QListWidgetItem* item);
     void argAdded();
+    void argAddedMethodNode();
     void addReferenced(QListWidgetItem *item);
     void onDeletedReferencedNode(QString name);
     void onDeletedStartNode(Node *start);

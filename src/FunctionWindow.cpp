@@ -57,6 +57,7 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
 
 
         connect(this, SIGNAL(methodAdded(QString)), this->parent(), SLOT(methodAdded(QString)));
+        connect(this->method->addToVisible, SIGNAL(clicked()), this, SLOT(argAddedMethodNode()));
     }
 }
 
@@ -90,8 +91,20 @@ void FunctionWindow::putVar(QListWidgetItem *item)
 
 void FunctionWindow::argAdded()
 {
-    int num = func->getArgNum();
+    //int num = func->getArgNum();
     for(auto arg : func->argumentsNames){
+        QString argName = arg->text();
+        bool alreadyIn = checkArrgument(argName);
+        if(!alreadyIn){
+            argInList.push_back(argName);
+            new QListWidgetItem(argName, ui->attributesArgumentsList);
+        }
+    }
+}
+
+void FunctionWindow::argAddedMethodNode()
+{
+    for(auto arg : method->argumentsNames){
         QString argName = arg->text();
         bool alreadyIn = checkArrgument(argName);
         if(!alreadyIn){
