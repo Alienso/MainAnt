@@ -13,7 +13,7 @@ ReturnNode::ReturnNode():Node("return", 1, 0)
 
 QString ReturnNode::getCodeForNode()
 {
-    QString text = "getchar();\nreturn 0;\n}";
+    QString text = "getchar();\nreturn 0;\n";
 
     return text;
 }

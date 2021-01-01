@@ -145,7 +145,7 @@ void Parser::visitForNode(Node *forNode, QVector<Node*> parents, QVector<Node*> 
               std::string childName = child->getName().toUtf8().constData();
               bool isBody = checkType(childName, "Body");
               if(isBody){
-                  out<<"{";
+                  out<<"{\n";
               }
               visitNode(child, out);
               if(isBody){
@@ -195,7 +195,7 @@ void Parser::visitWhileNode(Node *whileNode, QVector<Node *> parents, QVector<No
               std::string childName = child->getName().toUtf8().constData();
               bool isBody = checkType(childName, "Body");
               if(isBody){
-                  out<<"{";
+                  out<<"{\n";
               }
               visitNode(child, out);
               if(isBody){
@@ -245,7 +245,7 @@ void Parser::visitIfNode(Node *ifNode, QVector<Node *> parents, QVector<Node *> 
               std::string childName = child->getName().toUtf8().constData();
               bool isBody = checkType(childName, "Body");
               if(isBody){
-                  out<<"{";
+                  out<<"{\n";
               }
               visitNode(child, out);
               if(isBody){
@@ -455,6 +455,7 @@ void Parser::traverseGraph(std::ofstream& out){
             }
 
         }
+        out<<"}";
     }
 
 }

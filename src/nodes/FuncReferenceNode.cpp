@@ -20,6 +20,9 @@ FuncReferenceNode::FuncReferenceNode(QString retVal, QString funcName, QVector<Q
         colors.append(this->inputTypes[funcTypes[i]]);
     colors.append(this->inputTypes[retVal]);
     setColors(colors);
+
+    QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->itemAtPosition(1,2)->widget()->hide();
 }
 
 //Vracamo samo ime funkcije ostalo ce parser da odradi
