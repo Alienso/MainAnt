@@ -25,7 +25,7 @@ public:
     QVector<QLineEdit*> argumentsNames;
     QVector<QComboBox*> argumentsTypes;
     //do kog koeficijenta smo stigli u layoutu sa dodavanjem
-    int layoutK=5;
+    int layoutK=6;
 
     int getArgNum();
     QString getCodeForNode() override;

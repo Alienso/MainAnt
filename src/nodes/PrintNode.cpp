@@ -9,7 +9,7 @@
 
 PrintNode::PrintNode() : Node("print", 2, 1, {"flow","input"})
 {
-    setMinimumSize(200,200);
+    setMinimumSize(200,260);
     setStyleSheet ("background-color: rgba(105, 50, 129, 1);"
                    "border: 1px solid rgba(194, 145, 211, 1);"
                    "border-radius:5px;");
@@ -60,7 +60,7 @@ PrintNode::PrintNode() : Node("print", 2, 1, {"flow","input"})
             //this->fileName = new QString(input);
             Node* parent = static_cast<Node*>(choice->parent());
             QGridLayout* layout = static_cast<QGridLayout*>(parent->layout());
-            layout->addWidget(fileEdit,5,1);
+            layout->addWidget(fileEdit,6,1);
             this->fileInput = true;
             this->input = fileEdit;
         }else if(choosen == 3){
@@ -71,7 +71,7 @@ PrintNode::PrintNode() : Node("print", 2, 1, {"flow","input"})
             edit->setPlaceholderText(*placeHolder);
             Node* parent = static_cast<Node*>(choice->parent());
             QGridLayout* layout = static_cast<QGridLayout*>(parent->layout());
-            layout->addWidget(edit,5,1);
+            layout->addWidget(edit,6,1);
             this->manualInput = true;
             this->input = edit;
         }
