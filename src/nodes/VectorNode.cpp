@@ -94,7 +94,7 @@ VectorNode::VectorNode() : Node("vector", 1, 1)
 
 QString VectorNode::getCodeForNode()
 {
-    QString text = "vector<";
+    QString text = "std::vector<";
 
     if(this->varTypes->currentText() == QString::fromStdString("String"))
     {
@@ -154,7 +154,7 @@ QString VectorNode::getVarName() const
 
 void VectorNode::addVariable()
 {
-    qDebug()<<"Dodajem argument";
+    //qDebug()<<"Dodajem argument";
     if(this->in->text() != QString::fromStdString("")){
 
         if(this->varTypes->currentText() != QString::fromStdString("String"))

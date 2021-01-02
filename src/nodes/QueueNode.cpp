@@ -91,7 +91,7 @@ QueueNode::QueueNode() : Node("queue", 1, 1)
 
 QString QueueNode::getCodeForNode()
 {
-    QString text = "queue<";
+    QString text = "std::queue<";
 
     if(this->varTypes->currentText() == QString::fromStdString("String")){
         text+= QString::fromStdString("std::string>");
@@ -153,7 +153,7 @@ QString QueueNode::getVarName() const
 
 void QueueNode::addVariable()
 {
-    qDebug()<<"Dodajem argument";
+    //qDebug()<<"Dodajem argument";
     if(this->in->text() != QString::fromStdString("")){
 
         if(this->varTypes->currentText() != QString::fromStdString("String"))

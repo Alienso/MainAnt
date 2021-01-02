@@ -92,7 +92,7 @@ StackNode::StackNode() : Node("stack", 1, 1)
 
 QString StackNode::getCodeForNode()
 {
-    QString text = "stack<";
+    QString text = "std::stack<";
 
     if(this->varTypes->currentText() == QString::fromStdString("String")){
         text+= QString::fromStdString("std::string>");
@@ -114,7 +114,7 @@ QString StackNode::getCodeForNode()
     {
         if(this->varTypes->currentText() == QString::fromStdString("String"))
         {
-            text+= QString::fromStdString("{");
+            text+= QString::fromStdString("({");
             for(int i = 0; i<this->initializedVars.length(); i++){
                 text+= QString::fromStdString("\"");
                 text+= this->initializedVars[i];
@@ -124,10 +124,10 @@ QString StackNode::getCodeForNode()
                     text+= QString::fromStdString(", ");
                 }
             }
-            text+= QString::fromStdString("}");
+            text+= QString::fromStdString("})");
         }else
         {
-            text+= QString::fromStdString("{");
+            text+= QString::fromStdString("({");
             for(int i = 0; i<this->initializedVars.length(); i++){
                 text+= this->initializedVars[i];
                 if(i < this->initializedVars.length()-1)
@@ -135,7 +135,7 @@ QString StackNode::getCodeForNode()
                     text+= QString::fromStdString(", ");
                 }
             }
-            text+= QString::fromStdString("}");
+            text+= QString::fromStdString("})");
         }
     }
 
@@ -153,7 +153,7 @@ QString StackNode::getVarName() const
 
 void StackNode::addVariable()
 {
-    qDebug()<<"Dodajem argument";
+    //qDebug()<<"Dodajem argument";
     if(this->in->text() != QString::fromStdString("")){
 
         if(this->varTypes->currentText() != QString::fromStdString("String"))

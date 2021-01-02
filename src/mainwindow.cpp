@@ -244,10 +244,10 @@ void MainWindow::on_actionFormat_Code_triggered()
         std::string format = "";
         std::string tmp;
         while(std::getline(currentFile, tmp)){
-            if(tmp.find('}') != std::string::npos)
+            if(tmp.find('}') != std::string::npos && tmp.find('{') == std::string::npos)
                 format.pop_back();
             formatedFile << format << tmp <<"\n";
-            if(tmp.find('{') != std::string::npos)
+            if(tmp.find('{') != std::string::npos && tmp.find('}') == std::string::npos)
                 format+="\t";
         }
         currentFile.close();
