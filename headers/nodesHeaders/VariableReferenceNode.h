@@ -9,7 +9,7 @@
 class VariableReferenceNode : public Node
 {
 public:
-    VariableReferenceNode(QString _varName);
+    VariableReferenceNode(QString _varName, QString _redNameId);
     QString name;
     QTextEdit* varName;
 

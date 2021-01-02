@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/FunctionReturnNode.h"
 
-FunctionReturnNode::FunctionReturnNode() : Node("FunctionReturn", 1, 0), isVoid(false), edit(nullptr), consstructor(false), earlyReturn(false), returnCode(nullptr)
+FunctionReturnNode::FunctionReturnNode() : Node("FunctionReturn", 1, 0), isVoid(true), edit(nullptr), consstructor(false), earlyReturn(false), returnCode(nullptr)
 {
     setMinimumSize(180,180);
     setMaximumWidth(200);
@@ -16,6 +16,7 @@ FunctionReturnNode::FunctionReturnNode() : Node("FunctionReturn", 1, 0), isVoid(
     QRadioButton*  returnValueIsNotVoid = new QRadioButton("Return is not void", this);
     QRadioButton* con = new QRadioButton("Creating consructor", this);
     QRadioButton* eReturn = new QRadioButton("Early end to my function", this);
+    returnValueIsVoid->setChecked(true);
 
     choice->addButton(returnValueIsVoid, 1);
     choice->addButton(returnValueIsNotVoid, 2);
@@ -24,7 +25,8 @@ FunctionReturnNode::FunctionReturnNode() : Node("FunctionReturn", 1, 0), isVoid(
 
     layout->addWidget(returnValueIsVoid, 3, 1);
     layout->addWidget(returnValueIsNotVoid, 4, 1);
-    layout->addWidget(returnValueIsNotVoid, 5, 1);
+    layout->addWidget(con, 5, 1);
+    layout->addWidget(eReturn, 6, 1);
     connect(choice, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked),
             [=](){
         int choosen = choice->checkedId();
@@ -32,12 +34,19 @@ FunctionReturnNode::FunctionReturnNode() : Node("FunctionReturn", 1, 0), isVoid(
             if(edit != nullptr){
                 edit->deleteLater();
                 edit= nullptr;
+            }else if(returnCode != nullptr){
+                returnCode->deleteLater();
+                returnCode = nullptr;
             }
             this->isVoid = true;
             this->consstructor = false;
             this->earlyReturn = false;
         }
         else if(choosen == 2){
+            if(returnCode != nullptr){
+                returnCode->deleteLater();
+                returnCode = nullptr;
+           }
             this->isVoid = false;
             this->consstructor = false;
             this->earlyReturn = false;
@@ -51,6 +60,9 @@ FunctionReturnNode::FunctionReturnNode() : Node("FunctionReturn", 1, 0), isVoid(
             if(edit != nullptr){
                 edit->deleteLater();
                 edit= nullptr;
+            }else if(returnCode != nullptr){
+                returnCode->deleteLater();
+                returnCode = nullptr;
             }
             this->isVoid = false;
             this->earlyReturn = false;
@@ -69,7 +81,7 @@ FunctionReturnNode::FunctionReturnNode() : Node("FunctionReturn", 1, 0), isVoid(
             this->returnCode = enterReturnValue;
 
             QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
-            layout->addWidget(edit,5, 1);
+            layout->addWidget(returnCode,5, 1);
             QMessageBox msgBox;
             msgBox.setText("In order to properly end you program you neeed to enter the return value or var name");
             msgBox.exec();

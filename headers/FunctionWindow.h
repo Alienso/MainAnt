@@ -29,6 +29,7 @@ public:
     explicit FunctionWindow(QWidget *parent, QString title, int funcNum, int classId, QVector<QString>& argAttr);
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
+    QVector<QString> _inicializedVarsIds;
     Ui::FunctionWindow* getUi();
     Parser* getParser();
     int getFuncId();
@@ -52,6 +53,7 @@ private slots:
     void onPutNode(QListWidgetItem* item);
     void on_actionSave_triggered();
     void deleteArgumentFromList(QString nameOfArgumen);
+    void onReadVariablesNames();
 
 };
 

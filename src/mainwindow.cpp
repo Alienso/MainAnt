@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
     connect(ui->FunctionView, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putFunction(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&MainWindow::filterFunctions);
+    connect(ui->readVarNames, SIGNAL(clicked()), this, SLOT(onReadVariablesNames(void)));
+
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
     filterFunctions(); //Zove se da bi sortirao listu node-ova
@@ -81,7 +83,7 @@ void MainWindow::putVar(QListWidgetItem *item)
     for(int i =0; i<_inicializedVars.size(); i++)
     {
         if(_inicializedVars[i] == item){
-            VariableReferenceNode* n = new VariableReferenceNode(item->text());
+            VariableReferenceNode* n = new VariableReferenceNode(item->text(), this->_inicializedVarsIds[i]);
             ui->StagingArea->addWidget(n);
             p->addNode(n, new QString("VariableReferenceNode"));
         }
@@ -265,4 +267,15 @@ void MainWindow::onVarNameEntered(){
             }
         }
     }
+}
+
+void MainWindow::onReadVariablesNames()
+{
+    auto graphScene = this->p->getGraphScene();
+    for(int i = 0; i<this->_inicializedVars.length(); i++)
+     {
+        qDebug() << this->_inicializedVarsIds[i];
+         Node* reference = graphScene[this->_inicializedVarsIds[i]];
+         this->_inicializedVars[i]->setText(reference->getVarName());
+     }
 }

@@ -1,8 +1,8 @@
 #include "./headers/nodesHeaders/VariableReferenceNode.h"
 
-VariableReferenceNode::VariableReferenceNode(QString _varName) : Node("VariableRef", 1, 1)
+VariableReferenceNode::VariableReferenceNode(QString _varName, QString _redNameId) : Node("VariableRef", 1, 1)
 {
-    this->refNameId = _varName;
+    this->refNameId = _redNameId;
     setMinimumSize(130,120);
     setStyleSheet ("background-color: rgba(18, 125, 94, 1);"
                    "border: 1px solid rgba(255, 150, 132, 1);"

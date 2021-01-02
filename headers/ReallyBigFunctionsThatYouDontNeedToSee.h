@@ -248,6 +248,7 @@ void putNode(QListWidgetItem* item,T* w)
         //connect(n->getVarName(), &QLineEdit::editingFinished, w, &w::onVarNameEntered);
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
         w->_inicializedVars.append(variable);
+        w->_inicializedVarsIds.append(n->getNodeId().toUtf8().constData());
     }else if(item->text().compare(">") == 0){
         BinaryFunction* n = new BinaryFunction("Binary_vece", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
@@ -278,6 +279,7 @@ void putNode(QListWidgetItem* item,T* w)
         w->getParser()->addNode(n, new QString("VectorNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
         w->_inicializedVars.append(variable);
+        w->_inicializedVarsIds.append(n->getNodeId().toUtf8().constData());
         w->getParser()->setHeader("vector");
     }else if(item->text().compare("+VectorOperations") == 0){
         VectorOperations* n = new VectorOperations();
@@ -290,6 +292,7 @@ void putNode(QListWidgetItem* item,T* w)
         w->getParser()->addNode(n, new QString("StackNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
         w->_inicializedVars.append(variable);
+        w->_inicializedVarsIds.append(n->getNodeId().toUtf8().constData());
         w->getParser()->setHeader("stack");
     }else if(item->text().compare("+StackOperations") == 0){
         StackOperations* n = new StackOperations();
@@ -302,6 +305,7 @@ void putNode(QListWidgetItem* item,T* w)
         w->getParser()->addNode(n, new QString("QueueNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
         w->_inicializedVars.append(variable);
+        w->_inicializedVarsIds.append(n->getNodeId().toUtf8().constData());
         w->getParser()->setHeader("queue");
     }else if(item->text().compare("+QueueOperations") == 0){
         QueueOperations* n = new QueueOperations();

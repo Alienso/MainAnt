@@ -20,6 +20,7 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
     connect(ui->searchBar,&QLineEdit::textChanged,this,&FunctionWindow::filterFunctions);
     connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
     connect(ui->attributesArgumentsList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(addReferenced(QListWidgetItem*)));
+    connect(ui->readVarNames, SIGNAL(clicked()), this, SLOT(onReadVariablesNames(void)));
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
 
@@ -82,7 +83,7 @@ void FunctionWindow::putVar(QListWidgetItem *item)
     for(int i =0; i<_inicializedVars.size(); i++)
     {
         if(_inicializedVars[i] == item){
-            VariableReferenceNode* n = new VariableReferenceNode(item->text());
+            VariableReferenceNode* n = new VariableReferenceNode(item->text(), this->_inicializedVarsIds[i]);
             ui->StagingArea->addWidget(n);
             p->addNode(n, new QString("VariableReferenceNode"));
         }
@@ -186,6 +187,17 @@ void FunctionWindow::deleteArgumentFromList(QString nameOfArgumen)
         }
         i++;
     }
+}
+
+void FunctionWindow::onReadVariablesNames()
+{
+    auto graphScene = this->p->getGraphScene();
+    for(int i = 0; i<this->_inicializedVars.length(); i++)
+     {
+        qDebug() << this->_inicializedVarsIds[i];
+         Node* reference = graphScene[this->_inicializedVarsIds[i]];
+         this->_inicializedVars[i]->setText(reference->getVarName());
+     }
 }
 
 
