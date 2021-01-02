@@ -109,9 +109,9 @@ HEADERS += \
     headers/nodesHeaders/SrandNode.h
 
 FORMS += \
-    ClassWindow.ui \
-    FunctionWindow.ui \
-    mainwindow.ui
+    forms/ClassWindow.ui \
+    forms/FunctionWindow.ui \
+    forms/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
