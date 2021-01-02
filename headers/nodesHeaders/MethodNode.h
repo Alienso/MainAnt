@@ -6,6 +6,8 @@
 #include <QComboBox>
 #include <QGridLayout>
 #include <QPushButton>
+#include <QRadioButton>
+#include <QButtonGroup>
 #include <QVector>
 
 #include "./headers/Node.h"
@@ -25,7 +27,7 @@ public:
     QVector<QLineEdit*> argumentsNames;
     QVector<QComboBox*> argumentsTypes;
     //do kog koeficijenta smo stigli u layoutu sa dodavanjem
-    int layoutK=6;
+    int layoutK=8;
 
     int getArgNum();
     QString getCodeForNode() override;
@@ -36,6 +38,7 @@ public slots:
 private:
     int currWidth = 200;
     int argNum;
+    bool construct;
 signals:
     void deleteArgumentFromList(QString nameOfArgumen);
 };

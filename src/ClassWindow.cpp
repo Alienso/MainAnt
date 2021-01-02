@@ -102,6 +102,8 @@ void ClassWindow::methodAdded(QString MethodName)
             this->privateMethods.push_back(" " + MethodName);
         }else if(methStr[0] == "protected"){
             this->protectedMethods.push_back(" " + MethodName);
+        }else if(methStr[0] == "constructor"){
+            this->constructors.push_back(" " + MethodName);
         }
     }
 }
@@ -112,7 +114,7 @@ void ClassWindow::on_actionSave_triggered()
     QString name = classNode->ClassName->text();
     fillAtributes();
     int methods = getMethodCounter();
-    QString p1 = p->crateClassCode(name, classNum, methods,stringsFromMethodView, privateMethods, protectedMethods, publicAttributes, privateAttributes, protectedAttributes);
+    QString p1 = p->crateClassCode(name, classNum, methods,stringsFromMethodView, privateMethods, protectedMethods, publicAttributes, privateAttributes, protectedAttributes, constructors);
     if(p1.compare(QString::fromStdString("Fali")) == 0){
         qDebug() << "Fail";
     }

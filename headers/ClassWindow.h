@@ -25,6 +25,7 @@ private:
     QVector<QString> privateMethods;
     //protected methodi klase
     QVector<QString> protectedMethods;
+    QVector<QString> constructors;
     //Vektori u kojima se nalaze privatna i javna polja korisnicki definisanih klasa
     QVector<Node*> publicAttributes;
     QVector<Node*> privateAttributes;

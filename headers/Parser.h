@@ -115,7 +115,8 @@ public:
     QString createMethodCode(int classNum, int methodNum);
     QString crateClassCode(QString className, int classId, int methodNum,
                            QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods,
-                           QVector<Node*> publicAttributes, QVector<Node*> privateAttributes, QVector<Node*> protectedAttributes);
+                           QVector<Node*> publicAttributes, QVector<Node*> privateAttributes, QVector<Node*> protectedAttributes,
+                           QVector<QString> constructors);
     void setHeader(std::string header);
 
 };

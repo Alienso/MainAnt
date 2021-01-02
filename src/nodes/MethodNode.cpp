@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/MethodNode.h"
 
-MethodNode::MethodNode() : Node("Method", 1, 1), argNum(0)
+MethodNode::MethodNode() : Node("Method", 1, 1), argNum(0), construct(false)
 {
     setMinimumSize(300,currWidth);
     setMaximumWidth(300);
@@ -33,11 +33,50 @@ MethodNode::MethodNode() : Node("Method", 1, 1), argNum(0)
     this->comboMethod->addItem("private");
     this->comboMethod->addItem("protected");
 
-    layout->addWidget(this->comboMethod, 2, 0);
-    layout->addWidget(this->combo, 3, 0);
-    layout->addWidget(this->MethodName, 3, 1);
-    layout->addWidget(this->addArg, 5, 0);
-    layout->addWidget(this->addToVisible, 4, 0);
+    QRadioButton *constructor = new QRadioButton("Creating constructor", this);
+    QRadioButton *method = new QRadioButton("Creating method", this);
+    QButtonGroup *choice = new QButtonGroup(this);
+    choice->addButton(constructor, 1);
+    choice->addButton(method, 2);
+
+    method->setChecked(true);
+
+    connect(choice, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked),
+            [=](){
+        int choosen = choice->checkedId();
+        if(choosen == 1){
+            if(this->construct == false){
+                //ako pre nije bio true postavljamo combo boxove nevideljive inace su vec nevidljivi
+                this->combo->hide();
+                this->comboMethod->hide();
+            }
+            this->construct = true;
+            QMessageBox msgBox;
+            msgBox.setText("In order for constructor to be valid it's name should be the same as the class name, also make sure you set the value for all the necessary attributes. "
+                           "Class attributes are not set as the arguments automatically so make sure you add all necessery arguments. "
+                           "Attributes already defined in class window can be seen in the Atrributes/Arguments list.");
+            msgBox.exec();
+        }else{
+            if(this->construct == true){
+                //ako je ovo true znaci da je prethodno bio izabran radio button za konstruktor
+                this->combo->show();
+                this->comboMethod->show();
+            }
+            this->construct = true;
+        }
+    });
+
+
+
+    layout->addWidget(constructor, 2, 0);
+    layout->addWidget(method, 3, 0);
+    if(construct != true){
+        layout->addWidget(this->comboMethod, 4, 0);
+        layout->addWidget(this->combo, 5, 0);
+    }
+    layout->addWidget(this->MethodName, 5, 1);
+    layout->addWidget(this->addArg, 7, 0);
+    layout->addWidget(this->addToVisible, 6, 0);
 
     connect(this->addArg, SIGNAL(clicked()), this, SLOT(addArgument(void)));
 }
@@ -51,18 +90,22 @@ QString MethodNode::getCodeForNode(){
     QString text="";
 
     if(this->MethodName->text()!=""){
-        text.append(this->comboMethod->currentText());
-        text.append(" ");
+        if(this->construct == false){
+            text.append(this->comboMethod->currentText());
+            text.append(" ");
 
-        if(this->combo->currentText() == QString::fromStdString("string"))
-        {
-            text+= QString::fromStdString("std::string ");
-        }else
-        {
-            text+=this->combo->currentText().toLower();
-            text+= QString::fromStdString(" ");
+            if(this->combo->currentText() == QString::fromStdString("string"))
+            {
+                text+= QString::fromStdString("std::string ");
+            }else
+            {
+                text+=this->combo->currentText().toLower();
+                text+= QString::fromStdString(" ");
+            }
+        }else{
+            //Vidljivost i povratnu vrednost cemo postavit n aconstructor i ovo obraditi u parseru da se ne ispisuje
+            text.append("constructor constructor ");
         }
-
         text+= this->MethodName->text();
         text+= QString::fromStdString(" ( ");
         int i=0;
