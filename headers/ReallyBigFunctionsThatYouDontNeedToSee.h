@@ -244,7 +244,8 @@ void putNode(QListWidgetItem* item,T* w)
     }else if(item->text().compare("+Var") == 0){
         VarNode* n = new VarNode();
         w->getUi()->StagingArea->addWidget(n);
-        w->getParser()->addNode(n, new QString("VarNode"));
+        w->getParser()->addNode(n, new QString("VarNode")); 
+        //connect(n->getVarName(), &QLineEdit::editingFinished, w, &w::onVarNameEntered);
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
         w->_inicializedVars.append(variable);
     }else if(item->text().compare(">") == 0){

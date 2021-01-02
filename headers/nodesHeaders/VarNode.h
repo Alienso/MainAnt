@@ -16,9 +16,12 @@ public:
     QLineEdit* value;
     QLineEdit* varName;
     QComboBox* combo;
+    QListWidgetItem* listItem;
 
     QString getCodeForNode() override;
     QString getVarName() const override;
+    QLineEdit* getVarName();
+    QListWidgetItem* getListItem();
 
 };
 

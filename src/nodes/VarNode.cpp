@@ -70,3 +70,10 @@ QString VarNode::getVarName() const
     QString text = this->varName->text();
     return text;
 }
+QLineEdit* VarNode::getVarName(){
+    return this->varName;
+}
+
+QListWidgetItem* VarNode::getListItem(){
+    return this->listItem;
+}

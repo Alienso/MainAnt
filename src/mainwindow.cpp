@@ -31,7 +31,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->StagingArea->addWidget(r);
     p->addNode(r, new QString("ReturnNode"));
     p->setHeader("cstdio");
-
 }
 
 MainWindow::~MainWindow()
@@ -252,5 +251,18 @@ void MainWindow::on_actionFormat_Code_triggered()
         }
         currentFile.close();
         formatedFile.close();
+    }
+}
+
+void MainWindow::onVarNameEntered(){
+    std::cout<<"Cao";
+    fflush(stdout);
+    for(Node* n : *ui->StagingArea->getNodes()){
+        for(QListWidgetItem* i : _inicializedVars){
+            if (i->text().compare(n->getNodeId())==0){
+                i->setText(n->getVarName());
+                return;
+            }
+        }
     }
 }
