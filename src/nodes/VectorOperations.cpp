@@ -1,16 +1,16 @@
 #include "./headers/nodesHeaders/VectorOperations.h"
 
-VectorOperations::VectorOperations() : Node("vectorOperations", 2, 1)
+VectorOperations::VectorOperations() : Node("vectorOperations", 2, 1,{"Vector", "Value"})
 {
     setMinimumSize(180,150);
     setStyleSheet ("background-color: rgba(78, 55, 114, 1);"
                    "border: 1px solid rgba(255, 150, 132, 1);"
                    "border-radius:5px;");
-    setColors({'q','v','q'});
+    setColors({'v','v','q'});
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
-    layout->itemAtPosition(1,1)->widget()->hide();
-    layout->itemAtPosition(2,1)->widget()->hide();
+    layout->itemAtPosition(1,2)->widget()->hide();
+    layout->itemAtPosition(2,2)->widget()->hide();
 
     this->value = new QLineEdit();
     const QString* placeHolderValue = new QString("Enter value...");
@@ -22,8 +22,8 @@ VectorOperations::VectorOperations() : Node("vectorOperations", 2, 1)
     this->operations->addItem("[]");
     this->operations->addItem("size");
 
-    layout->addWidget(this->operations, 3, 0);
-    layout->addWidget(this->value, 4, 0);
+    layout->addWidget(this->operations, 3, 0, 1, 3);
+    layout->addWidget(this->value, 4, 0, 1, 3);
 }
 
 QString VectorOperations::getCodeForNode()

@@ -88,7 +88,7 @@ QString PrintNode::getCodeForNode()
 {
     QString text;
     if(this->printMyInput){
-        return args[1]->toPlainText().compare("") == 0 ? "std::cout<<#1" : "std::cout<<" + args[1]->toPlainText();
+        return args[1]->toPlainText().compare("") == 0 ? "std::cout<<#1<<std::endl;\n" : "std::cout<<" + args[1]->toPlainText() + "<<std::endl;\n";
     }
     text.push_back("std::cout<<\"");
     if(this->manualInput){

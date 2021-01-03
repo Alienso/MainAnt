@@ -266,7 +266,7 @@ void putNode(QListWidgetItem* item,T* w)
         w->getParser()->addNode(n, new QString("IliNode"));
     }else if(item->text().compare("NOT") == 0){
         Node* n = new Node("Not", 2, 1,{},"!#1");
-        n->setColors({'q','v','v'});
+        n->setColors({'q','b','b'});
         n->setMaximumWidth(120);
         static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
         static_cast<QGridLayout*>(n->layout())->itemAtPosition(2,1)->widget()->hide();
@@ -340,14 +340,14 @@ void putNode(QListWidgetItem* item,T* w)
         w->_inicializedVarsIds.append(n->getNodeId().toUtf8().constData());
         w->getParser()->setHeader("map");
     }else if(item->text().compare("+Time") == 0){
-        Node* n = new Node("time",1,1,{},"time(NULL)");
+        Node* n = new Node("time",1,1,{},"#0time(NULL)");
         n->setColors({'q','i'});
         static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Time"));
         w->getParser()->setHeader("ctime");
     }else if(item->text().compare("+Rand") == 0){
-        Node* n = new Node("Rand",1,1,{},"rand()");
+        Node* n = new Node("Rand",1,1,{},"#0rand()");
         n->setColors({'q','i'});
         static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
         w->getUi()->StagingArea->addWidget(n);

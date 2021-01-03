@@ -16,7 +16,7 @@ InputNode::InputNode():Node("input", 1, 1)
     setStyleSheet ("background-color: rgba(98, 9, 77, 1);"
                    "border: 1px solid rgba(237, 48, 194, 1);"
                    "border-radius: 5px;");
-    setColors({'q','q'});
+    setColors({'q','s'});
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,1)->widget()->hide();
     QLineEdit* lineEdit = new QLineEdit(nullptr);

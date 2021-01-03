@@ -20,7 +20,7 @@ Node::Node(QWidget *parent) : QFrame(parent)
 }
 
 //TODO QT resetuje velicinu fonta u textEditu kada se sve izbrise
-Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args,QString code, QWidget* parent) : Node(parent)
+Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> _args,QString code, QWidget* parent) : Node(parent)
 {
     funcRef = false;
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
@@ -30,10 +30,10 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args,QString 
     this->setMaximumSize(150, ninputs>noutputs ? 27*(ninputs+1) : 27*(noutputs+1));
     this->name = _name;
     this->nameLbl = new QLabel(name);
-    if (args.length() == 0){
-        args.resize(ninputs == 0 ? 1 : ninputs);
+    if (_args.length() == 0){
+        _args.resize(ninputs == 0 ? 1 : ninputs);
         for (int i=0;i<ninputs;i++)
-            args[i] = "";
+            _args[i] = "";
     }
 
     this->nameLbl->setMaximumSize(100,20);
@@ -49,8 +49,8 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args,QString 
         this->inputs.push_back(tmp);
         this->outputs.push_back(o);
 
-        if (args[i].compare("") != 0){
-            QLabel* lbl = new QLabel(args[i]);
+        if (_args[i].compare("") != 0){
+            QLabel* lbl = new QLabel(_args[i]);
             lbl->setFixedSize(40,20);
             lbl->setFont(f);
             QTextEdit* txt = new QTextEdit();
@@ -78,8 +78,8 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args,QString 
             this->inputs.push_back(tmp);
             this->outputs.push_back(o);
 
-            if (args[i].compare("") != 0){
-                QLabel* lbl = new QLabel(args[i]);
+            if (_args[i].compare("") != 0){
+                QLabel* lbl = new QLabel(_args[i]);
                 lbl->setFixedSize(40,20);
                 lbl->setFont(f);
                 QTextEdit* txt = new QTextEdit();
@@ -110,8 +110,8 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> args,QString 
             layout->addWidget(tmp,i+1,0);
             this->inputs.push_back(tmp);
 
-            if (args[i].compare("") != 0){
-                QLabel* lbl = new QLabel(args[i]);
+            if (_args[i].compare("") != 0){
+                QLabel* lbl = new QLabel(_args[i]);
                 lbl->setFixedSize(40,20);
                 lbl->setFont(f);
                 QTextEdit* txt = new QTextEdit();
