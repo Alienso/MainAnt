@@ -14,6 +14,7 @@ private:
     QMap<QString,QChar> inputTypes;
 public:
     QLineEdit* instanceName;
+    bool visible;
 public:
     ClassInstanceNode(QString ClassName, QVector<QString> argTypes, QVector<QString> argNames);
     QString getCodeForNode() override;

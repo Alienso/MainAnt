@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , p(new Parser)
     , funcId(0)
     ,classId(0)
+    ,classInstances({})
 {
     ui->setupUi(this);
     setWindowTitle(":)");
@@ -20,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->ClassView, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putClassInstance(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&MainWindow::filterFunctions);
     connect(ui->readVarNames, SIGNAL(clicked()), this, SLOT(onReadVariablesNames(void)));
+    connect(ui->VisibleInstances, SIGNAL(clicked()), this, SLOT(addVisibleInstances(void)));
+
 
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
@@ -61,6 +64,7 @@ void MainWindow::putClassInstance(QListWidgetItem *item)
         qDebug()<<"Here";
         //znaci da konstruktor nema argumenata
         ClassInstanceNode* n = new ClassInstanceNode(ClassName, argTypes, argNames);
+        this->classInstances.push_back(n);
         ui->StagingArea->addWidget(n);
         p->addNode(n, new QString("ClassInstanceNode"));
         return;
@@ -78,6 +82,7 @@ void MainWindow::putClassInstance(QListWidgetItem *item)
         }
     }
     ClassInstanceNode* n = new ClassInstanceNode(ClassName, argTypes, argNames);
+    this->classInstances.push_back(n);
     ui->StagingArea->addWidget(n);
     p->addNode(n, new QString("ClassInstanceNode"));
 }
@@ -404,6 +409,24 @@ void MainWindow::onVarNameEntered(){
                 i->setText(n->getVarName());
                 return;
             }
+        }
+    }
+}
+
+void MainWindow::addVisibleInstances()
+{
+    //Brisem sve sto je pisalo u View
+    for(int i = 0; i < ui->VariablesView->count(); i++){
+       QListWidgetItem* item = ui->listVars->item(i);
+       delete item;
+
+    }
+
+    //Dodajem samo vidljive intance
+    for(const auto &inst : this->classInstances){
+        if(inst->visible){
+            QString name = inst->instanceName->text();
+            new QListWidgetItem(name, ui->VariablesView);
         }
     }
 }

@@ -1,9 +1,12 @@
 #include "../../headers/nodesHeaders/ClassInstanceNode.h"
 
 ClassInstanceNode::ClassInstanceNode(QString ClassName, QVector<QString> argTypes, QVector<QString> argNames) :Node(ClassName, argNames.size(), 1, argNames),
-    newInstance(true), ClassName(ClassName), instanceName(nullptr)
+    newInstance(true)
+  , ClassName(ClassName)
+  , instanceName(nullptr)
+  , visible(true)
 {
-    setMinimumSize(220,150);
+    setMinimumSize(250,150);
     this->ClassInstance = true;
     QLineEdit* Iname = new QLineEdit(this);
     this->instanceName = Iname;
@@ -40,8 +43,10 @@ ClassInstanceNode::ClassInstanceNode(QString ClassName, QVector<QString> argType
         int choosen = choice->checkedId();
         if(choosen == 1){
             this-> newInstance = true;
+            this->visible = true;
         }else{
             this->newInstance = false;
+            this->visible = false;
         }
     });
 

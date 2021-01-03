@@ -40,6 +40,7 @@ private:
     Parser *p;
     int funcId;
     int classId;
+    QVector<ClassInstanceNode*> classInstances ;
 private:
     QString makeStringForFunction(QString met, QString ClassName);
 
@@ -63,6 +64,7 @@ public slots:
     void onDeletedReferencedNode(QString name);
     void onDeletedStartNode(Node *start);
     void onVarNameEntered();
+    void addVisibleInstances();
     void classAdded(QString ClassName, QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods,
     QVector<QString> publicAtr, QVector<QString> priavteAtr, QVector<QString> protectedAtr, QVector<QString> constructors);
 
