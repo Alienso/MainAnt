@@ -55,6 +55,8 @@ private slots:
     void on_actionSave_triggered();
     void deleteArgumentFromList(QString nameOfArgumen);
     void onReadVariablesNames();
+public slots:
+    void putFunction(QListWidgetItem *item);
 
 };
 
