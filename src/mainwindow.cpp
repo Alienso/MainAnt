@@ -195,23 +195,24 @@ void MainWindow::classAdded(QString ClassName, QVector<QString> publicMethods, Q
         }
     }
 
-    //VariablesView
+    //Class Attributes
+    new QListWidgetItem("attributes: ", ui->ClassView);
     if(publicAtr.size() != 0){
-        new QListWidgetItem("public: ", ui->VariablesView);
+        new QListWidgetItem("public: ", ui->ClassView);
         for(auto atr : publicAtr){
-            new QListWidgetItem(atr, ui->VariablesView);
+            new QListWidgetItem(atr, ui->ClassView);
         }
     }
     if(priavteAtr.size() != 0){
-        new QListWidgetItem("private: ", ui->VariablesView);
+        new QListWidgetItem("private: ", ui->ClassView);
         for(auto atr : priavteAtr){
-            new QListWidgetItem(atr, ui->VariablesView);
+            new QListWidgetItem(atr, ui->ClassView);
         }
     }
     if(protectedAtr.size() != 0){
-        new QListWidgetItem("proteceted: ", ui->VariablesView);
+        new QListWidgetItem("proteceted: ", ui->ClassView);
         for(auto atr : protectedAtr){
-            new QListWidgetItem(atr, ui->VariablesView);
+            new QListWidgetItem(atr, ui->ClassView);
         }
     }
 }
