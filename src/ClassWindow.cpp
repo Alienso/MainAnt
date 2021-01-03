@@ -103,10 +103,13 @@ void ClassWindow::methodAdded(QString MethodName)
         auto methStr=MethodName.split(" ");
         if(methStr[0]=="public"){
             this->stringsFromMethodView.push_back("   "+MethodName);
+            this->classNode->publicMethods.push_back("   "+MethodName);
         }else if(methStr[0] == "private"){
             this->privateMethods.push_back(" " + MethodName);
+            this->classNode->privateMethods.push_back("   "+MethodName);
         }else if(methStr[0] == "protected"){
             this->protectedMethods.push_back(" " + MethodName);
+            this->classNode->protectedMethods.push_back("   "+MethodName);
         }else if(methStr[0] == "constructor"){
             this->constructors.push_back(" " + MethodName);
         }

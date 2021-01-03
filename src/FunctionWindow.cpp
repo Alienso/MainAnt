@@ -37,12 +37,6 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
 
         connect(this, SIGNAL(functionAdded(QString)), this->parent(), SLOT(functionAdded(QString)));
         connect(this->func->addToVisible, SIGNAL(clicked()), this, SLOT(argAdded()));
-        if(metAndFunc!=""){
-            QList<QString> things=metAndFunc.split("\n");
-            for(auto thing: things){
-                new QListWidgetItem(thing, ui->MethodsFunctionsView);
-            }
-        }
 
     }
     else{
@@ -65,6 +59,13 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
 
         connect(this, SIGNAL(methodAdded(QString)), this->parent(), SLOT(methodAdded(QString)));
         connect(this->method->addToVisible, SIGNAL(clicked()), this, SLOT(argAddedMethodNode()));
+    }
+
+    if(metAndFunc!=""){
+        QList<QString> things=metAndFunc.split("\n");
+        for(auto thing: things){
+            new QListWidgetItem(thing, ui->MethodsFunctionsView);
+        }
     }
 }
 

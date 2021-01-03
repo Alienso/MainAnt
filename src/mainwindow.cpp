@@ -239,7 +239,6 @@ void MainWindow::on_AddFunction_clicked()
         metAndFunc.append(item->text());
         metAndFunc.append("\n");
     }
-qDebug()<<metAndFunc;
 //Potrebno za poziv konstruktora FunctionWindow-a
 QVector<QString> definedAttributes ={};
 FunctionWindow *f=new FunctionWindow(this, "FunctionWindow", funcNum, 0, definedAttributes, metAndFunc);
