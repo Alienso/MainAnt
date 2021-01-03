@@ -26,7 +26,7 @@ private:
     QVector<QString> argInList;
 
 public:
-    explicit FunctionWindow(QWidget *parent, QString title, int funcNum, int classId, QVector<QString>& argAttr);
+    explicit FunctionWindow(QWidget *parent, QString title, int funcNum, int classId, QVector<QString>& argAttr, QString metAndFunc="");
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
     QVector<QString> _inicializedVarsIds;

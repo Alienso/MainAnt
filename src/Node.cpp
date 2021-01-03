@@ -175,12 +175,12 @@ void Node::mousePressEvent(QMouseEvent *event)
                     msgBox.exec();
                 }
                 else{
-                    qDebug()<<"Delete";
+                    //qDebug()<<"Delete";
                     this->close();
                     this->exist=false;
                     auto parentMainWindow=qobject_cast<QMainWindow*>(this->parent()->parent()->parent());
                     connect(this, SIGNAL(deletedReferencedNode(QString)), parentMainWindow, SLOT(onDeletedReferencedNode(QString)));
-                    if(this->name=="var" || this->name=="vector" || this->name=="stack" || this->name=="queue"){
+                    if(this->name=="var" || this->name=="vector" || this->name=="stack" || this->name=="queue" || this->name=="map"){
                         emit deletedReferencedNode(this->nodeId);
                     }
                     connect(this, SIGNAL(deletedStartNode(Node*)), parentMainWindow, SLOT(onDeletedStartNode(Node*)));
@@ -195,7 +195,7 @@ void Node::mousePressEvent(QMouseEvent *event)
                 }
             }
             else if(selectedItem->toolTip()=="Hide"){
-                qDebug()<< "Hide";
+                //qDebug()<< "Hide";
                 if(!this->parentNodes.empty()){
                     this->hiddingSomething=true;
                     Node *node=this;
@@ -228,7 +228,7 @@ void Node::mousePressEvent(QMouseEvent *event)
 
                 }
             } else if(selectedItem->toolTip()=="Show"){
-                qDebug()<< "Show";
+                //qDebug()<< "Show";
                 if(!this->parentNodes.empty()){
                     this->hiddingSomething=false;
                     Node *node=this;
@@ -257,21 +257,6 @@ void Node::mousePressEvent(QMouseEvent *event)
                 }
             }
         }
-
-        /*CustomGraphicsView* stagingArea = static_cast<CustomGraphicsView*>(this->parent());
-        QVector<Node*>* nodesVector = stagingArea->getNodes();
-
-        for(int i=0; i< nodesVector->length(); i++)
-        {
-            if((*nodesVector)[i]->getCodeForNode() == this->getCodeForNode())
-            {
-             QDebug() << this->getCodeForNode();
-             (*nodesVector).erase(i);
-            }
-       }
-       */
-
-        //this->deleteLater();
     }
     QFrame::mousePressEvent(event);
 }

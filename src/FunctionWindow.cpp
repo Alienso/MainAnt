@@ -1,7 +1,7 @@
 #include "./headers/FunctionWindow.h"
 #include "ui_FunctionWindow.h"
 
-FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int classId, QVector<QString>& argAttr) :
+FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int classId, QVector<QString>& argAttr, QString metAndFunc) :
     QMainWindow(parent)
   ,ui(new Ui::FunctionWindow)
   ,p(new Parser)
@@ -36,8 +36,14 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
         p->addNode(ret, new QString("FunctionRteurnNode"));
 
         connect(this, SIGNAL(functionAdded(QString)), this->parent(), SLOT(functionAdded(QString)));
-
         connect(this->func->addToVisible, SIGNAL(clicked()), this, SLOT(argAdded()));
+        if(metAndFunc!=""){
+            QList<QString> things=metAndFunc.split("\n");
+            for(auto thing: things){
+                new QListWidgetItem(thing, ui->MethodsFunctionsView);
+            }
+        }
+
     }
     else{
         int n= argAttr.size();
@@ -193,11 +199,11 @@ void FunctionWindow::onReadVariablesNames()
 {
     auto graphScene = this->p->getGraphScene();
     for(int i = 0; i<this->_inicializedVars.length(); i++)
-     {
+    {
         qDebug() << this->_inicializedVarsIds[i];
-         Node* reference = graphScene[this->_inicializedVarsIds[i]];
-         this->_inicializedVars[i]->setText(reference->getVarName());
-     }
+        Node* reference = graphScene[this->_inicializedVarsIds[i]];
+        this->_inicializedVars[i]->setText(reference->getVarName());
+    }
 }
 
 
