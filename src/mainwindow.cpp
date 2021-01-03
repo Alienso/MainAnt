@@ -45,6 +45,9 @@ MainWindow::~MainWindow()
 void MainWindow::putFunction(QListWidgetItem *item)
 {
     QString funcDeclaration = item->text();
+    if(funcDeclaration == "private:" || funcDeclaration == "protected:" || funcDeclaration == "public"){
+        return;
+    }
     funcDeclaration = funcDeclaration.trimmed();
     QStringList list = funcDeclaration.split(QRegExp("\\s+"));
 
