@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->StagingArea->setLayout(new CustomLayout(1));
     filterFunctions(); //Zove se da bi sortirao listu node-ova
 
-    /*StartNode* n = new StartNode();
+    StartNode* n = new StartNode();
     ui->StagingArea->addWidget(n);
     p->addNode(n, new QString("StartNode"));
     p->addNewStart(n);
@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     ReturnNode* r = new ReturnNode();
     ui->StagingArea->addWidget(r);
     p->addNode(r, new QString("ReturnNode"));
-    p->setHeader("cstdio");*/
+    p->setHeader("cstdio");
 }
 
 MainWindow::~MainWindow()

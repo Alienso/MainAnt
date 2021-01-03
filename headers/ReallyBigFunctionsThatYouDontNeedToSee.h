@@ -103,6 +103,8 @@ void functionsListInit(T *w){
     QListWidgetItem* continueNode = new QListWidgetItem(w->tr("+Continue"), w->getUi()->listWidget);
     QListWidgetItem* mapOperations = new QListWidgetItem(w->tr("+DictionaryOperations"), w->getUi()->listWidget);
     QListWidgetItem* _not = new QListWidgetItem(w->tr("NOT"), w->getUi()->listWidget);
+    QListWidgetItem* toString = new QListWidgetItem(w->tr("+toString"), w->getUi()->listWidget);
+    QListWidgetItem* toInt = new QListWidgetItem(w->tr("+toInt"), w->getUi()->listWidget);
 
 
     w->_functionList.append(*assigne);
@@ -137,6 +139,8 @@ void functionsListInit(T *w){
     w->_functionList.append(*print);
     w->_functionList.append(*start);
     w->_functionList.append(*ret);
+    w->_functionList.append(*toString);
+    w->_functionList.append(*toInt);
 
     w->_functionList.append(*vectorNode);
     w->_functionList.append(*VectorOperations);
@@ -379,6 +383,18 @@ void putNode(QListWidgetItem* item,T* w)
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("mapOperations"));
         w->getParser()->setHeader("mapOperations");
+    }else if(item->text().compare("+toString") == 0){
+        Node* n = new Node("toString",1,1,{},"to_string(#0)");
+        static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
+        n->setColors({'n','s'});
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("toString"));
+    }else if(item->text().compare("+toInt") == 0){
+        Node* n = new Node("toInt",1,1,{},"(int)#0");
+        static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
+        n->setColors({'f','i'});
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("toInt"));
     }
 
     //postavlja policy za meni koji se otvara desnim klikom
