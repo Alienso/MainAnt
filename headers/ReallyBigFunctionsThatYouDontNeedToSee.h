@@ -102,6 +102,7 @@ void functionsListInit(T *w){
     QListWidgetItem* breakNode = new QListWidgetItem(w->tr("+Break"), w->getUi()->listWidget);
     QListWidgetItem* continueNode = new QListWidgetItem(w->tr("+Continue"), w->getUi()->listWidget);
     QListWidgetItem* mapOperations = new QListWidgetItem(w->tr("+DictionaryOperations"), w->getUi()->listWidget);
+    QListWidgetItem* _not = new QListWidgetItem(w->tr("NOT"), w->getUi()->listWidget);
 
 
     w->_functionList.append(*assigne);
@@ -117,6 +118,7 @@ void functionsListInit(T *w){
     w->_functionList.append(*jednako);
     w->_functionList.append(*i);
     w->_functionList.append(*ili);
+    w->_functionList.append(*_not);
 
     w->_functionList.append(*varNode);
     w->_functionList.append(*ifNode);
@@ -128,6 +130,9 @@ void functionsListInit(T *w){
     w->_functionList.append(*inc);
     w->_functionList.append(*init);
     w->_functionList.append(*whileNode);
+    w->_functionList.append(*breakNode);
+    w->_functionList.append(*continueNode);
+
     w->_functionList.append(*input);
     w->_functionList.append(*print);
     w->_functionList.append(*start);
@@ -141,15 +146,13 @@ void functionsListInit(T *w){
     w->_functionList.append(*queueOperations);
     w->_functionList.append(*endOfStatement);
     w->_functionList.append(*dictionary);
+    w->_functionList.append(*mapOperations);
     w->_functionList.append(*incDec);
 
      w->_functionList.append(*time);
      w->_functionList.append(*rand);
      w->_functionList.append(*srand);
      w->_functionList.append(*pi);
-     w->_functionList.append(*breakNode);
-     w->_functionList.append(*continueNode);
-     w->_functionList.append(*mapOperations);
 }
 
 template<class T>
@@ -261,6 +264,14 @@ void putNode(QListWidgetItem* item,T* w)
         BinaryFunction* n = new BinaryFunction("Binary_ili", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("IliNode"));
+    }else if(item->text().compare("NOT") == 0){
+        Node* n = new Node("Not", 2, 1,{},"!#1");
+        n->setColors({'q','v','v'});
+        n->setMaximumWidth(120);
+        static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
+        static_cast<QGridLayout*>(n->layout())->itemAtPosition(2,1)->widget()->hide();
+        w->getUi()->StagingArea->addWidget(n);
+        w->getParser()->addNode(n, new QString("not"));
     }else if(item->text().compare("==") == 0){
         BinaryFunction* n = new BinaryFunction("Binary_jednako", 3, 1);
         w->getUi()->StagingArea->addWidget(n);
