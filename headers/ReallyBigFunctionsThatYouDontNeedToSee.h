@@ -345,16 +345,19 @@ void putNode(QListWidgetItem* item,T* w)
         static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Time"));
+        w->getParser()->setHeader("ctime");
     }else if(item->text().compare("+Rand") == 0){
         Node* n = new Node("Rand",1,1,{},"rand()");
         n->setColors({'q','i'});
         static_cast<QGridLayout*>(n->layout())->itemAtPosition(1,1)->widget()->hide();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Rand"));
+        w->getParser()->setHeader("random");
     }else if(item->text().compare("+srand") == 0){
         Node* n = new SrandNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("srand"));
+        w->getParser()->setHeader("random");
     }else if(item->text().compare("+PI") == 0){
         Node* n = new Node("Pi",1,1,{},"3.14159265359");
         n->setColors({'q','f'});

@@ -38,6 +38,8 @@ private:
     bool hasMap;
     bool hasQueue;
     bool hasCstdio;
+    bool hasRandom;
+    bool hasTime;
 private:
     //Vekror koji cuva cvorove grafa scene
     QVector<Node*> graph;

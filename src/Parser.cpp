@@ -308,6 +308,8 @@ Parser::Parser():hasIO(false)
                 ,hasMap(false)
                 ,hasQueue(false)
                 ,hasCstdio(false)
+                ,hasRandom(false)
+                ,hasTime(false)
                 ,id(0)
 {
     headers = "";
@@ -859,6 +861,22 @@ void Parser::setHeader(std::string header)
         if (hasCstdio == false){
             hasCstdio = true;
             this->headers += "#include <cstdio>\n";
+        }
+        return;
+    }
+    cmp = header.compare("random");
+    if(cmp == 0){
+        if (hasRandom == false){
+            hasRandom = true;
+            this->headers += "#include <random>\n";
+        }
+        return;
+    }
+    cmp = header.compare("ctime");
+    if(cmp == 0){
+        if (hasTime == false){
+            hasTime = true;
+            this->headers += "#include <ctime>\n";
         }
         return;
     }
