@@ -31,6 +31,11 @@ private:
     QVector<Node*> privateAttributes;
     QVector<Node*> protectedAttributes;
 
+    //Inormacije za mainwindow
+    QVector<QString> publicAttrCodes;
+    QVector<QString> privateAttrCodes;
+    QVector<QString> protectedAttrCodes;
+
 
 public:
     explicit ClassWindow(QWidget *parent = nullptr, int classId=0);
@@ -43,7 +48,8 @@ public:
     void fillAtributes();
 
 signals:
-    void classAdded(QString ClassName, QString Methods, QString Variables);
+    void classAdded(QString ClassName, QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods,
+                    QVector<QString> publicAtr, QVector<QString> priavteAtr, QVector<QString> protectedAtr, QVector<QString> constructors);
 public slots:
     void methodAdded(QString MethodName);
 private slots:

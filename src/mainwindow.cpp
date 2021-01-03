@@ -43,16 +43,18 @@ MainWindow::~MainWindow()
 void MainWindow::putFunction(QListWidgetItem *item)
 {
     QString funcDeclaration = item->text();
+    funcDeclaration = funcDeclaration.trimmed();
     QStringList list = funcDeclaration.split(QRegExp("\\s+"));
 
     QString retVal = list[0];
     QString funcName = list[1];
+    //qDebug()<<funcName;
 
     QVector<QString> funcTypes = {" ",};
     QVector<QString> funcNames = {"flow"};
 
     int listSize = list.size();
-    qDebug()<<list;
+    //qDebug()<<list;
     if(listSize == 4){
         FuncReferenceNode* n = new FuncReferenceNode(retVal, funcName, funcTypes, funcNames);
         ui->StagingArea->addWidget(n);
@@ -107,6 +109,66 @@ void MainWindow::onDeletedReferencedNode(QString name)
 void MainWindow::onDeletedStartNode(Node *start)
 {
     p->removeStart(start);
+}
+
+void MainWindow::classAdded(QString ClassName, QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods,
+                            QVector<QString> publicAtr, QVector<QString> priavteAtr, QVector<QString> protectedAtr,
+                            QVector<QString> constructors)
+{
+    new QListWidgetItem(ClassName, ui->ClassView);
+    new QListWidgetItem("constructors: ", ui->ClassView);
+    for(auto con : constructors){
+        QStringList list = con.split(" ");
+        QString code = "";
+        for(int i = 3; i<list.size(); i++){
+            code+=list[i];
+            code+=" ";
+        }
+        new QListWidgetItem("\t" + code, ui->ClassView);
+    }
+
+    //FunctionView
+    if(publicMethods.size() != 0){
+        new QListWidgetItem("public: ", ui->FunctionView);
+        for(auto met : publicMethods){
+            QString out = makeStringForFunction(met, ClassName);
+            new QListWidgetItem(out, ui->FunctionView);
+        }
+    }
+    if(privateMethods.size() != 0){
+        new QListWidgetItem("private: ", ui->FunctionView);
+        for(auto met : privateMethods){
+            QString out = makeStringForFunction(met, ClassName);
+            new QListWidgetItem(out, ui->FunctionView);
+        }
+    }
+    if(protectedMethods.size() != 0){
+        new QListWidgetItem("protected: ", ui->FunctionView);
+        for(auto met : protectedMethods){
+            QString out = makeStringForFunction(met, ClassName);
+            new QListWidgetItem(out, ui->FunctionView);
+        }
+    }
+
+    //VariablesView
+    if(publicAtr.size() != 0){
+        new QListWidgetItem("public: ", ui->VariablesView);
+        for(auto atr : publicAtr){
+            new QListWidgetItem(atr, ui->VariablesView);
+        }
+    }
+    if(priavteAtr.size() != 0){
+        new QListWidgetItem("private: ", ui->VariablesView);
+        for(auto atr : priavteAtr){
+            new QListWidgetItem(atr, ui->VariablesView);
+        }
+    }
+    if(protectedAtr.size() != 0){
+        new QListWidgetItem("proteceted: ", ui->VariablesView);
+        for(auto atr : protectedAtr){
+            new QListWidgetItem(atr, ui->VariablesView);
+        }
+    }
 }
 
 void MainWindow::on_actionRestart_triggered()
@@ -177,6 +239,23 @@ void MainWindow::functionAdded(QString FunctionName)
     if(FunctionName!=""){
         new QListWidgetItem(FunctionName, ui->FunctionView);
     }
+}
+
+QString MainWindow::makeStringForFunction(QString met, QString ClassName)
+{
+    met = met.trimmed();
+    QStringList list = met.split(" ");
+    //qDebug()<<list;
+    QString code = "";
+    for(int i = 2; i<list.size(); i++){
+        code+=list[i];
+        code+= " ";
+    }
+    QString out = list[1] + " ";
+    out+=ClassName;
+    out+= "::";
+    out+=code;
+    return out;
 }
 
 Ui::MainWindow* MainWindow::getUi(){

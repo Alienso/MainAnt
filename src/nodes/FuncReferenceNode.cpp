@@ -1,7 +1,7 @@
 #include "../../headers/nodesHeaders/FuncReferenceNode.h"
 
 FuncReferenceNode::FuncReferenceNode(QString retVal, QString funcName, QVector<QString>& funcTypes, QVector<QString>& funcNames)
-    :Node(funcName, funcNames.size(), 1, funcNames)
+    :Node(funcName, funcNames.size(), 1, funcNames), isMethod(false)
 {
     this->inputTypes["void"] = 'v';
     this->inputTypes["int"] = 'i';
@@ -23,10 +23,17 @@ FuncReferenceNode::FuncReferenceNode(QString retVal, QString funcName, QVector<Q
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,2)->widget()->hide();
+
+    if(funcName.contains("::")){
+        this->isMethod = true;
+    }
 }
 
 //Vracamo samo ime funkcije ostalo ce parser da odradi
 QString FuncReferenceNode::getCodeForNode()
 {
+    if(isMethod){
+        return "->" + this->name + "(";
+    }
     return this->name + "(";
 }

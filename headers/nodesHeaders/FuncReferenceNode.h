@@ -6,6 +6,7 @@
 class FuncReferenceNode : public Node
 {
 private:
+    bool isMethod;
     QString retVal;
     QMap<QString,QChar> inputTypes;
 public:

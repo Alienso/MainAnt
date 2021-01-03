@@ -21,7 +21,9 @@ ClassWindow::ClassWindow(QWidget *parent, int classId) :
     p->addNewClass(c);
     this->classNode=c;
 
-    connect(this, SIGNAL(classAdded(QString, QString, QString)), this->parent(), SLOT(classAdded(QString, QString, QString)));
+    connect(this, SIGNAL(classAdded(QString, QVector<QString>, QVector<QString>, QVector<QString>, QVector<QString>, QVector<QString>, QVector<QString>, QVector<QString>)),
+            this->parent(),
+            SLOT(classAdded(QString, QVector<QString>, QVector<QString>, QVector<QString>, QVector<QString>, QVector<QString>, QVector<QString>, QVector<QString>)));
 
 }
 
@@ -82,10 +84,13 @@ void ClassWindow::fillAtributes()
     for(auto &atr : attributes){
        if(atr->fieldAccessModifiers->currentText() == "public"){
             publicAttributes.push_back(atr);
+            publicAttrCodes.push_back(atr->getCodeForNode());
        }else if(atr->fieldAccessModifiers->currentText() == "private"){
             privateAttributes.push_back(atr);
-       }else if(atr->fieldAccessModifiers->currentText() == "private"){
+            privateAttrCodes.push_back(atr->getCodeForNode());
+       }else if(atr->fieldAccessModifiers->currentText() == "protected"){
             protectedAttributes.push_back(atr);
+            protectedAttrCodes.push_back(atr->getCodeForNode());
        }
     }
 }
@@ -122,7 +127,8 @@ void ClassWindow::on_actionSave_triggered()
         qDebug() << p1;
 
     //Generate .mant
-    emit classAdded(this->classNode->ClassName->text(), this->methodsForMainWindow(), this->variablesForMainWindow());
+    emit classAdded(this->classNode->ClassName->text(),this->stringsFromMethodView, this->privateMethods, this->protectedMethods,
+                    this->publicAttrCodes, this->privateAttrCodes, this->protectedAttrCodes, this->constructors);
 
     this->destroy();
 }

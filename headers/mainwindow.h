@@ -40,6 +40,8 @@ private:
     Parser *p;
     int funcId;
     int classId;
+private:
+    QString makeStringForFunction(QString met, QString ClassName);
 
 public:
     QVector<QListWidgetItem> _functionList;
@@ -59,6 +61,8 @@ public slots:
     void onPutNode(QListWidgetItem* item);
     void onDeletedReferencedNode(QString name);
     void onDeletedStartNode(Node *start);
+    void classAdded(QString ClassName, QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods,
+    QVector<QString> publicAtr, QVector<QString> priavteAtr, QVector<QString> protectedAtr, QVector<QString> constructors);
 
 private slots:
     void on_actionQuit_triggered();
