@@ -99,8 +99,13 @@ void ClassWindow::fillAtributes()
 void ClassWindow::methodAdded(QString MethodName)
 {
     if(MethodName!=""){
-        new QListWidgetItem(MethodName, ui->MethodView);
-        qDebug()<<MethodName;
+        auto list=MethodName.split(" ");
+        if(list[0]=="constructor" && list[1]=="constructor"){
+            QString text=MethodName.right(MethodName.size()-24);
+            new QListWidgetItem(text, ui->MethodView);
+        }
+        else{
+        new QListWidgetItem(MethodName, ui->MethodView);}
         auto methStr=MethodName.split(" ");
         if(methStr[0]=="public"){
             this->stringsFromMethodView.push_back("   "+MethodName);
