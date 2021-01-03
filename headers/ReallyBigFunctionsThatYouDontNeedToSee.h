@@ -324,6 +324,9 @@ void putNode(QListWidgetItem* item,T* w)
         MapNode* n = new MapNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Map"));
+        variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
+        w->_inicializedVars.append(variable);
+        w->_inicializedVarsIds.append(n->getNodeId().toUtf8().constData());
         w->getParser()->setHeader("map");
     }else if(item->text().compare("+Time") == 0){
         Node* n = new Node("time",1,1,{},"time(NULL)");
