@@ -76,8 +76,6 @@ private slots:
     void on_actionCompile_triggered();
     void classAdded(QString ClassName, QString Methods, QString Variables);
     void on_actionFormat_Code_triggered();
-
-    void onVarNameEntered();
     void onReadVariablesNames();
 };
 #endif // MAINWINDOW_H
