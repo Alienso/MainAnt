@@ -740,6 +740,7 @@ QString Parser:: crateClassCode(QString className, int classId, int methodNum,
     headerClass<<"#define __ ";
     headerClass<< classNameUpper.toUtf8().constData();
     headerClass<<"_H__\n";
+    headerClass<<"#include <cstdio>\n#include <vector>\n#include <map>\n#include <queue>\n#include <iostream>\n#include <string>\n#include <stack>\n#include <random>\n#include <ctime>\n";
 
     Node* classNode = classes[0];
     headerClass<<classNode->getCodeForNode().toUtf8().constData();
@@ -814,7 +815,7 @@ QString Parser:: crateClassCode(QString className, int classId, int methodNum,
     headerClass.close();
 
     //pravimo cpp fajl klase
-    QString hppFile = className  + ".hpp"; //koristicemo za includ d a znamo sta da includujemo
+    QString hppFile = className  + ".hpp"; //koristicemo za includ da znamo sta da includujemo
     QString comand1 = "../" + className + ".cpp";
     std::string cppFilePath = comand1.toUtf8().constData();
     cppClass.open(cppFilePath, std::ios::out | std::ios::trunc);
@@ -907,7 +908,8 @@ void Parser::setHeader(std::string header)
     }
 
     //Ako ni nije ni jedan od ovih headera onda znamo da je f-Ja pozvana da bi se dodao header za korisnicki definisanu klasu
-    this->headers+="#includ \"";
+    this->headers+="#include \"";
     this->headers+=header;
     this->headers+="\"\n";
+    qDebug()<<QString::fromStdString(headers);
 }

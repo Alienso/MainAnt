@@ -33,7 +33,7 @@ int ClassNode::getMethodId()
 }
 
 QString ClassNode::getCodeForNode(){
-    QString text="class " + this->ClassName->text() + "(){\n";
+    QString text="class " + this->ClassName->text() + "{\n";
     return text;
 }
 
