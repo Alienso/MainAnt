@@ -8,6 +8,7 @@
 #include <QButtonGroup>
 #include <QRadioButton>
 #include <QPushButton>
+#include <QVector>
 
 #include "./headers/Node.h"
 
@@ -15,7 +16,7 @@ class QueueNode : public Node
 {
     Q_OBJECT
 public:
-    QueueNode();
+    QueueNode(QVector<QString>& _inicializedClases);
 
     QLineEdit* QueueName;
     QComboBox* varTypes;

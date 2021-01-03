@@ -1,6 +1,6 @@
 #include "../../headers/nodesHeaders/MapNode.h"
 
-MapNode::MapNode() : Node("map", 1, 1)
+MapNode::MapNode(QVector<QString>& _inicializedClases) : Node("map", 1, 1)
 {
     setMinimumSize(180,this->initialSize);
     setStyleSheet ("background-color: rgba(120, 120, 0, 1);"
@@ -32,16 +32,25 @@ MapNode::MapNode() : Node("map", 1, 1)
     this->keyTypes->addItem("Float");
     this->keyTypes->addItem("Double");
     this->keyTypes->addItem("Bool");
-    this->keyTypes->addItem("Char");
     this->keyTypes->addItem("String");
+
+    for(auto clas : _inicializedClases)
+    {
+        this->keyTypes->addItem(clas);
+    }
 
     this->valueTypes = new QComboBox();
     this->valueTypes->addItem("Int");
     this->valueTypes->addItem("Float");
     this->valueTypes->addItem("Double");
     this->valueTypes->addItem("Bool");
-    this->valueTypes->addItem("Char");
     this->valueTypes->addItem("String");
+
+    for(auto clas : _inicializedClases)
+    {
+        this->valueTypes->addItem(clas);
+    }
+
     QLabel* keyLabel = new QLabel();
     QLabel* valueLabel = new QLabel();
 
@@ -112,6 +121,19 @@ MapNode::MapNode() : Node("map", 1, 1)
 QString MapNode::getCodeForNode()
 {
     QString text = "std::map<";
+
+    if((!this->keyTypes->currentText().compare("String") && !this->keyTypes->currentText().compare("Int") && !this->keyTypes->currentText().compare("Double")
+            && !this->keyTypes->currentText().compare("Float") && !this->keyTypes->currentText().compare("Bool")) ||
+       (!this->valueTypes->currentText().compare("String") && !this->valueTypes->currentText().compare("Int") && !this->valueTypes->currentText().compare("Double")
+            && !this->valueTypes->currentText().compare("Float") && !this->valueTypes->currentText().compare("Bool"))
+            )
+    {
+        text += this->keyTypes->currentText();
+        text+=", ";
+        text += this->valueTypes->currentText();
+        text+=">;\n";
+        return text;
+    }
 
     if(this->keyTypes->currentText() == QString::fromStdString("String"))
     {

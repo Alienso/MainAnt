@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/StackNode.h"
 
-StackNode::StackNode() : Node("stack", 1, 1)
+StackNode::StackNode(QVector<QString> _inicializedClases) : Node("stack", 1, 1)
 {
     setMinimumSize(200,this->initialSize);
     setStyleSheet ("background-color: rgba(251, 170, 81, 1);"
@@ -31,8 +31,12 @@ StackNode::StackNode() : Node("stack", 1, 1)
     this->varTypes->addItem("Float");
     this->varTypes->addItem("Double");
     this->varTypes->addItem("Bool");
-    this->varTypes->addItem("Char");
     this->varTypes->addItem("String");
+
+    for(auto clas : _inicializedClases)
+    {
+        this->varTypes->addItem(clas);
+    }
 
     this->initialize = new QRadioButton("Initialize",this);
     this->notInitialize = new QRadioButton("Declare", this);
@@ -93,6 +97,14 @@ StackNode::StackNode() : Node("stack", 1, 1)
 QString StackNode::getCodeForNode()
 {
     QString text = "std::stack<";
+
+    if(!this->varTypes->currentText().compare("String") && !this->varTypes->currentText().compare("Int") && !this->varTypes->currentText().compare("Double")
+            && !this->varTypes->currentText().compare("Float") && !this->varTypes->currentText().compare("Bool"))
+    {
+        text += this->varTypes->currentText();
+        text+=">;\n";
+        return text;
+    }
 
     if(this->varTypes->currentText() == QString::fromStdString("String")){
         text+= QString::fromStdString("std::string>");

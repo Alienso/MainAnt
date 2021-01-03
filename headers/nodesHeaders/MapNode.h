@@ -7,6 +7,7 @@
 #include <QButtonGroup>
 #include <QRadioButton>
 #include <QPushButton>
+#include <QVector>
 
 
 #include "./headers/Node.h"
@@ -15,7 +16,7 @@ class MapNode :public Node
 {
     Q_OBJECT
 public:
-    MapNode();
+    MapNode(QVector<QString>& _inicializedClases);
 
     QLineEdit* mapName;
     QComboBox* keyTypes;

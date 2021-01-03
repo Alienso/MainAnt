@@ -8,6 +8,7 @@
 #include <QButtonGroup>
 #include <QRadioButton>
 #include <QPushButton>
+#include <QVector>
 
 #include "./headers/Node.h"
 
@@ -15,7 +16,7 @@ class VectorNode : public Node
 {
       Q_OBJECT
 public:
-    VectorNode();
+    VectorNode(QVector<QString>& _inicializedClases);
 
     QLineEdit* vectorName;
     QLineEdit* capacity;

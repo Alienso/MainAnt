@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/VectorNode.h"
 
-VectorNode::VectorNode() : Node("vector", 1, 1)
+VectorNode::VectorNode(QVector<QString>& _inicializedClases) : Node("vector", 1, 1)
 {
     setMinimumSize(200,this->initialSize);
     setStyleSheet ("background-color: rgba(38, 55, 114, 1);"
@@ -31,8 +31,12 @@ VectorNode::VectorNode() : Node("vector", 1, 1)
     this->varTypes->addItem("Float");
     this->varTypes->addItem("Double");
     this->varTypes->addItem("Bool");
-    this->varTypes->addItem("Char");
     this->varTypes->addItem("String");
+
+    for(auto clas : _inicializedClases)
+    {
+        this->varTypes->addItem(clas);
+    }
 
     this->initialize = new QRadioButton("Initialize",this);
     this->notInitialize = new QRadioButton("Declare", this);
@@ -95,6 +99,13 @@ VectorNode::VectorNode() : Node("vector", 1, 1)
 QString VectorNode::getCodeForNode()
 {
     QString text = "std::vector<";
+    if(!this->varTypes->currentText().compare("String") && !this->varTypes->currentText().compare("Int") && !this->varTypes->currentText().compare("Double")
+            && !this->varTypes->currentText().compare("Float") && !this->varTypes->currentText().compare("Bool"))
+    {
+        text += this->varTypes->currentText();
+        text+=">;\n";
+        return text;
+    }
 
     if(this->varTypes->currentText() == QString::fromStdString("String"))
     {

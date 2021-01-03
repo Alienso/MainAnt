@@ -35,6 +35,7 @@ private:
     QVector<QString> publicAttrCodes;
     QVector<QString> privateAttrCodes;
     QVector<QString> protectedAttrCodes;
+    QVector<QString> _classInicializedList;
 
 
 public:

@@ -1,6 +1,6 @@
 #include "./headers/nodesHeaders/QueueNode.h"
 
-QueueNode::QueueNode() : Node("queue", 1, 1)
+QueueNode::QueueNode(QVector<QString>& _inicializedClases) : Node("queue", 1, 1)
 {
     setMinimumSize(200,this->initialSize);
     setStyleSheet ("background-color: rgba(137, 24, 102, 1);"
@@ -15,7 +15,7 @@ QueueNode::QueueNode() : Node("queue", 1, 1)
     this->QueueName->setPlaceholderText(*placeHolderValue);
 
     this->capacity = new QLineEdit();
-    const QString* placeHolderVarName = new QString("Set stack size...");
+    const QString* placeHolderVarName = new QString("Set queue size...");
     this->capacity->setPlaceholderText(*placeHolderVarName);
 
     this->in = new QLineEdit();
@@ -30,8 +30,12 @@ QueueNode::QueueNode() : Node("queue", 1, 1)
     this->varTypes->addItem("Float");
     this->varTypes->addItem("Double");
     this->varTypes->addItem("Bool");
-    this->varTypes->addItem("Char");
     this->varTypes->addItem("String");
+
+    for(auto clas : _inicializedClases)
+    {
+        this->varTypes->addItem(clas);
+    }
 
     this->initialize = new QRadioButton("Initialize",this);
     this->notInitialize = new QRadioButton("Declare", this);
@@ -92,6 +96,14 @@ QueueNode::QueueNode() : Node("queue", 1, 1)
 QString QueueNode::getCodeForNode()
 {
     QString text = "std::queue<";
+
+    if(!this->varTypes->currentText().compare("String") && !this->varTypes->currentText().compare("Int") && !this->varTypes->currentText().compare("Double")
+            && !this->varTypes->currentText().compare("Float") && !this->varTypes->currentText().compare("Bool"))
+    {
+        text += this->varTypes->currentText();
+        text+=">;\n";
+        return text;
+    }
 
     if(this->varTypes->currentText() == QString::fromStdString("String")){
         text+= QString::fromStdString("std::string>");

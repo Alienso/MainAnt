@@ -40,11 +40,12 @@ private:
     Parser *p;
     int funcId;
     int classId;
-    QVector<ClassInstanceNode*> classInstances ;
+    QVector<ClassInstanceNode*> classInstances;
 private:
     QString makeStringForFunction(QString met, QString ClassName);
 
 public:
+    QVector<QString> _classInicializedList;
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
     QVector<QString> _inicializedVarsIds;

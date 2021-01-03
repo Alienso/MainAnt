@@ -290,7 +290,7 @@ void putNode(QListWidgetItem* item,T* w)
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("VJNode"));
     }else if(item->text().compare("+Vector") == 0){
-        VectorNode* n = new VectorNode();
+        VectorNode* n = new VectorNode(w->_classInicializedList);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("VectorNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
@@ -303,7 +303,7 @@ void putNode(QListWidgetItem* item,T* w)
         w->getParser()->addNode(n, new QString("VectorOperations"));
         w->getParser()->setHeader("vector");
     }else if(item->text().compare("+Stack") == 0){
-        StackNode* n = new StackNode();
+        StackNode* n = new StackNode(w->_classInicializedList);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("StackNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
@@ -316,7 +316,7 @@ void putNode(QListWidgetItem* item,T* w)
         w->getParser()->addNode(n, new QString("StackOperations"));
         w->getParser()->setHeader("stack");
     }else if(item->text().compare("+Queue") == 0){
-        QueueNode* n = new QueueNode();
+        QueueNode* n = new QueueNode(w->_classInicializedList);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("QueueNode"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
@@ -337,7 +337,7 @@ void putNode(QListWidgetItem* item,T* w)
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("IncDec"));
     }else if(item->text().compare("+Dictionary") == 0){
-        MapNode* n = new MapNode();
+        MapNode* n = new MapNode(w->_classInicializedList);
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("Map"));
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);

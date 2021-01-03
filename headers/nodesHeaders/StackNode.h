@@ -8,6 +8,7 @@
 #include <QButtonGroup>
 #include <QRadioButton>
 #include <QPushButton>
+#include <QVector>
 
 #include "./headers/Node.h"
 
@@ -15,7 +16,7 @@ class StackNode : public Node
 {
     Q_OBJECT
 public:
-    StackNode();
+    StackNode(QVector<QString> _inicializedClases);
 
     QLineEdit* StackName;
     QComboBox* varTypes;

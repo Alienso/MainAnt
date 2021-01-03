@@ -181,6 +181,7 @@ void MainWindow::classAdded(QString ClassName, QVector<QString> publicMethods, Q
                             QVector<QString> publicAtr, QVector<QString> priavteAtr, QVector<QString> protectedAtr,
                             QVector<QString> constructors)
 {
+    this->_classInicializedList.push_back(ClassName);
     new QListWidgetItem(ClassName + ":", ui->ClassView);
     new QListWidgetItem("constructors: ", ui->ClassView);
     for(auto con : constructors){
