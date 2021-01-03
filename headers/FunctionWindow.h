@@ -26,7 +26,7 @@ private:
     QVector<QString> argInList;
 
 public:
-    explicit FunctionWindow(QWidget *parent, QString title, int funcNum, int classId, QVector<QString>& argAttr);
+    explicit FunctionWindow(QWidget *parent, QString title, int funcNum, int classId, QVector<QString>& argAttr, QString metAndFunc="");
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
     QVector<QString> _inicializedVarsIds;
@@ -55,6 +55,8 @@ private slots:
     void on_actionSave_triggered();
     void deleteArgumentFromList(QString nameOfArgumen);
     void onReadVariablesNames();
+public slots:
+    void putFunction(QListWidgetItem *item);
 
 };
 

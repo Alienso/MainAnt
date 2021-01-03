@@ -225,13 +225,29 @@ void MainWindow::on_AddFunction_clicked()
 {
     this->funcId = this->funcId +1;
     int funcNum = this->getFuncId();
-    //POtrebno za poziv konstruktora FunctionWindowa
-    QVector<QString> definedAttributes ={};
-    FunctionWindow *f=new FunctionWindow(this, "FunctionWindow", funcNum, 0, definedAttributes);
-    QMessageBox msgBox;
-    msgBox.setText("To save the changes you have made chose 'Build->Save'.");
-    f->show();
-    msgBox.exec();
+
+    //za prozor Methods and Functions
+    QString metAndFunc="";
+    for(int i = 0; i < ui->ClassView->count(); i++){
+        QListWidgetItem* item = ui->ClassView->item(i);
+        metAndFunc.append(item->text());
+        metAndFunc.append("\n");
+    }
+
+    for(int i = 0; i < ui->FunctionView->count(); i++){
+        QListWidgetItem* item = ui->FunctionView->item(i);
+        metAndFunc.append(item->text());
+        metAndFunc.append("\n");
+    }
+//Potrebno za poziv konstruktora FunctionWindow-a
+QVector<QString> definedAttributes ={};
+FunctionWindow *f=new FunctionWindow(this, "FunctionWindow", funcNum, 0, definedAttributes, metAndFunc);
+QMessageBox msgBox;
+msgBox.setText("To save the changes you have made chose 'Build->Save'.");
+f->show();
+msgBox.exec();
+
+
 }
 
 void MainWindow::functionAdded(QString FunctionName)
@@ -278,7 +294,7 @@ int MainWindow::getClassId()
 
 void MainWindow::on_AddClass_clicked()
 {
-    qDebug()<<"+Class";
+    // qDebug()<<"+Class";
     int classNum = getClassId();
     ClassWindow *c=new ClassWindow(this, classNum);
     QMessageBox msgBox;
@@ -350,9 +366,9 @@ void MainWindow::onReadVariablesNames()
 {
     auto graphScene = this->p->getGraphScene();
     for(int i = 0; i<this->_inicializedVars.length(); i++)
-     {
+    {
         qDebug() << this->_inicializedVarsIds[i];
-         Node* reference = graphScene[this->_inicializedVarsIds[i]];
-         this->_inicializedVars[i]->setText(reference->getVarName());
-     }
+        Node* reference = graphScene[this->_inicializedVarsIds[i]];
+        this->_inicializedVars[i]->setText(reference->getVarName());
+    }
 }

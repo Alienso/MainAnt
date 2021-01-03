@@ -25,9 +25,14 @@ public:
     QPushButton *addVariable;
     QVector<ClassField*> fields;
     QVector<QString> definedAttributes;
-
-
     int getMethodId();
+
+    //Public metoddi klase
+    QVector<QString> publicMethods;
+    //private metodi klase
+    QVector<QString> privateMethods;
+    //protected methodi klase
+    QVector<QString> protectedMethods;
 
     QString getCodeForNode() override;
 public slots:

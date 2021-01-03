@@ -18,7 +18,30 @@
 border-color: rgb(21, 45, 73);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,1">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,5,1">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="styleSheet">
+         <string notr="true">color : rgb(189, 221, 235)</string>
+        </property>
+        <property name="text">
+         <string>Methods and Functions</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="MethodsFunctionsView">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(44, 94, 107);
+color : rgb(255, 255, 255);
+</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item>
      <widget class="CustomGraphicsView" name="StagingArea">
       <property name="styleSheet">

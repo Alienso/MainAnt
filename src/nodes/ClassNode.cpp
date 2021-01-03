@@ -41,7 +41,23 @@ void ClassNode::addMethodSlot()
 {
     methodId+=1;
     fillDefinedAttributes();
-    FunctionWindow *m=new FunctionWindow(qobject_cast<QWidget*>(this->parent()->parent()->parent()), "MethodWidnow", methodId, classId, definedAttributes);
+    //za prozor Methods and Functions view
+    QString metAndFunc="";
+    for(auto met : this->publicMethods){
+        metAndFunc.append(met);
+        metAndFunc.append("\n");
+    }
+
+    for(auto met : this->privateMethods){
+        metAndFunc.append(met);
+        metAndFunc.append("\n");
+    }
+
+    for(auto met : this->protectedMethods){
+        metAndFunc.append(met);
+        metAndFunc.append("\n");
+    }
+    FunctionWindow *m=new FunctionWindow(qobject_cast<QWidget*>(this->parent()->parent()->parent()), "MethodWidnow", methodId, classId, definedAttributes, metAndFunc);
     QMessageBox msgBox;
     msgBox.setText("To save the changes you have made chose 'Build->Save'.");
     m->show();

@@ -1,7 +1,7 @@
 #include "./headers/FunctionWindow.h"
 #include "ui_FunctionWindow.h"
 
-FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int classId, QVector<QString>& argAttr) :
+FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int classId, QVector<QString>& argAttr, QString metAndFunc) :
     QMainWindow(parent)
   ,ui(new Ui::FunctionWindow)
   ,p(new Parser)
@@ -21,6 +21,7 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
     connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
     connect(ui->attributesArgumentsList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(addReferenced(QListWidgetItem*)));
     connect(ui->readVarNames, SIGNAL(clicked()), this, SLOT(onReadVariablesNames(void)));
+    connect(ui->MethodsFunctionsView, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putFunction(QListWidgetItem*)));
     //connect(ui->horizontalLayout_2->, SIGNAL(), this, SLOT(on_actionRun_triggered()));
     ui->StagingArea->setLayout(new CustomLayout(1));
 
@@ -36,8 +37,15 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
         p->addNode(ret, new QString("FunctionRteurnNode"));
 
         connect(this, SIGNAL(functionAdded(QString)), this->parent(), SLOT(functionAdded(QString)));
-
         connect(this->func->addToVisible, SIGNAL(clicked()), this, SLOT(argAdded()));
+
+        if(metAndFunc!=""){
+            QList<QString> things=metAndFunc.split("\n");
+            for(auto thing: things){
+                new QListWidgetItem(thing, ui->MethodsFunctionsView);
+            }
+        }
+
     }
     else{
         int n= argAttr.size();
@@ -59,6 +67,22 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
 
         connect(this, SIGNAL(methodAdded(QString)), this->parent(), SLOT(methodAdded(QString)));
         connect(this->method->addToVisible, SIGNAL(clicked()), this, SLOT(argAddedMethodNode()));
+
+        if(metAndFunc!=""){
+            QList<QString> things=metAndFunc.split("\n");
+            for(auto thing: things){
+                thing = thing.trimmed();
+                QStringList list= thing.split(" ");
+                QString code ="";
+                for(int i =1; i<list.size(); i++){
+                    code+=list[i];
+                    code+=" ";
+                }
+                code = code.trimmed();
+                new QListWidgetItem(code, ui->MethodsFunctionsView);
+
+            }
+        }
     }
 }
 
@@ -193,11 +217,11 @@ void FunctionWindow::onReadVariablesNames()
 {
     auto graphScene = this->p->getGraphScene();
     for(int i = 0; i<this->_inicializedVars.length(); i++)
-     {
+    {
         qDebug() << this->_inicializedVarsIds[i];
-         Node* reference = graphScene[this->_inicializedVarsIds[i]];
-         this->_inicializedVars[i]->setText(reference->getVarName());
-     }
+        Node* reference = graphScene[this->_inicializedVarsIds[i]];
+        this->_inicializedVars[i]->setText(reference->getVarName());
+    }
 }
 
 
@@ -235,6 +259,45 @@ Parser* FunctionWindow::getParser(){
 int FunctionWindow::getFuncId()
 {
     return this->funcId;
+}
+
+void FunctionWindow::putFunction(QListWidgetItem *item)
+{
+    QString funcDeclaration = item->text();
+    funcDeclaration = funcDeclaration.trimmed();
+    QStringList list = funcDeclaration.split(QRegExp("\\s+"));
+
+    QString retVal = list[0];
+    QString funcName = list[1];
+    //qDebug()<<funcName;
+
+    QVector<QString> funcTypes = {" ",};
+    QVector<QString> funcNames = {"flow"};
+
+    int listSize = list.size();
+    //qDebug()<<list;
+    if(listSize == 4){
+        FuncReferenceNode* n = new FuncReferenceNode(retVal, funcName, funcTypes, funcNames);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("FuncReferenceNode"));
+        return;
+    }else{
+        int i =3;
+        while(true){
+            funcTypes.push_back(list[i]);
+            funcNames.push_back(list[i+1]);
+
+            if(list[i+2].compare(")") == 0){
+                break;
+            }
+            //ako i+2 nije ) onda  je to , pa mozemo da ga preskocimo
+            i +=3;
+        }
+    }
+
+    FuncReferenceNode* n = new FuncReferenceNode(retVal, funcName, funcTypes, funcNames);
+    ui->StagingArea->addWidget(n);
+    p->addNode(n, new QString("FuncReferenceNode"));
 }
 
 void FunctionWindow::onVarNameEntered(){
