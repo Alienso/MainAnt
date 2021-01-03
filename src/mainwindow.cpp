@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
     connect(ui->FunctionView, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putFunction(QListWidgetItem*)));
     connect(ui->ClassView, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putClassInstance(QListWidgetItem*)));
+    connect(ui->VariablesView, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putReference(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&MainWindow::filterFunctions);
     connect(ui->readVarNames, SIGNAL(clicked()), this, SLOT(onReadVariablesNames(void)));
     connect(ui->VisibleInstances, SIGNAL(clicked()), this, SLOT(addVisibleInstances(void)));
@@ -140,6 +141,19 @@ void MainWindow::putVar(QListWidgetItem *item)
             p->addNode(n, new QString("VariableReferenceNode"));
         }
     }
+}
+
+void MainWindow::putReference(QListWidgetItem *item)
+{
+    QString instance = item->text();
+    instance = instance.trimmed();
+    QStringList list = instance.split(QRegExp("\\s+"));
+
+    QString varName = list[1];
+    VariableReferenceNode* n = new VariableReferenceNode(varName, varName);
+    ui->StagingArea->addWidget(n);
+    p->addNode(n, new QString("VariableReferenceNode"));
+
 }
 
 void MainWindow::onPutNode(QListWidgetItem* item){

@@ -59,6 +59,7 @@ public slots:
     void putClassInstance(QListWidgetItem* item);
     void putFunction(QListWidgetItem* item);
     void putVar(QListWidgetItem* item);
+    void putReference(QListWidgetItem* item);
     void functionAdded(QString FunctionName);
     void onPutNode(QListWidgetItem* item);
     void onDeletedReferencedNode(QString name);
