@@ -33,7 +33,8 @@ ClassInstanceNode::ClassInstanceNode(QString ClassName, QVector<QString> argType
     QVector<QChar> colors = {'q'};
     for (int i=1;i<argTypes.size();i++)
         colors.append(this->inputTypes[argTypes[i]]);
-    //setColors(colors);
+    colors.append('q');
+    setColors(colors);
 
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->itemAtPosition(1,2)->widget()->hide();
