@@ -152,7 +152,7 @@ void functionsListInit(T *w){
      w->_functionList.append(*mapOperations);
 }
 
-template<typename T>
+template<class T>
 void putNode(QListWidgetItem* item,T* w)
 {
     QListWidgetItem* variable;
@@ -245,7 +245,7 @@ void putNode(QListWidgetItem* item,T* w)
         VarNode* n = new VarNode();
         w->getUi()->StagingArea->addWidget(n);
         w->getParser()->addNode(n, new QString("VarNode")); 
-        //connect(n->getVarName(), &QLineEdit::editingFinished, w, &w::onVarNameEntered);
+        //connect(n->getVarName(), &QLineEdit::editingFinished, w, &T::onVarNameEntered);
         variable = new QListWidgetItem(w->tr(n->getNodeId().toUtf8().constData()), w->getUi()->listVars);
         w->_inicializedVars.append(variable);
     }else if(item->text().compare(">") == 0){

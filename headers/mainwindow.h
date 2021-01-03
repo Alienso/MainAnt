@@ -58,6 +58,7 @@ public slots:
     void onPutNode(QListWidgetItem* item);
     void onDeletedReferencedNode(QString name);
     void onDeletedStartNode(Node *start);
+    void onVarNameEntered();
 
 private slots:
     void on_actionQuit_triggered();
@@ -71,6 +72,6 @@ private slots:
     void on_actionCompile_triggered();
     void classAdded(QString ClassName, QString Methods, QString Variables);
     void on_actionFormat_Code_triggered();
-    void onVarNameEntered();
+
 };
 #endif // MAINWINDOW_H

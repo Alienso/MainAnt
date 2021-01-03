@@ -224,3 +224,14 @@ int FunctionWindow::getFuncId()
 {
     return this->funcId;
 }
+
+void FunctionWindow::onVarNameEntered(){
+    for(Node* n : *ui->StagingArea->getNodes()){
+        for(QListWidgetItem* i : _inicializedVars){
+            if (i->text().compare(n->getNodeId())==0){
+                i->setText(n->getVarName());
+                return;
+            }
+        }
+    }
+}

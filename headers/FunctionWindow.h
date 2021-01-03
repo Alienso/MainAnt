@@ -43,6 +43,7 @@ public slots:
     void addReferenced(QListWidgetItem *item);
     void onDeletedReferencedNode(QString name);
     void onDeletedStartNode(Node *start);
+    void onVarNameEntered();
 signals:
     void functionAdded(QString FunctionName);
     void methodAdded(QString MethodName);

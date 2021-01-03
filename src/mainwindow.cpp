@@ -255,8 +255,6 @@ void MainWindow::on_actionFormat_Code_triggered()
 }
 
 void MainWindow::onVarNameEntered(){
-    std::cout<<"Cao";
-    fflush(stdout);
     for(Node* n : *ui->StagingArea->getNodes()){
         for(QListWidgetItem* i : _inicializedVars){
             if (i->text().compare(n->getNodeId())==0){
