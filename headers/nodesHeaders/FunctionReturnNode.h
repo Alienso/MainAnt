@@ -11,6 +11,9 @@ class FunctionReturnNode : public Node
 private:
     bool isVoid;
     QLineEdit* edit;
+    bool consstructor;
+    bool earlyReturn;
+    QLineEdit* returnCode;
 
 public:
     FunctionReturnNode();

@@ -27,7 +27,7 @@ border-color: rgb(21, 45, 73);</string>
      </widget>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,2,0,0,0,0">
+     <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,2,0,0,0,0,0">
       <property name="leftMargin">
        <number>10</number>
       </property>
@@ -70,6 +70,17 @@ border-color: rgb(21, 45, 73);</string>
         <property name="styleSheet">
          <string notr="true">color: rgb(189, 221, 235)
 </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="readVarNames">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(150, 125, 154);
+color: rgb(21, 45, 73);</string>
+        </property>
+        <property name="text">
+         <string>read variables names</string>
         </property>
        </widget>
       </item>

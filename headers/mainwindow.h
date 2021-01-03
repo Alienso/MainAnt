@@ -40,10 +40,13 @@ private:
     Parser *p;
     int funcId;
     int classId;
+private:
+    QString makeStringForFunction(QString met, QString ClassName);
 
 public:
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
+    QVector<QString> _inicializedVarsIds;
     Ui::MainWindow* getUi();
     Parser* getParser();
     int getFuncId();
@@ -59,13 +62,14 @@ public slots:
     void onDeletedReferencedNode(QString name);
     void onDeletedStartNode(Node *start);
     void onVarNameEntered();
+    void classAdded(QString ClassName, QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods,
+    QVector<QString> publicAtr, QVector<QString> priavteAtr, QVector<QString> protectedAtr, QVector<QString> constructors);
 
 private slots:
     void on_actionQuit_triggered();
     void on_actionRun_triggered();
     void on_actionRestart_triggered();
     void on_actionOpen_Code_triggered();
-
     void filterFunctions();
     void on_AddFunction_clicked();
     void on_AddClass_clicked();
@@ -73,5 +77,7 @@ private slots:
     void classAdded(QString ClassName, QString Methods, QString Variables);
     void on_actionFormat_Code_triggered();
 
+    void onVarNameEntered();
+    void onReadVariablesNames();
 };
 #endif // MAINWINDOW_H

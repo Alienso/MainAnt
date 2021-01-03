@@ -58,7 +58,9 @@ QString Parser::createQString(QStringList &collection, bool addClassName, QStrin
 
     QString code = "";
     int vectorSize = collection.size();
-    code+=collection[1];
+    if(collection[1].compare("constructor") != 0){
+        code+=collection[1];
+    }
     //qDebug()<<collection;
     code+=" ";
     if(addClassName){
@@ -697,7 +699,8 @@ QString Parser::createMethodCode(int classNum, int methodNum)
 
 QString Parser:: crateClassCode(QString className, int classId, int methodNum,
                                QVector<QString> publicMethods, QVector<QString> privateMethods, QVector<QString> protectedMethods,
-                               QVector<Node*> publicAttributes, QVector<Node*> privateAttributes, QVector<Node*> protectedAttributes)
+                               QVector<Node*> publicAttributes, QVector<Node*> privateAttributes, QVector<Node*> protectedAttributes,
+                                QVector<QString> constructors)
 {
     //Pravimoo header clase
     QString comand = "../" + className + ".hpp";
@@ -740,6 +743,24 @@ QString Parser:: crateClassCode(QString className, int classId, int methodNum,
             QStringList stringArray = method.split(" ");
             QString code = createQString(stringArray, false, "");
             headerClass<<"\t"<<code.toUtf8().constData()<<";\n";
+        }
+        for(auto con : constructors){
+            con = con.trimmed();
+            QStringList stringArray = con.split(" ");
+            QString code = createQString(stringArray, false, "");
+            headerClass<<"\t"<<code.toUtf8().constData()<<";\n";
+        }
+
+    }else{
+        if(constructors.size() == 0){
+            headerClass<<"public:\n\t"<<className.toUtf8().constData()<<"();";
+        }else{
+            for(auto con : constructors){
+                con = con.trimmed();
+                QStringList stringArray = con.split(" ");
+                QString code = createQString(stringArray, false, "");
+                headerClass<<"\t"<<code.toUtf8().constData()<<";\n";
+            }
         }
     }
     //definisemo polja klase
