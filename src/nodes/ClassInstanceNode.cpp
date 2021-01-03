@@ -1,0 +1,66 @@
+#include "../../headers/nodesHeaders/ClassInstanceNode.h"
+
+ClassInstanceNode::ClassInstanceNode(QString ClassName, QVector<QString> argTypes, QVector<QString> argNames) :Node(ClassName, argNames.size(), 1, argNames),
+    newInstance(true), ClassName(ClassName), instanceName(nullptr)
+{
+    setMinimumSize(220,150);
+    this->ClassInstance = true;
+    QLineEdit* Iname = new QLineEdit(this);
+    this->instanceName = Iname;
+    Iname->setPlaceholderText("Enter the instance name");
+
+    QRadioButton *alreadyExists = new QRadioButton("Var name already exist", this);
+    QRadioButton* newInstance = new QRadioButton("New var instance", this);
+
+    QButtonGroup* choice = new QButtonGroup(this);
+    choice->addButton(newInstance, 1);
+    choice->addButton(alreadyExists, 2);
+
+    newInstance->setChecked(true);
+
+    this->inputTypes["void"] = 'v';
+    this->inputTypes["int"] = 'i';
+    this->inputTypes["float"] = 'f';
+    this->inputTypes["double"] = 'd';
+    this->inputTypes["char"] = 'c';
+    this->inputTypes["bool"] = 'c';
+    this->inputTypes["std::string"] = 's';
+    this->inputTypes["string"] = 's';
+
+    QVector<QChar> colors = {'q'};
+    for (int i=1;i<argTypes.size();i++)
+        colors.append(this->inputTypes[argTypes[i]]);
+    //setColors(colors);
+
+    QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
+    layout->itemAtPosition(1,2)->widget()->hide();
+
+    connect(choice, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked),
+            [=](){
+        int choosen = choice->checkedId();
+        if(choosen == 1){
+            this-> newInstance = true;
+        }else{
+            this->newInstance = false;
+        }
+    });
+
+    layout->addWidget(Iname, 2, 1);
+    layout->addWidget(newInstance, 3, 1);
+    layout->addWidget(alreadyExists, 4, 1);
+
+}
+
+QString ClassInstanceNode::getCodeForNode()
+{
+    QString text = "";
+    if(newInstance){
+        text+=ClassName;
+        text+="* ";
+    }
+    text+=instanceName->text();
+    text+=" = ";
+    text = text + "new " + ClassName + "(";
+
+    return text;
+}

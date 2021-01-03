@@ -17,6 +17,7 @@ SOURCES += \
     src/nodes/BodyNode.cpp \
     src/nodes/BreakNode.cpp \
     src/nodes/ClassField.cpp \
+    src/nodes/ClassInstanceNode.cpp \
     src/nodes/ClassNode.cpp \
     src/nodes/ConditionNode.cpp \
     src/CustomGraphicsView.cpp \
@@ -67,6 +68,7 @@ HEADERS += \
     headers/nodesHeaders/BodyNode.h \
     headers/nodesHeaders/BreakNode.h \
     headers/nodesHeaders/ClassField.h \
+    headers/nodesHeaders/ClassInstanceNode.h \
     headers/nodesHeaders/ClassNode.h \
     headers/nodesHeaders/ConditionNode.h \
     headers/CustomGraphicsView.h \

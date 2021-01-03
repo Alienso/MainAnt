@@ -59,6 +59,7 @@ public:
     bool exist=true;
     bool isHidden=false;
     bool funcRef;
+    bool ClassInstance;
 public:
     explicit Node(QWidget* parent = nullptr);
     Node(QString name,int ninputs,int noutputs,QVector<QString> args = {},QString Code = "", QWidget* parent = nullptr);

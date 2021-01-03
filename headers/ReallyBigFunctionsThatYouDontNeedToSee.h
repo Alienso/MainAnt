@@ -55,6 +55,7 @@
 #include "./headers/nodesHeaders/ContinueNode.h"
 #include "./headers/nodesHeaders/MapOperations.h"
 #include "./headers/nodesHeaders/SrandNode.h"
+#include "./headers/nodesHeaders/ClassInstanceNode.h"
 
 template<typename T>
 void functionsListInit(T *w){

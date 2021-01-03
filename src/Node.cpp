@@ -23,6 +23,7 @@ Node::Node(QWidget *parent) : QFrame(parent)
 Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> _args,QString code, QWidget* parent) : Node(parent)
 {
     funcRef = false;
+    ClassInstance = false;
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->setHorizontalSpacing(2);
     layout->setVerticalSpacing(5);

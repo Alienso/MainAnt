@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onPutNode(QListWidgetItem*)));
     connect(ui->listVars, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putVar(QListWidgetItem*)));
     connect(ui->FunctionView, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putFunction(QListWidgetItem*)));
+    connect(ui->ClassView, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(putClassInstance(QListWidgetItem*)));
     connect(ui->searchBar,&QLineEdit::textChanged,this,&MainWindow::filterFunctions);
     connect(ui->readVarNames, SIGNAL(clicked()), this, SLOT(onReadVariablesNames(void)));
 
@@ -42,10 +43,49 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::putClassInstance(QListWidgetItem *item)
+{
+    QString construct = item->text();
+    //qDebug()<<construct;
+    if(construct.contains(":")){
+        //to je red sa nazivom klase na to necemo da reagujemo
+        return;
+    }
+    construct = construct.trimmed();
+    QStringList list = construct.split(QRegExp("\\s+"));
+    //qDebug()<<list;
+    QString ClassName = list[0];
+    QVector<QString> argNames = {"flow"};
+    QVector<QString> argTypes = {" "};
+    if(list.size() == 3){
+        qDebug()<<"Here";
+        //znaci da konstruktor nema argumenata
+        ClassInstanceNode* n = new ClassInstanceNode(ClassName, argTypes, argNames);
+        ui->StagingArea->addWidget(n);
+        p->addNode(n, new QString("ClassInstanceNode"));
+        return;
+    }else{
+        int i =2;
+        while(true){
+            argTypes.push_back(list[i]);
+            argNames.push_back(list[i+1]);
+
+            if(list[i+2].compare(")") == 0){
+                break;
+            }
+            //ako i+2 nije ) onda  je to , pa mozemo da ga prekocmo
+            i +=3;
+        }
+    }
+    ClassInstanceNode* n = new ClassInstanceNode(ClassName, argTypes, argNames);
+    ui->StagingArea->addWidget(n);
+    p->addNode(n, new QString("ClassInstanceNode"));
+}
+
 void MainWindow::putFunction(QListWidgetItem *item)
 {
     QString funcDeclaration = item->text();
-    if(funcDeclaration == "private:" || funcDeclaration == "protected:" || funcDeclaration == "public"){
+    if(funcDeclaration.compare("private:") || funcDeclaration.compare("protected:") || funcDeclaration.compare("public:")){
         return;
     }
     funcDeclaration = funcDeclaration.trimmed();
@@ -120,7 +160,7 @@ void MainWindow::classAdded(QString ClassName, QVector<QString> publicMethods, Q
                             QVector<QString> publicAtr, QVector<QString> priavteAtr, QVector<QString> protectedAtr,
                             QVector<QString> constructors)
 {
-    new QListWidgetItem(ClassName, ui->ClassView);
+    new QListWidgetItem(ClassName + ":", ui->ClassView);
     new QListWidgetItem("constructors: ", ui->ClassView);
     for(auto con : constructors){
         QStringList list = con.split(" ");
