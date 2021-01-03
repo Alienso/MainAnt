@@ -69,22 +69,18 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
         connect(this->method->addToVisible, SIGNAL(clicked()), this, SLOT(argAddedMethodNode()));
 
         if(metAndFunc!=""){
-            QStringList things=metAndFunc.split("\n");
-            for(auto met: things){
-                met = met.trimmed();
-                const QRegExp regex=QRegExp("/s+");
-                QStringList list = met.split(" ");
-                QString code = "";
-                qDebug()<<list;
-                for(int i = 2; i<list.size(); i++){
+            QList<QString> things=metAndFunc.split("\n");
+            for(auto thing: things){
+                thing = thing.trimmed();
+                QStringList list= thing.split(" ");
+                QString code ="";
+                for(int i =1; i<list.size(); i++){
                     code+=list[i];
-                    code+= " ";
+                    code+=" ";
                 }
-                QString out = list[1] + " ";
-                out+="this";
-                out+= "::";
-                out+=code;
-                new QListWidgetItem(out, ui->MethodsFunctionsView);
+                code = code.trimmed();
+                new QListWidgetItem(code, ui->MethodsFunctionsView);
+
             }
         }
     }

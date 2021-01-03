@@ -100,6 +100,7 @@ void ClassWindow::methodAdded(QString MethodName)
 {
     if(MethodName!=""){
         new QListWidgetItem(MethodName, ui->MethodView);
+        qDebug()<<MethodName;
         auto methStr=MethodName.split(" ");
         if(methStr[0]=="public"){
             this->stringsFromMethodView.push_back("   "+MethodName);
@@ -112,6 +113,7 @@ void ClassWindow::methodAdded(QString MethodName)
             this->classNode->protectedMethods.push_back("   "+MethodName);
         }else if(methStr[0] == "constructor"){
             this->constructors.push_back(" " + MethodName);
+
         }
     }
 }
