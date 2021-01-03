@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->StagingArea->addWidget(r);
     p->addNode(r, new QString("ReturnNode"));
     p->setHeader("cstdio");
+    r->move(550,0);
+    r->setOldPos(QPoint(550,0));
 }
 
 MainWindow::~MainWindow()

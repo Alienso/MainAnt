@@ -35,6 +35,8 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
         FunctionReturnNode* ret = new FunctionReturnNode();
         ui->StagingArea->addWidget(ret);
         p->addNode(ret, new QString("FunctionRteurnNode"));
+        ret->move(650,0);
+        ret->setOldPos(QPoint(650,0));
 
         connect(this, SIGNAL(functionAdded(QString)), this->parent(), SLOT(functionAdded(QString)));
         connect(this->func->addToVisible, SIGNAL(clicked()), this, SLOT(argAdded()));
@@ -63,6 +65,8 @@ FunctionWindow::FunctionWindow(QWidget *parent, QString title, int funcNum, int 
         FunctionReturnNode* ret = new FunctionReturnNode();
         ui->StagingArea->addWidget(ret);
         p->addNode(ret, new QString("FunctionRteurnNode"));
+        ret->move(650,0);
+        ret->setOldPos(QPoint(650,0));
 
 
         connect(this, SIGNAL(methodAdded(QString)), this->parent(), SLOT(methodAdded(QString)));

@@ -14,6 +14,7 @@ private:
     QVector<Node*>* nodes;
     QPoint mouseAt;
     QPoint startPos;
+    QPoint offset;
     bool dragging = false;
 
 public:
@@ -28,6 +29,10 @@ public:
 protected:
     void paintEvent(QPaintEvent*);
     void repositionNodes();
+
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
 };
 
 #endif // CUSTOMGRAPHICSVIEW_H

@@ -69,3 +69,27 @@ void CustomGraphicsView::setMouseAt(QPoint pos){
 void CustomGraphicsView::setStartPos(QPoint pos){
     this->startPos = pos;
 }
+
+void CustomGraphicsView::mousePressEvent(QMouseEvent *event){
+    setCursor(Qt::ClosedHandCursor);
+    this->dragging = true;
+    this->offset = event->pos();
+    for (Node* n :*this->nodes){
+        n->setOldPosCopy(*n->getOldPos());
+    }
+}
+void CustomGraphicsView::mouseMoveEvent(QMouseEvent *event){
+    if (this->dragging){
+        for(Node* n:*this->nodes){
+            n->move(mapToParent(*n->getOldPosCopy() + event->pos() - offset));
+            n->setOldPos(*n->getOldPosCopy() + event->pos() - offset);
+        }
+    }
+}
+void CustomGraphicsView::mouseReleaseEvent(QMouseEvent *event){
+    setCursor(Qt::ArrowCursor);
+    this->dragging = false;
+    for (Node* n :*this->nodes){
+        n->setOldPosCopy(*n->getOldPos());
+    }
+}

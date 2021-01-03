@@ -325,6 +325,16 @@ QVector<Node *>& Node::getParents()
 QPoint* Node::getOldPos(){
     return &oldPos_;
 }
+void Node::setOldPos(QPoint p){
+    oldPos_ = p;
+}
+
+QPoint* Node::getOldPosCopy(){
+    return &oldPosCopy;
+}
+void Node::setOldPosCopy(QPoint p){
+    this->oldPosCopy = p;
+}
 
 QVector<Input*>* Node::getInputs(){
     return &(this->inputs);

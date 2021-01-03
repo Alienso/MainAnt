@@ -31,6 +31,7 @@ protected:
     QString name;
     QPoint offset;
     QPoint oldPos_;
+    QPoint oldPosCopy;
     QString code;
     QVector<Input*> inputs;
     QVector<Output*> outputs;
@@ -73,6 +74,9 @@ public:
     QVector<Node*>& getParents();
 
     QPoint* getOldPos();
+    void setOldPos(QPoint p);
+    QPoint* getOldPosCopy();
+    void setOldPosCopy(QPoint p);
     QVector<Input*>* getInputs();
     QVector<Output*>* getOutputs();
     QString getNodeId();
