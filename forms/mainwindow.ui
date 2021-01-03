@@ -147,6 +147,10 @@ color : rgb(255, 255, 255);
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
          <widget class="QPushButton" name="VisibleInstances">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(150, 25, 184);
+color: rgb(21, 45, 73);</string>
+          </property>
           <property name="text">
            <string>Visible</string>
           </property>
