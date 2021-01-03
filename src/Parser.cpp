@@ -302,6 +302,28 @@ void Parser::visitFuncRefNode(Node *node, QVector<Node *> parents, std::ofstream
     out<<");\n";
 }
 
+void Parser::visitClassInstanceNode(Node *node, QVector<Node *> parents, std::ofstream &out)
+{
+    //ovaj cvor je zapravo poziv konstruktora korisnicki definisane klase, treba samo roditelje da lepo obidjemo
+    out<<node->getCodeForNode().toUtf8().constData();
+    int n_args = node->getInputs()->size();
+    int i=0;
+    for(Node* parent : parents){
+        if (i==0){
+            i++;
+            continue;
+        }
+        if(!parent->getVisited()){
+            this->visitNode(parent,out);
+        }
+        i++;
+        if (i!=n_args){
+            out<< ", ";
+        }
+    }
+    out<<");\n";
+}
+
 Parser::Parser():hasIO(false)
                 ,hasVector(false)
                 ,hasStack(false)
@@ -481,6 +503,7 @@ void Parser::visitNode(Node* node, std::ofstream& out)
     bool isElseIf = checkType(nodeName, "elseIf");
     bool isReferenc = checkType(nodeName, "VariableRef");
     bool isFuncRef = node->funcRef;
+    bool isClassInstance = node->ClassInstance;
 
     /*size_t isBinary = nodeName.find("_");
     if(isBinary == 6){
@@ -497,11 +520,13 @@ void Parser::visitNode(Node* node, std::ofstream& out)
         this->visitElseIfNode(node, parents, out);
     }else if(isFuncRef){
         this->visitFuncRefNode(node, parents, out);
+    }else if(isClassInstance){
+        this->visitClassInstanceNode(node, parents, out);
     }
 
     node->setVisited(true);
 
-    if(!isIf && !isElseIf && !isReferenc && !isFuncRef && !isWhile && !isFor){
+    if(!isIf && !isElseIf && !isReferenc && !isFuncRef && !isWhile && !isFor && !isClassInstance){
         QString code = node->getCodeForNode();
         for(int i = 0;i<code.length();i++){
             QChar c = code[i];

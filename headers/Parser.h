@@ -87,6 +87,7 @@ private:
     void vistiBinaryNode(Node* node, QVector<Node*> parents, std::ofstream& out);
     void visitElseIfNode(Node* node, QVector<Node*> parents, std::ofstream& out);
     void visitFuncRefNode(Node* node, QVector<Node*> parents, std::ofstream& out);
+    void visitClassInstanceNode(Node* node, QVector<Node*> parents, std::ofstream& out);
 
 public:
     explicit Parser();
