@@ -56,6 +56,11 @@ ClassInstanceNode::ClassInstanceNode(QString ClassName, QVector<QString> argType
 
 }
 
+QString ClassInstanceNode::getClassName() const
+{
+    return this->ClassName;
+}
+
 QString ClassInstanceNode::getCodeForNode()
 {
     QString text = "";

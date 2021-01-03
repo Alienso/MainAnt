@@ -426,7 +426,8 @@ void MainWindow::addVisibleInstances()
     for(const auto &inst : this->classInstances){
         if(inst->visible){
             QString name = inst->instanceName->text();
-            new QListWidgetItem(name, ui->VariablesView);
+            QString className = inst->getClassName();
+            new QListWidgetItem(className + ":: " + name, ui->VariablesView);
         }
     }
 }

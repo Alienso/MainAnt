@@ -17,6 +17,7 @@ public:
     bool visible;
 public:
     ClassInstanceNode(QString ClassName, QVector<QString> argTypes, QVector<QString> argNames);
+    QString getClassName() const;
     QString getCodeForNode() override;
 };
 
