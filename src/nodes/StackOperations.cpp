@@ -32,33 +32,29 @@ QString StackOperations::getCodeForNode()
 
     if(this->operations->currentText() == QString::fromStdString("push"))
     {
-        text+= QString::fromStdString(".push(");
+        text+= QString::fromStdString("#0.push(");
         if (this->value->text().compare("") != 0)
             text+= this->value->text();
         else text+="#1";
-        text+= QString::fromStdString(");\n");
+        text+= QString::fromStdString(")");
     }
     else if(this->operations->currentText() == QString::fromStdString("pop"))
     {
-        text+= QString::fromStdString(".pop()");
-        text+= QString::fromStdString(";\n");
+        text+= QString::fromStdString("#0.pop()");
     }
     else if(this->operations->currentText() == QString::fromStdString("size"))
     {
-        text+= QString::fromStdString(".size()");
-        text+= QString::fromStdString(";\n");
+        text+= QString::fromStdString("#0.size()");
     }
     else if(this->operations->currentText() == QString::fromStdString("top"))
     {
-        text+= QString::fromStdString(".top()");
-        text+= QString::fromStdString(";\n");
+        text+= QString::fromStdString("#0.top()");
     }else if(this->operations->currentText() == QString::fromStdString("empty"))
     {
-        text+= QString::fromStdString(".empty()");
-        text+= QString::fromStdString(";\n");
+        text+= QString::fromStdString("#0.empty()");
     }
 
-    qDebug()<< text;
+    //qDebug()<< text;
     return text;
 }
 

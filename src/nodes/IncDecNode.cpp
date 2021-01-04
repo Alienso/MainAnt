@@ -2,7 +2,7 @@
 
 IncDecNode::IncDecNode() : Node("incdec", 1, 1)
 {
-    setMinimumSize(220,150);
+    setMinimumSize(220,170);
     setStyleSheet ("background-color: rgba(48, 125, 44, 1);"
                    "border: 1px solid rgba(255, 150, 132, 1);"
                    "border-radius:5px;");
@@ -47,11 +47,9 @@ QString IncDecNode::getCodeForNode()
     if(this->isPre->isChecked()){
         text += this->operatorType->currentText();
         text += this->operand->text();
-        text += QString::fromStdString(";\n");
     }else if(this->isPost->isChecked()){
         text += this->operand->text();
         text += this->operatorType->currentText();
-        text += QString::fromStdString(";\n");
     }
 
     return text;

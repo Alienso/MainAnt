@@ -14,6 +14,6 @@ IncrementNode::IncrementNode() : Node("Increment", 1, 1)
 
 QString IncrementNode::getCodeForNode()
 {
-    QString text = "";
+    QString text = "#0";
     return text;
 }

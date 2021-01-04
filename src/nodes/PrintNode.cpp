@@ -7,7 +7,7 @@
  * Sadrzi jedan ulaz.
 */
 
-PrintNode::PrintNode() : Node("print", 2, 1, {"flow","input"})
+PrintNode::PrintNode() : Node("print", 2, 1, {"flow","input"}), input(nullptr)
 {
     setMinimumSize(200,260);
     setStyleSheet ("background-color: rgba(105, 50, 129, 1);"

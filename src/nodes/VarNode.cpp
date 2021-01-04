@@ -42,7 +42,7 @@ QString VarNode::getCodeForNode()
         text+= QString::fromStdString(" = ");
         text+= QString::fromStdString("\"");
         text+= this->value->text();
-        text+= QString::fromStdString("\";\n");
+        text+= QString::fromStdString("\"");
     }else{
         text+= this->combo->currentText().toLower();
         text+= QString::fromStdString(" ");
@@ -59,7 +59,6 @@ QString VarNode::getCodeForNode()
             text+= this->value->text();
         }
 
-        text+= QString::fromStdString(";\n");
     }
     //qDebug()<< text;
     return text;

@@ -14,7 +14,7 @@ ForInicializeNode::ForInicializeNode() : Node("ForInitializeNode", 1, 1)
 
 QString ForInicializeNode::getCodeForNode()
 {
-    QString text = "";
+    QString text = "#0";
     return text;
 }
 

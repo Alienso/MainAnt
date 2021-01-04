@@ -30,21 +30,19 @@ QString MapOperations::getCodeForNode()
 
     if(this->operations->currentText() == QString::fromStdString("[]"))
     {
-        text+= QString::fromStdString("[");
+        text+= QString::fromStdString("#0[");
         if (this->value->text().compare("") != 0)
             text+= this->value->text();
         else text+="#1";
-        text+= QString::fromStdString("];\n");
+        text+= QString::fromStdString("]");
     }
     else if(this->operations->currentText() == QString::fromStdString("empty"))
     {
-        text+= QString::fromStdString(".epmpty()");
-        text+= QString::fromStdString(";\n");
+        text+= QString::fromStdString("#0.epmpty()");
     }
     else if(this->operations->currentText() == QString::fromStdString("size"))
     {
-        text+= QString::fromStdString(".size()");
-        text+= QString::fromStdString(";\n");
+        text+= QString::fromStdString("#0.size()");
     }
 
     return text;
