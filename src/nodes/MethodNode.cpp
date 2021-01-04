@@ -116,7 +116,11 @@ QString MethodNode::getCodeForNode(){
         }
         for(i=0; i<n-1; i++){
             if(this->argumentsNames[i]->text()!=""){
-                text+= this->argumentsTypes[i]->currentText();
+                if(argumentsTypes[i]->currentText() == QString::fromStdString("string")){
+                    text+= QString::fromStdString("std::string ");
+                }else{
+                    text+= this->argumentsTypes[i]->currentText();
+                }
                 text+= QString::fromStdString(" ");
                 text+= this->argumentsNames[i]->text();
                 text+= QString::fromStdString(" , ");

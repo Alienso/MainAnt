@@ -1,6 +1,7 @@
 #include "../../headers/nodesHeaders/ClassInstanceNode.h"
 
-ClassInstanceNode::ClassInstanceNode(QString ClassName, QVector<QString> argTypes, QVector<QString> argNames) :Node(ClassName, argNames.size(), 1, argNames),
+ClassInstanceNode::ClassInstanceNode(QString ClassName, QVector<QString> argTypes, QVector<QString> argNames)
+    :Node(ClassName, argNames.size(), 1, argNames),
     newInstance(true)
   , ClassName(ClassName)
   , instanceName(nullptr)
@@ -51,9 +52,10 @@ ClassInstanceNode::ClassInstanceNode(QString ClassName, QVector<QString> argType
         }
     });
 
-    layout->addWidget(Iname, 2, 1);
-    layout->addWidget(newInstance, 3, 1);
-    layout->addWidget(alreadyExists, 4, 1);
+    int place = argTypes.size();
+    layout->addWidget(Iname, place+1, 1);
+    layout->addWidget(newInstance, place+2, 1);
+    layout->addWidget(alreadyExists, place+3, 1);
 
 }
 

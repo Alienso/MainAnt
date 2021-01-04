@@ -91,9 +91,10 @@ void MainWindow::putClassInstance(QListWidgetItem *item)
 void MainWindow::putFunction(QListWidgetItem *item)
 {
     QString funcDeclaration = item->text();
-    if(funcDeclaration.compare("private:") || funcDeclaration.compare("protected:") || funcDeclaration.compare("public:")){
+    if(funcDeclaration.compare("private:") ==0 || funcDeclaration.compare("protected:") == 0 || funcDeclaration.compare("public:") == 0){
         return;
     }
+    qDebug()<<"'OK";
     funcDeclaration = funcDeclaration.trimmed();
     QStringList list = funcDeclaration.split(QRegExp("\\s+"));
 
