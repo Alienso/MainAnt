@@ -1,6 +1,11 @@
 #include "./headers/nodesHeaders/FunctionReturnNode.h"
 
-FunctionReturnNode::FunctionReturnNode() : Node("FunctionReturn", 1, 0), isVoid(true), edit(nullptr), consstructor(false), earlyReturn(false), returnCode(nullptr)
+FunctionReturnNode::FunctionReturnNode() : Node("FunctionReturn", 1, 0),
+    isVoid(true),
+    edit(nullptr),
+    consstructor(false),
+    earlyReturn(false),
+    returnCode(nullptr)
 {
     setMinimumSize(180,180);
     setMaximumWidth(200);

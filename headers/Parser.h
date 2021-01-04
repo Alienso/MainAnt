@@ -40,6 +40,9 @@ private:
     bool hasCstdio;
     bool hasRandom;
     bool hasTime;
+
+    bool hasClasses;
+    QVector<QString> oFajls;
 private:
     //Vekror koji cuva cvorove grafa scene
     QVector<Node*> graph;

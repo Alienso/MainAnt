@@ -349,6 +349,7 @@ Parser::Parser():hasIO(false)
                 ,hasCstdio(false)
                 ,hasRandom(false)
                 ,hasTime(false)
+                ,hasClasses(false)
                 ,id(0)
 {
     headers = "";
@@ -453,6 +454,7 @@ QString Parser::compileAndRun(int funcNum)
     this->traverseGraph(file);
     file.close();
 
+    if(hasClasses== false){
 #ifdef Q_OS_UNIX
     system("g++ -o mainAnt ../mainAntCode.cpp");
     system("./mainAnt");
@@ -464,7 +466,17 @@ QString Parser::compileAndRun(int funcNum)
     system("make.bat");
     system("mainAnt.exe");
 #endif
+    }else{
+        system("g++ -std=c++17 -c -o mainAntCode.o ../mainAntCode.cpp");
+        std::string code = "g++ -o mainAnt mainAntCode.o ";
+        for(auto fajl : this->oFajls){
+            code+="../";
+            code+=fajl.toUtf8().constData();
+            const char* comanda = code.c_str();
+            system(comanda);
 
+        }
+    }
 
     return QString::fromStdString("Zavrsio sam");
 }
@@ -853,6 +865,17 @@ QString Parser:: crateClassCode(QString className, int classId, int methodNum,
 
     cppClass.close();
     this->setHeader(hppFile.toUtf8().constData());
+    std::string comand_ = "g++ -std=c++17 -c -o";
+    std::string classNameString = className.toUtf8().constData();
+    comand_ += classNameString;
+    comand_ += ".o ";
+    comand_+=classNameString;
+    comand_+=".cpp";
+    const char* comanda = comand_.c_str();
+    //qDebug()<<QString::fromStdString(comand_);
+    system(comanda);
+    this->hasClasses = true;
+    this->oFajls.push_back(className + ".o");
 
     return "klasa isparsirana";
 }
