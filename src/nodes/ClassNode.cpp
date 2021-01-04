@@ -57,6 +57,7 @@ void ClassNode::addMethodSlot()
         metAndFunc.append(met);
         metAndFunc.append("\n");
     }
+
     FunctionWindow *m=new FunctionWindow(qobject_cast<QWidget*>(this->parent()->parent()->parent()), "MethodWidnow", methodId, classId, definedAttributes, metAndFunc);
     QMessageBox msgBox;
     msgBox.setText("To save the changes you have made chose 'Build->Save'.");
@@ -75,6 +76,7 @@ void ClassNode::addFieldSlot()
 
 void ClassNode::fillDefinedAttributes()
 {
+    definedAttributes = {};
     for(ClassField* attr : fields){
         QString name = attr->fieldName->text();
         definedAttributes.push_back(name);
