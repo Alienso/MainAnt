@@ -192,7 +192,6 @@ void FunctionWindow::on_actionSave_triggered()
         emit functionAdded(this->func->getCodeForNode());
     }
     else{
-        // this->comboMethod->currentText()+" "
         emit methodAdded(this->method->getCodeForNode());
     }
     this->destroy();

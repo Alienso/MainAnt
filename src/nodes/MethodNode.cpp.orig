@@ -93,6 +93,10 @@ QString MethodNode::getCodeForNode(){
         if(this->construct == false){
             text.append(this->comboMethod->currentText());
             text.append(" ");
+<<<<<<< HEAD
+
+=======
+>>>>>>> d3f954d5475f1590ee6cad19435efda109fddea2
             if(this->combo->currentText().trimmed() == QString::fromStdString("string"))
             {
                 text+= QString::fromStdString("std::string ");
