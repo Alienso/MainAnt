@@ -93,8 +93,7 @@ QString MethodNode::getCodeForNode(){
         if(this->construct == false){
             text.append(this->comboMethod->currentText());
             text.append(" ");
-
-            if(this->combo->currentText() == QString::fromStdString("string"))
+            if(this->combo->currentText().trimmed() == QString::fromStdString("string"))
             {
                 text+= QString::fromStdString("std::string ");
             }else
@@ -116,7 +115,7 @@ QString MethodNode::getCodeForNode(){
         }
         for(i=0; i<n-1; i++){
             if(this->argumentsNames[i]->text()!=""){
-                if(argumentsTypes[i]->currentText() == QString::fromStdString("string")){
+                if(argumentsTypes[i]->currentText().trimmed() == QString::fromStdString("string")){
                     text+= QString::fromStdString("std::string ");
                 }else{
                     text+= this->argumentsTypes[i]->currentText();
@@ -128,7 +127,10 @@ QString MethodNode::getCodeForNode(){
         }
         //da ne bi dodao zarez na poslednji argument
         if(this->argumentsNames[i]->text()!=""){
-            text+= this->argumentsTypes.last()->currentText();
+            if(argumentsTypes[i]->currentText().trimmed() == QString::fromStdString("string")){
+                text+= QString::fromStdString("std::string ");
+            }else{
+            text+= this->argumentsTypes.last()->currentText();}
             text+= QString::fromStdString(" ");
             text+= this->argumentsNames.last()->text();
         }
