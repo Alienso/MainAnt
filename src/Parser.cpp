@@ -283,6 +283,23 @@ void Parser::visitElseIfNode(Node *node, QVector<Node *> parents, std::ofstream 
 void Parser::visitFuncRefNode(Node *node, QVector<Node *> parents, std::ofstream &out)
 {
     //ovaj cvor je zapravo poziv korisnicki definisane funkcije, treba samo roditelje da lepo obidjemo
+    if(node->methodNode){
+        int i = 0;
+        for(Node* parent : parents){
+            if(i == 0){
+                i++;
+                continue;
+            }
+            if(!parent->getVisited()){
+                this->visitNode(parent, out);
+                i++;
+                if(i == 1){
+                    break;
+                }
+            }
+        }
+    }
+
     out<<node->getCodeForNode().toUtf8().constData();
     int n_args = node->getInputs()->size();
     int i=0;

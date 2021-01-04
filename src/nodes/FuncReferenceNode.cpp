@@ -15,6 +15,7 @@ FuncReferenceNode::FuncReferenceNode(QString retVal, QString funcName, QVector<Q
     this->name = funcName;
     this->retVal = retVal;
     this->funcRef = true;
+    this->methodNode = true;
     QVector<QChar> colors = {'q'};
     for (int i=1;i<funcTypes.size();i++)
         colors.append(this->inputTypes[funcTypes[i]]);
@@ -33,7 +34,9 @@ FuncReferenceNode::FuncReferenceNode(QString retVal, QString funcName, QVector<Q
 QString FuncReferenceNode::getCodeForNode()
 {
     if(isMethod){
-        return "->" + this->name + "(";
+        QString nodeName = this->name;
+        QStringList list = nodeName.split("::");
+        return "->" + list[1] + "(";
     }
     return this->name + "(";
 }

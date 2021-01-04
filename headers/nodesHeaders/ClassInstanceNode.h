@@ -19,6 +19,8 @@ public:
     ClassInstanceNode(QString ClassName, QVector<QString> argTypes, QVector<QString> argNames);
     QString getClassName() const;
     QString getCodeForNode() override;
+    QString getVarName() const override;
+
 };
 
 #endif // CLASSINSTANCENODE_H

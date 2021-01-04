@@ -77,3 +77,8 @@ QString ClassInstanceNode::getCodeForNode()
 
     return text;
 }
+
+QString ClassInstanceNode::getVarName() const
+{
+    return this->instanceName->text().trimmed();
+}

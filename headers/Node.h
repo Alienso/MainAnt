@@ -59,6 +59,7 @@ public:
     bool exist=true;
     bool isHidden=false;
     bool funcRef;
+    bool methodNode;
     bool ClassInstance;
 public:
     explicit Node(QWidget* parent = nullptr);

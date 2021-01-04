@@ -24,6 +24,7 @@ Node::Node(QString _name,int ninputs,int noutputs,QVector<QString> _args,QString
 {
     funcRef = false;
     ClassInstance = false;
+    methodNode = false;
     QGridLayout* layout = static_cast<QGridLayout*>(this->layout());
     layout->setHorizontalSpacing(2);
     layout->setVerticalSpacing(5);

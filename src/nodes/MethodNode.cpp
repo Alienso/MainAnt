@@ -62,7 +62,7 @@ MethodNode::MethodNode() : Node("Method", 1, 1), argNum(0), construct(false)
                 this->combo->show();
                 this->comboMethod->show();
             }
-            this->construct = true;
+            this->construct = false;
         }
     });
 

@@ -46,6 +46,7 @@ private:
 
 public:
     QVector<QString> _classInicializedList;
+    QVector<QString> _classInicializedListIds;
     QVector<QListWidgetItem> _functionList;
     QVector<QListWidgetItem*> _inicializedVars;
     QVector<QString> _inicializedVarsIds;

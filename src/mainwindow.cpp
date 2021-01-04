@@ -104,7 +104,10 @@ void MainWindow::putFunction(QListWidgetItem *item)
 
     QVector<QString> funcTypes = {" ",};
     QVector<QString> funcNames = {"flow"};
-
+    if(funcName.contains("::")){
+     funcTypes.append("void");
+     funcNames.append("instance");
+    }
     int listSize = list.size();
     //qDebug()<<list;
     if(listSize == 4){
@@ -151,9 +154,14 @@ void MainWindow::putReference(QListWidgetItem *item)
     QStringList list = instance.split(QRegExp("\\s+"));
 
     QString varName = list[1];
-    VariableReferenceNode* n = new VariableReferenceNode(varName, varName);
-    ui->StagingArea->addWidget(n);
-    p->addNode(n, new QString("VariableReferenceNode"));
+
+    for(int i = 0; i < ui->VariablesView->count(); i++){
+       if(ui->VariablesView->item(i) == item){
+            VariableReferenceNode* n = new VariableReferenceNode(varName, this->_classInicializedListIds[i]);
+            ui->StagingArea->addWidget(n);
+            p->addNode(n, new QString("VariableReferenceNode"));
+       }
+    }
 
 }
 
@@ -309,13 +317,13 @@ void MainWindow::on_AddFunction_clicked()
         metAndFunc.append(item->text());
         metAndFunc.append("\n");
     }
-//Potrebno za poziv konstruktora FunctionWindow-a
-QVector<QString> definedAttributes ={};
-FunctionWindow *f=new FunctionWindow(this, "FunctionWindow", funcNum, 0, definedAttributes, metAndFunc);
-QMessageBox msgBox;
-msgBox.setText("To save the changes you have made chose 'Build->Save'.");
-f->show();
-msgBox.exec();
+    //Potrebno za poziv konstruktora FunctionWindow-a
+    QVector<QString> definedAttributes ={};
+    FunctionWindow *f=new FunctionWindow(this, "FunctionWindow", funcNum, 0, definedAttributes, metAndFunc);
+    QMessageBox msgBox;
+    msgBox.setText("To save the changes you have made chose 'Build->Save'.");
+    f->show();
+    msgBox.exec();
 
 
 }
@@ -436,15 +444,17 @@ void MainWindow::addVisibleInstances()
 {
     //Brisem sve sto je pisalo u View
     for(int i = 0; i < ui->VariablesView->count(); i++){
-       QListWidgetItem* item = ui->listVars->item(i);
+       QListWidgetItem* item = ui->VariablesView->item(i);
        delete item;
 
     }
 
     //Dodajem samo vidljive intance
     for(const auto &inst : this->classInstances){
+        this->_classInicializedListIds = {};
         if(inst->visible){
             QString name = inst->instanceName->text();
+            this->_classInicializedListIds.push_back(inst->getNodeId());
             QString className = inst->getClassName();
             new QListWidgetItem(className + ":: " + name, ui->VariablesView);
         }
