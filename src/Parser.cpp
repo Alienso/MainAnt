@@ -242,6 +242,10 @@ void Parser::visitIfNode(Node *ifNode, QVector<Node *> parents, QVector<Node *> 
        //ne zelimo da obidjemo poslednje dete
        len = len-1;
        //for(int i=0; i<len; i++){
+           bool nextIsNull = false;
+           if ((*ifNode->getOutputs())[0]->getNext() == nullptr)
+               nextIsNull = true;
+           if (!nextIsNull){
            Node* child = static_cast<Node*>((*ifNode->getOutputs())[0]->getNext()->parentWidget());
            if(!child->getVisited()){
               std::string childName = child->getName().toUtf8().constData();
@@ -253,6 +257,7 @@ void Parser::visitIfNode(Node *ifNode, QVector<Node *> parents, QVector<Node *> 
               if(isBody){
                   out<<"\n}\n";
               }
+           }
            }
       // }
     }
@@ -589,17 +594,22 @@ void Parser::visitNode(Node* node, std::ofstream& out)
        return;
     }else{
         if (isFor || isWhile || isIf){
-            Node* child = static_cast<Node*>((*node->getOutputs())[1]->getNext()->parentWidget());
-            if(!child->getVisited()){
-               std::string childName = child->getName().toUtf8().constData();
-               bool isBody = checkType(childName, "Body");
-               if(isBody){
-                 out<<"{\n";
-               }
-               visitNode(child, out);
-               if(isBody){
-                   out<<"\n}\n";
-               }
+            bool nextIsNull = false;
+            if ((*node->getOutputs())[1]->getNext() == nullptr)
+                nextIsNull = true;
+            if (!nextIsNull){
+                Node* child = static_cast<Node*>((*node->getOutputs())[1]->getNext()->parentWidget());
+                if(!child->getVisited()){
+                   std::string childName = child->getName().toUtf8().constData();
+                   bool isBody = checkType(childName, "Body");
+                   if(isBody){
+                     out<<"{\n";
+                   }
+                   visitNode(child, out);
+                   if(isBody){
+                       out<<"\n}\n";
+                   }
+                }
             }
             return;
         }
