@@ -51,13 +51,17 @@ void MainWindow::putClassInstance(QListWidgetItem *item)
 {
     QString construct = item->text();
     //qDebug()<<construct;
-    if(construct.contains(":")){
+    /*if(construct.contains(":")){
         //to je red sa nazivom klase na to necemo da reagujemo
         return;
-    }
+    }*/
     construct = construct.trimmed();
     QStringList list = construct.split(QRegExp("\\s+"));
     //qDebug()<<list;
+    if(list.size() == 1){
+        //to je red sa nazivom klase na to necemo da reagujemo
+        return;
+    }
     QString ClassName = list[0];
     QVector<QString> argNames = {"flow"};
     QVector<QString> argTypes = {" "};
@@ -190,6 +194,8 @@ void MainWindow::classAdded(QString ClassName, QVector<QString> publicMethods, Q
                             QVector<QString> publicAtr, QVector<QString> priavteAtr, QVector<QString> protectedAtr,
                             QVector<QString> constructors)
 {
+    this->p->hasClasses = true;
+    this->p->oFajls.push_back(ClassName);
     this->p->setHeader((ClassName + ".hpp").toUtf8().constData());
     this->_classInicializedList.push_back(ClassName);
     new QListWidgetItem(ClassName + ":", ui->ClassView);

@@ -1,17 +1,17 @@
-# Project 08-MainAnt
+# :ant: Project 08-MainAnt :ant:
 
-MainAnt je aplikacija koja sluzi za pisanje koda pomocu implementiranih cvorova. Glavni delovi programa su:
-1. Cvorovi koji nam omogucavaju da programiramo
+MainAnt je aplikacija koja korisniku omoguca da pomocu elemenata scene, koje nazivamo cvorovi, kreira drvoliku strukturku koja se prevodi u odgovarajuci c++ kod.Program cine:
+1. Cvorovi scene pomocu kojih gradimo kod 
 2. Definisanje klasa
 3. Definisanje funkcija
-4. Generisanje koda na osnovu formirane scene
+4. Generisanje koda na osnovu formirane scene(pomocu parsera)
 
 # O projektu
-Kako je za razumevanje algoritama nepohodno poznavanje jezika u kome je algoritam napisan, u aplikaciji MainAnt je moguce vizuelizovati algoritam i njegov tok izvrsavanja pomocu cvorova i ostalih elemenata aplikacije. I na taj nacin nevezano od sintakse jezika bolje razumeti algoritam.Takodje, ako zelimo da vidimo kako ce kod izgledati za implemetirani algoritam imamo opciju compile koja generise kod za napravljeni program u programskom jeziku C++.
-
+Mainant je zamisljen kao GUI koji korisniku omogucava da na vizuelan nacin gradi svoj kod. Elementi koda su cvorovi, a povezivanjem cvorova na odredjeni  nacin gradimo kod. Kao i u svakom programskom jeziku i nas GUI je osetljiv na redosled operacija, tacnije na redosled povezivanja cvorova, dakle korisnik mora da pazi na koji nacin gradi samu scenu. Nakon sto napravimo scenu sa kojom smo zadovoljni, mozemo odabrati opciju compile, koja ce generisati c++ kod koji odgovara datoj sceni, ili opciju run, koja ce izgraditi i pokrenuti odgovarajuci c++ kod. Pored run i compile opcije, imamo opciju Open Code koja otvara generisan .cpp fajl i opciju Format Code koja gradi novi .cpp fajl koji je isti kao prethodni samo je formatiran. 
+Maiant omogucava gradjenje jednostavnih kodova, klasa i funkcija. 
 
 # Pokretanje projekta
-Projekat je ceo implementiran u razvojnom okruzenju Qt, tako da je nepohodno instalirati ovo okruzenje i pokrenuti projekat u QtCreatroru klkiom na dugme run.
+Projekat je ceo implementiran u razvojnom okruzenju Qt, tako da je nepohodno instalirati ovo okruzenje i pokrenuti projekat u QtCreatoru klkiom na dugme run. Takodje je neophodno posedovati c++ kompajler, i to bas g++. Verzija QtCreatror-a mora biti najmanje 5.12. 
 
 Ako zelite da vidite generisan kod za napravljenu scenu klikom na opciju Compile u Build padajucem meniju generise se kod, a opcijom Open Code u istom meniju se otvara kod koji je generisan. Za lepsi izgled koda ugradjena je opcija Format Code u istom meniju, prilikom koje se generise formatiran kod koji mozete da nadjete na istoj lokaciji gde vam se nalazi direktorijum glavnog programa.
 
@@ -19,9 +19,15 @@ Ako zelite da vidite generisan kod za napravljenu scenu klikom na opciju Compile
 
 [Nedeljni izvestaji](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2020-2021/08-mainant/-/wikis/Home-Page)
 
+# Neophodno za pokretanje
+- QtCreator version 5.12 or up
+- g++
+
+
 ## Developers
 
 - [Vladimir Arsenijevic, 39/2017](https://gitlab.com/Alienso)
 - [Mila Mladjenovic, 100/2017](https://gitlab.com/milamladjenovic)
 - [Mirko Ilic, 468/2018](https://gitlab.com/Mirko07998)
 - [Andjela Ilic, 105/2017](https://gitlab.com/ilicandjela)
+
