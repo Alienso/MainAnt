@@ -61,7 +61,7 @@ QString AssignNode::getCodeForNode()
         {
             text+="#1";
         }
-        text+= QString::fromStdString(";\n");
+        //text+= QString::fromStdString("");
     }
 
     return text;

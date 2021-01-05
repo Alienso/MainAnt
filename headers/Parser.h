@@ -41,8 +41,6 @@ private:
     bool hasRandom;
     bool hasTime;
 
-    bool hasClasses;
-    QVector<QString> oFajls;
 private:
     //Vekror koji cuva cvorove grafa scene
     QVector<Node*> graph;
@@ -124,6 +122,8 @@ public:
                            QVector<Node*> publicAttributes, QVector<Node*> privateAttributes, QVector<Node*> protectedAttributes,
                            QVector<QString> constructors);
     void setHeader(std::string header);
+    bool hasClasses;
+    QVector<QString> oFajls;
 
 };
 
