@@ -22,9 +22,9 @@ border-color: rgb(21, 45, 73);</string>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLabel" name="label_4">
         <property name="styleSheet">
-         <string notr="true">color : rgb(189, 221, 235)</string>
+         <string notr="true">color: rgb(189, 221, 235);</string>
         </property>
         <property name="text">
          <string>Methods and Functions</string>
