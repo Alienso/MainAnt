@@ -1,4 +1,4 @@
-# Project 08-MainAnt
+# :ant: Project 08-MainAnt :ant:
 
 MainAnt je aplikacija koja korisniku omoguca da pomocu elemenata scene, koje nazivamo cvorovi, kreira drvoliku strukturku koja se prevodi u odgovarajuci c++ kod.Program cine:
 1. Cvorovi scene pomocu kojih gradimo kod 
@@ -7,7 +7,7 @@ MainAnt je aplikacija koja korisniku omoguca da pomocu elemenata scene, koje naz
 4. Generisanje koda na osnovu formirane scene(pomocu parsera)
 
 # O projektu
-Mainant je zamisljen kao GUI koji vam omogucava da na vizuelan nacim gradite svoj kod. Elementi koda su cvorovi, a povezivanjem cvorova na odradjeni  nacin gradimo kod. Kao i u svakom programskom jeziku i nas gui je osetljiv na redosled operacija, tacnije na redosled povezivanja cvorova, dakle korisnik mora da pazi na koji nacin gradi samu scenu. Nakon sto napravimo scenu sa kojom smo zadovoljni, mozemo odabrati opciju compile, koja ce generisati c++ kod koji odgovara datoj sceni, ili opciju run, koja ce izgraditi i pokrenuti c++ kod koji odgovara datoj sceni. Pored run i compile opcije, imamo opciju Open Code koja otvara generisan .cpp fajl i opciju Format Code koja gradi novi .cpp fajl koji je istti kao prethodni samo je formatiran. 
+Mainant je zamisljen kao GUI koji korisniku omogucava da na vizuelan nacin gradi svoj kod. Elementi koda su cvorovi, a povezivanjem cvorova na odredjeni  nacin gradimo kod. Kao i u svakom programskom jeziku i nas GUI je osetljiv na redosled operacija, tacnije na redosled povezivanja cvorova, dakle korisnik mora da pazi na koji nacin gradi samu scenu. Nakon sto napravimo scenu sa kojom smo zadovoljni, mozemo odabrati opciju compile, koja ce generisati c++ kod koji odgovara datoj sceni, ili opciju run, koja ce izgraditi i pokrenuti odgovarajuci c++ kod. Pored run i compile opcije, imamo opciju Open Code koja otvara generisan .cpp fajl i opciju Format Code koja gradi novi .cpp fajl koji je isti kao prethodni samo je formatiran. 
 Maiant omogucava gradjenje jednostavnih kodova, klasa i funkcija. 
 
 # Pokretanje projekta
@@ -19,9 +19,10 @@ Ako zelite da vidite generisan kod za napravljenu scenu klikom na opciju Compile
 
 [Nedeljni izvestaji](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2020-2021/08-mainant/-/wikis/Home-Page)
 
-#Neophodno za pokretanje:
-QtCreator version 5.12 or up
-g++
+# Neophodno za pokretanje
+- QtCreator version 5.12 or up
+- g++
+
 
 ## Developers
 
