@@ -15,9 +15,17 @@ Projekat je ceo implementiran u razvojnom okruzenju Qt, tako da je nepohodno ins
 
 Ako zelite da vidite generisan kod za napravljenu scenu klikom na opciju Compile u Build padajucem meniju generise se kod, a opcijom Open Code u istom meniju se otvara kod koji je generisan. Za lepsi izgled koda ugradjena je opcija Format Code u istom meniju, prilikom koje se generise formatiran kod koji mozete da nadjete na istoj lokaciji gde vam se nalazi direktorijum glavnog programa.
 
+# Video snimak aplikacije
+
+[Video](https://drive.google.com/file/d/1i_hih03tABAcz8mNLgUuM7UTYp16eRqC/view?usp=sharing)
+
 # Nedeljni izvestaji
 
 [Nedeljni izvestaji](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2020-2021/08-mainant/-/wikis/Home-Page)
+
+# Dokumentacija
+
+[Dokumentacija](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2020-2021/08-mainant/-/blob/master/documentation/UMLDiagram.html)
 
 # Neophodno za pokretanje
 - QtCreator version 5.12 or up
